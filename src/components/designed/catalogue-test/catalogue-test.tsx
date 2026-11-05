@@ -21,6 +21,7 @@ import {
   TestError,
   type LiveEvent,
   type RequirementResult,
+  type TestConfig,
   type TestState,
 } from "@/lib/catalogue-test";
 
@@ -96,6 +97,10 @@ export function CatalogueTest({
   const [unavailable, setUnavailable] = useState(false);
   // What spider can test today, from its config; laptops and monitors until it answers.
   const [categories, setCategories] = useState<string[]>(["laptop", "monitor"]);
+  // All 780 categories of the canonical taxonomy, grouped, labelled and marked draft by the service.
+  const [taxonomy, setTaxonomy] = useState<
+    Pick<TestConfig, "groups" | "labels" | "draft">
+  >({});
   // A shared result opens straight on it; ?url= prefills the form (the homepage box links here).
   const search = useSearch();
   const [pages, setPages] = useState<string[]>([]);
@@ -123,6 +128,7 @@ export function CatalogueTest({
       .then((c) => {
         setEnabled(c.enabled);
         if (c.categories?.length) setCategories(c.categories);
+        setTaxonomy({ groups: c.groups, labels: c.labels, draft: c.draft });
       })
       .catch(() => setUnavailable(true));
   }, []);
@@ -252,6 +258,21 @@ export function CatalogueTest({
   };
 
   const status = state?.status ?? (id ? "queued" : null);
+  // A drafted checklist runs and reports, and says so (catalogue-categories Q5).
+  const draftNote =
+    state?.category && taxonomy.draft?.includes(state.category) ? (
+      <p className="mt-3 rounded-2xl bg-surface-1 px-4 py-3 text-sm text-muted">
+        <span className="mr-2 rounded-full bg-card px-2 py-0.5 text-xs font-semibold text-ink">
+          {t("draftBadge")}
+        </span>
+        {t("draftNote", {
+          category:
+            taxonomy.labels?.[state.category]?.[
+              locale === "vi" ? "vi" : "en"
+            ] ?? state.category,
+        })}
+      </p>
+    ) : null;
   const teaser = state?.teaser ?? null;
   const running =
     Boolean(id) && !teaser && status !== "failed" && status !== "blocked";
@@ -312,6 +333,8 @@ export function CatalogueTest({
                   initial={search.get("url") ?? ""}
                   category={category}
                   categories={categories}
+                  groups={taxonomy.groups ?? []}
+                  labels={taxonomy.labels ?? {}}
                   locale={locale}
                   onCategory={setCategory}
                   onPages={(list, ok) => {
@@ -383,6 +406,7 @@ export function CatalogueTest({
                     : t(`status_${status}`)}
               </p>
             </div>
+            {draftNote}
             {rows.length > 0 && (
               <>
                 <div
@@ -515,6 +539,7 @@ export function CatalogueTest({
           </section>
         )}
 
+        {teaser && state && draftNote}
         {teaser && state && (
           <Result
             teaser={teaser}
