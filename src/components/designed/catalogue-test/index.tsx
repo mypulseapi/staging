@@ -57,38 +57,49 @@ export function CatalogueTestPage() {
 
   return (
     <>
-      <CatalogueTest
-        labels={labels}
-        locale={renderLocale()}
-        calculator={<CalculatorBlock key="calculator" bare />}
-        header={header}
-        ask={ask}
-      />
+      {/* The hero and About Pulse fill the first screen under the header together (68px and its 1px border),
+          About taking whatever the hero leaves, so the split screens never start above the fold (owner,
+          5 Nov 2026). On a short screen the two are taller than it and simply run on. */}
+      <div className="flex min-h-[calc(100svh-4.25rem-1px)] flex-col">
+        <CatalogueTest
+          labels={labels}
+          locale={renderLocale()}
+          calculator={<CalculatorBlock key="calculator" bare />}
+          header={header}
+          ask={ask}
+        />
 
-      {/* About Pulse, a section of its own after the hero, on white, its heading at the section title size
+        {/* About Pulse, a section of its own after the hero, on white, its heading at the section title size
           (owner, 5 Nov 2026). A text link, so the hero's bar keeps the page's first button. */}
-      <section aria-labelledby="about-pulse-title" className="bg-card">
-        <div className="frame grid items-center gap-x-16 gap-y-5 py-20 md:grid-cols-2 lg:py-28">
-          <h2 id="about-pulse-title" className="text-title text-balance">
-            {t("aboutTitle")}
-          </h2>
+        <section
+          aria-labelledby="about-pulse-title"
+          className="flex flex-1 flex-col justify-center bg-card"
+        >
+          {/* `frame` is content-box with auto margins, so a plain block sits between it and the flex column. */}
           <div>
-            <p className="max-w-[56ch] text-lg text-pretty text-muted">
-              {t("aboutP1")}
-            </p>
-            <a
-              href={designedHref("/en/overview")}
-              className="group mt-5 inline-block font-medium text-primary underline-offset-4 hover:underline"
-            >
-              {t("overview")}
-              <ArrowRight
-                className="ml-1 inline size-4 align-[-3px] transition-transform duration-200 ease-out-soft group-hover:translate-x-0.5"
-                aria-hidden
-              />
-            </a>
+            <div className="frame grid items-center gap-x-16 gap-y-5 py-20 md:grid-cols-2 lg:py-28">
+              <h2 id="about-pulse-title" className="text-title text-balance">
+                {t("aboutTitle")}
+              </h2>
+              <div>
+                <p className="max-w-[56ch] text-lg text-pretty text-muted">
+                  {t("aboutP1")}
+                </p>
+                <a
+                  href={designedHref("/en/overview")}
+                  className="group mt-5 inline-block font-medium text-primary underline-offset-4 hover:underline"
+                >
+                  {t("overview")}
+                  <ArrowRight
+                    className="ml-1 inline size-4 align-[-3px] transition-transform duration-200 ease-out-soft group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <SplitScroll labels={labels} />
 
