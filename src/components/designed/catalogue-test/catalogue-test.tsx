@@ -12,6 +12,7 @@ import { Turnstile } from "@/components/Turnstile";
 import { HeroAurora } from "@/components/designed/hero-aurora";
 import { AddressBar } from "./address-bar";
 import { Result } from "./result";
+import { RunPipeline } from "./run-pipeline";
 import {
   domainOf,
   pollTest,
@@ -35,19 +36,6 @@ import {
  * cannot. `{name}` in a label is filled here.
  */
 export type Labels = Record<string, string>;
-
-const RESULTS: RequirementResult[] = [
-  "supported",
-  "partial",
-  "buried",
-  "insufficient",
-];
-const BAR: Record<RequirementResult, string> = {
-  supported: "bg-primary",
-  partial: "bg-primary/50",
-  buried: "bg-muted/50",
-  insufficient: "bg-muted/25",
-};
 
 function fill(s: string, vars: Record<string, string | number>) {
   return s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
@@ -115,6 +103,13 @@ export function CatalogueTest({
     Record<string, Record<RequirementResult, number>>
   >({});
   const [now, setNow] = useState<string | null>(null);
+  // From the live events: spider says "evaluating" only as an event, never as the stored status, so
+  // the page keeps it here (step 4 of the pipeline); the products found on the store; when it started.
+  const [evaluating, setEvaluating] = useState(false);
+  const [found, setFound] = useState<number | null>(null);
+  const [startedAt, setStartedAt] = useState<number | null>(null);
+  const [elapsed, setElapsed] = useState<number | null>(null);
+  const started = useRef<number | null>(null);
   const cursor = useRef(0);
   const timers = useRef<number[]>([]);
 
@@ -128,6 +123,9 @@ export function CatalogueTest({
   }, []);
 
   const apply = useCallback((e: LiveEvent) => {
+    if (e.type === "status" && e.status === "evaluating") setEvaluating(true);
+    if (e.type === "discovered" && e.discovered !== undefined)
+      setFound(e.discovered);
     if (e.type === "discovered" && e.urls)
       setRows(e.urls.map((url) => ({ url, state: "queued" })));
     if (e.type === "inspecting" && e.url) {
@@ -181,6 +179,11 @@ export function CatalogueTest({
         if (stop) return;
         cursor.current = s.cursor;
         setState(s);
+        if (started.current === null && s.events.length) {
+          started.current = s.events[0].at;
+          setStartedAt(started.current);
+        }
+        if (started.current !== null) setElapsed(Date.now() - started.current);
         const gap =
           s.nextPollMs && !reducedMotion()
             ? s.nextPollMs / Math.max(1, s.events.length)
@@ -222,6 +225,11 @@ export function CatalogueTest({
       cursor.current = 0;
       setRows([]);
       setReqs({});
+      setEvaluating(false);
+      setFound(null);
+      setStartedAt(null);
+      setElapsed(null);
+      started.current = null;
       setState(null);
       setId(r.id);
       setRun((n) => n + 1);
@@ -247,6 +255,11 @@ export function CatalogueTest({
     setState(null);
     setRows([]);
     setReqs({});
+    setEvaluating(false);
+    setFound(null);
+    setStartedAt(null);
+    setElapsed(null);
+    started.current = null;
     cursor.current = 0;
     window.history.replaceState(null, "", window.location.pathname);
   };
@@ -365,168 +378,59 @@ export function CatalogueTest({
         </div>
       </section>
 
-      <div className="frame py-12 lg:py-16 empty:hidden">
-        {id && !teaser && (
-          <section
-            aria-live="polite"
-            className="rounded-3xl border border-line bg-card p-6 shadow-sm sm:p-8"
-          >
-            <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h2 className="text-lg font-semibold text-ink">
-                {state?.domain ?? domain}
-              </h2>
-              <p className="text-sm text-muted">
-                {status === "queued" && state?.ahead
-                  ? t("queuedAhead", { n: state.ahead })
-                  : status === "blocked"
-                    ? t("status_stopped")
-                    : t(`status_${status}`)}
-              </p>
-            </div>
-            {rows.length > 0 && (
-              <>
-                <div
-                  className="mt-4 h-1.5 overflow-hidden rounded-full bg-surface-1"
-                  role="progressbar"
-                  aria-valuenow={done}
-                  aria-valuemax={rows.length}
-                >
-                  <div
-                    className="h-full rounded-full bg-primary transition-[width] duration-700 motion-reduce:transition-none"
-                    style={{ width: `${(done / rows.length) * 100}%` }}
-                  />
-                </div>
-                {now && (
-                  <p className="mt-3 truncate font-mono text-xs text-muted">
-                    {t("reading")} {now}
-                  </p>
-                )}
-                <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                  <ol className="max-h-80 space-y-1 overflow-y-auto pr-2 text-sm">
-                    {rows.map((r) => (
-                      <li
-                        key={r.url}
-                        className="flex items-center gap-2 border-t border-line py-1.5 first:border-t-0"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className={`size-2 shrink-0 rounded-full ${r.state === "inspecting" ? "animate-pulse bg-primary motion-reduce:animate-none" : r.state === "done" ? "bg-primary" : r.state === "skipped" ? "bg-muted/40" : "bg-line"}`}
-                        />
-                        <span className="min-w-0 flex-1 truncate text-ink">
-                          {r.title || new URL(r.url).pathname}
-                        </span>
-                        {r.facts && (
-                          <span className="flex shrink-0 gap-1 font-mono text-xs">
-                            <span
-                              title={t("factVisible")}
-                              className="rounded bg-primary/10 px-1.5 text-primary"
-                            >
-                              {r.facts.visible}
-                            </span>
-                            <span
-                              title={t("factBuried")}
-                              className="rounded bg-surface-1 px-1.5 text-muted"
-                            >
-                              {r.facts.buried}
-                            </span>
-                            <span
-                              title={t("factMissing")}
-                              className="rounded bg-surface-1 px-1.5 text-ink"
-                            >
-                              {r.facts.missing}
-                            </span>
-                            {r.facts.conflicting > 0 && (
-                              <span
-                                title={t("factConflicting")}
-                                className="rounded bg-surface-1 px-1.5 text-ink"
-                              >
-                                !{r.facts.conflicting}
-                              </span>
-                            )}
-                          </span>
-                        )}
-                        {r.state === "skipped" && (
-                          <span className="shrink-0 text-xs text-muted">
-                            {t(`skip_${r.reason}`)}
-                          </span>
-                        )}
-                      </li>
-                    ))}
-                  </ol>
-                  <div>
-                    <p className="text-xs font-semibold tracking-wide text-muted uppercase">
-                      {t("soFar")}
-                    </p>
-                    <ul className="mt-2 space-y-2.5">
-                      {Object.entries(reqs).map(([rid, c]) => {
-                        const total =
-                          RESULTS.reduce((n, r) => n + c[r], 0) || 1;
-                        return (
-                          <li key={rid}>
-                            <div className="flex justify-between text-sm">
-                              <span className="text-ink">
-                                {t(`req_${rid}`)}
-                              </span>
-                              <span className="font-mono text-xs text-muted">
-                                {c.supported}/{total}
-                              </span>
-                            </div>
-                            <div className="mt-1 flex h-2 overflow-hidden rounded-full bg-surface-1">
-                              {RESULTS.map((r) => (
-                                <div
-                                  key={r}
-                                  className={`${BAR[r]} transition-[width] duration-700 motion-reduce:transition-none`}
-                                  style={{ width: `${(c[r] / total) * 100}%` }}
-                                />
-                              ))}
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                    <p className="mt-3 text-xs text-pretty text-muted">
-                      {t("legend")}
-                    </p>
-                  </div>
-                </div>
-              </>
-            )}
-            {(status === "failed" || (status === "blocked" && !teaser)) && (
-              <div className="mt-4">
-                <p className="text-sm text-ink">
-                  {state?.reason === "no_category"
-                    ? t("reason_no_category")
-                    : (state?.reason ?? t(`status_${status}`))}
+      {/* A plain block around `frame`: the root is a flex column, which would size `frame` (content-box,
+          auto margins) to its widest line instead of the page's width. */}
+      <div className="empty:hidden">
+        <div className="frame py-12 lg:py-16 empty:hidden">
+          {/* The run as a pipeline of stations (owner, 5 Nov 2026; the designer's progress mockup). */}
+          {id && !teaser && (
+            <>
+              <RunPipeline
+                t={t}
+                num={num}
+                status={
+                  evaluating && status === "inspecting"
+                    ? "evaluating"
+                    : (status ?? "queued")
+                }
+                domain={state?.domain ?? domain ?? ""}
+                ahead={state?.ahead}
+                found={found}
+                sampled={rows.length}
+                read={done}
+                now={now}
+                pages={rows}
+                reqs={reqs}
+                startedAt={startedAt}
+                elapsed={elapsed}
+                onReset={reset}
+              />
+              {state?.reason === "no_category" && (
+                <p className="mt-4 text-sm text-ink">
+                  {t("reason_no_category")}
                 </p>
-                <button
-                  type="button"
-                  onClick={reset}
-                  className="mt-3 text-sm font-medium text-primary underline-offset-4 hover:underline"
-                >
-                  {t("testAnother")}
-                </button>
-              </div>
-            )}
-            {error && (
-              <p className="mt-4 text-sm text-ink" role="alert">
-                {error}
-              </p>
-            )}
-          </section>
-        )}
+              )}
+              {error && (
+                <p className="mt-4 text-sm text-ink" role="alert">
+                  {error}
+                </p>
+              )}
+            </>
+          )}
 
-        {teaser && state && (
-          <Result
-            teaser={teaser}
-            state={state}
-            t={t}
-            num={num}
-            id={id!}
-            locale={locale}
-            calculator={calculator}
-            onReset={reset}
-          />
-        )}
+          {teaser && state && (
+            <Result
+              teaser={teaser}
+              state={state}
+              t={t}
+              num={num}
+              id={id!}
+              locale={locale}
+              calculator={calculator}
+              onReset={reset}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
