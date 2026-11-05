@@ -177,8 +177,9 @@ const slug = (s: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
+// Proportional digits: Mona Sans draws a slashed zero with its tabular ones.
 const bigNumber =
-  "font-[family-name:var(--font-title)] font-[620] [font-stretch:112%] tracking-[-0.03em] tabular-nums";
+  "font-[family-name:var(--font-title)] font-[620] [font-stretch:112%] tracking-[-0.03em]";
 
 /** An evidence finding's title in the page's language, from its fields; others as sent. */
 function findingTitle(f: Finding, t: T, num: (n: number) => string) {
