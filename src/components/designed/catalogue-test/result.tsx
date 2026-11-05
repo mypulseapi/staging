@@ -72,51 +72,34 @@ const AFFECTED = "bg-gap shadow-[inset_0_0_0_1px_var(--color-gap-strong)]";
 const EMPTY = "bg-surface-1 shadow-[inset_0_0_0_1px_var(--color-line)]";
 
 /**
- * Every Pulse product, with the plan that includes it (rainbow `ODIN/product/PRICING.md` §3.2) and
- * its marker. `fixes` names the teaser's per-product count, where this test measures one. Markers
- * from the brand's blues, slate and amber only (no violet, and Signal Red is the hero's).
+ * The Pulse products this test points to, each with what it measured, in plan order (owner, 5 Nov
+ * 2026: the others are on the pricing page). Plans and monthly prices are rainbow
+ * `ODIN/product/PRICING.md` §3.7. `fixes` names the teaser's per-product count; markers are the
+ * brand's blues, slate and amber, for the findings list.
  */
 const PRODUCTS: {
   key: string;
   name: string;
   plan: "free" | "starter" | "growth" | "scale";
+  usd: number;
   dot: string;
-  fixes?: string;
+  fixes: string;
   href: string;
 }[] = [
   {
     key: "audit",
     name: "Decision Audit",
     plan: "free",
+    usd: 0,
     dot: "bg-primary",
     fixes: "Decision Audit",
     href: "/en/product/decision-audit",
   },
   {
-    key: "verification",
-    name: "Decision Verification",
-    plan: "starter",
-    dot: "bg-sky",
-    href: "/en/product/decision-verification",
-  },
-  {
-    key: "monitor",
-    name: "Decision Monitor",
-    plan: "starter",
-    dot: "bg-baseline",
-    href: "/en/product/decision-monitor",
-  },
-  {
-    key: "returns",
-    name: "Return Verification",
-    plan: "starter",
-    dot: "bg-baseline",
-    href: "/en/product/return-verification",
-  },
-  {
     key: "visual",
     name: "Visual Evidence",
     plan: "starter",
+    usd: 349,
     dot: "bg-gap-strong",
     fixes: "Visual Evidence",
     href: "/en/product/visual-evidence",
@@ -125,40 +108,25 @@ const PRODUCTS: {
     key: "api",
     name: "Decision API",
     plan: "growth",
+    usd: 990,
     dot: "bg-primary",
     fixes: "Decision API / MCP",
     href: "/en/product/decision-api",
   },
   {
-    key: "promotions",
-    name: "Promotion Audit",
-    plan: "growth",
-    dot: "bg-baseline",
-    href: "/en/product/promotion-audit",
-  },
-  {
     key: "pages",
     name: "Pages",
     plan: "scale",
+    usd: 2390,
     dot: "bg-sky",
     fixes: "Pages and merchandising",
     href: "/en/product/pages",
   },
-  {
-    key: "search",
-    name: "Search",
-    plan: "scale",
-    dot: "bg-primary",
-    href: "/en/product/search",
-  },
-  {
-    key: "recommendations",
-    name: "Recommendations",
-    plan: "scale",
-    dot: "bg-sky",
-    href: "/en/product/recommendations",
-  },
 ];
+/** Every Pulse product (PRICING.md §2); the ones not shown above are counted in one line. */
+const PULSE_PRODUCTS = 10;
+/** The plan the result recommends: a light wash of the Signal gradient and the solid button. */
+const HIGHLIGHT = "api";
 
 /** Locked findings shown as rows; the rest are counted in one line, so the list stays short. */
 const MASKED_SHOWN = 5;
@@ -747,60 +715,113 @@ export function Result({
         <p className="mt-1 max-w-[64ch] text-[15px] text-pretty text-muted">
           {t("productsLede")}
         </p>
-        <details className="group mt-1">
-          <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2 text-sm font-medium text-primary [&::-webkit-details-marker]:hidden">
-            <ChevronDown aria-hidden className="size-4 group-open:rotate-180" />
-            {t("allProducts", { n: num(PRODUCTS.length) })}
-          </summary>
-          <ul className={`${card} mt-3 divide-y divide-line overflow-hidden`}>
-            {PRODUCTS.map((p) => {
-              const f = fixesOf(p.fixes);
-              return (
-                <li
-                  key={p.key}
-                  className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1.2fr)_minmax(0,1fr)_132px] items-center gap-x-5 gap-y-2 px-5 py-3.5 text-sm max-md:grid-cols-1 max-md:p-4"
-                >
-                  <div>
+        {/* One row per product, the found number first (the designer's version G, owner, 5-6 Nov
+            2026): what it found and the product, its benefits in two columns, its price and button.
+            Rows share the tallest one's height; the recommended plan carries the gradient wash. */}
+        <ul className="mt-5 grid auto-rows-fr gap-4.5 max-lg:auto-rows-auto">
+          {PRODUCTS.map((p) => {
+            const f = fixesOf(p.fixes);
+            const hi = p.key === HIGHLIGHT;
+            const benefits = t(`benefits_${p.key}`).split("|");
+            return (
+              <li
+                key={p.key}
+                className={`grid grid-cols-[minmax(0,4.4fr)_minmax(0,6.9fr)_minmax(0,3.8fr)] overflow-hidden rounded-[18px] max-lg:grid-cols-2 max-md:grid-cols-1 ${
+                  hi
+                    ? "border-[1.5px] border-[color-mix(in_oklab,var(--color-primary)_38%,var(--color-card))] bg-[linear-gradient(112deg_in_oklch,color-mix(in_oklab,var(--brand-red)_16%,var(--color-card)),color-mix(in_oklab,var(--brand-blue)_16%,var(--color-card)))] theme-dark:bg-[linear-gradient(112deg_in_oklch,color-mix(in_oklab,var(--brand-red)_14%,var(--color-card)),color-mix(in_oklab,var(--brand-blue)_14%,var(--color-card)))]"
+                    : "border border-line bg-card"
+                }`}
+              >
+                <div className="flex min-w-0 flex-col gap-3.5 p-9 max-md:px-5.5 max-md:pt-6 max-md:pb-3">
+                  {f && f.fixes !== null ? (
+                    <p className="flex items-center gap-3">
+                      <b
+                        className={`${bigNumber} text-[34px] leading-none text-signal-text`}
+                      >
+                        {num(f.fixes)}
+                      </b>
+                      <span className="min-w-0 text-sm leading-snug text-pretty text-muted">
+                        {t(`unit_${slug(p.fixes)}`)}
+                      </span>
+                    </p>
+                  ) : (
+                    <p className="text-sm text-muted">{t("notChecked")}</p>
+                  )}
+                  <p className="flex flex-wrap items-center gap-x-2.5 gap-y-2">
                     <a
                       href={href(p.href)}
-                      className="inline-flex items-center gap-2 font-semibold text-ink underline-offset-4 hover:underline"
+                      className="text-lg leading-tight font-semibold tracking-[-0.011em] text-ink underline-offset-4 hover:underline"
                     >
-                      <span
-                        aria-hidden="true"
-                        className={`size-2.5 shrink-0 rounded-full ${p.dot}`}
-                      />
                       {p.name}
                     </a>
-                    <p className="text-[13px] text-pretty text-muted">
-                      {t(`prod_${p.key}`)}
-                    </p>
-                  </div>
-                  <div className="text-[13px] text-muted">
-                    {f && f.fixes !== null ? (
-                      <>
-                        <b className="mr-1.5 font-display text-[22px] leading-none font-semibold tracking-tight text-ink tabular-nums">
-                          {num(f.fixes)}
-                        </b>
-                        {t(`unit_${slug(p.fixes!)}`)}
-                      </>
-                    ) : (
-                      t(f ? "notChecked" : "inFullAudit")
+                    <span className="inline-flex h-6 items-center rounded-full border border-line-control px-2.5 text-xs font-medium whitespace-nowrap text-[light-dark(#3d4660,#d0d4df)]">
+                      {t(`planTag_${p.plan}`)}
+                    </span>
+                  </p>
+                  <p className="max-w-[40ch] text-sm leading-[1.45] text-pretty text-muted">
+                    {t(`prod_${p.key}`)}
+                  </p>
+                </div>
+                <div
+                  className={`flex min-w-0 items-center justify-center border-l px-6 py-9 max-md:justify-start max-md:border-l-0 max-md:px-5.5 max-md:pt-2 max-md:pb-6 ${hi ? "border-[color-mix(in_oklab,var(--color-primary)_15%,transparent)]" : "border-line"}`}
+                >
+                  {/* Fixed column widths, so the lists line up row to row, fill down then across. */}
+                  <ul
+                    className="grid grid-flow-col grid-cols-[repeat(2,minmax(0,13.25rem))] gap-x-5 gap-y-3.5 max-lg:grid-flow-row max-lg:grid-cols-1"
+                    style={{
+                      gridTemplateRows: `repeat(${Math.ceil(benefits.length / 2)}, auto)`,
+                    }}
+                  >
+                    {benefits.map((b) => (
+                      <li key={b} className="flex gap-2.5 text-sm text-ink">
+                        <Check
+                          aria-hidden
+                          className="mt-0.5 size-4 shrink-0"
+                          strokeWidth={2.25}
+                        />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div
+                  className={`flex min-w-0 flex-col items-center justify-center gap-4 border-l px-5 py-9 text-center max-lg:col-span-2 max-lg:flex-row max-lg:justify-between max-lg:border-t max-lg:border-l-0 max-lg:py-4.5 max-lg:text-left max-md:col-span-1 max-md:px-5.5 ${hi ? "border-[color-mix(in_oklab,var(--color-primary)_15%,transparent)]" : "border-line"}`}
+                >
+                  <p className="flex items-baseline gap-1.5">
+                    <span
+                      className={`${bigNumber} text-[28px] leading-none text-ink`}
+                    >
+                      {p.usd ? `$${num(p.usd)}` : t("priceFree")}
+                    </span>
+                    {p.usd > 0 && (
+                      <small className="text-sm text-muted">
+                        {t("perMonth")}
+                      </small>
                     )}
-                  </div>
-                  <div className="text-xs font-medium text-ink">
-                    {t(`plan_${p.plan}`)}
-                  </div>
+                  </p>
                   <a
                     href={signup(p.plan)}
-                    className="btn-secondary btn-sm w-full justify-center"
+                    className={`btn-sm ${hi ? "btn-primary" : "btn-secondary"}`}
                   >
-                    {t(p.plan === "free" ? "startFree" : "subscribe")}
+                    {p.plan === "free"
+                      ? t("startFree")
+                      : t("choosePlan", { p: t(`planName_${p.plan}`) })}
                   </a>
-                </li>
-              );
-            })}
-          </ul>
-        </details>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <p className="mt-4 text-[13px] text-muted">{t("pricePerPlan")}</p>
+        <p className="mt-1.5 text-sm text-muted">
+          {t("moreProducts", { n: num(PULSE_PRODUCTS - PRODUCTS.length) })}{" "}
+          <a
+            href={href("/en/pricing")}
+            className="font-medium text-primary underline underline-offset-4"
+          >
+            {t("seePricing")}
+          </a>
+        </p>
       </section>
     </div>
   );
