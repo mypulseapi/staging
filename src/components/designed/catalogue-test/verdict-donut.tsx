@@ -141,14 +141,14 @@ export function VerdictDonut({
           className="pointer-events-none absolute inset-[25%] flex flex-col items-center justify-center text-center"
         >
           <p className="flex items-baseline justify-center gap-1">
-            <b className="font-[family-name:var(--font-title)] text-[44px] leading-none font-[620] [font-stretch:112%] tracking-[-0.03em] text-ink">
+            <b className="font-[family-name:var(--font-title)] text-[44px] leading-none max-md:text-4xl font-[620] [font-stretch:112%] tracking-[-0.03em] text-ink">
               {num(count.supported)}
             </b>
-            <small className="text-xl font-medium text-muted">
+            <small className="text-xl font-medium text-muted max-md:text-lg">
               / {num(total)}
             </small>
           </p>
-          <p className="mt-1 text-sm leading-tight text-balance text-muted">
+          <p className="mt-1 text-sm leading-tight max-md:text-xs text-balance text-muted">
             {t("donutCentre")}
           </p>
         </div>

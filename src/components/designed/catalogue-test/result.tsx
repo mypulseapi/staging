@@ -381,7 +381,7 @@ export function Result({
         {/* The verdict, tinted with the most common result. */}
         <section
           aria-labelledby="verdict-title"
-          className={`rounded-2xl border px-9 pt-9 pb-7 max-md:px-5 max-md:pt-6 max-md:pb-4 ${PANEL[top]}`}
+          className={`rounded-2xl border px-14 pt-9 pb-7 max-lg:px-10 max-md:px-6 max-md:pt-6 max-md:pb-4 ${PANEL[top]}`}
         >
           <div className="flex items-center justify-between gap-8 max-md:flex-col max-md:items-start max-md:gap-5">
             <h3
