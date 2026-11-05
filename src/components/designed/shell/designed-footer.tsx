@@ -62,10 +62,11 @@ export function DesignedFooter() {
   return (
     <footer className="border-t border-line bg-card">
       <div className="frame py-12 sm:py-20 lg:py-24">
-        {/* From `sm` the four columns sit centred, each in its cell and against the others (owner,
-            28 Oct 2026); on a phone they keep the left-aligned compact layout. */}
-        <div className="grid gap-8 sm:grid-cols-2 sm:items-center sm:gap-14 sm:text-center lg:grid-cols-4 lg:gap-10">
-          <div>
+        {/* From `sm` the four columns sit centred in their cells (owner, 28 Oct 2026). The page-link
+            columns start at the top; the company column stays centred against them (owner, 5 Nov
+            2026). On a phone they keep the left-aligned compact layout. */}
+        <div className="grid gap-8 sm:grid-cols-2 sm:items-start sm:gap-14 sm:text-center lg:grid-cols-4 lg:gap-10">
+          <div className="sm:self-center">
             <Link
               href={designedHref("/en")}
               aria-label="Pulse home"

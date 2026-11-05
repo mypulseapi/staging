@@ -21,6 +21,7 @@ import {
   TestError,
   type LiveEvent,
   type RequirementResult,
+  type TestConfig,
   type TestState,
 } from "@/lib/catalogue-test";
 
@@ -96,6 +97,10 @@ export function CatalogueTest({
   const [unavailable, setUnavailable] = useState(false);
   // What spider can test today, from its config; laptops and monitors until it answers.
   const [categories, setCategories] = useState<string[]>(["laptop", "monitor"]);
+  // All 780 categories of the canonical taxonomy, grouped, labelled and marked draft by the service.
+  const [taxonomy, setTaxonomy] = useState<
+    Pick<TestConfig, "groups" | "labels" | "draft">
+  >({});
   // A shared result opens straight on it; ?url= prefills the form (the homepage box links here).
   const search = useSearch();
   const [pages, setPages] = useState<string[]>([]);
@@ -106,6 +111,9 @@ export function CatalogueTest({
   const [busy, setBusy] = useState(false);
   const [chosen, setId] = useState<string | null | undefined>(undefined);
   const id = chosen === undefined ? search.get("id") : chosen;
+  // Bumped on every submit, so polling restarts even when the API hands back the id already shown:
+  // a reused test has the same id, and without this the page sat on "Waiting in line" (BUG-104).
+  const [run, setRun] = useState(0);
   const [state, setState] = useState<TestState | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
   const [reqs, setReqs] = useState<
@@ -120,6 +128,7 @@ export function CatalogueTest({
       .then((c) => {
         setEnabled(c.enabled);
         if (c.categories?.length) setCategories(c.categories);
+        setTaxonomy({ groups: c.groups, labels: c.labels, draft: c.draft });
       })
       .catch(() => setUnavailable(true));
   }, []);
@@ -204,7 +213,7 @@ export function CatalogueTest({
       timers.current.forEach(clearTimeout);
       timers.current = [];
     };
-  }, [id, apply, t]);
+  }, [id, run, apply, t]);
 
   const domain = domainOf(pages[0] ?? "");
 
@@ -221,6 +230,7 @@ export function CatalogueTest({
       setReqs({});
       setState(null);
       setId(r.id);
+      setRun((n) => n + 1);
       window.history.replaceState(null, "", `?id=${r.id}`);
     } catch (e) {
       const err = e as TestError;
@@ -248,6 +258,21 @@ export function CatalogueTest({
   };
 
   const status = state?.status ?? (id ? "queued" : null);
+  // A drafted checklist runs and reports, and says so (catalogue-categories Q5).
+  const draftNote =
+    state?.category && taxonomy.draft?.includes(state.category) ? (
+      <p className="mt-3 rounded-2xl bg-surface-1 px-4 py-3 text-sm text-muted">
+        <span className="mr-2 rounded-full bg-card px-2 py-0.5 text-xs font-semibold text-ink">
+          {t("draftBadge")}
+        </span>
+        {t("draftNote", {
+          category:
+            taxonomy.labels?.[state.category]?.[
+              locale === "vi" ? "vi" : "en"
+            ] ?? state.category,
+        })}
+      </p>
+    ) : null;
   const teaser = state?.teaser ?? null;
   const running =
     Boolean(id) && !teaser && status !== "failed" && status !== "blocked";
@@ -256,91 +281,110 @@ export function CatalogueTest({
   ).length;
 
   return (
-    <div>
+    <div className="flex flex-1 flex-col">
       {/* Pingdom's layout (owner, 2026-11-04): a band with the heading and one row, address,
           category and the button, which stays put while the result builds underneath. The hero
           background (`hero-bg` and the aurora), like every other hero's (owner, 5 Nov 2026); `isolate` also keeps the bar's
-          glow behind the bar. */}
-      <section className="relative isolate hero-bg overflow-hidden border-b border-line">
+          glow behind the bar. Pricing's hero padding, `pt-12 pb-16 lg:pt-16 lg:pb-20`, as the other heroes (owner, 5 Nov 2026). Until a test starts the page stretches the hero to fill the first
+          screen with About Pulse under it, About at its own height and the hero's content centred in the room left
+          over; the title and the bar keep their fixed gap (owner, 5 Nov 2026). */}
+      <section
+        className={`relative isolate hero-bg overflow-hidden border-b border-line ${id ? "" : "flex flex-1 flex-col"}`}
+      >
         <HeroAurora />
-        <div className="frame py-14 lg:py-20">
-          {running ? (
-            <div className="mx-auto max-w-xl text-center" aria-live="polite">
-              <h2 className="text-title text-balance">{t("runningTitle")}</h2>
-              <Gauge />
-              <p className="mt-2 text-muted">
-                {status === "queued" && state?.ahead
-                  ? t("queuedAhead", { n: state.ahead })
-                  : rows.length
-                    ? t("runningProgress", { n: done, of: rows.length })
-                    : t(`status_${status}`)}
-              </p>
-            </div>
-          ) : (
-            header
-          )}
-          <form
-            hidden={running}
-            onSubmit={submit}
-            className="mx-auto mt-8 max-w-5xl"
-            noValidate
+        {/* A row around `frame` so it grows to its usual width (it is content-box with auto margins, and a
+            flex column would shrink it to its content), and stretches to the hero's height. */}
+        <div className={id ? undefined : "flex flex-1"}>
+          <div
+            className={`frame pt-12 pb-16 lg:pt-16 lg:pb-20 ${id ? "" : "flex flex-1 flex-col justify-center"}`}
           >
-            {(enabled === false || unavailable) && (
-              <p className="mb-4 text-center text-sm text-pretty text-muted">
-                {t(unavailable ? "unavailable" : "closed")}
-              </p>
+            {running ? (
+              <div className="mx-auto max-w-xl text-center" aria-live="polite">
+                <h2 className="text-title text-balance">{t("runningTitle")}</h2>
+                <Gauge />
+                <p className="mt-2 text-muted">
+                  {status === "queued" && state?.ahead
+                    ? t("queuedAhead", { n: state.ahead })
+                    : rows.length
+                      ? t("runningProgress", { n: done, of: rows.length })
+                      : t(`status_${status}`)}
+                </p>
+              </div>
+            ) : (
+              header
             )}
-            <fieldset disabled={enabled !== true || busy} className="space-y-3">
-              <AddressBar
-                t={t}
-                initial={search.get("url") ?? ""}
-                category={category}
-                categories={categories}
-                locale={locale}
-                onCategory={setCategory}
-                onPages={(list, ok) => {
-                  setPages(list);
-                  setPagesOk(ok);
-                }}
-                leaving={busy}
-              >
-                <button
-                  type="submit"
-                  className="btn-primary group min-h-12 rounded-full px-5.5 aria-busy:cursor-progress aria-busy:opacity-100"
-                  disabled={!pagesOk || !token}
-                  aria-busy={busy || undefined}
-                >
-                  {busy ? t("starting") : t("submit")}
-                  <ArrowRight
-                    className="size-4 transition-transform duration-200 ease-out-soft group-enabled:group-hover:translate-x-0.5"
-                    aria-hidden
-                  />
-                </button>
-              </AddressBar>
-              {/* Three facts, each with its own icon rather than a tick on each (owner's pick C3, 5 Nov 2026). */}
-              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-sm text-muted">
-                {(
-                  [
-                    [Tag, "factFree"],
-                    [Globe, "factPublic"],
-                    [Clock, "factTime"],
-                  ] as const
-                ).map(([Icon, k]) => (
-                  <li key={k} className="inline-flex items-center gap-1.5">
-                    <Icon className="size-[15px] text-primary/85" aria-hidden />
-                    {t(k)}
-                  </li>
-                ))}
-              </ul>
-              {enabled && <Turnstile onToken={setToken} />}
-              {error && !id && (
-                <p className="text-sm text-ink" role="alert">
-                  {error}
+            <form
+              hidden={running}
+              onSubmit={submit}
+              className="mx-auto mt-12 w-full max-w-5xl lg:mt-16"
+              noValidate
+            >
+              {(enabled === false || unavailable) && (
+                <p className="mb-4 text-center text-sm text-pretty text-muted">
+                  {t(unavailable ? "unavailable" : "closed")}
                 </p>
               )}
-            </fieldset>
-          </form>
-          {!running && ask}
+              <fieldset
+                disabled={enabled !== true || busy}
+                className="space-y-3"
+              >
+                <AddressBar
+                  t={t}
+                  initial={search.get("url") ?? ""}
+                  category={category}
+                  categories={categories}
+                  groups={taxonomy.groups ?? []}
+                  labels={taxonomy.labels ?? {}}
+                  locale={locale}
+                  onCategory={setCategory}
+                  onPages={(list, ok) => {
+                    setPages(list);
+                    setPagesOk(ok);
+                  }}
+                  leaving={busy}
+                >
+                  <button
+                    type="submit"
+                    className="btn-primary group min-h-12 rounded-full px-5.5 aria-busy:cursor-progress aria-busy:opacity-100"
+                    disabled={!pagesOk || !token}
+                    aria-busy={busy || undefined}
+                  >
+                    {busy ? t("starting") : t("submit")}
+                    <ArrowRight
+                      className="size-4 transition-transform duration-200 ease-out-soft group-enabled:group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  </button>
+                </AddressBar>
+                {/* Three facts, each with its own icon rather than a tick on each (owner's pick C3, 5 Nov 2026), with
+                  more room above them (owner, 5 Nov 2026). */}
+                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 pt-3 text-sm text-muted lg:pt-5">
+                  {(
+                    [
+                      [Tag, "factFree"],
+                      [Globe, "factPublic"],
+                      [Clock, "factTime"],
+                    ] as const
+                  ).map(([Icon, k]) => (
+                    <li key={k} className="inline-flex items-center gap-1.5">
+                      <Icon
+                        className="size-[15px] text-primary/85"
+                        aria-hidden
+                      />
+                      {t(k)}
+                    </li>
+                  ))}
+                </ul>
+                {enabled && <Turnstile onToken={setToken} />}
+                {error && !id && (
+                  <p className="text-sm text-ink" role="alert">
+                    {error}
+                  </p>
+                )}
+              </fieldset>
+            </form>
+            {!running && ask}
+          </div>
         </div>
       </section>
 
@@ -362,6 +406,7 @@ export function CatalogueTest({
                     : t(`status_${status}`)}
               </p>
             </div>
+            {draftNote}
             {rows.length > 0 && (
               <>
                 <div
@@ -494,6 +539,7 @@ export function CatalogueTest({
           </section>
         )}
 
+        {teaser && state && draftNote}
         {teaser && state && (
           <Result
             teaser={teaser}

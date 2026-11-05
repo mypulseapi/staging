@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { X } from "lucide-react";
-import { domainOf } from "@/lib/catalogue-test";
+import { domainOf, type CategoryGroup } from "@/lib/catalogue-test";
 
 /**
  * Test My Catalogue's address bar, "Flow" (owner's pick from mockups, 5 Nov 2026): one rounded bar with
@@ -56,6 +56,8 @@ export function AddressBar({
   initial,
   category,
   categories,
+  groups,
+  labels,
   locale,
   onCategory,
   onPages,
@@ -68,6 +70,10 @@ export function AddressBar({
   category: string;
   /** What the service can test today (its config), sorted here by name in the page's language. */
   categories: string[];
+  /** The taxonomy's top-level categories; choosing one tests the subcategory with most products. */
+  groups: CategoryGroup[];
+  /** Labels from the service, both languages; a key without one falls back to the messages. */
+  labels: Record<string, { en: string; vi: string }>;
   locale: string;
   onCategory: (c: string) => void;
   /** The pages to test, and whether they can be sent as they are. */
@@ -78,6 +84,9 @@ export function AddressBar({
   children: ReactNode;
 }) {
   const [typed, setTyped] = useState<string | null>(null);
+  const lang = locale === "vi" ? "vi" : "en";
+  const name = (g: CategoryGroup) => g[lang];
+  const label = (c: string) => labels[c]?.[lang] ?? t(`cat_${c}`);
   const text = typed ?? initial;
   const [tags, setTags] = useState<string[]>([]);
   const [delays, setDelays] = useState<Record<string, number>>({});
@@ -387,15 +396,32 @@ export function AddressBar({
             onChange={(e) => onCategory(e.target.value)}
           >
             <option value="">{t("catAuto")}</option>
-            {[...categories]
-              .sort((a, b) =>
-                t(`cat_${a}`).localeCompare(t(`cat_${b}`), locale),
-              )
-              .map((c) => (
-                <option key={c} value={c}>
-                  {t(`cat_${c}`)}
-                </option>
-              ))}
+            {groups.length
+              ? [...groups]
+                  .sort((a, b) => name(a).localeCompare(name(b), locale))
+                  .map((g) => (
+                    <optgroup key={g.key} label={name(g)}>
+                      <option value={g.key}>
+                        {t("catAll", { group: name(g) })}
+                      </option>
+                      {[...g.categories]
+                        .sort((a, b) =>
+                          label(a).localeCompare(label(b), locale),
+                        )
+                        .map((c) => (
+                          <option key={`${g.key}/${c}`} value={c}>
+                            {label(c)}
+                          </option>
+                        ))}
+                    </optgroup>
+                  ))
+              : [...categories]
+                  .sort((a, b) => label(a).localeCompare(label(b), locale))
+                  .map((c) => (
+                    <option key={c} value={c}>
+                      {label(c)}
+                    </option>
+                  ))}
           </select>
         </div>
         <div className="ml-auto md:ml-0">{children}</div>
