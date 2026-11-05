@@ -78,6 +78,9 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
     photo: string;
     pos: string;
     tone: string;
+    /** The text half: the screen's tone a step deeper, a site-token mix (the designer's version A,
+     *  owner's pick, 5 Nov 2026). Every pair stays AA in both themes. */
+    field: string;
     card?: ReactNode;
   }[] = [
     {
@@ -89,12 +92,16 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
       photo: "home/why-shopper-phone.webp",
       pos: "55% 40%",
       tone: "bg-success-bg",
+      field:
+        "bg-[color-mix(in_oklab,var(--color-success)_9%,var(--color-success-bg))]",
     },
     {
       text: <p className={head}>{line(2)}</p>,
       photo: "home/why-empty-shelves.webp",
       pos: "50% 40%",
       tone: "bg-gap-fill",
+      field:
+        "bg-[color-mix(in_oklab,var(--color-gap)_12%,var(--color-gap-fill))]",
     },
     {
       text: <p className={head}>{line(3)}</p>,
@@ -126,12 +133,16 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
         </div>
       ),
       tone: "bg-primary-tint",
+      field:
+        "bg-[color-mix(in_oklab,var(--color-primary)_7%,var(--color-primary-tint))]",
     },
     {
       text: <p className={head}>{line(4)}</p>,
       photo: "home/why-reading-laptop.webp",
       pos: "40% 55%",
       tone: "bg-surface-1",
+      field:
+        "bg-[color-mix(in_oklab,var(--color-sky)_9%,var(--color-surface-1))]",
     },
   ];
   const n = screens.length;
@@ -236,7 +247,7 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
         {screens.map((s, i) => {
           // Screens alternate sides, as in the original: text left on the first, right on the second.
           const halves = [
-            [`bg-card ${text}`, s.text],
+            [`${s.field} ${text}`, s.text],
             [
               "relative isolate",
               <>
