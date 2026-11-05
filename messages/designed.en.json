@@ -2285,6 +2285,8 @@
       "resultsTitle": "Your results: {domain}",
       "verdictTitle": "{n} of {of} buying requirements fully supported",
       "waffleRead": "{n} of {of} sampled pages read",
+      "donutCentre": "fully supported",
+      "donutTip": "Buying requirements",
       "findingsTitle": "{n} findings, most products first",
       "colAffected": "Products affected",
       "colFinding": "Finding",

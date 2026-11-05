@@ -18,6 +18,7 @@ import type {
   Teaser,
   TestState,
 } from "@/lib/catalogue-test";
+import { VerdictDonut } from "./verdict-donut";
 
 /**
  * The result as one ranked list (the designer's version C, styled "Report", owner's pick C-3, 5 Nov
@@ -468,48 +469,13 @@ export function Result({
               })}
             />
           </div>
-          <div className="mt-6">
-            <div
-              role="img"
-              aria-label={ORDER.map(
-                (r) =>
-                  `${t(`result_${r}`)} ${count[r]} / ${teaser.requirements.length}`,
-              ).join(", ")}
-              className="flex h-5 overflow-hidden rounded-[10px] outline-1 -outline-offset-1 outline-line-control"
-            >
-              {/* One bar, each result's share of the requirements, like every other bar here: it reads the
-                  same at 5 requirements or 50 (owner, 5 Nov 2026). */}
-              {ORDER.filter((r) => count[r]).map((r) => (
-                <i
-                  key={r}
-                  className={`min-w-0 ${FILL[r]} shadow-none!`}
-                  style={{ flex: `${count[r]} 1 0` }}
-                />
-              ))}
-            </div>
-            {/* Each result's count as a figure with its base, as the other numbers on the page. */}
-            <dl className="mt-4 grid grid-cols-4 gap-x-6 gap-y-4 max-md:grid-cols-2">
-              {ORDER.map((r) => (
-                <div key={r} className="min-w-0">
-                  <dt className="flex items-center gap-2 text-sm text-ink">
-                    <span
-                      aria-hidden="true"
-                      className={`size-2.5 shrink-0 rounded-full ${FILL[r]}`}
-                    />
-                    {t(`result_${r}`)}
-                  </dt>
-                  <dd
-                    className={`${bigNumber} mt-1 text-[28px] leading-none ${count[r] ? "text-ink" : "text-muted"}`}
-                  >
-                    {num(count[r])}
-                    <small className="ml-1 font-sans text-sm font-medium tracking-normal text-muted">
-                      / {num(teaser.requirements.length)}
-                    </small>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          <VerdictDonut
+            order={ORDER}
+            count={count}
+            total={teaser.requirements.length}
+            t={t}
+            num={num}
+          />
           <dl className="mt-8 grid grid-cols-4 border-t border-[color-mix(in_oklab,var(--color-ink)_14%,transparent)] max-md:grid-cols-2">
             {tiles.map((x) => (
               <div
