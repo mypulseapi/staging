@@ -70,13 +70,14 @@ export function CatalogueTest({
   locale,
   calculator,
   header,
-  ctaBar,
+  ask,
 }: {
   labels: Labels;
   locale: string;
   calculator: ReactNode;
   header: ReactNode;
-  ctaBar: ReactNode;
+  /** One line under the bar: ask us to run it instead. Shown with the form, not during a run. */
+  ask: ReactNode;
 }) {
   const t = useCallback(
     (k: string, vars: Record<string, string | number> = {}) =>
@@ -325,7 +326,7 @@ export function CatalogueTest({
               )}
             </fieldset>
           </form>
-          {ctaBar}
+          {!running && ask}
         </div>
       </section>
 

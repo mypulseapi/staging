@@ -2375,6 +2375,7 @@
       "ctaStrong": "Your catalogue is the shelf AI agents shop from.",
       "ctaText": "See what it cannot answer, then fix what costs you sales.",
       "ctaButton": "Request a Decision Audit",
+      "askLead": "Rather we run it for you?",
       "infoTitle": "Nobody buys what they cannot check",
       "infoP1": "Shoppers and AI agents choose from what your product pages state. A fact the page does not state cannot rule a product in, so the product is passed over, even when it fits.",
       "infoP2": "This test reads a sample of your public product pages and checks them against real buying requirements for your category. It shows where a decision gets stuck, with the products and pages behind each finding. There is no score.",

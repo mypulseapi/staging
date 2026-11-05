@@ -2259,6 +2259,7 @@
       "ctaStrong": "Danh mục của bạn là kệ hàng mà trợ lý AI mua sắm.",
       "ctaText": "Xem nó chưa trả lời được gì, rồi sửa điều làm bạn mất đơn.",
       "ctaButton": "Yêu cầu Decision Audit",
+      "askLead": "Muốn chúng tôi chạy giúp?",
       "infoTitle": "Không ai mua thứ họ không kiểm chứng được",
       "infoP1": "Người mua và trợ lý AI chọn dựa trên điều trang sản phẩm ghi. Thông tin trang không ghi thì không thể giúp chọn sản phẩm, nên sản phẩm bị bỏ qua, kể cả khi nó phù hợp.",
       "infoP2": "Bài kiểm tra đọc một mẫu các trang sản phẩm công khai và đối chiếu với các yêu cầu mua hàng thật của danh mục. Nó chỉ ra quyết định bị kẹt ở đâu, kèm sản phẩm và trang cho từng phát hiện. Không có điểm số.",
