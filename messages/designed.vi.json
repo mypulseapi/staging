@@ -2119,6 +2119,7 @@
       "factPublic": "Chỉ trang công khai",
       "factTime": "Khoảng hai phút",
       "closed": "Kiểm tra danh mục sắp mở. Trong lúc chờ, hãy yêu cầu Decision Audit và chúng tôi sẽ chạy giúp bạn.",
+      "unavailable": "Không tải được Kiểm tra danh mục lúc này. Hãy tải lại trang để thử lại, hoặc yêu cầu Decision Audit và chúng tôi sẽ chạy giúp bạn.",
       "tooMany": "Cửa hàng này đã được kiểm tra đủ số lần hôm nay. Vui lòng thử lại vào ngày mai.",
       "error": "Đã có lỗi. Vui lòng thử lại.",
       "notFound": "Không tìm thấy kết quả này. Có thể nó đã hết hạn.",
