@@ -56,12 +56,18 @@ export function CatalogueTestPage() {
   );
 
   // About Pulse, along the bottom of the hero on a see-through band (owner's reference, 5 Nov 2026): who we are
-  // on the left, the overview on the right. A text link, so the bar's button stays the hero's only button.
+  // on the left, the overview on the right. A text link, so the bar's button stays the hero's only button. A
+  // section of its own, its heading the section title size, `text-title` (owner, 5 Nov 2026).
   const about = (
-    <div className="frame grid items-center gap-x-12 gap-y-3 py-10 md:grid-cols-[minmax(0,1fr)_auto] lg:py-14">
+    <section
+      aria-labelledby="about-pulse-title"
+      className="frame grid items-center gap-x-12 gap-y-4 py-10 md:grid-cols-[minmax(0,1fr)_auto] lg:py-14"
+    >
       <div>
-        <h2 className="text-lg font-semibold text-ink">{t("aboutTitle")}</h2>
-        <p className="mt-1 max-w-[62ch] text-pretty text-muted">
+        <h2 id="about-pulse-title" className="text-title text-balance">
+          {t("aboutTitle")}
+        </h2>
+        <p className="mt-3 max-w-[62ch] text-lg text-pretty text-muted">
           {t("aboutP1")}
         </p>
       </div>
@@ -75,7 +81,7 @@ export function CatalogueTestPage() {
           aria-hidden
         />
       </a>
-    </div>
+    </section>
   );
 
   return (
