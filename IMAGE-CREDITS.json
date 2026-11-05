@@ -41,5 +41,29 @@
     "source": "Unsplash",
     "sourceUrl": "https://unsplash.com/photos/a-group-of-people-sitting-around-a-table-with-laptops-E3LsanLgkLM?utm_source=pulse&utm_medium=referral",
     "licence": "Unsplash License"
+  },
+  "images/home/why-shopper-phone.webp": {
+    "photographer": "Darya Ezerskaya",
+    "source": "Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/a-close-up-of-a-person-holding-a-cell-phone-hgz7pZkQoQc?utm_source=pulse&utm_medium=referral",
+    "licence": "Unsplash License"
+  },
+  "images/home/why-empty-shelves.webp": {
+    "photographer": "Celso A. Torres Pirron",
+    "source": "Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/empty-shelves-in-a-white-room-with-a-tile-floor-vv0OomxL4gA?utm_source=pulse&utm_medium=referral",
+    "licence": "Unsplash License"
+  },
+  "images/home/why-laptop-notebook.webp": {
+    "photographer": "Bluestonex",
+    "source": "Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/laptop-and-open-notebook-with-pen-on-desk-1H0zGBPOiDY?utm_source=pulse&utm_medium=referral",
+    "licence": "Unsplash License"
+  },
+  "images/home/why-reading-laptop.webp": {
+    "photographer": "Thomas Lefebvre",
+    "source": "Unsplash",
+    "sourceUrl": "https://unsplash.com/photos/person-using-laptop-gp8BLyaTaA0?utm_source=pulse&utm_medium=referral",
+    "licence": "Unsplash License"
   }
 }

@@ -256,91 +256,108 @@ export function CatalogueTest({
   ).length;
 
   return (
-    <div>
+    <div className="flex flex-1 flex-col">
       {/* Pingdom's layout (owner, 2026-11-04): a band with the heading and one row, address,
           category and the button, which stays put while the result builds underneath. The hero
           background (`hero-bg` and the aurora), like every other hero's (owner, 5 Nov 2026); `isolate` also keeps the bar's
-          glow behind the bar. */}
-      <section className="relative isolate hero-bg overflow-hidden border-b border-line">
+          glow behind the bar. Pricing's hero padding, `pt-12 pb-16 lg:pt-16 lg:pb-20`, as the other heroes (owner, 5 Nov 2026). Until a test starts the page stretches the hero to fill the first
+          screen with About Pulse under it, About at its own height and the hero's content centred in the room left
+          over; the title and the bar keep their fixed gap (owner, 5 Nov 2026). */}
+      <section
+        className={`relative isolate hero-bg overflow-hidden border-b border-line ${id ? "" : "flex flex-1 flex-col"}`}
+      >
         <HeroAurora />
-        <div className="frame py-14 lg:py-20">
-          {running ? (
-            <div className="mx-auto max-w-xl text-center" aria-live="polite">
-              <h2 className="text-title text-balance">{t("runningTitle")}</h2>
-              <Gauge />
-              <p className="mt-2 text-muted">
-                {status === "queued" && state?.ahead
-                  ? t("queuedAhead", { n: state.ahead })
-                  : rows.length
-                    ? t("runningProgress", { n: done, of: rows.length })
-                    : t(`status_${status}`)}
-              </p>
-            </div>
-          ) : (
-            header
-          )}
-          <form
-            hidden={running}
-            onSubmit={submit}
-            className="mx-auto mt-8 max-w-5xl"
-            noValidate
+        {/* A row around `frame` so it grows to its usual width (it is content-box with auto margins, and a
+            flex column would shrink it to its content), and stretches to the hero's height. */}
+        <div className={id ? undefined : "flex flex-1"}>
+          <div
+            className={`frame pt-12 pb-16 lg:pt-16 lg:pb-20 ${id ? "" : "flex flex-1 flex-col justify-center"}`}
           >
-            {(enabled === false || unavailable) && (
-              <p className="mb-4 text-center text-sm text-pretty text-muted">
-                {t(unavailable ? "unavailable" : "closed")}
-              </p>
+            {running ? (
+              <div className="mx-auto max-w-xl text-center" aria-live="polite">
+                <h2 className="text-title text-balance">{t("runningTitle")}</h2>
+                <Gauge />
+                <p className="mt-2 text-muted">
+                  {status === "queued" && state?.ahead
+                    ? t("queuedAhead", { n: state.ahead })
+                    : rows.length
+                      ? t("runningProgress", { n: done, of: rows.length })
+                      : t(`status_${status}`)}
+                </p>
+              </div>
+            ) : (
+              header
             )}
-            <fieldset disabled={enabled !== true || busy} className="space-y-3">
-              <AddressBar
-                t={t}
-                initial={search.get("url") ?? ""}
-                category={category}
-                categories={categories}
-                locale={locale}
-                onCategory={setCategory}
-                onPages={(list, ok) => {
-                  setPages(list);
-                  setPagesOk(ok);
-                }}
-                leaving={busy}
-              >
-                <button
-                  type="submit"
-                  className="btn-primary group min-h-12 rounded-full px-5.5 aria-busy:cursor-progress aria-busy:opacity-100"
-                  disabled={!pagesOk || !token}
-                  aria-busy={busy || undefined}
-                >
-                  {busy ? t("starting") : t("submit")}
-                  <ArrowRight
-                    className="size-4 transition-transform duration-200 ease-out-soft group-enabled:group-hover:translate-x-0.5"
-                    aria-hidden
-                  />
-                </button>
-              </AddressBar>
-              {/* Three facts, each with its own icon rather than a tick on each (owner's pick C3, 5 Nov 2026). */}
-              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-sm text-muted">
-                {(
-                  [
-                    [Tag, "factFree"],
-                    [Globe, "factPublic"],
-                    [Clock, "factTime"],
-                  ] as const
-                ).map(([Icon, k]) => (
-                  <li key={k} className="inline-flex items-center gap-1.5">
-                    <Icon className="size-[15px] text-primary/85" aria-hidden />
-                    {t(k)}
-                  </li>
-                ))}
-              </ul>
-              {enabled && <Turnstile onToken={setToken} />}
-              {error && !id && (
-                <p className="text-sm text-ink" role="alert">
-                  {error}
+            <form
+              hidden={running}
+              onSubmit={submit}
+              className="mx-auto mt-12 w-full max-w-5xl lg:mt-16"
+              noValidate
+            >
+              {(enabled === false || unavailable) && (
+                <p className="mb-4 text-center text-sm text-pretty text-muted">
+                  {t(unavailable ? "unavailable" : "closed")}
                 </p>
               )}
-            </fieldset>
-          </form>
-          {!running && ask}
+              <fieldset
+                disabled={enabled !== true || busy}
+                className="space-y-3"
+              >
+                <AddressBar
+                  t={t}
+                  initial={search.get("url") ?? ""}
+                  category={category}
+                  categories={categories}
+                  locale={locale}
+                  onCategory={setCategory}
+                  onPages={(list, ok) => {
+                    setPages(list);
+                    setPagesOk(ok);
+                  }}
+                  leaving={busy}
+                >
+                  <button
+                    type="submit"
+                    className="btn-primary group min-h-12 rounded-full px-5.5 aria-busy:cursor-progress aria-busy:opacity-100"
+                    disabled={!pagesOk || !token}
+                    aria-busy={busy || undefined}
+                  >
+                    {busy ? t("starting") : t("submit")}
+                    <ArrowRight
+                      className="size-4 transition-transform duration-200 ease-out-soft group-enabled:group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  </button>
+                </AddressBar>
+                {/* Three facts, each with its own icon rather than a tick on each (owner's pick C3, 5 Nov 2026), with
+                  more room above them (owner, 5 Nov 2026). */}
+                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 pt-3 text-sm text-muted lg:pt-5">
+                  {(
+                    [
+                      [Tag, "factFree"],
+                      [Globe, "factPublic"],
+                      [Clock, "factTime"],
+                    ] as const
+                  ).map(([Icon, k]) => (
+                    <li key={k} className="inline-flex items-center gap-1.5">
+                      <Icon
+                        className="size-[15px] text-primary/85"
+                        aria-hidden
+                      />
+                      {t(k)}
+                    </li>
+                  ))}
+                </ul>
+                {enabled && <Turnstile onToken={setToken} />}
+                {error && !id && (
+                  <p className="text-sm text-ink" role="alert">
+                    {error}
+                  </p>
+                )}
+              </fieldset>
+            </form>
+            {!running && ask}
+          </div>
         </div>
       </section>
 
