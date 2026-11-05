@@ -91,6 +91,9 @@ export function CatalogueTest({
   );
 
   const [enabled, setEnabled] = useState<boolean | null>(null);
+  // The config could not be fetched: not the same as the test being switched off. Saying "opens
+  // soon" for a failed request told visitors it was closed when it was broken.
+  const [unavailable, setUnavailable] = useState(false);
   // What spider can test today, from its config; laptops and monitors until it answers.
   const [categories, setCategories] = useState<string[]>(["laptop", "monitor"]);
   // A shared result opens straight on it; ?url= prefills the form (the homepage box links here).
@@ -118,7 +121,7 @@ export function CatalogueTest({
         setEnabled(c.enabled);
         if (c.categories?.length) setCategories(c.categories);
       })
-      .catch(() => setEnabled(false));
+      .catch(() => setUnavailable(true));
   }, []);
 
   const apply = useCallback((e: LiveEvent) => {
@@ -282,9 +285,9 @@ export function CatalogueTest({
             className="mx-auto mt-8 max-w-5xl"
             noValidate
           >
-            {enabled === false && (
+            {(enabled === false || unavailable) && (
               <p className="mb-4 text-center text-sm text-pretty text-muted">
-                {t("closed")}
+                {t(unavailable ? "unavailable" : "closed")}
               </p>
             )}
             <fieldset disabled={enabled !== true || busy} className="space-y-3">
