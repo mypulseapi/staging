@@ -7,7 +7,10 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { ArrowRight, Clock, Globe, Tag } from "lucide-react";
 import { Turnstile } from "@/components/Turnstile";
+import { HeroAurora } from "@/components/designed/hero-aurora";
+import { AddressBar } from "./address-bar";
 import { Result } from "./result";
 import {
   domainOf,
@@ -67,13 +70,14 @@ export function CatalogueTest({
   locale,
   calculator,
   header,
-  ctaBar,
+  ask,
 }: {
   labels: Labels;
   locale: string;
   calculator: ReactNode;
   header: ReactNode;
-  ctaBar: ReactNode;
+  /** One line under the bar: ask us to run it instead. Shown with the form, not during a run. */
+  ask: ReactNode;
 }) {
   const t = useCallback(
     (k: string, vars: Record<string, string | number> = {}) =>
@@ -91,8 +95,8 @@ export function CatalogueTest({
   const [categories, setCategories] = useState<string[]>(["laptop", "monitor"]);
   // A shared result opens straight on it; ?url= prefills the form (the homepage box links here).
   const search = useSearch();
-  const [typed, setUrls] = useState<string[] | null>(null);
-  const urls = typed ?? [search.get("url") ?? ""];
+  const [pages, setPages] = useState<string[]>([]);
+  const [pagesOk, setPagesOk] = useState(false);
   const [category, setCategory] = useState<string>("");
   const [token, setToken] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -199,14 +203,13 @@ export function CatalogueTest({
     };
   }, [id, apply, t]);
 
-  const domain = domainOf(urls[0] ?? "");
-  const mixed = urls.find((u) => u.trim() && domainOf(u) !== domain);
+  const domain = domainOf(pages[0] ?? "");
 
   const submit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     setError(null);
-    const list = urls.map((u) => u.trim()).filter(Boolean);
-    if (!list.length || mixed || !token) return;
+    const list = pages;
+    if (!list.length || !pagesOk || !token) return;
     setBusy(true);
     try {
       const r = await startTest(list, token, category || undefined);
@@ -252,8 +255,11 @@ export function CatalogueTest({
   return (
     <div>
       {/* Pingdom's layout (owner, 2026-11-04): a band with the heading and one row, address,
-          category and the button, which stays put while the result builds underneath. */}
-      <div className="border-b border-line bg-surface-1">
+          category and the button, which stays put while the result builds underneath. The hero
+          background (`hero-bg` and the aurora), like every other hero's (owner, 5 Nov 2026); `isolate` also keeps the bar's
+          glow behind the bar. */}
+      <section className="relative isolate hero-bg overflow-hidden border-b border-line">
+        <HeroAurora />
         <div className="frame py-14 lg:py-20">
           {running ? (
             <div className="mx-auto max-w-xl text-center" aria-live="polite">
@@ -282,87 +288,47 @@ export function CatalogueTest({
               </p>
             )}
             <fieldset disabled={enabled !== true || busy} className="space-y-3">
-              <div className="grid grid-cols-1 items-end gap-3 md:grid-cols-[minmax(0,1fr)_13rem_auto]">
-                <label className="block">
-                  <span className="text-sm font-medium text-ink">
-                    {t("urlLabel")}
-                  </span>
-                  <input
-                    id="test-url"
-                    className="field mt-1.5 font-mono"
-                    inputMode="url"
-                    autoComplete="url"
-                    placeholder={t("urlPlaceholder")}
-                    value={urls[0]}
-                    onChange={(e) =>
-                      setUrls(
-                        urls.map((x, j) => (j === 0 ? e.target.value : x)),
-                      )
-                    }
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-sm font-medium text-ink">
-                    {t("category")}
-                  </span>
-                  <select
-                    id="test-category"
-                    className="field mt-1.5"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  >
-                    <option value="">{t("catAuto")}</option>
-                    {[...categories]
-                      .sort((a, b) =>
-                        t(`cat_${a}`).localeCompare(t(`cat_${b}`), locale),
-                      )
-                      .map((c) => (
-                        <option key={c} value={c}>
-                          {t(`cat_${c}`)}
-                        </option>
-                      ))}
-                  </select>
-                </label>
+              <AddressBar
+                t={t}
+                initial={search.get("url") ?? ""}
+                category={category}
+                categories={categories}
+                locale={locale}
+                onCategory={setCategory}
+                onPages={(list, ok) => {
+                  setPages(list);
+                  setPagesOk(ok);
+                }}
+                leaving={busy}
+              >
                 <button
                   type="submit"
-                  className="btn-primary"
-                  disabled={!domain || !!mixed || !token}
+                  className="btn-primary group min-h-12 rounded-full px-5.5 aria-busy:cursor-progress aria-busy:opacity-100"
+                  disabled={!pagesOk || !token}
+                  aria-busy={busy || undefined}
                 >
                   {busy ? t("starting") : t("submit")}
+                  <ArrowRight
+                    className="size-4 transition-transform duration-200 ease-out-soft group-enabled:group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
                 </button>
-              </div>
-              {urls.slice(1).map((u, k) => (
-                <input
-                  key={k}
-                  aria-label={t("urlMore")}
-                  className="field font-mono"
-                  inputMode="url"
-                  placeholder={domain ? `${domain}/...` : t("urlPlaceholder")}
-                  value={u}
-                  onChange={(e) =>
-                    setUrls(
-                      urls.map((x, j) => (j === k + 1 ? e.target.value : x)),
-                    )
-                  }
-                />
-              ))}
-              {mixed && domain && (
-                <p className="text-sm text-ink" role="alert">
-                  {t("sameDomain", { domain })}
-                </p>
-              )}
-              <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                <span className="text-sm text-muted">{t("note")}</span>
-                {urls.length < 20 && domain && (
-                  <button
-                    type="button"
-                    onClick={() => setUrls([...urls, ""])}
-                    className="text-sm font-medium text-primary underline-offset-4 hover:underline"
-                  >
-                    {t("addUrl")}
-                  </button>
-                )}
-              </div>
+              </AddressBar>
+              {/* Three facts, each with its own icon rather than a tick on each (owner's pick C3, 5 Nov 2026). */}
+              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-sm text-muted">
+                {(
+                  [
+                    [Tag, "factFree"],
+                    [Globe, "factPublic"],
+                    [Clock, "factTime"],
+                  ] as const
+                ).map(([Icon, k]) => (
+                  <li key={k} className="inline-flex items-center gap-1.5">
+                    <Icon className="size-[15px] text-primary/85" aria-hidden />
+                    {t(k)}
+                  </li>
+                ))}
+              </ul>
               {enabled && <Turnstile onToken={setToken} />}
               {error && !id && (
                 <p className="text-sm text-ink" role="alert">
@@ -371,9 +337,9 @@ export function CatalogueTest({
               )}
             </fieldset>
           </form>
-          {ctaBar}
+          {!running && ask}
         </div>
-      </div>
+      </section>
 
       <div className="frame py-12 lg:py-16 empty:hidden">
         {id && !teaser && (
