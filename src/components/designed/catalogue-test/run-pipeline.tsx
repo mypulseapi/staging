@@ -345,47 +345,6 @@ export function RunPipeline({
     const quiet = (text: string) => (
       <p className="px-5 py-4.5 text-sm text-muted max-md:px-4">{text}</p>
     );
-    if (sel === 0)
-      return status === "queued" ? (
-        <div className="px-5 py-4.5 max-md:px-4">
-          <p
-            className={`${numeral} text-[clamp(1.5rem,1.2rem+1vw,2.25rem)] leading-tight text-ink`}
-          >
-            {ahead ? t("queuedAhead", { n: num(ahead) }) : t("status_queued")}
-          </p>
-          <div
-            role="img"
-            aria-label={
-              ahead ? t("queuedAhead", { n: num(ahead) }) : t("status_queued")
-            }
-            className="mt-4 flex items-center gap-2.5"
-          >
-            {Array.from({ length: Math.min(ahead ?? 0, 4) }, (_, i) => (
-              <i
-                key={i}
-                className="h-11 w-16 rounded-xl border-[1.5px] border-dashed border-baseline"
-              />
-            ))}
-            <i className="block h-11 min-w-0 truncate rounded-xl border border-primary-line bg-primary-tint px-3.5 text-[13px] leading-[42px] font-medium text-primary-hover not-italic">
-              {domain}
-            </i>
-          </div>
-        </div>
-      ) : (
-        quiet(t("status_done"))
-      );
-    if (sel === 1)
-      return m === "waiting" ? (
-        quiet(t("notStarted"))
-      ) : (
-        <p
-          className={`${numeral} px-5 py-4.5 text-[clamp(1.5rem,1.2rem+1vw,2.25rem)] leading-tight text-ink max-md:px-4`}
-        >
-          {found !== null
-            ? t(at === 1 ? "foundSoFar" : "foundDone", { n: num(found) })
-            : t("status_discovering")}
-        </p>
-      );
     if (sel === 2) {
       if (m === "waiting") return quiet(t("notStarted"));
       if (status === "blocked")
@@ -744,7 +703,9 @@ export function RunPipeline({
       </div>
 
       {/* The stage's table while it runs; once done, the result below says it all (owner, 6 Nov 2026). */}
-      {!finished && (
+      {/* A table only while pages are read and requirements tested: the queue and the search for pages
+          need none (owner, 6 Nov 2026). */}
+      {!finished && sel >= 2 && (
         <section
           aria-live="polite"
           className="mx-7 mt-6 overflow-hidden rounded-xl border border-line bg-surface-1 max-md:mx-4 max-md:mt-5"
