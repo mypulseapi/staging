@@ -14,6 +14,10 @@ export const dynamic = "force-static";
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = SITE.www;
 
+  // Staging (NEXT_PUBLIC_NOINDEX=true) is never crawled, so it cannot compete with the live site.
+  if (process.env.NEXT_PUBLIC_NOINDEX === "true")
+    return { rules: [{ userAgent: "*", disallow: "/" }] };
+
   return {
     rules: [
       {

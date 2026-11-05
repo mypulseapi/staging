@@ -78,6 +78,7 @@ jobs:
           NEXT_PUBLIC_PRESS_EMAIL: ${{ vars.NEXT_PUBLIC_PRESS_EMAIL || 'press@thepulseapi.com' }}
           NEXT_PUBLIC_CAREERS_EMAIL: ${{ vars.NEXT_PUBLIC_CAREERS_EMAIL || 'careers@thepulseapi.com' }}
           NEXT_PUBLIC_TEAM: ${{ vars.NEXT_PUBLIC_TEAM }}
+          NEXT_PUBLIC_NOINDEX: ${{ vars.NEXT_PUBLIC_NOINDEX || 'false' }}
         run: pnpm build
 
       - name: Write the custom domain

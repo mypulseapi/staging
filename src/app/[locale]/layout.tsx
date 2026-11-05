@@ -71,10 +71,11 @@ export const metadata: Metadata = {
     description:
       "Is your product data ready to support the decisions shoppers are trying to make? Measured on your own catalogue in 48 hours.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  // Staging sets NEXT_PUBLIC_NOINDEX=true: every page says noindex, beside robots.txt's disallow.
+  robots:
+    process.env.NEXT_PUBLIC_NOINDEX === "true"
+      ? { index: false, follow: false }
+      : { index: true, follow: true },
 };
 
 /**
