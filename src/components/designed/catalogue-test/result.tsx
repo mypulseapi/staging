@@ -448,7 +448,7 @@ export function Result({
           <div className="flex items-center justify-between gap-8 max-md:flex-col max-md:items-start max-md:gap-5">
             <h3
               id="verdict-title"
-              className="max-w-[14ch] font-[family-name:var(--font-title)] text-[clamp(2.25rem,1.6rem+2.4vw,3.5rem)] leading-[1.06] font-[620] [font-stretch:112%] tracking-[-0.03em] text-balance text-ink"
+              className="max-w-[20ch] font-[family-name:var(--font-title)] max-md:max-w-none text-[clamp(2.25rem,1.6rem+2.4vw,3.5rem)] leading-[1.06] font-[620] [font-stretch:112%] tracking-[-0.03em] text-balance text-ink"
             >
               {t("verdictTitle", {
                 n: num(count.supported),
