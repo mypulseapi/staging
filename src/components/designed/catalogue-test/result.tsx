@@ -573,29 +573,6 @@ export function Result({
                       ))}
                     </ul>
                     <p className="mt-4 text-sm text-muted">{t("openCheck")}</p>
-                    {(() => {
-                      const p = productFor(open.product);
-                      return (
-                        <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-[10px] border border-primary-line bg-primary-tint px-5 py-4">
-                          <span className="inline-flex items-center gap-2 text-sm">
-                            <span
-                              aria-hidden="true"
-                              className={`size-2.5 rounded-full ${p.dot}`}
-                            />
-                            <b className="font-semibold text-ink">{p.name}</b>
-                          </span>
-                          <span className="text-xs font-medium text-muted">
-                            {t(`plan_${p.plan}`)}
-                          </span>
-                          <a
-                            href={signup(p.plan)}
-                            className="btn-secondary btn-sm ml-auto bg-card max-md:ml-0 max-md:w-full"
-                          >
-                            {t(p.plan === "free" ? "startFree" : "subscribe")}
-                          </a>
-                        </div>
-                      );
-                    })()}
                   </div>
                 </li>
               )}
