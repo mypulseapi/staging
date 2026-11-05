@@ -71,7 +71,6 @@ export function CatalogueTest({
   calculator,
   header,
   ask,
-  about,
 }: {
   labels: Labels;
   locale: string;
@@ -79,8 +78,6 @@ export function CatalogueTest({
   header: ReactNode;
   /** One line under the bar: ask us to run it instead. Shown with the form, not during a run. */
   ask: ReactNode;
-  /** About Pulse, on a see-through band along the bottom of the hero. Shown until a test starts. */
-  about: ReactNode;
 }) {
   const t = useCallback(
     (k: string, vars: Record<string, string | number> = {}) =>
@@ -260,106 +257,88 @@ export function CatalogueTest({
       {/* Pingdom's layout (owner, 2026-11-04): a band with the heading and one row, address,
           category and the button, which stays put while the result builds underneath. The hero
           background (`hero-bg` and the aurora), like every other hero's (owner, 5 Nov 2026); `isolate` also keeps the bar's
-          glow behind the bar. Until a test starts it fills the screen under the header, with About Pulse on a
-          see-through band along its bottom (owner's reference, 5 Nov 2026); once one starts it shrinks back so
-          the result builds in view. */}
-      <section
-        className={`relative isolate hero-bg overflow-hidden border-b border-line ${id ? "" : "flex min-h-[calc(100svh-4.25rem-1px)] flex-col"}`}
-      >
+          glow behind the bar. */}
+      <section className="relative isolate hero-bg overflow-hidden border-b border-line">
         <HeroAurora />
-        {/* Centred in the full-screen hero; `frame` is content-box, so it is not the flex item itself. */}
-        <div className="my-auto">
-          <div className="frame py-14 lg:py-20">
-            {running ? (
-              <div className="mx-auto max-w-xl text-center" aria-live="polite">
-                <h2 className="text-title text-balance">{t("runningTitle")}</h2>
-                <Gauge />
-                <p className="mt-2 text-muted">
-                  {status === "queued" && state?.ahead
-                    ? t("queuedAhead", { n: state.ahead })
-                    : rows.length
-                      ? t("runningProgress", { n: done, of: rows.length })
-                      : t(`status_${status}`)}
-                </p>
-              </div>
-            ) : (
-              header
+        <div className="frame py-14 lg:py-20">
+          {running ? (
+            <div className="mx-auto max-w-xl text-center" aria-live="polite">
+              <h2 className="text-title text-balance">{t("runningTitle")}</h2>
+              <Gauge />
+              <p className="mt-2 text-muted">
+                {status === "queued" && state?.ahead
+                  ? t("queuedAhead", { n: state.ahead })
+                  : rows.length
+                    ? t("runningProgress", { n: done, of: rows.length })
+                    : t(`status_${status}`)}
+              </p>
+            </div>
+          ) : (
+            header
+          )}
+          <form
+            hidden={running}
+            onSubmit={submit}
+            className="mx-auto mt-12 max-w-5xl lg:mt-16"
+            noValidate
+          >
+            {enabled === false && (
+              <p className="mb-4 text-center text-sm text-pretty text-muted">
+                {t("closed")}
+              </p>
             )}
-            <form
-              hidden={running}
-              onSubmit={submit}
-              className="mx-auto mt-12 max-w-5xl lg:mt-16"
-              noValidate
-            >
-              {enabled === false && (
-                <p className="mb-4 text-center text-sm text-pretty text-muted">
-                  {t("closed")}
+            <fieldset disabled={enabled !== true || busy} className="space-y-3">
+              <AddressBar
+                t={t}
+                initial={search.get("url") ?? ""}
+                category={category}
+                categories={categories}
+                locale={locale}
+                onCategory={setCategory}
+                onPages={(list, ok) => {
+                  setPages(list);
+                  setPagesOk(ok);
+                }}
+                leaving={busy}
+              >
+                <button
+                  type="submit"
+                  className="btn-primary group min-h-12 rounded-full px-5.5 aria-busy:cursor-progress aria-busy:opacity-100"
+                  disabled={!pagesOk || !token}
+                  aria-busy={busy || undefined}
+                >
+                  {busy ? t("starting") : t("submit")}
+                  <ArrowRight
+                    className="size-4 transition-transform duration-200 ease-out-soft group-enabled:group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </button>
+              </AddressBar>
+              {/* Three facts, each with its own icon rather than a tick on each (owner's pick C3, 5 Nov 2026). */}
+              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-sm text-muted">
+                {(
+                  [
+                    [Tag, "factFree"],
+                    [Globe, "factPublic"],
+                    [Clock, "factTime"],
+                  ] as const
+                ).map(([Icon, k]) => (
+                  <li key={k} className="inline-flex items-center gap-1.5">
+                    <Icon className="size-[15px] text-primary/85" aria-hidden />
+                    {t(k)}
+                  </li>
+                ))}
+              </ul>
+              {enabled && <Turnstile onToken={setToken} />}
+              {error && !id && (
+                <p className="text-sm text-ink" role="alert">
+                  {error}
                 </p>
               )}
-              <fieldset
-                disabled={enabled !== true || busy}
-                className="space-y-3"
-              >
-                <AddressBar
-                  t={t}
-                  initial={search.get("url") ?? ""}
-                  category={category}
-                  categories={categories}
-                  locale={locale}
-                  onCategory={setCategory}
-                  onPages={(list, ok) => {
-                    setPages(list);
-                    setPagesOk(ok);
-                  }}
-                  leaving={busy}
-                >
-                  <button
-                    type="submit"
-                    className="btn-primary group min-h-12 rounded-full px-5.5 aria-busy:cursor-progress aria-busy:opacity-100"
-                    disabled={!pagesOk || !token}
-                    aria-busy={busy || undefined}
-                  >
-                    {busy ? t("starting") : t("submit")}
-                    <ArrowRight
-                      className="size-4 transition-transform duration-200 ease-out-soft group-enabled:group-hover:translate-x-0.5"
-                      aria-hidden
-                    />
-                  </button>
-                </AddressBar>
-                {/* Three facts, each with its own icon rather than a tick on each (owner's pick C3, 5 Nov 2026). */}
-                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-sm text-muted">
-                  {(
-                    [
-                      [Tag, "factFree"],
-                      [Globe, "factPublic"],
-                      [Clock, "factTime"],
-                    ] as const
-                  ).map(([Icon, k]) => (
-                    <li key={k} className="inline-flex items-center gap-1.5">
-                      <Icon
-                        className="size-[15px] text-primary/85"
-                        aria-hidden
-                      />
-                      {t(k)}
-                    </li>
-                  ))}
-                </ul>
-                {enabled && <Turnstile onToken={setToken} />}
-                {error && !id && (
-                  <p className="text-sm text-ink" role="alert">
-                    {error}
-                  </p>
-                )}
-              </fieldset>
-            </form>
-            {!running && ask}
-          </div>
+            </fieldset>
+          </form>
+          {!running && ask}
         </div>
-        {!id && (
-          <div className="border-t border-line bg-card/60 backdrop-blur-md">
-            {about}
-          </div>
-        )}
       </section>
 
       <div className="frame py-12 lg:py-16 empty:hidden">

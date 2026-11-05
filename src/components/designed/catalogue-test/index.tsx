@@ -4,7 +4,7 @@
  *
  * Pingdom's structure in Pulse's brand: a band with the heading and one row (address, category,
  * the button), one line under it for those who would rather have us run it, the result on white
- * below, About Pulse on a see-through band at the foot of the full-screen hero, the "why" as split screens (`split-scroll.tsx`, owner, 5 Nov 2026), and the site's closing band (owner's pick B, 5 Nov 2026:
+ * below, About Pulse as its own section, the "why" as split screens (`split-scroll.tsx`, owner, 5 Nov 2026), and the site's closing band (owner's pick B, 5 Nov 2026:
  * the ask left the hero so the bar is the only button there). The client component draws the band,
  * the live run and the result; the heading, that line and every label come from here, and the
  * calculator as a server-rendered child.
@@ -55,35 +55,6 @@ export function CatalogueTestPage() {
     </p>
   );
 
-  // About Pulse, along the bottom of the hero on a see-through band (owner's reference, 5 Nov 2026): who we are
-  // on the left, the overview on the right. A text link, so the bar's button stays the hero's only button. A
-  // section of its own, its heading the section title size, `text-title` (owner, 5 Nov 2026).
-  const about = (
-    <section
-      aria-labelledby="about-pulse-title"
-      className="frame grid items-center gap-x-12 gap-y-4 py-10 md:grid-cols-[minmax(0,1fr)_auto] lg:py-14"
-    >
-      <div>
-        <h2 id="about-pulse-title" className="text-title text-balance">
-          {t("aboutTitle")}
-        </h2>
-        <p className="mt-3 max-w-[62ch] text-lg text-pretty text-muted">
-          {t("aboutP1")}
-        </p>
-      </div>
-      <a
-        href={designedHref("/en/overview")}
-        className="group w-fit font-medium text-primary underline-offset-4 hover:underline"
-      >
-        {t("overview")}
-        <ArrowRight
-          className="ml-1 inline size-4 align-[-3px] transition-transform duration-200 ease-out-soft group-hover:translate-x-0.5"
-          aria-hidden
-        />
-      </a>
-    </section>
-  );
-
   return (
     <>
       <CatalogueTest
@@ -92,8 +63,32 @@ export function CatalogueTestPage() {
         calculator={<CalculatorBlock key="calculator" bare />}
         header={header}
         ask={ask}
-        about={about}
       />
+
+      {/* About Pulse, a section of its own after the hero, on white, its heading at the section title size
+          (owner, 5 Nov 2026). A text link, so the hero's bar keeps the page's first button. */}
+      <section aria-labelledby="about-pulse-title" className="bg-card">
+        <div className="frame grid items-center gap-x-16 gap-y-5 py-20 md:grid-cols-2 lg:py-28">
+          <h2 id="about-pulse-title" className="text-title text-balance">
+            {t("aboutTitle")}
+          </h2>
+          <div>
+            <p className="max-w-[56ch] text-lg text-pretty text-muted">
+              {t("aboutP1")}
+            </p>
+            <a
+              href={designedHref("/en/overview")}
+              className="group mt-5 inline-block font-medium text-primary underline-offset-4 hover:underline"
+            >
+              {t("overview")}
+              <ArrowRight
+                className="ml-1 inline size-4 align-[-3px] transition-transform duration-200 ease-out-soft group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </a>
+          </div>
+        </div>
+      </section>
 
       <SplitScroll labels={labels} />
 
