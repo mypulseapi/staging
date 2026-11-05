@@ -6062,22 +6062,3 @@ html[data-js] .figure-hold *::after {
   display: inline-block;
   animation: char-vanish 0.55s var(--ease-out-soft) var(--delay, 0ms) forwards;
 }
-/* Test My Catalogue's "why", fourth screen: when the screen arrives (`data-on`), four page tiles light
-   in turn, 1.5 s apart, the pace the test reads at, and stay lit (split-scroll.tsx sets each delay).
-   Once, not a loop. Reduced motion: lit from the start. */
-@keyframes read-tick {
-  to {
-    border-color: var(--color-primary);
-    background-color: var(--color-primary-tint);
-  }
-}
-@utility read-tick {
-  &[data-on] {
-    animation: read-tick 300ms var(--ease-out-soft) var(--delay, 0s) both;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    animation: none !important;
-    border-color: var(--color-primary) !important; /* over the tile's own border-line and bg-card */
-    background-color: var(--color-primary-tint) !important;
-  }
-}
