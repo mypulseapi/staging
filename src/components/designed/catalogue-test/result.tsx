@@ -472,14 +472,14 @@ export function Result({
                 (r) =>
                   `${t(`result_${r}`)} ${count[r]} / ${teaser.requirements.length}`,
               ).join(", ")}
-              className="flex h-5 gap-1"
+              className="flex h-5 overflow-hidden rounded-[10px] outline-1 -outline-offset-1 outline-line-control"
             >
-              {/* One bar, each result's share of the requirements, like every other bar here: it reads
-                  the same at 5 requirements or 50 (owner, 5 Nov 2026). */}
+              {/* One unbroken bar, each result's share of the requirements, like every other bar here: it
+                  reads the same at 5 requirements or 50 (owner, 5 Nov 2026). */}
               {ORDER.filter((r) => count[r]).map((r) => (
                 <i
                   key={r}
-                  className={`min-w-0 rounded-[10px] ${FILL[r]}`}
+                  className={`min-w-0 ${FILL[r]} shadow-none!`}
                   style={{ flex: `${count[r]} 1 0` }}
                 />
               ))}
