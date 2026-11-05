@@ -29,6 +29,20 @@ const failures = [];
 const fail = (file, rule, detail) => failures.push({ file, rule, detail });
 
 /*
+ * Staging (NEXT_PUBLIC_NOINDEX=true) says noindex on every page, so the meta tag no longer tells a
+ * page meant for search from one that is not. There the sitemap does: it lists the indexable pages,
+ * and each is checked exactly as production will serve it.
+ */
+const STAGING = process.env.NEXT_PUBLIC_NOINDEX === "true";
+const listed = new Set(
+  STAGING && existsSync(join(OUT, "sitemap.xml"))
+    ? [...readFileSync(join(OUT, "sitemap.xml"), "utf8").matchAll(/<loc>(.*?)<\/loc>/g)].map(
+        (m) => (m[1].replace(/^https?:\/\/[^/]+\/?/, "") || "index") + ".html",
+      )
+    : [],
+);
+
+/*
  * Reported, but not a gate.
  *
  * Section 8 separates the rules that block from the ones that get reviewed, and image format is
@@ -74,7 +88,9 @@ for (const f of files) {
   const rel = relative(OUT, f);
   if (NOT_A_PAGE.test(rel)) continue;
   const html = readFileSync(f, "utf8");
-  const noindex = NOINDEX.test("/" + rel) || /content="noindex/.test(html);
+  const noindex =
+    NOINDEX.test("/" + rel) ||
+    (STAGING ? !listed.has(rel) : /content="noindex/.test(html));
 
   const title = pick(html, /<title>(.*?)<\/title>/s);
   const desc = pick(html, /<meta name="description" content="(.*?)"/s);

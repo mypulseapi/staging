@@ -58,6 +58,7 @@ const staticPages = [
   "/why/method",
   "/why/compare",
   "/why/limits",
+  "/why/audit",
   "/pricing",
   "/about",
   "/opensource",
