@@ -288,7 +288,7 @@ export function CatalogueTest({
             <form
               hidden={running}
               onSubmit={submit}
-              className="mx-auto mt-8 max-w-5xl"
+              className="mx-auto mt-12 max-w-5xl lg:mt-16"
               noValidate
             >
               {enabled === false && (
