@@ -106,6 +106,9 @@ export function CatalogueTest({
   const [busy, setBusy] = useState(false);
   const [chosen, setId] = useState<string | null | undefined>(undefined);
   const id = chosen === undefined ? search.get("id") : chosen;
+  // Bumped on every submit, so polling restarts even when the API hands back the id already shown:
+  // a reused test has the same id, and without this the page sat on "Waiting in line" (BUG-104).
+  const [run, setRun] = useState(0);
   const [state, setState] = useState<TestState | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
   const [reqs, setReqs] = useState<
@@ -204,7 +207,7 @@ export function CatalogueTest({
       timers.current.forEach(clearTimeout);
       timers.current = [];
     };
-  }, [id, apply, t]);
+  }, [id, run, apply, t]);
 
   const domain = domainOf(pages[0] ?? "");
 
@@ -221,6 +224,7 @@ export function CatalogueTest({
       setReqs({});
       setState(null);
       setId(r.id);
+      setRun((n) => n + 1);
       window.history.replaceState(null, "", `?id=${r.id}`);
     } catch (e) {
       const err = e as TestError;
