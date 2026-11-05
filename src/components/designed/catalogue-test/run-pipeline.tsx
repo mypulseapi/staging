@@ -476,7 +476,7 @@ export function RunPipeline({
           </span>
           <div className="min-w-0">
             <h2
-              className={`${numeral} text-xl leading-tight [overflow-wrap:anywhere] text-ink`}
+              className={`${numeral} truncate text-xl leading-tight text-ink`}
             >
               {domain}
             </h2>
@@ -486,8 +486,8 @@ export function RunPipeline({
           </div>
         </div>
         {category && (
-          <p className="inline-flex max-w-full items-center gap-2 rounded-[18px] border border-line py-1 pr-1.5 pl-3.5 text-sm text-ink">
-            <span className="min-w-0 [overflow-wrap:anywhere]">{category}</span>
+          <p className="inline-flex max-w-full items-center gap-2 rounded-full border border-line py-1 pr-1.5 pl-3.5 text-sm text-ink">
+            <span className="truncate">{category}</span>
             {draft ? (
               <span className={DRAFT_TAG}>{t("draftBadge")}</span>
             ) : (
