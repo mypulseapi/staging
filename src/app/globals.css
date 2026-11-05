@@ -5978,9 +5978,10 @@ html[data-js] .figure-hold *::after {
       linear-gradient(#000 0 0);
     opacity: 0.55;
   }
-  /* the glow underneath, only while focus is inside (it does not turn while hidden) */
+  /* the glow round the bar, past both ends as well as below (owner, 5 Nov 2026), only while focus is
+     inside (it does not turn while hidden) */
   &::after {
-    inset: 6px 40px -10px;
+    inset: 4px -18px -12px;
     z-index: -1;
     border-radius: 9999px;
     filter: blur(20px);
