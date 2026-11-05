@@ -3,14 +3,18 @@
  * test, the face of thepulseapi.com), and still at `/test-my-catalogue` for links already sent.
  *
  * Pingdom's structure in Pulse's brand: a band with the heading and one row (address, category,
- * the button), a CTA bar under it, the result on white below, and a short "why" with the legends
- * at the foot. The client component draws the band, the live run and the result; the heading, the
- * CTA bar and every label come from here, and the calculator as a server-rendered child.
+ * the button), one line under it for those who would rather have us run it, the result on white
+ * below, a short "why" with the legends, and the site's closing band (owner's pick B, 5 Nov 2026:
+ * the ask left the hero so the bar is the only button there). The client component draws the band,
+ * the live run and the result; the heading, that line and every label come from here, and the
+ * calculator as a server-rendered child.
  */
 import en from "../../../../messages/designed.en.json";
 import { designedHref, designedText } from "../t";
 import { renderLocale } from "@/i18n/render-locale";
+import { ArrowRight } from "lucide-react";
 import { CalculatorBlock } from "../calculator";
+import { CtaBoxes } from "../cta-boxes";
 import { CatalogueTest } from "./catalogue-test";
 import { StatsCounter } from "./stats-counter";
 
@@ -34,19 +38,23 @@ export function CatalogueTestPage() {
       <StatsCounter labels={labels} locale={renderLocale()} />
     </div>
   );
-  const ctaBar = (
-    <div
-      key="cta"
-      className="mx-auto mt-12 flex max-w-5xl flex-col items-center justify-between gap-4 rounded-xl border border-line bg-card px-6 py-5 text-center sm:flex-row sm:text-left"
+  const ask = (
+    <p
+      key="ask"
+      className="mt-6 text-center text-[0.9375rem] text-pretty text-muted"
     >
-      <p className="text-pretty text-ink">
-        <strong className="font-semibold">{t("ctaStrong")}</strong>{" "}
-        {t("ctaText")}
-      </p>
-      <a href={designedHref("/en/contact")} className="btn-secondary shrink-0">
+      {t("askLead")}{" "}
+      <a
+        href={designedHref("/en/contact")}
+        className="group font-medium text-primary underline-offset-4 hover:underline"
+      >
         {t("ctaButton")}
+        <ArrowRight
+          className="ml-0.5 inline size-3.5 align-[-2px] transition-transform duration-200 ease-out-soft group-hover:translate-x-0.5"
+          aria-hidden
+        />
       </a>
-    </div>
+    </p>
   );
 
   return (
@@ -56,7 +64,7 @@ export function CatalogueTestPage() {
         locale={renderLocale()}
         calculator={<CalculatorBlock key="calculator" bare />}
         header={header}
-        ctaBar={ctaBar}
+        ask={ask}
       />
 
       <section className="border-t border-line">
@@ -120,6 +128,26 @@ export function CatalogueTestPage() {
                 ))}
               </dl>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="request"
+        className="cta-boxes scroll-mt-16 border-t border-line"
+      >
+        <CtaBoxes />
+        <div className="frame py-24 text-center lg:py-32">
+          <h2 className="reveal mx-auto max-w-3xl text-headline text-balance">
+            {t("ctaStrong")}
+          </h2>
+          <p className="reveal mx-auto mt-4 max-w-xl text-lg text-pretty text-muted delay-100">
+            {t("ctaText")}
+          </p>
+          <div className="reveal mt-8 flex justify-center delay-200">
+            <a href={designedHref("/en/contact")} className="btn-primary">
+              {t("ctaButton")}
+            </a>
           </div>
         </div>
       </section>
