@@ -4,7 +4,7 @@
  *
  * Pingdom's structure in Pulse's brand: a band with the heading and one row (address, category,
  * the button), one line under it for those who would rather have us run it, the result on white
- * below, a short "why" with the legends, and the site's closing band (owner's pick B, 5 Nov 2026:
+ * below, the "why" as split screens (`split-scroll.tsx`, owner, 5 Nov 2026), and the site's closing band (owner's pick B, 5 Nov 2026:
  * the ask left the hero so the bar is the only button there). The client component draws the band,
  * the live run and the result; the heading, that line and every label come from here, and the
  * calculator as a server-rendered child.
@@ -16,15 +16,8 @@ import { ArrowRight } from "lucide-react";
 import { CalculatorBlock } from "../calculator";
 import { CtaBoxes } from "../cta-boxes";
 import { CatalogueTest } from "./catalogue-test";
+import { SplitScroll } from "./split-scroll";
 import { StatsCounter } from "./stats-counter";
-
-const RESULTS = [
-  ["supported", "border-success-line bg-success-bg text-success"],
-  ["partial", "border-warning-line bg-warning-bg text-warning"],
-  ["buried", "border-gap bg-gap-fill text-gap-strong"],
-  ["insufficient", "border-critical-line bg-critical-bg text-critical"],
-] as const;
-const FACTS = ["visible", "buried", "missing", "conflicting"] as const;
 
 export function CatalogueTestPage() {
   const t = designedText("catalogueTest.page");
@@ -67,70 +60,10 @@ export function CatalogueTestPage() {
         ask={ask}
       />
 
-      <section className="border-t border-line">
-        <div className="frame grid grid-cols-1 gap-10 py-16 lg:grid-cols-2 lg:py-20">
-          <div className="max-w-xl">
-            <h2 className="text-title text-balance">{t("infoTitle")}</h2>
-            <p className="mt-4 text-pretty text-muted">{t("infoP1")}</p>
-            <p className="mt-3 text-pretty text-muted">{t("infoP2")}</p>
-            <p className="mt-3 text-pretty text-muted">{t("infoP3")}</p>
-            <h3 className="mt-10 text-lg font-semibold text-ink">
-              {t("aboutTitle")}
-            </h3>
-            <p className="mt-2 text-pretty text-muted">{t("aboutP1")}</p>
-            <a
-              href={designedHref("/en/overview")}
-              className="mt-4 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
-            >
-              {t("overview")}
-            </a>
-          </div>
-          <div className="space-y-4">
-            <div className="rounded-xl border border-line bg-card p-6">
-              <h3 className="font-semibold text-ink">
-                {t("legendResultsTitle")}
-              </h3>
-              <dl className="mt-3 space-y-2.5 text-sm">
-                {RESULTS.map(([key, tone]) => (
-                  <div
-                    key={key}
-                    className="grid grid-cols-[7.5rem_1fr] items-start gap-3"
-                  >
-                    <dt>
-                      <span className={`badge ${tone}`}>
-                        {t(`result_${key}`)}
-                      </span>
-                    </dt>
-                    <dd className="text-pretty text-muted">
-                      {t(`legend_${key}`)}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-            <div className="rounded-xl border border-line bg-card p-6">
-              <h3 className="font-semibold text-ink">
-                {t("legendFactsTitle")}
-              </h3>
-              <dl className="mt-3 space-y-2.5 text-sm">
-                {FACTS.map((key) => (
-                  <div
-                    key={key}
-                    className="grid grid-cols-[7.5rem_1fr] items-start gap-3"
-                  >
-                    <dt className="font-medium text-ink">
-                      {t(`fact_state_${key}`)}
-                    </dt>
-                    <dd className="text-pretty text-muted">
-                      {t(`legend_fact_${key}`)}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SplitScroll
+        labels={labels}
+        overviewHref={designedHref("/en/overview")}
+      />
 
       <section
         id="request"
