@@ -509,30 +509,6 @@ export function Result({
                 </div>
               ))}
             </dl>
-            <details className="group mt-3 text-sm">
-              <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 text-muted hover:text-ink [&::-webkit-details-marker]:hidden">
-                <ChevronDown
-                  aria-hidden
-                  className="size-4 group-open:rotate-180"
-                />
-                {t("legendResultsTitle")}
-              </summary>
-              <ul className="mt-2.5 grid gap-2">
-                {ORDER.map((r) => (
-                  <li
-                    key={r}
-                    className="flex items-baseline gap-2.5 text-muted"
-                  >
-                    <span
-                      className={`badge min-w-23 justify-center ${BADGE[r]}`}
-                    >
-                      {t(`result_${r}`)}
-                    </span>
-                    {t(`legend_${r}`)}
-                  </li>
-                ))}
-              </ul>
-            </details>
           </div>
           <dl className="mt-8 grid grid-cols-4 border-t border-[color-mix(in_oklab,var(--color-ink)_14%,transparent)] max-md:grid-cols-2">
             {tiles.map((x) => (
