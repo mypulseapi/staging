@@ -58,7 +58,7 @@ export function CatalogueTestPage() {
   // About Pulse, along the bottom of the hero on a see-through band (owner's reference, 5 Nov 2026): who we are
   // on the left, the overview on the right. A text link, so the bar's button stays the hero's only button.
   const about = (
-    <div className="frame grid items-center gap-x-12 gap-y-3 py-7 md:grid-cols-[minmax(0,1fr)_auto] lg:py-9">
+    <div className="frame grid items-center gap-x-12 gap-y-3 py-10 md:grid-cols-[minmax(0,1fr)_auto] lg:py-14">
       <div>
         <h2 className="text-lg font-semibold text-ink">{t("aboutTitle")}</h2>
         <p className="mt-1 max-w-[62ch] text-pretty text-muted">
