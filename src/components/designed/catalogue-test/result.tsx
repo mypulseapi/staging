@@ -406,11 +406,11 @@ export function Result({
             {tiles.map((x) => (
               <div
                 key={x.label}
-                className="row-span-3 grid grid-rows-subgrid pt-6 pr-6 max-md:pt-4.5 max-md:pr-3"
+                className="row-span-3 grid grid-rows-subgrid justify-items-center px-3 pt-6 text-center max-md:px-2 max-md:pt-4.5"
               >
-                {/* The label above its number (owner, 5 Nov 2026); the rows are shared, so a label on two lines
+                {/* The label, bold, above its number, each tile centred (owner, 5 Nov 2026); the rows are shared, so a label on two lines
                     keeps every number in the row level. */}
-                <dt className="self-end text-sm text-pretty text-ink">
+                <dt className="self-end text-sm font-semibold text-pretty text-ink">
                   {x.label}
                 </dt>
                 <dd
