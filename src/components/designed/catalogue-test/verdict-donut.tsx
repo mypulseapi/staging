@@ -7,7 +7,7 @@ import type { RequirementResult } from "@/lib/catalogue-test";
  * The verdict as a ring (the designer's donut, option A, owner's pick, 5 Nov 2026): one segment per
  * result, its share of the requirements, from 12 o'clock clockwise. Each segment has its own dark
  * border and rounded corners, with an even gap between segments, as in the owner's 21st.dev
- * reference. A colour key under it; on hover a segment moves out and a tooltip gives its count.
+ * reference. A colour key beside it; on hover a segment moves out and a tooltip gives its count.
  */
 
 // In the SVG's 240-unit box: rim, hole, half the gap, corner radius, and the hover lift.
@@ -104,10 +104,10 @@ export function VerdictDonut({
   const tip = segs.find((s) => s.res === hover);
 
   return (
-    // Beside the headline on desktop, under it and centred on a phone; the colour key under the ring, its
-    // counts in the tooltip (owner, 5 Nov 2026).
-    <div className="flex shrink-0 flex-col items-center gap-5 max-md:self-center">
-      <div className="relative size-58 shrink-0">
+    // Beside the headline on desktop, under it and centred on a phone; the colour key to the ring's right,
+    // one result a line, its counts in the tooltip (owner, 5 Nov 2026).
+    <div className="flex shrink-0 items-center gap-6 max-md:gap-5 max-md:self-center">
+      <div className="relative size-58 shrink-0 max-md:size-48">
         <svg
           viewBox="0 0 240 240"
           role="img"
@@ -176,7 +176,7 @@ export function VerdictDonut({
           </div>
         )}
       </div>
-      <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
+      <ul className="grid gap-y-2.5">
         {order.map((res) => (
           <li
             key={res}
