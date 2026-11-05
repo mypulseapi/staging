@@ -81,21 +81,18 @@ const RESULTS: RequirementResult[] = [
 const BAR: Record<RequirementResult, string> = {
   supported: "bg-success",
   partial: "bg-[color-mix(in_oklab,var(--color-gap)_78%,var(--color-card))]",
-  buried: "bg-gap-strong",
+  buried: "bg-baseline",
   insufficient: "bg-critical",
 };
 const FACT_BAR: [keyof Facts, string][] = [
   ["visible", "bg-success"],
-  [
-    "buried",
-    "bg-[color-mix(in_oklab,var(--color-warning)_70%,var(--color-card))]",
-  ],
+  ["buried", "bg-baseline"],
   ["missing", "bg-gap"],
   ["conflicting", "bg-critical"],
 ];
 const FACT_BADGE: [string, string][] = [
   ["visible", "border-success-line bg-success-bg text-success"],
-  ["buried", "border-warning-line bg-warning-bg text-warning"],
+  ["buried", "border-line-control bg-surface-1 text-ink"],
   [
     "missing",
     "border-[1.5px] border-dashed border-gap bg-gap-fill text-gap-strong",
@@ -295,7 +292,7 @@ export function RunPipeline({
               aria-label={FACT_BAR.map(
                 ([k]) => `${t(`fact_state_${k}`)} ${p.facts![k]}`,
               ).join(", ")}
-              className="inline-flex h-2 w-18 gap-px overflow-hidden rounded-[2px] bg-surface-1 max-md:w-14"
+              className="inline-flex h-2 w-18 overflow-hidden rounded-[2px] bg-surface-1 max-md:w-14"
             >
               {FACT_BAR.filter(([k]) => p.facts![k] > 0).map(([k, bg]) => (
                 <i
@@ -440,7 +437,7 @@ export function RunPipeline({
                 </div>
                 <span
                   aria-hidden="true"
-                  className="flex h-3 gap-px overflow-hidden rounded-md bg-surface-1 outline-1 -outline-offset-1 outline-line-control"
+                  className="flex h-3 overflow-hidden rounded-md bg-surface-1 outline-1 -outline-offset-1 outline-line-control"
                 >
                   {RESULTS.filter((r) => c[r]).map((r) => (
                     <i
@@ -462,7 +459,7 @@ export function RunPipeline({
                 {
                   supported: "border-success-line bg-success-bg text-success",
                   partial: "border-warning-line bg-warning-bg text-warning",
-                  buried: "border-gap bg-gap-fill text-gap-strong",
+                  buried: "border-line-control bg-surface-1 text-ink",
                   insufficient:
                     "border-critical-line bg-critical-bg text-critical",
                 }[r]

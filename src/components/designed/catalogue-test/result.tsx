@@ -41,7 +41,7 @@ const ORDER: RequirementResult[] = [
 const BADGE: Record<RequirementResult, string> = {
   supported: "border-success-line bg-success-bg text-success",
   partial: "border-warning-line bg-warning-bg text-warning",
-  buried: "border-gap bg-gap-fill text-gap-strong",
+  buried: "border-line-control bg-surface-1 text-ink",
   insufficient: "border-critical-line bg-critical-bg text-critical",
 };
 
@@ -49,19 +49,22 @@ const BADGE: Record<RequirementResult, string> = {
 const PANEL: Record<RequirementResult, string> = {
   supported: "border-success-line bg-success-bg",
   partial: "border-warning-line bg-warning-bg",
-  buried: "border-gap bg-gap-fill",
+  buried: "border-line-control bg-surface-1",
   insufficient: "border-critical-line bg-critical-bg",
 };
 
-/** Amber is 1.8:1 on white, so every amber mark carries a gap-strong edge and a number beside it. */
+/** Partly is amber and Buried slate, so the two never read as one (owner's option B, 5 Nov 2026). Amber is 1.8:1 on white, so every amber mark carries a gap-strong edge and a number beside it. */
 const AMBER =
   "bg-[color-mix(in_oklab,var(--color-gap)_78%,var(--color-card))] shadow-[inset_0_0_0_1px_var(--color-gap-strong)]";
 const FILL: Record<RequirementResult, string> = {
   supported: "bg-success",
   partial: AMBER,
-  buried: "bg-gap shadow-[inset_0_0_0_1px_var(--color-gap-strong)]",
+  buried:
+    "bg-baseline shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-baseline)_55%,var(--color-ink))]",
   insufficient: "bg-critical",
 };
+/** Products a finding affects: something to fix, so amber, as in the sample. */
+const AFFECTED = "bg-gap shadow-[inset_0_0_0_1px_var(--color-gap-strong)]";
 const EMPTY = "bg-surface-1 shadow-[inset_0_0_0_1px_var(--color-line)]";
 
 /**
@@ -167,7 +170,7 @@ const REPAIR: Record<string, string> = {
 const FACT_PILL: Record<string, string> = {
   missing:
     "border-[1.5px] border-dashed border-gap bg-gap-fill text-gap-strong",
-  buried: BADGE.partial,
+  buried: BADGE.buried,
   conflicting: BADGE.insufficient,
 };
 
@@ -385,7 +388,7 @@ export function Result({
       >
         {t("maskedCount", { n: num(n), of: num(of) })}
       </span>
-      <Share n={n} of={of} on={FILL.buried} rest={EMPTY} />
+      <Share n={n} of={of} on={AFFECTED} rest={EMPTY} />
     </span>
   );
   const unreadable = teaser.cannotSee.unreadable;
@@ -474,8 +477,8 @@ export function Result({
               ).join(", ")}
               className="flex h-5 overflow-hidden rounded-[10px] outline-1 -outline-offset-1 outline-line-control"
             >
-              {/* One unbroken bar, each result's share of the requirements, like every other bar here: it
-                  reads the same at 5 requirements or 50 (owner, 5 Nov 2026). */}
+              {/* One bar, each result's share of the requirements, like every other bar here: it reads the
+                  same at 5 requirements or 50 (owner, 5 Nov 2026). */}
               {ORDER.filter((r) => count[r]).map((r) => (
                 <i
                   key={r}
