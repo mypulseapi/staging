@@ -2200,6 +2200,8 @@
       "catAll": "All of {group}",
       "draftBadge": "Draft",
       "draftNote": "The {category} checklist is a first draft: it has not yet been checked against real stores, so treat these findings as a guide.",
+      "draftChecklist": "Draft checklist",
+      "draftProgress": "First-draft checklist for {category}: findings are a guide until it is checked against real stores.",
       "cat_phone": "Phones",
       "cat_tablet": "Tablets",
       "cat_laptop": "Laptops",

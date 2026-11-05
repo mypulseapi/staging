@@ -2084,6 +2084,8 @@
       "catAll": "Tất cả {group}",
       "draftBadge": "Bản nháp",
       "draftNote": "Bộ tiêu chí cho {category} đang là bản nháp: chưa được đối chiếu với các cửa hàng thực tế, nên hãy xem các kết quả này để tham khảo.",
+      "draftChecklist": "Tiêu chí bản nháp",
+      "draftProgress": "Bộ tiêu chí {category} đang là bản nháp: kết quả chỉ để tham khảo cho đến khi được đối chiếu với cửa hàng thực tế.",
       "cat_phone": "Điện thoại",
       "cat_tablet": "Máy tính bảng",
       "cat_laptop": "Laptop",

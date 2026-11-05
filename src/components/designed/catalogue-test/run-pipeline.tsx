@@ -78,6 +78,9 @@ const RESULTS: RequirementResult[] = [
   "buried",
   "insufficient",
 ];
+/** A first-draft checklist: dashed, so it reads as unfinished, and not amber, which means missing. */
+export const DRAFT_TAG =
+  "inline-flex shrink-0 items-center rounded-full border border-dashed border-line-control px-2 py-0.5 text-xs font-semibold whitespace-nowrap text-ink";
 const BAR: Record<RequirementResult, string> = {
   supported: "bg-success",
   partial: "bg-[color-mix(in_oklab,var(--color-gap)_78%,var(--color-card))]",
@@ -137,6 +140,8 @@ export function RunPipeline({
   reqs,
   startedAt,
   elapsed,
+  category,
+  draft,
   onReset,
 }: {
   t: T;
@@ -154,6 +159,9 @@ export function RunPipeline({
   reqs: Record<string, Record<RequirementResult, number>>;
   startedAt: number | null;
   elapsed: number | null;
+  /** The category tested, in the page's language, and whether its checklist is a first draft. */
+  category: string | null;
+  draft: boolean;
   onReset: () => void;
 }) {
   const plot = useRef<HTMLDivElement>(null);
@@ -510,6 +518,16 @@ export function RunPipeline({
             <p className="text-[13px] text-muted">{t("runningTitle")}</p>
           </div>
         </div>
+        {category && (
+          <p className="inline-flex max-w-full items-center gap-2 rounded-full border border-line py-1 pr-1.5 pl-3.5 text-sm text-ink">
+            <span className="truncate">{category}</span>
+            {draft ? (
+              <span className={DRAFT_TAG}>{t("draftBadge")}</span>
+            ) : (
+              <span aria-hidden className="w-0" />
+            )}
+          </p>
+        )}
       </header>
 
       <dl className="mx-7 mt-6 grid grid-cols-[1.5fr_1fr_1fr_1fr] border-y border-line max-md:mx-4 max-md:mt-4.5 max-md:grid-cols-3">
@@ -540,6 +558,11 @@ export function RunPipeline({
           </div>
         ))}
       </dl>
+      {draft && category && (
+        <p className="mx-7 mt-4 text-sm text-pretty text-muted max-md:mx-4">
+          {t("draftProgress", { category })}
+        </p>
+      )}
 
       <div className="px-7 pt-6 max-md:px-4 max-md:pt-2">
         {/* Desktop: the blocks. Phones: the list (owner, 5 Nov 2026). */}

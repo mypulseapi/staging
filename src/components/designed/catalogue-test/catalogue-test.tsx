@@ -271,21 +271,16 @@ export function CatalogueTest({
   };
 
   const status = state?.status ?? (id ? "queued" : null);
-  // A drafted checklist runs and reports, and says so (catalogue-categories Q5).
-  const draftNote =
-    state?.category && taxonomy.draft?.includes(state.category) ? (
-      <p className="mt-3 rounded-2xl bg-surface-1 px-4 py-3 text-sm text-muted">
-        <span className="mr-2 rounded-full bg-card px-2 py-0.5 text-xs font-semibold text-ink">
-          {t("draftBadge")}
-        </span>
-        {t("draftNote", {
-          category:
-            taxonomy.labels?.[state.category]?.[
-              locale === "vi" ? "vi" : "en"
-            ] ?? state.category,
-        })}
-      </p>
-    ) : null;
+  // The tested category in the page's language, from the service's labels (develop #8), and whether
+  // its checklist is still a first draft: a drafted checklist runs and reports, and says so
+  // (catalogue-categories Q5), as a tag and one sentence (the designer's draft notice, owner, 6 Nov 2026).
+  const categoryLabel = state?.category
+    ? (taxonomy.labels?.[state.category]?.[locale === "vi" ? "vi" : "en"] ??
+      (labels[`cat_${state.category}`] ? t(`cat_${state.category}`) : null))
+    : null;
+  const draft = Boolean(
+    state?.category && taxonomy.draft?.includes(state.category),
+  );
   const teaser = state?.teaser ?? null;
   const running =
     Boolean(id) && !teaser && status !== "failed" && status !== "blocked";
@@ -427,10 +422,10 @@ export function CatalogueTest({
                 reqs={reqs}
                 startedAt={startedAt}
                 elapsed={elapsed}
+                category={categoryLabel}
+                draft={draft}
                 onReset={reset}
               />
-              {/* A drafted checklist says so (develop #8); placed here until its design (owner, 6 Nov 2026). */}
-              {draftNote}
               {state?.reason === "no_category" && (
                 <p className="mt-4 text-sm text-ink">
                   {t("reason_no_category")}
@@ -444,7 +439,6 @@ export function CatalogueTest({
             </>
           )}
 
-          {teaser && state && draftNote}
           {teaser && state && (
             <Result
               teaser={teaser}
@@ -454,6 +448,8 @@ export function CatalogueTest({
               id={id!}
               locale={locale}
               calculator={calculator}
+              category={categoryLabel}
+              draft={draft}
               onReset={reset}
             />
           )}
