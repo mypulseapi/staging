@@ -15,6 +15,9 @@ import { img } from "@/lib/cdn";
  * elsewhere. Without JavaScript, and with reduced motion, the screens stack and nothing moves.
  */
 
+/** Scroll per screen, in svh. */
+const STEP = 25;
+
 type Result = "supported" | "partial" | "buried" | "insufficient";
 
 const RESULT_TONE: Record<Result, string> = {
@@ -194,7 +197,11 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
     <section
       ref={root}
       aria-labelledby="split-scroll-title"
-      style={pin ? { height: `${n * 100}svh` } : undefined}
+      // The stage's own height plus 25svh of scroll per screen, so a screen changes after a short scroll
+      // (owner, 5 Nov 2026: a full screen of scroll per screen felt long).
+      style={
+        pin ? { height: `calc(100svh - 4.25rem + ${n * STEP}svh)` } : undefined
+      }
       className="relative border-t border-line bg-card"
     >
       <div
