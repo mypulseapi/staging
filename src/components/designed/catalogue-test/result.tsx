@@ -469,29 +469,43 @@ export function Result({
             <div
               role="img"
               aria-label={ORDER.map(
-                (r) => `${t(`result_${r}`)} ${count[r]}`,
+                (r) =>
+                  `${t(`result_${r}`)} ${count[r]} / ${teaser.requirements.length}`,
               ).join(", ")}
               className="flex h-5 gap-1"
             >
-              {ORDER.flatMap((r) =>
-                Array.from({ length: count[r] }, (_, i) => (
-                  <i
-                    key={`${r}${i}`}
-                    className={`flex-1 rounded-[10px] ${FILL[r]}`}
-                  />
-                )),
-              )}
-            </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {ORDER.map((r) => (
-                <span
+              {/* One bar, each result's share of the requirements, like every other bar here: it reads
+                  the same at 5 requirements or 50 (owner, 5 Nov 2026). */}
+              {ORDER.filter((r) => count[r]).map((r) => (
+                <i
                   key={r}
-                  className={`badge ${count[r] ? BADGE[r] : "border-line text-muted"}`}
-                >
-                  {t(`result_${r}`)} {num(count[r])}
-                </span>
+                  className={`min-w-0 rounded-[10px] ${FILL[r]}`}
+                  style={{ flex: `${count[r]} 1 0` }}
+                />
               ))}
             </div>
+            {/* Each result's count as a figure with its base, as the other numbers on the page. */}
+            <dl className="mt-4 grid grid-cols-4 gap-x-6 gap-y-4 max-md:grid-cols-2">
+              {ORDER.map((r) => (
+                <div key={r} className="min-w-0">
+                  <dt className="flex items-center gap-2 text-sm text-ink">
+                    <span
+                      aria-hidden="true"
+                      className={`size-2.5 shrink-0 rounded-full ${FILL[r]}`}
+                    />
+                    {t(`result_${r}`)}
+                  </dt>
+                  <dd
+                    className={`${bigNumber} mt-1 text-[28px] leading-none ${count[r] ? "text-ink" : "text-muted"}`}
+                  >
+                    {num(count[r])}
+                    <small className="ml-1 font-sans text-sm font-medium tracking-normal text-muted">
+                      / {num(teaser.requirements.length)}
+                    </small>
+                  </dd>
+                </div>
+              ))}
+            </dl>
             <details className="group mt-3 text-sm">
               <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 text-muted hover:text-ink [&::-webkit-details-marker]:hidden">
                 <ChevronDown
