@@ -3,9 +3,12 @@
 import { useMemo, useState, type ReactNode } from "react";
 import {
   ArrowRight,
+  ArrowUpRight,
+  Check,
   ChevronDown,
   Code,
   Filter,
+  Globe,
   Lock,
   RotateCcw,
   Tag,
@@ -271,6 +274,7 @@ export function Result({
     try {
       await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopied(false);
     }
@@ -281,6 +285,7 @@ export function Result({
   // The most common result tints the verdict; on a tie, the worse one, so a mixed store never reads as fine.
   const top = [...ORDER].reverse().sort((a, b) => count[b] - count[a])[0];
   const tested = teaser.products;
+  const sampled = Math.max(state.progress.of, tested);
   const findings = (open ? 1 : 0) + teaser.masked.length;
   const tiles = [
     {
@@ -350,16 +355,45 @@ export function Result({
     <div className="space-y-14 max-md:space-y-10">
       <section className="space-y-6">
         <div>
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-title">
-              {t("resultsTitle", { domain: state.domain })}
-            </h2>
+          {/* The store as an address pill, as in the box the visitor typed into, with what was tested under
+              it (the designer's option C, kept small, owner, 5 Nov 2026). */}
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+            <div className="min-w-0">
+              <h2 className="flex flex-wrap items-center gap-x-3 gap-y-2 text-title">
+                {t("resultsLead")}
+                <a
+                  href={`https://${state.domain}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={state.domain}
+                  aria-label={t("openStore", { domain: state.domain })}
+                  className="inline-flex max-w-full min-w-0 items-center gap-2 rounded-full border border-line-control bg-card py-1.5 pr-3 pl-2.5 font-mono text-[15px] leading-none font-normal tracking-normal text-ink transition-colors duration-200 ease-out-soft hover:border-primary"
+                >
+                  <Globe aria-hidden className="size-4 shrink-0 text-primary" />
+                  <span className="min-w-0 truncate">{state.domain}</span>
+                  <ArrowUpRight
+                    aria-hidden
+                    className="size-3.5 shrink-0 text-muted"
+                  />
+                </a>
+              </h2>
+              <p className="mt-2 text-sm text-muted">
+                {[
+                  state.category ? t(`cat_${state.category}`) : null,
+                  t("pagesSampled", { n: num(sampled) }),
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </p>
+            </div>
             <div className="flex flex-wrap gap-2 max-md:w-full">
               <button
                 type="button"
                 onClick={share}
-                className="btn-secondary btn-sm"
+                aria-live="polite"
+                className={`btn-secondary btn-sm ${copied ? "border-success-line! bg-success-bg! text-success!" : ""}`}
               >
+                {copied && <Check aria-hidden className="size-3.5" />}
                 {copied ? t("copied") : t("share")}
               </button>
               <button
