@@ -2,6 +2,7 @@
 
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type ClipboardEvent,
@@ -98,7 +99,7 @@ export function AddressBar({
   const [focused, setFocused] = useState(false);
   const [example, setExample] = useState(0);
   const [phase, setPhase] = useState<"idle" | "out" | "in">("idle");
-  const input = useRef<HTMLInputElement>(null);
+  const input = useRef<HTMLTextAreaElement>(null);
   // The latest tags and text, for a removal that finishes after its shrink.
   const latest = useRef({ tags, text });
   useEffect(() => {
@@ -133,6 +134,14 @@ export function AddressBar({
       }, 300);
     }, 2600);
     return () => window.clearInterval(id);
+  }, [text, tags.length]);
+
+  // The field grows to its text, so a long address shows in full.
+  useLayoutEffect(() => {
+    const el = input.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
   }, [text, tags.length]);
 
   const later = (key: string, fn: () => void, ms: number) => {
@@ -182,7 +191,7 @@ export function AddressBar({
   };
 
   const change = (value: string) => {
-    const v = value.replace(/^\s*https?:\/\//i, "");
+    const v = value.replace(/\n/g, " ").replace(/^\s*https?:\/\//i, "");
     setPaused(false);
     later("pause", () => setPaused(true), 600);
     const parts = v.split(SEP);
@@ -192,7 +201,7 @@ export function AddressBar({
     commit(parts.filter(isAddress), [...left, last].filter(Boolean).join(" "));
   };
 
-  const paste = (e: ClipboardEvent<HTMLInputElement>) => {
+  const paste = (e: ClipboardEvent<HTMLTextAreaElement>) => {
     const pasted = e.clipboardData.getData("text").split(SEP).filter(Boolean);
     e.preventDefault();
     const before = text.trim();
@@ -202,7 +211,13 @@ export function AddressBar({
     commit([...(before ? [before] : []), ...pasted], "");
   };
 
-  const key = (e: KeyboardEvent<HTMLInputElement>) => {
+  const key = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    // One line of text that wraps: Enter never breaks a line, and with no tags it sends the form.
+    if (e.key === "Enter" && !(tags.length && text.trim())) {
+      e.preventDefault();
+      e.currentTarget.form?.requestSubmit();
+      return;
+    }
     if ((e.key === "," || (e.key === "Enter" && tags.length)) && text.trim()) {
       e.preventDefault();
       if (typedPage) commit([typedPage], "");
@@ -313,17 +328,19 @@ export function AddressBar({
           {!tags.length && (
             <span
               aria-hidden
-              className={`font-mono text-base transition-colors duration-200 ease-out-soft ${focused ? "text-primary" : "text-muted"}`}
+              className={`self-start py-2 font-mono text-base leading-6 transition-colors duration-200 ease-out-soft ${focused ? "text-primary" : "text-muted"}`}
             >
               https://
             </span>
           )}
           <div className="relative flex min-h-10 min-w-30 flex-[1_1_11rem] self-stretch">
-            <input
+            {/* A long address wraps onto the next line rather than being cut (owner, 6 Nov 2026). */}
+            <textarea
               ref={input}
               id="test-url"
+              rows={1}
               aria-describedby="test-url-tip"
-              className={`min-w-0 flex-1 bg-transparent font-mono! text-base outline-none placeholder:text-muted ${ghost.length ? "text-transparent" : "text-ink"}`}
+              className={`min-w-0 flex-1 resize-none self-center overflow-hidden bg-transparent py-2 font-mono! text-base leading-6 [overflow-wrap:anywhere] outline-none placeholder:text-muted ${ghost.length ? "text-transparent" : "text-ink"}`}
               inputMode="url"
               autoComplete="url"
               value={text}

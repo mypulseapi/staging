@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import { Check, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import type { CategoryGroup } from "@/lib/catalogue-test";
 
@@ -69,7 +75,7 @@ export function CategoryField({
   // The group opened, or null for the list of groups.
   const [level, setLevel] = useState<string | null>(null);
   const [active, setActive] = useState(0);
-  const input = useRef<HTMLInputElement>(null);
+  const input = useRef<HTMLTextAreaElement>(null);
   const box = useRef<HTMLDivElement>(null);
   const list = useRef<HTMLUListElement>(null);
   // How far left the panel moves so it stays on a narrow screen (16px from the edge).
@@ -148,6 +154,14 @@ export function CategoryField({
         )
     : levelRows(level);
 
+  // The field grows to its text, so a long category shows in full.
+  const fieldText = query ?? shown(value);
+  useLayoutEffect(() => {
+    const el = input.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, [fieldText]);
   useEffect(() => {
     if (list.current) list.current.scrollTop = 0;
   }, [level]);
@@ -207,16 +221,17 @@ export function CategoryField({
     setOpen(false);
   };
 
-  const key = (e: KeyboardEvent<HTMLInputElement>) => {
+  const key = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "ArrowDown" || e.key === "ArrowUp") {
       e.preventDefault();
       if (!open) return show();
       const step = e.key === "ArrowDown" ? 1 : -1;
       setActive((i) => Math.min(rows.length - 1, Math.max(0, i + step)));
-    } else if (e.key === "Enter" && open) {
+    } else if (e.key === "Enter") {
       // Picks rather than sending the form; with the list closed, Enter starts the test.
       e.preventDefault();
-      act(rows[active]);
+      if (open) act(rows[active]);
+      else e.currentTarget.form?.requestSubmit();
     } else if (
       open &&
       !q &&
@@ -252,9 +267,11 @@ export function CategoryField({
 
   return (
     <div ref={box} className="relative flex items-center">
-      <input
+      {/* A long category wraps onto the next line rather than being cut (owner, 6 Nov 2026). */}
+      <textarea
         ref={input}
         id="test-category"
+        rows={1}
         role="combobox"
         aria-autocomplete="list"
         aria-expanded={open}
@@ -264,11 +281,11 @@ export function CategoryField({
         }
         autoComplete="off"
         spellCheck={false}
-        className="min-h-11 w-[10.5rem] min-w-0 bg-transparent pl-1 text-[0.9375rem] text-ink outline-none placeholder:text-ink focus:placeholder:text-muted max-md:w-[9.5rem]"
-        value={query ?? shown(value)}
+        className="w-[10.5rem] min-w-0 resize-none overflow-hidden bg-transparent py-2.5 pl-1 text-[0.9375rem] leading-6 text-ink outline-none placeholder:text-ink focus:placeholder:text-muted max-md:w-[9.5rem]"
+        value={fieldText}
         placeholder={t("catAuto")}
         onChange={(e) => {
-          setQuery(e.target.value);
+          setQuery(e.target.value.replace(/\n/g, " "));
           setActive(0);
           setOpen(true);
         }}
