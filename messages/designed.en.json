@@ -2172,8 +2172,8 @@
       "description": "Enter your store's address. Pulse reads your public product pages and shows which buying questions they cannot answer for shoppers and AI agents. Free."
     },
     "page": {
-      "title": "Can shoppers and AI agents choose from your catalogue?",
-      "lede": "Enter your store's address. Pulse reads a sample of your public product pages and tests real buying requirements against them. No integration, no customer data.",
+      "title": "Discover what's missing from your product pages",
+      "titleMark": "missing",
       "statStores": "stores tested",
       "statProducts": "products checked",
       "statRequirements": "requirements tested",

@@ -24,10 +24,15 @@ export function CatalogueTestPage() {
   const labels = Object.fromEntries(
     Object.keys(en.catalogueTest.page).map((k) => [k, t(k)]),
   );
+  const [before, after] = t("title").split(t("titleMark"));
   const header = (
     <div key="header" className="mx-auto max-w-3xl text-center">
-      <h1 className="text-hero text-balance">{t("title")}</h1>
-      <p className="mt-4 text-lg text-pretty text-muted">{t("lede")}</p>
+      {/* No description under it (owner, 5 Nov 2026); the missing word in Signal Red, its one use here. */}
+      <h1 className="text-hero text-balance">
+        {before}
+        <span className="text-signal-text">{t("titleMark")}</span>
+        {after}
+      </h1>
       <StatsCounter labels={labels} locale={renderLocale()} />
     </div>
   );

@@ -2056,8 +2056,8 @@
       "description": "Nhập địa chỉ cửa hàng. Pulse đọc các trang sản phẩm công khai và chỉ ra câu hỏi mua hàng nào chúng chưa trả lời được cho người mua và trợ lý AI. Miễn phí."
     },
     "page": {
-      "title": "Người mua và trợ lý AI có chọn được từ danh mục của bạn?",
-      "lede": "Nhập địa chỉ cửa hàng. Pulse đọc một mẫu các trang sản phẩm công khai và kiểm tra các yêu cầu mua hàng thật trên đó. Không cần tích hợp, không cần dữ liệu khách hàng.",
+      "title": "Khám phá những gì trang sản phẩm của bạn còn thiếu",
+      "titleMark": "thiếu",
       "statStores": "cửa hàng đã kiểm tra",
       "statProducts": "sản phẩm đã đọc",
       "statRequirements": "yêu cầu đã kiểm tra",
