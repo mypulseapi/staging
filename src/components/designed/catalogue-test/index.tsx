@@ -4,7 +4,7 @@
  *
  * Pingdom's structure in Pulse's brand: a band with the heading and one row (address, category,
  * the button), one line under it for those who would rather have us run it, the result on white
- * below, the "why" as split screens (`split-scroll.tsx`, owner, 5 Nov 2026), and the site's closing band (owner's pick B, 5 Nov 2026:
+ * below, About Pulse on white, the "why" as split screens (`split-scroll.tsx`, owner, 5 Nov 2026), and the site's closing band (owner's pick B, 5 Nov 2026:
  * the ask left the hero so the bar is the only button there). The client component draws the band,
  * the live run and the result; the heading, that line and every label come from here, and the
  * calculator as a server-rendered child.
@@ -60,10 +60,34 @@ export function CatalogueTestPage() {
         ask={ask}
       />
 
-      <SplitScroll
-        labels={labels}
-        overviewHref={designedHref("/en/overview")}
-      />
+      {/* About Pulse, out of the scroll story and second on the page, on white (owner, 5 Nov 2026). */}
+      <section
+        aria-labelledby="about-pulse-title"
+        className="border-t border-line bg-card"
+      >
+        <div className="frame grid items-center gap-6 py-16 md:grid-cols-2 md:gap-12 lg:py-20">
+          <h2 id="about-pulse-title" className="text-title text-balance">
+            {t("aboutTitle")}
+          </h2>
+          <div>
+            <p className="max-w-[56ch] text-lg text-pretty text-muted">
+              {t("aboutP1")}
+            </p>
+            <a
+              href={designedHref("/en/overview")}
+              className="group mt-4 inline-block font-medium text-primary underline-offset-4 hover:underline"
+            >
+              {t("overview")}
+              <ArrowRight
+                className="ml-1 inline size-4 align-[-3px] transition-transform duration-200 ease-out-soft group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <SplitScroll labels={labels} />
 
       <section
         id="request"

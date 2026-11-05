@@ -7,12 +7,10 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
-import Image from "next/image";
 import { ArrowRight, CircleDashed, FileText } from "lucide-react";
-import { asset } from "@/lib/cdn";
 
 /**
- * The homepage's second section, "Nobody buys what they cannot check", as split screens (owner, 5 Nov
+ * The homepage's third section, "Nobody buys what they cannot check", as split screens (owner, 5 Nov
  * 2026, after 21st.dev's "animated scroll"): one short message per screen, its text on one half and a
  * drawing on the other, the halves sliding in opposite directions as the page scrolls. No workflow, no
  * images: the drawings are tokens, and nothing in them is a measurement.
@@ -121,13 +119,7 @@ function Cadence({ on }: { on: boolean }) {
   );
 }
 
-export function SplitScroll({
-  labels,
-  overviewHref,
-}: {
-  labels: Record<string, string>;
-  overviewHref: string;
-}) {
+export function SplitScroll({ labels }: { labels: Record<string, string> }) {
   const t = (k: string) => labels[k] ?? k;
   const root = useRef<HTMLElement>(null);
   // Stacked until the page knows it may move: what the export, no-JS and reduced-motion readers see.
@@ -194,35 +186,6 @@ export function SplitScroll({
       text: <p className={body}>{t("infoP3")}</p>,
       art: <Cadence on={!pin || cur === 3} />,
       tone: "bg-surface-1",
-    },
-    {
-      text: (
-        <>
-          <h3 className="text-title text-balance">{t("aboutTitle")}</h3>
-          <p className={body}>{t("aboutP1")}</p>
-          <a
-            href={overviewHref}
-            className="group w-fit font-medium text-primary underline-offset-4 hover:underline"
-          >
-            {t("overview")}
-            <ArrowRight
-              className="ml-1 inline size-4 align-[-3px] transition-transform duration-200 ease-out-soft group-hover:translate-x-0.5"
-              aria-hidden
-            />
-          </a>
-        </>
-      ),
-      art: (
-        <Image
-          src={asset("brand/logo-white-v2.webp")}
-          alt=""
-          width={168}
-          height={56}
-          loading="lazy"
-          className="h-14 w-auto"
-        />
-      ),
-      tone: "bg-signal-gradient",
     },
   ];
   const n = screens.length;
