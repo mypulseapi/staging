@@ -243,12 +243,16 @@ export function AddressBar({
 
   return (
     <div>
-      <label
-        htmlFor="test-url"
-        className="mb-2 ml-5 block text-sm font-medium text-ink"
-      >
-        {t("urlLabel")}
-      </label>
+      {/* The label, and the paste tip beside it (owner, 5 Nov 2026), so it is read before anything is
+          entered; under it on a phone. */}
+      <div className="mx-5 mb-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
+        <label htmlFor="test-url" className="text-sm font-medium text-ink">
+          {t("urlLabel")}
+        </label>
+        <p id="test-url-tip" className="text-sm text-pretty text-muted">
+          {t("pasteHint")}
+        </p>
+      </div>
       <div className="flow-bar flex flex-wrap items-center gap-1.5 rounded-[2rem] p-2 pl-5 max-md:rounded-3xl md:flex-nowrap md:py-[7px] md:pr-[7px]">
         {/* The address area: tags, then the field, wrapping onto more lines as pages are added. */}
         <div
@@ -308,6 +312,7 @@ export function AddressBar({
             <input
               ref={input}
               id="test-url"
+              aria-describedby="test-url-tip"
               className={`min-w-0 flex-1 bg-transparent font-mono! text-base outline-none placeholder:text-muted ${ghost.length ? "text-transparent" : "text-ink"}`}
               inputMode="url"
               autoComplete="url"

@@ -7,7 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, Globe, Tag } from "lucide-react";
 import { Turnstile } from "@/components/Turnstile";
 import { HeroAurora } from "@/components/designed/hero-aurora";
 import { AddressBar } from "./address-bar";
@@ -314,10 +314,21 @@ export function CatalogueTest({
                   />
                 </button>
               </AddressBar>
-              <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-sm text-muted">
-                <span>{t("note")}</span>
-                <span>{t("pasteHint")}</span>
-              </div>
+              {/* Three facts, each with its own icon rather than a tick on each (owner's pick C3, 5 Nov 2026). */}
+              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-sm text-muted">
+                {(
+                  [
+                    [Tag, "factFree"],
+                    [Globe, "factPublic"],
+                    [Clock, "factTime"],
+                  ] as const
+                ).map(([Icon, k]) => (
+                  <li key={k} className="inline-flex items-center gap-1.5">
+                    <Icon className="size-[15px] text-primary/85" aria-hidden />
+                    {t(k)}
+                  </li>
+                ))}
+              </ul>
               {enabled && <Turnstile onToken={setToken} />}
               {error && !id && (
                 <p className="text-sm text-ink" role="alert">
