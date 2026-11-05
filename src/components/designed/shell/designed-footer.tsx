@@ -64,7 +64,7 @@ export function DesignedFooter() {
       <div className="frame py-12 sm:py-20 lg:py-24">
         {/* From `sm` the four columns sit centred, each in its cell and against the others (owner,
             28 Oct 2026); on a phone they keep the left-aligned compact layout. */}
-        <div className="grid gap-8 sm:grid-cols-2 sm:items-center sm:gap-14 sm:text-center lg:grid-cols-4 lg:gap-10">
+        <div className="grid gap-8 sm:grid-cols-2 sm:items-start sm:gap-14 sm:text-center lg:grid-cols-4 lg:gap-10">
           <div>
             <Link
               href={designedHref("/en")}
