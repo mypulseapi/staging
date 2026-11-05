@@ -2270,6 +2270,7 @@
       "fact_input-ports": "Cổng vào",
       "overview": "Pulse là gì? Đọc trang tổng quan",
       "runningTitle": "Chờ chút, đang kiểm tra danh mục",
+      "doneTitle": "Đã kiểm tra xong",
       "runningProgress": "Đã đọc {n} trên {of} trang sản phẩm",
       "requirementsTitle": "Yêu cầu mua hàng",
       "colRequirement": "Yêu cầu",

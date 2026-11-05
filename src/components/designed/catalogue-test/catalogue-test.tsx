@@ -115,6 +115,7 @@ export function CatalogueTest({
   const [startedAt, setStartedAt] = useState<number | null>(null);
   const [elapsed, setElapsed] = useState<number | null>(null);
   const started = useRef<number | null>(null);
+  const runAt = useRef<HTMLDivElement>(null);
   const cursor = useRef(0);
   const timers = useRef<number[]>([]);
 
@@ -173,6 +174,17 @@ export function CatalogueTest({
         ),
       );
   }, []);
+
+  // A new test brings its pipeline into view (owner, 6 Nov 2026).
+  useEffect(() => {
+    if (!run) return;
+    requestAnimationFrame(() =>
+      runAt.current?.scrollIntoView({
+        behavior: reducedMotion() ? "auto" : "smooth",
+        block: "start",
+      }),
+    );
+  }, [run]);
 
   // Poll while running; play each batch across the interval so the ticker moves rather than jumps.
   useEffect(() => {
@@ -239,6 +251,7 @@ export function CatalogueTest({
       setState(null);
       setId(r.id);
       setRun((n) => n + 1);
+      setToken("");
       window.history.replaceState(null, "", `?id=${r.id}`);
     } catch (e) {
       const err = e as TestError;
@@ -282,11 +295,45 @@ export function CatalogueTest({
     state?.category && taxonomy.draft?.includes(state.category),
   );
   const teaser = state?.teaser ?? null;
-  const running =
-    Boolean(id) && !teaser && status !== "failed" && status !== "blocked";
   const done = rows.filter(
     (r) => r.state === "done" || r.state === "skipped",
   ).length;
+
+  // The run as a pipeline of stations (owner, 5 Nov 2026; the designer's progress mockup).
+  const pipeline = (
+    <>
+      <RunPipeline
+        t={t}
+        num={num}
+        status={
+          evaluating && status === "inspecting"
+            ? "evaluating"
+            : (status ?? "queued")
+        }
+        domain={state?.domain ?? domain ?? ""}
+        ahead={state?.ahead}
+        found={found}
+        sampled={rows.length}
+        read={done}
+        now={now}
+        pages={rows}
+        reqs={reqs}
+        startedAt={startedAt}
+        elapsed={elapsed}
+        category={categoryLabel}
+        draft={draft}
+        onReset={reset}
+      />
+      {state?.reason === "no_category" && (
+        <p className="mt-4 text-sm text-ink">{t("reason_no_category")}</p>
+      )}
+      {error && (
+        <p className="mt-4 text-sm text-ink" role="alert">
+          {error}
+        </p>
+      )}
+    </>
+  );
 
   return (
     <div className="flex flex-1 flex-col">
@@ -306,23 +353,9 @@ export function CatalogueTest({
           <div
             className={`frame pt-12 pb-16 lg:pt-16 lg:pb-20 ${id ? "" : "flex flex-1 flex-col justify-center"}`}
           >
-            {running ? (
-              <div className="mx-auto max-w-xl text-center" aria-live="polite">
-                <h2 className="text-title text-balance">{t("runningTitle")}</h2>
-                <Gauge />
-                <p className="mt-2 text-muted">
-                  {status === "queued" && state?.ahead
-                    ? t("queuedAhead", { n: state.ahead })
-                    : rows.length
-                      ? t("runningProgress", { n: done, of: rows.length })
-                      : t(`status_${status}`)}
-                </p>
-              </div>
-            ) : (
-              header
-            )}
+            {/* The hero and its form stay put through a run; the run plays below (owner, 6 Nov 2026). */}
+            {header}
             <form
-              hidden={running}
               onSubmit={submit}
               className="mx-auto mt-12 w-full max-w-5xl lg:mt-16"
               noValidate
@@ -384,7 +417,8 @@ export function CatalogueTest({
                     </li>
                   ))}
                 </ul>
-                {enabled && <Turnstile onToken={setToken} />}
+                {/* A token is good for one test: a new one after each start (owner, 6 Nov 2026). */}
+                {enabled && <Turnstile key={run} onToken={setToken} />}
                 {error && !id && (
                   <p className="text-sm text-ink" role="alert">
                     {error}
@@ -392,7 +426,7 @@ export function CatalogueTest({
                 )}
               </fieldset>
             </form>
-            {!running && ask}
+            {ask}
           </div>
         </div>
       </section>
@@ -401,100 +435,32 @@ export function CatalogueTest({
           auto margins) to its widest line instead of the page's width. */}
       <div className="empty:hidden">
         <div className="frame py-12 lg:py-16 empty:hidden">
-          {/* The run as a pipeline of stations (owner, 5 Nov 2026; the designer's progress mockup). */}
-          {id && !teaser && (
-            <>
-              <RunPipeline
+          {/* The run as a pipeline of stations, kept above the result once it is done; a new test
+              scrolls here (owner, 6 Nov 2026). */}
+          {id && (
+            <div ref={runAt} className="scroll-mt-24">
+              {pipeline}
+            </div>
+          )}
+
+          {teaser && state && (
+            <div className="mt-14 max-md:mt-10">
+              <Result
+                teaser={teaser}
+                state={state}
                 t={t}
                 num={num}
-                status={
-                  evaluating && status === "inspecting"
-                    ? "evaluating"
-                    : (status ?? "queued")
-                }
-                domain={state?.domain ?? domain ?? ""}
-                ahead={state?.ahead}
-                found={found}
-                sampled={rows.length}
-                read={done}
-                now={now}
-                pages={rows}
-                reqs={reqs}
-                startedAt={startedAt}
-                elapsed={elapsed}
+                id={id!}
+                locale={locale}
+                calculator={calculator}
                 category={categoryLabel}
                 draft={draft}
                 onReset={reset}
               />
-              {state?.reason === "no_category" && (
-                <p className="mt-4 text-sm text-ink">
-                  {t("reason_no_category")}
-                </p>
-              )}
-              {error && (
-                <p className="mt-4 text-sm text-ink" role="alert">
-                  {error}
-                </p>
-              )}
-            </>
-          )}
-
-          {teaser && state && (
-            <Result
-              teaser={teaser}
-              state={state}
-              t={t}
-              num={num}
-              id={id!}
-              locale={locale}
-              calculator={calculator}
-              category={categoryLabel}
-              draft={draft}
-              onReset={reset}
-            />
+            </div>
           )}
         </div>
       </div>
     </div>
-  );
-}
-
-/** A gauge whose needle sweeps while the test runs, like Pingdom's (owner, 2026-11-04). Still under reduced motion. */
-function Gauge() {
-  return (
-    <svg
-      viewBox="0 0 120 120"
-      className="mx-auto mt-6 size-28 text-primary"
-      aria-hidden="true"
-    >
-      <circle
-        cx="60"
-        cy="60"
-        r="48"
-        fill="none"
-        stroke="currentColor"
-        strokeOpacity="0.15"
-        strokeWidth="12"
-      />
-      <path
-        d="M60 12a48 48 0 0 1 48 48"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="12"
-        strokeLinecap="round"
-      />
-      <g className="origin-center animate-spin [animation-duration:2.4s] motion-reduce:animate-none">
-        <line
-          x1="60"
-          y1="60"
-          x2="60"
-          y2="26"
-          stroke="currentColor"
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-      </g>
-      <circle cx="60" cy="60" r="9" fill="currentColor" />
-    </svg>
   );
 }

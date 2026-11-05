@@ -172,9 +172,11 @@ export function RunPipeline({
 
   const ids = STAGES.map((s) => s.id) as Stage[];
   const stuck = status === "failed" || status === "blocked";
+  // The run finished: every stage passed, the pipeline stays as a record above the result.
+  const finished = status === "done";
   const at = stuck ? 2 : Math.max(0, ids.indexOf(status as Stage));
   const mark = (i: number): Mark =>
-    i < at
+    finished || i < at
       ? "passed"
       : i > at
         ? "waiting"
@@ -187,7 +189,13 @@ export function RunPipeline({
               : "running";
   // The stage the reader opened lapses when the run moves on.
   const sel = chosen?.at === at ? ids.indexOf(chosen.stage) : at;
-  const runMark: Mark = stuck ? mark(at) : at === 0 ? "waiting" : "running";
+  const runMark: Mark = finished
+    ? "passed"
+    : stuck
+      ? mark(at)
+      : at === 0
+        ? "waiting"
+        : "running";
   const statusText = t(
     status === "blocked" ? "status_stopped" : `status_${status}`,
   );
@@ -316,6 +324,21 @@ export function RunPipeline({
     </li>
   );
 
+  // The page being read, in the panel's header beside its status (owner, 6 Nov 2026).
+  const readNow =
+    sel === 2 && mark(2) !== "waiting" && status !== "blocked" ? (
+      <span className="flex min-w-0 flex-1 items-center gap-2 text-xs max-md:order-last max-md:basis-full">
+        {status === "inspecting" && now ? (
+          <span className="min-w-0 truncate font-mono text-muted">
+            {t("reading")} {path(now)}
+          </span>
+        ) : (
+          <span className="text-muted">
+            {t("runningProgress", { n: num(read), of: num(sampled) })}
+          </span>
+        )}
+      </span>
+    ) : null;
   const reqIds = Object.keys(reqs);
   const panel = (() => {
     const m = mark(sel);
@@ -376,23 +399,6 @@ export function RunPipeline({
         );
       return (
         <>
-          <div className="flex min-h-11 items-center gap-2.5 border-b border-line bg-card px-5 py-3 text-xs max-md:px-4">
-            {status === "inspecting" && now ? (
-              <>
-                <span
-                  aria-hidden="true"
-                  className="size-2 shrink-0 rounded-full bg-primary"
-                />
-                <span className="min-w-0 truncate font-mono text-muted">
-                  {t("reading")} {path(now)}
-                </span>
-              </>
-            ) : (
-              <span className="text-muted">
-                {t("runningProgress", { n: num(read), of: num(sampled) })}
-              </span>
-            )}
-          </div>
           <ol>{latest.map(pageRow)}</ol>
           {earlier.length > 0 && (
             <details className="group border-t border-line bg-card">
@@ -511,16 +517,18 @@ export function RunPipeline({
           </span>
           <div className="min-w-0">
             <h2
-              className={`${numeral} truncate text-xl leading-tight text-ink`}
+              className={`${numeral} text-xl leading-tight [overflow-wrap:anywhere] text-ink`}
             >
               {domain}
             </h2>
-            <p className="text-[13px] text-muted">{t("runningTitle")}</p>
+            <p className="text-[13px] text-muted">
+              {t(finished ? "doneTitle" : "runningTitle")}
+            </p>
           </div>
         </div>
         {category && (
-          <p className="inline-flex max-w-full items-center gap-2 rounded-full border border-line py-1 pr-1.5 pl-3.5 text-sm text-ink">
-            <span className="truncate">{category}</span>
+          <p className="inline-flex max-w-full items-center gap-2 rounded-[18px] border border-line py-1 pr-1.5 pl-3.5 text-sm text-ink">
+            <span className="min-w-0 [overflow-wrap:anywhere]">{category}</span>
             {draft ? (
               <span className={DRAFT_TAG}>{t("draftBadge")}</span>
             ) : (
@@ -735,33 +743,45 @@ export function RunPipeline({
         </ul>
       </div>
 
-      <section
-        aria-live="polite"
-        className="mx-7 mt-6 overflow-hidden rounded-xl border border-line bg-surface-1 max-md:mx-4 max-md:mt-5"
-      >
-        <div
-          className={`flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line bg-card px-5 py-3.5 max-md:px-4 ${TONE[mark(sel)]}`}
+      {/* The stage's table while it runs; once done, the result below says it all (owner, 6 Nov 2026). */}
+      {!finished && (
+        <section
+          aria-live="polite"
+          className="mx-7 mt-6 overflow-hidden rounded-xl border border-line bg-surface-1 max-md:mx-4 max-md:mt-5"
         >
-          <h3 className="text-[15px] font-semibold text-ink">
-            {t(STAGES[sel].name)}
-          </h3>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-(--st-line) bg-(--st-bg) px-2.5 py-0.5 text-xs font-semibold text-(--st-fg)">
-            <MarkIcon m={mark(sel)} className="size-3" />
-            {mark(sel) === "passed"
-              ? t("status_done")
-              : mark(sel) === "running"
-                ? t(`status_${STAGES[sel].id}`)
-                : mark(sel) === "failed"
-                  ? t("markFailed")
-                  : mark(sel) === "stopped"
-                    ? t("status_stopped")
-                    : sel === 0 && status === "queued"
-                      ? t("status_queued")
-                      : t("notStarted")}
-          </span>
-        </div>
-        {panel}
-      </section>
+          <div
+            className={`flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line bg-card px-5 py-3.5 max-md:px-4 ${TONE[mark(sel)]}`}
+          >
+            {/* While pages are read, the page being read leads and the status sits right; the stage's
+              name stays for screen readers only (owner, 6 Nov 2026). */}
+            <h3
+              className={
+                readNow ? "sr-only" : "text-[15px] font-semibold text-ink"
+              }
+            >
+              {t(STAGES[sel].name)}
+            </h3>
+            {readNow}
+            <span
+              className={`${readNow ? "ml-auto max-md:ml-0" : ""} inline-flex shrink-0 items-center gap-1.5 rounded-full border border-(--st-line) bg-(--st-bg) px-2.5 py-0.5 text-xs font-semibold text-(--st-fg)`}
+            >
+              <MarkIcon m={mark(sel)} className="size-3" />
+              {mark(sel) === "passed"
+                ? t("status_done")
+                : mark(sel) === "running"
+                  ? t(`status_${STAGES[sel].id}`)
+                  : mark(sel) === "failed"
+                    ? t("markFailed")
+                    : mark(sel) === "stopped"
+                      ? t("status_stopped")
+                      : sel === 0 && status === "queued"
+                        ? t("status_queued")
+                        : t("notStarted")}
+            </span>
+          </div>
+          {panel}
+        </section>
+      )}
 
       <footer className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 px-7 pt-4.5 pb-5.5 text-[13px] text-muted max-md:px-4">
         <span>

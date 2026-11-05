@@ -2386,6 +2386,7 @@
       "fact_input-ports": "Input ports",
       "overview": "What is Pulse? Read the overview",
       "runningTitle": "Hang on, testing your catalogue",
+      "doneTitle": "Test complete",
       "runningProgress": "Read {n} of {of} product pages",
       "requirementsTitle": "Buying requirements",
       "colRequirement": "Requirement",
