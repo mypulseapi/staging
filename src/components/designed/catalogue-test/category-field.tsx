@@ -1,13 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import {
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import { Check, ChevronDown } from "lucide-react";
+import type { CategoryGroup } from "@/lib/catalogue-test";
 
 /**
  * The category in the address bar, typed with suggestions (owner, 5 Nov 2026). A native <select> drew
  * the system's own list, fine on macOS and poor on Windows, so the list is the site's own: the same on
  * every system. Accents and case do not count, so "may giat" finds "Máy giặt". Arrows move, Enter picks,
- * Esc closes; leaving the field keeps an exact match and otherwise the category it had.
+ * Esc closes; leaving the field keeps an exact match and otherwise the category it had. With the
+ * service's taxonomy the list is grouped by top-level category, each with "All of" first (develop #8).
  */
 
 /** One character at a time, so a match's position in the folded label is its position in the label. */
@@ -19,10 +27,19 @@ const foldChar = (ch: string) =>
     .toLowerCase() || ch;
 const fold = (s: string) => [...s].map(foldChar).join("");
 
+interface Option {
+  value: string;
+  text: string;
+  /** The top-level category it sits under, when the service sends the taxonomy. */
+  group?: string;
+}
+
 export function CategoryField({
   t,
   value,
   categories,
+  groups,
+  labels,
   locale,
   onChange,
 }: {
@@ -30,6 +47,10 @@ export function CategoryField({
   /** "" is "Detect for me". */
   value: string;
   categories: string[];
+  /** The taxonomy's top-level categories; a group's own key tests the whole group. */
+  groups: CategoryGroup[];
+  /** Labels from the service, both languages; a key without one falls back to the messages. */
+  labels: Record<string, { en: string; vi: string }>;
   locale: string;
   onChange: (c: string) => void;
 }) {
@@ -40,29 +61,57 @@ export function CategoryField({
   const input = useRef<HTMLInputElement>(null);
   const list = useRef<HTMLUListElement>(null);
 
-  const label = (c: string) => (c ? t(`cat_${c}`) : t("catAuto"));
-  const sorted = [...categories].sort((a, b) =>
-    label(a).localeCompare(label(b), locale),
-  );
+  const lang = locale === "vi" ? "vi" : "en";
+  const label = (c: string) => labels[c]?.[lang] ?? t(`cat_${c}`);
+  const byName = (a: string, b: string) => a.localeCompare(b, locale);
+  // Every choice in list order: the taxonomy's groups, each with "All of" first, else the flat list.
+  const all: Option[] = groups.length
+    ? [...groups]
+        .sort((a, b) => byName(a[lang], b[lang]))
+        .flatMap((g) => [
+          {
+            value: g.key,
+            text: t("catAll", { group: g[lang] }),
+            group: g[lang],
+          },
+          ...g.categories
+            .map((c) => ({ value: c, text: label(c), group: g[lang] }))
+            .sort((a, b) => byName(a.text, b.text)),
+        ])
+    : categories
+        .map((c) => ({ value: c, text: label(c) }))
+        .sort((a, b) => byName(a.text, b.text));
+  const auto: Option = { value: "", text: t("catAuto") };
+  const shown = (v: string) =>
+    v ? (all.find((o) => o.value === v)?.text ?? label(v)) : "";
   const q = fold(query?.trim() ?? "");
-  // A typed word: names that start with it first, then names that contain it.
+  // A typed word: names that start with it first, then names (or their group) that contain it.
   const options = q
-    ? sorted
-        .filter((c) => fold(label(c)).includes(q))
+    ? all
+        .filter(
+          (o) => fold(o.text).includes(q) || fold(o.group ?? "").includes(q),
+        )
         .sort(
           (a, b) =>
-            Number(!fold(label(a)).startsWith(q)) -
-            Number(!fold(label(b)).startsWith(q)),
+            Number(!fold(a.text).startsWith(q)) -
+            Number(!fold(b.text).startsWith(q)),
         )
-    : ["", ...sorted];
+    : [auto, ...all];
 
   useEffect(() => {
     if (open)
-      list.current?.children[active]?.scrollIntoView({ block: "nearest" });
+      document
+        .getElementById(`test-category-${active}`)
+        ?.scrollIntoView({ block: "nearest" });
   }, [open, active]);
 
   const show = () => {
-    setActive(Math.max(0, options.indexOf(value)));
+    setActive(
+      Math.max(
+        0,
+        options.findIndex((o) => o.value === value),
+      ),
+    );
     setOpen(true);
   };
   const pick = (c: string) => {
@@ -71,8 +120,8 @@ export function CategoryField({
     setOpen(false);
   };
   const leave = () => {
-    const exact = q && sorted.find((c) => fold(label(c)) === q);
-    if (exact) onChange(exact);
+    const exact = q && all.find((o) => fold(o.text) === q);
+    if (exact) onChange(exact.value);
     else if (query !== null && !q) onChange("");
     setQuery(null);
     setOpen(false);
@@ -87,7 +136,7 @@ export function CategoryField({
     } else if (e.key === "Enter" && open) {
       // Picks rather than sending the form; with the list closed, Enter starts the test.
       e.preventDefault();
-      if (options[active] !== undefined) pick(options[active]!);
+      if (options[active]) pick(options[active]!.value);
     } else if (e.key === "Escape" && open) {
       e.preventDefault();
       setQuery(null);
@@ -96,8 +145,7 @@ export function CategoryField({
   };
 
   /** The typed part in bold, so a long list shows why each name is there. */
-  const named = (c: string) => {
-    const text = label(c);
+  const named = (text: string) => {
     const at = q ? fold(text).indexOf(q) : -1;
     if (at < 0) return text;
     return (
@@ -124,7 +172,7 @@ export function CategoryField({
         autoComplete="off"
         spellCheck={false}
         className="min-h-11 w-[10.5rem] min-w-0 bg-transparent pl-1 text-[0.9375rem] text-ink outline-none placeholder:text-ink focus:placeholder:text-muted max-md:w-[9.5rem]"
-        value={query ?? (value ? label(value) : "")}
+        value={query ?? shown(value)}
         placeholder={t("catAuto")}
         onChange={(e) => {
           setQuery(e.target.value);
@@ -163,24 +211,41 @@ export function CategoryField({
           aria-label={t("category")}
           // Keeps focus in the field while a name is clicked.
           onMouseDown={(e) => e.preventDefault()}
-          className="absolute top-full left-0 z-30 mt-3 max-h-72 w-64 overflow-auto overscroll-contain rounded-2xl border border-line bg-card p-1.5 shadow-[var(--shadow-lg)]"
+          className="absolute top-full left-0 z-30 mt-3 max-h-80 w-72 max-md:w-64 overflow-auto overscroll-contain rounded-2xl border border-line bg-card p-1.5 shadow-[var(--shadow-lg)]"
         >
           {options.length ? (
-            options.map((c, i) => (
-              <li
-                key={c || "auto"}
-                id={`test-category-${i}`}
-                role="option"
-                aria-selected={c === value}
-                onMouseMove={() => i !== active && setActive(i)}
-                onClick={() => pick(c)}
-                className={`flex min-h-10 cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2 text-[0.9375rem] ${i === active ? "bg-surface-1" : ""} ${c === value ? "font-medium text-primary" : "text-ink"}`}
-              >
-                <span className="min-w-0">{named(c)}</span>
-                {c === value && (
-                  <Check aria-hidden className="size-4 shrink-0" />
+            options.map((o, i) => (
+              <Fragment key={`${o.group ?? ""}/${o.value || "auto"}`}>
+                {/* Each group's name once over its list; while typing, beside each match instead. */}
+                {!q && o.group && o.group !== options[i - 1]?.group && (
+                  <li
+                    role="presentation"
+                    className="px-3 pt-3 pb-1 text-xs font-semibold text-muted"
+                  >
+                    {o.group}
+                  </li>
                 )}
-              </li>
+                <li
+                  id={`test-category-${i}`}
+                  role="option"
+                  aria-selected={o.value === value}
+                  onMouseMove={() => i !== active && setActive(i)}
+                  onClick={() => pick(o.value)}
+                  className={`flex min-h-10 cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2 text-[0.9375rem] ${i === active ? "bg-surface-1" : ""} ${o.value === value ? "font-medium text-primary" : "text-ink"}`}
+                >
+                  <span className="min-w-0">
+                    {named(o.text)}
+                    {q && o.group && (
+                      <span className="ml-1.5 text-xs text-muted">
+                        {o.group}
+                      </span>
+                    )}
+                  </span>
+                  {o.value === value && (
+                    <Check aria-hidden className="size-4 shrink-0" />
+                  )}
+                </li>
+              </Fragment>
             ))
           ) : (
             <li role="presentation" className="px-3 py-2.5 text-sm text-muted">

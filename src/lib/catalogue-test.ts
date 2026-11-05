@@ -115,10 +115,23 @@ export interface TestState {
   teaser: Teaser | null;
 }
 
+export interface CategoryGroup {
+  key: string;
+  en: string;
+  vi: string;
+  categories: string[];
+}
+
 export interface TestConfig {
   enabled: boolean;
   maxUrls: number;
   categories: string[];
+  /** The canonical taxonomy's top-level categories and the testable keys under each. */
+  groups?: CategoryGroup[];
+  /** A label per category key, in both languages. */
+  labels?: Record<string, { en: string; vi: string }>;
+  /** Keys whose checklist is still a draft: every result from one says so. */
+  draft?: string[];
 }
 
 export class TestError extends Error {

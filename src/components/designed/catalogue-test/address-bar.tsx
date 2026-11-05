@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { X } from "lucide-react";
-import { domainOf } from "@/lib/catalogue-test";
+import { domainOf, type CategoryGroup } from "@/lib/catalogue-test";
 import { CategoryField } from "./category-field";
 
 /**
@@ -57,6 +57,8 @@ export function AddressBar({
   initial,
   category,
   categories,
+  groups,
+  labels,
   locale,
   onCategory,
   onPages,
@@ -69,6 +71,10 @@ export function AddressBar({
   category: string;
   /** What the service can test today (its config), sorted here by name in the page's language. */
   categories: string[];
+  /** The taxonomy's top-level categories; choosing one tests the subcategory with most products. */
+  groups: CategoryGroup[];
+  /** Labels from the service, both languages; a key without one falls back to the messages. */
+  labels: Record<string, { en: string; vi: string }>;
   locale: string;
   onCategory: (c: string) => void;
   /** The pages to test, and whether they can be sent as they are. */
@@ -385,6 +391,8 @@ export function AddressBar({
             t={t}
             value={category}
             categories={categories}
+            groups={groups}
+            labels={labels}
             locale={locale}
             onChange={onCategory}
           />
