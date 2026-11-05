@@ -258,8 +258,8 @@ export function CatalogueTest({
           category and the button, which stays put while the result builds underneath. The hero
           background (`hero-bg` and the aurora), like every other hero's (owner, 5 Nov 2026); `isolate` also keeps the bar's
           glow behind the bar. Pricing's hero padding, `pt-12 pb-16 lg:pt-16 lg:pb-20`, as the other heroes (owner, 5 Nov 2026). Until a test starts the page stretches the hero to fill the first
-          screen with About Pulse under it, and the room left over goes between the title and the bar, so About
-          keeps its own height (owner, 5 Nov 2026). */}
+          screen with About Pulse under it, About at its own height and the hero's content centred in the room left
+          over; the title and the bar keep their fixed gap (owner, 5 Nov 2026). */}
       <section
         className={`relative isolate hero-bg overflow-hidden border-b border-line ${id ? "" : "flex flex-1 flex-col"}`}
       >
@@ -268,7 +268,7 @@ export function CatalogueTest({
             flex column would shrink it to its content), and stretches to the hero's height. */}
         <div className={id ? undefined : "flex flex-1"}>
           <div
-            className={`frame pt-12 pb-16 lg:pt-16 lg:pb-20 ${id ? "" : "flex flex-1 flex-col"}`}
+            className={`frame pt-12 pb-16 lg:pt-16 lg:pb-20 ${id ? "" : "flex flex-1 flex-col justify-center"}`}
           >
             {running ? (
               <div className="mx-auto max-w-xl text-center" aria-live="polite">
@@ -285,7 +285,6 @@ export function CatalogueTest({
             ) : (
               header
             )}
-            {!id && <div aria-hidden="true" className="flex-1" />}
             <form
               hidden={running}
               onSubmit={submit}
