@@ -87,6 +87,8 @@ export function CatalogueTest({
   );
 
   const [enabled, setEnabled] = useState<boolean | null>(null);
+  // What spider can test today, from its config; laptops and monitors until it answers.
+  const [categories, setCategories] = useState<string[]>(["laptop", "monitor"]);
   // A shared result opens straight on it; ?url= prefills the form (the homepage box links here).
   const search = useSearch();
   const [typed, setUrls] = useState<string[] | null>(null);
@@ -108,7 +110,10 @@ export function CatalogueTest({
 
   useEffect(() => {
     testConfig()
-      .then((c) => setEnabled(c.enabled))
+      .then((c) => {
+        setEnabled(c.enabled);
+        if (c.categories?.length) setCategories(c.categories);
+      })
       .catch(() => setEnabled(false));
   }, []);
 
@@ -307,8 +312,15 @@ export function CatalogueTest({
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     <option value="">{t("catAuto")}</option>
-                    <option value="laptop">{t("cat_laptop")}</option>
-                    <option value="monitor">{t("cat_monitor")}</option>
+                    {[...categories]
+                      .sort((a, b) =>
+                        t(`cat_${a}`).localeCompare(t(`cat_${b}`), locale),
+                      )
+                      .map((c) => (
+                        <option key={c} value={c}>
+                          {t(`cat_${c}`)}
+                        </option>
+                      ))}
                   </select>
                 </label>
                 <button
