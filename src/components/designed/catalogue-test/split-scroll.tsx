@@ -5,7 +5,7 @@ import Image from "next/image";
 import { img } from "@/lib/cdn";
 
 /**
- * The homepage's third section, "Nobody buys what they cannot check", as split screens (owner, 5 Nov
+ * The homepage's third section, "Nobody buys what they can't verify", as split screens (owner, 5 Nov
  * 2026, after 21st.dev's "animated scroll"): one short message per screen, its text on one half and a
  * photo on the other (Unsplash, the designer's picks with the owner's choice for the first), the halves
  * sliding in opposite directions as the page scrolls. No workflow; nothing pictured is a measurement.
@@ -57,13 +57,19 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
   const [wide, setWide] = useState(true);
   const [cur, setCur] = useState(0);
 
-  // ponytail: infoP1 is two sentences and each gets its own screen, so it is split here rather than
-  // split into two keys in both catalogues.
-  const [say, passed] = t("infoP1").split(/(?<=\.)\s+/, 2);
-
-  const text =
-    "flex flex-col justify-center gap-4 px-6 py-10 sm:px-10 lg:px-16";
-  const body = "max-w-[46ch] text-base text-pretty text-muted md:text-lg";
+  // One line per screen, its last words in Pulse Blue (owner, 5 Nov 2026), and no paragraph under it.
+  const line = (i: number) => {
+    const [before, after] = t(`why${i}`).split(t(`why${i}Mark`));
+    return (
+      <>
+        {before}
+        <span className="text-primary">{t(`why${i}Mark`)}</span>
+        {after}
+      </>
+    );
+  };
+  const text = "flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-16";
+  const head = "max-w-[18ch] text-headline text-balance text-ink";
   const screens: {
     text: ReactNode;
     photo: string;
@@ -73,29 +79,22 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
   }[] = [
     {
       text: (
-        <>
-          <h2 id="split-scroll-title" className="text-headline text-balance">
-            {t("infoTitle")}
-          </h2>
-          <p className={body}>{say}</p>
-        </>
+        <h2 id="split-scroll-title" className={head}>
+          {line(1)}
+        </h2>
       ),
       photo: "home/why-shopper-phone.webp",
       pos: "55% 40%",
       tone: "bg-success-bg",
     },
     {
-      text: (
-        <p className="max-w-[24ch] text-title text-balance text-ink">
-          {passed}
-        </p>
-      ),
+      text: <p className={head}>{line(2)}</p>,
       photo: "home/why-empty-shelves.webp",
       pos: "50% 40%",
       tone: "bg-gap-fill",
     },
     {
-      text: <p className={body}>{t("infoP2")}</p>,
+      text: <p className={head}>{line(3)}</p>,
       photo: "home/why-laptop-notebook.webp",
       pos: "50% 50%",
       // The result colours sit over the photo, in its empty top; on a phone, the badges only.
@@ -126,7 +125,7 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
       tone: "bg-primary-tint",
     },
     {
-      text: <p className={body}>{t("infoP3")}</p>,
+      text: <p className={head}>{line(4)}</p>,
       photo: "home/why-reading-laptop.webp",
       pos: "40% 55%",
       tone: "bg-surface-1",
@@ -210,7 +209,7 @@ export function SplitScroll({ labels }: { labels: Record<string, string> }) {
         {pin && (
           <nav
             className="absolute z-10 flex gap-1 max-md:inset-x-0 max-md:bottom-2 max-md:justify-center md:top-1/2 md:right-3 md:-translate-y-1/2 md:flex-col"
-            aria-label={t("infoTitle")}
+            aria-label={t("why1")}
           >
             {screens.map((_, i) => (
               <button
