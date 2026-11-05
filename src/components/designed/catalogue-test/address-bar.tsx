@@ -11,6 +11,7 @@ import {
 } from "react";
 import { X } from "lucide-react";
 import { domainOf } from "@/lib/catalogue-test";
+import { CategoryField } from "./category-field";
 
 /**
  * Test My Catalogue's address bar, "Flow" (owner's pick from mockups, 5 Nov 2026): one rounded bar with
@@ -380,23 +381,13 @@ export function AddressBar({
             {t("category")}
           </label>
           {/* No ring and no blue label (owner, 5 Nov 2026): the bar's light shows focus is in the bar. */}
-          <select
-            id="test-category"
-            className="min-h-11 cursor-pointer rounded-full bg-transparent pr-2 pl-1 text-[0.9375rem] text-ink outline-none"
+          <CategoryField
+            t={t}
             value={category}
-            onChange={(e) => onCategory(e.target.value)}
-          >
-            <option value="">{t("catAuto")}</option>
-            {[...categories]
-              .sort((a, b) =>
-                t(`cat_${a}`).localeCompare(t(`cat_${b}`), locale),
-              )
-              .map((c) => (
-                <option key={c} value={c}>
-                  {t(`cat_${c}`)}
-                </option>
-              ))}
-          </select>
+            categories={categories}
+            locale={locale}
+            onChange={onCategory}
+          />
         </div>
         <div className="ml-auto md:ml-0">{children}</div>
       </div>

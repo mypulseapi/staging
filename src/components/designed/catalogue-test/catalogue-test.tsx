@@ -277,11 +277,11 @@ export function CatalogueTest({
       {/* Pingdom's layout (owner, 2026-11-04): a band with the heading and one row, address,
           category and the button, which stays put while the result builds underneath. The hero
           background (`hero-bg` and the aurora), like every other hero's (owner, 5 Nov 2026); `isolate` also keeps the bar's
-          glow behind the bar. Pricing's hero padding, `pt-12 pb-16 lg:pt-16 lg:pb-20`, as the other heroes (owner, 5 Nov 2026). Until a test starts the page stretches the hero to fill the first
+          glow behind the bar. It clips sideways only, so the category list can hang below it over the next section (`z-10`). Pricing's hero padding, `pt-12 pb-16 lg:pt-16 lg:pb-20`, as the other heroes (owner, 5 Nov 2026). Until a test starts the page stretches the hero to fill the first
           screen with About Pulse under it, About at its own height and the hero's content centred in the room left
           over; the title and the bar keep their fixed gap (owner, 5 Nov 2026). */}
       <section
-        className={`relative isolate hero-bg overflow-hidden border-b border-line ${id ? "" : "flex flex-1 flex-col"}`}
+        className={`relative isolate z-10 hero-bg overflow-x-clip border-b border-line ${id ? "" : "flex flex-1 flex-col"}`}
       >
         <HeroAurora />
         {/* A row around `frame` so it grows to its usual width (it is content-box with auto margins, and a

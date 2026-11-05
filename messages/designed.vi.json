@@ -2079,6 +2079,7 @@
       "removePage": "Xóa {url}",
       "category": "Danh mục",
       "catAuto": "Tự nhận diện",
+      "catNone": "Không có danh mục nào khớp “{q}”",
       "cat_phone": "Điện thoại",
       "cat_tablet": "Máy tính bảng",
       "cat_laptop": "Laptop",
