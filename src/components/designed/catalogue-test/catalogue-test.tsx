@@ -257,10 +257,10 @@ export function CatalogueTest({
       {/* Pingdom's layout (owner, 2026-11-04): a band with the heading and one row, address,
           category and the button, which stays put while the result builds underneath. The hero
           background (`hero-bg` and the aurora), like every other hero's (owner, 5 Nov 2026); `isolate` also keeps the bar's
-          glow behind the bar. */}
+          glow behind the bar. Pricing's hero padding, `pt-12 pb-16 lg:pt-16 lg:pb-20`, as the other heroes (owner, 5 Nov 2026). */}
       <section className="relative isolate hero-bg overflow-hidden border-b border-line">
         <HeroAurora />
-        <div className="frame py-14 lg:py-20">
+        <div className="frame pt-12 pb-16 lg:pt-16 lg:pb-20">
           {running ? (
             <div className="mx-auto max-w-xl text-center" aria-live="polite">
               <h2 className="text-title text-balance">{t("runningTitle")}</h2>
