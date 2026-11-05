@@ -480,20 +480,19 @@ export function Result({
             {tiles.map((x) => (
               <div
                 key={x.label}
-                className="flex flex-col pt-6 pr-6 max-md:pt-4.5 max-md:pr-3"
+                className="row-span-3 grid grid-rows-subgrid pt-6 pr-6 max-md:pt-4.5 max-md:pr-3"
               >
-                {/* The label first for a reader, the number first on screen. */}
-                <dt className="order-3 mt-1 text-sm text-pretty text-ink">
+                {/* The label above its number (owner, 5 Nov 2026); the rows are shared, so a label on two lines
+                    keeps every number in the row level. */}
+                <dt className="self-end text-sm text-pretty text-ink">
                   {x.label}
                 </dt>
                 <dd
-                  className={`${bigNumber} order-1 text-[clamp(2.5rem,2rem+1.8vw,3.5rem)] leading-none text-ink`}
+                  className={`${bigNumber} mt-2 text-[clamp(2.5rem,2rem+1.8vw,3.5rem)] leading-none text-ink`}
                 >
                   {x.value}
                 </dd>
-                {x.of && (
-                  <dd className="order-2 mt-1.5 text-xs text-muted">{x.of}</dd>
-                )}
+                {x.of && <dd className="mt-1.5 text-xs text-muted">{x.of}</dd>}
               </div>
             ))}
           </dl>
