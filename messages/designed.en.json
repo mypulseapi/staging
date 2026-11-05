@@ -2196,6 +2196,7 @@
       "category": "Category",
       "catAuto": "Detect for me",
       "catNone": "No category matches “{q}”",
+      "catBack": "All categories",
       "catAll": "All of {group}",
       "draftBadge": "Draft",
       "draftNote": "The {category} checklist is a first draft: it has not yet been checked against real stores, so treat these findings as a guide.",

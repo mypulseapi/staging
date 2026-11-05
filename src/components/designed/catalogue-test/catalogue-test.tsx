@@ -348,6 +348,7 @@ export function CatalogueTest({
                   categories={categories}
                   groups={taxonomy.groups ?? []}
                   labels={taxonomy.labels ?? {}}
+                  draft={taxonomy.draft ?? []}
                   locale={locale}
                   onCategory={setCategory}
                   onPages={(list, ok) => {

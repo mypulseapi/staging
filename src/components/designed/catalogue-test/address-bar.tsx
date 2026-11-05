@@ -59,6 +59,7 @@ export function AddressBar({
   categories,
   groups,
   labels,
+  draft,
   locale,
   onCategory,
   onPages,
@@ -75,6 +76,8 @@ export function AddressBar({
   groups: CategoryGroup[];
   /** Labels from the service, both languages; a key without one falls back to the messages. */
   labels: Record<string, { en: string; vi: string }>;
+  /** Keys whose checklist is still a first draft, tagged in the list. */
+  draft: string[];
   locale: string;
   onCategory: (c: string) => void;
   /** The pages to test, and whether they can be sent as they are. */
@@ -393,6 +396,7 @@ export function AddressBar({
             categories={categories}
             groups={groups}
             labels={labels}
+            draft={draft}
             locale={locale}
             onChange={onCategory}
           />
