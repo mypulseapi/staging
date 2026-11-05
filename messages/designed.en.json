@@ -2235,6 +2235,7 @@
       "factPublic": "Public pages only",
       "factTime": "About two minutes",
       "closed": "Test My Catalogue opens soon. Until then, request a Decision Audit and we will run it for you.",
+      "unavailable": "Test My Catalogue could not load just now. Refresh the page to try again, or request a Decision Audit and we will run it for you.",
       "tooMany": "This store has been tested enough for today. Try again tomorrow.",
       "error": "Something went wrong. Please try again.",
       "notFound": "We could not find that result. It may have expired.",
