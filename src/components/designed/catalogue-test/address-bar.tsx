@@ -328,7 +328,7 @@ export function AddressBar({
           {!tags.length && (
             <span
               aria-hidden
-              className={`self-start py-2 font-mono text-base leading-6 transition-colors duration-200 ease-out-soft ${focused ? "text-primary" : "text-muted"}`}
+              className={`font-mono text-base leading-6 transition-colors duration-200 ease-out-soft ${focused ? "text-primary" : "text-muted"}`}
             >
               https://
             </span>
