@@ -406,10 +406,21 @@ export function AddressBar({
         ) : (
           <>
             <Check />
-            {pages.length > 1
+            {/* One address: spider finds the store's product pages and reads a sample; several:
+                exactly those pages (spider `discover`). The store sits wherever the sentence puts it. */}
+            {(pages.length > 1
               ? t("readMany", { n: pages.length })
-              : t("readOne")}{" "}
-            <b className="font-mono font-medium text-ink">{domain}</b>
+              : t("readOne")
+            )
+              .split("{domain}")
+              .map((part, i) => (
+                <span key={i}>
+                  {i > 0 && (
+                    <b className="font-mono font-medium text-ink">{domain}</b>
+                  )}
+                  {part}
+                </span>
+              ))}
             {pages.length >= MAX && ` · ${t("maxPages")}`}
           </>
         )}
