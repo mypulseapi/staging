@@ -234,71 +234,6 @@ function Share({
   );
 }
 
-/** The sample at a glance: a laptop per page up to 12, then a grid of up to 100 cells. */
-function Sample({
-  of,
-  read,
-  toFix,
-  label,
-}: {
-  of: number;
-  read: number;
-  toFix: number;
-  label: string;
-}) {
-  const cells = Math.min(of, 100);
-  const tone = (i: number) => (i < toFix ? "fix" : i < read ? "ok" : "off");
-  if (of <= PER_UNIT)
-    return (
-      <div
-        role="img"
-        aria-label={label}
-        className="flex max-w-75 flex-wrap justify-end gap-1.5 max-md:justify-start"
-      >
-        {Array.from({ length: cells }, (_, i) => (
-          <svg
-            key={i}
-            viewBox="0 0 52 38"
-            aria-hidden="true"
-            className={`h-9.5 w-13 max-md:h-7.5 max-md:w-10 ${
-              {
-                fix: "fill-gap-fill stroke-gap",
-                ok: "fill-success-bg stroke-success",
-                off: "fill-none stroke-baseline [stroke-dasharray:3_2.5]",
-              }[tone(i)]
-            }`}
-          >
-            <rect x="9" y="3" width="34" height="23" rx="3" strokeWidth="2" />
-            <path d="M3 31h46l-3 4H6z" strokeWidth="2" strokeLinejoin="round" />
-          </svg>
-        ))}
-      </div>
-    );
-  return (
-    <div className="flex flex-col items-end gap-2 max-md:items-start">
-      <div
-        role="img"
-        aria-label={label}
-        className="grid grid-cols-[repeat(10,13px)] gap-1"
-      >
-        {Array.from({ length: cells }, (_, i) => (
-          <i
-            key={i}
-            className={`size-[13px] rounded-[2px] border ${
-              {
-                fix: "border-gap bg-gap-fill",
-                ok: "border-success bg-success-bg",
-                off: "border-dashed border-baseline",
-              }[tone(i)]
-            }`}
-          />
-        ))}
-      </div>
-      <p className="text-xs font-medium text-muted">{label}</p>
-    </div>
-  );
-}
-
 export function Result({
   teaser,
   state,
@@ -346,7 +281,6 @@ export function Result({
   // The most common result tints the verdict; on a tie, the worse one, so a mixed store never reads as fine.
   const top = [...ORDER].reverse().sort((a, b) => count[b] - count[a])[0];
   const tested = teaser.products;
-  const sampled = Math.max(state.progress.of, tested);
   const findings = (open ? 1 : 0) + teaser.masked.length;
   const tiles = [
     {
@@ -459,23 +393,15 @@ export function Result({
                 of: num(teaser.requirements.length),
               })}
             </h3>
-            <Sample
-              of={sampled}
-              read={tested}
-              toFix={teaser.tiles.productsToFix}
-              label={t("waffleRead", {
-                n: num(tested),
-                of: num(sampled),
-              })}
+            {/* The ring takes the sample grid's place, beside the headline (owner, 5 Nov 2026). */}
+            <VerdictDonut
+              order={ORDER}
+              count={count}
+              total={teaser.requirements.length}
+              t={t}
+              num={num}
             />
           </div>
-          <VerdictDonut
-            order={ORDER}
-            count={count}
-            total={teaser.requirements.length}
-            t={t}
-            num={num}
-          />
           <dl className="mt-8 grid grid-cols-4 border-t border-[color-mix(in_oklab,var(--color-ink)_14%,transparent)] max-md:grid-cols-2">
             {tiles.map((x) => (
               <div

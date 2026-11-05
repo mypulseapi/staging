@@ -2284,7 +2284,6 @@
       "skip_blocked": "Stopped by the store",
       "resultsTitle": "Your results: {domain}",
       "verdictTitle": "{n} of {of} buying requirements fully supported",
-      "waffleRead": "{n} of {of} sampled pages read",
       "donutCentre": "fully supported",
       "donutTip": "Buying requirements",
       "findingsTitle": "{n} findings, most products first",

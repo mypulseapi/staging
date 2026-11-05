@@ -7,7 +7,7 @@ import type { RequirementResult } from "@/lib/catalogue-test";
  * The verdict as a ring (the designer's donut, option A, owner's pick, 5 Nov 2026): one segment per
  * result, its share of the requirements, from 12 o'clock clockwise. Each segment has its own dark
  * border and rounded corners, with an even gap between segments, as in the owner's 21st.dev
- * reference. The four counts sit beside it; on hover a segment moves out and a tooltip names it.
+ * reference. A colour key under it; on hover a segment moves out and a tooltip gives its count.
  */
 
 // In the SVG's 240-unit box: rim, hole, half the gap, corner radius, and the hover lift.
@@ -104,8 +104,9 @@ export function VerdictDonut({
   const tip = segs.find((s) => s.res === hover);
 
   return (
-    // Centred in its row (owner, 5 Nov 2026); on a phone the counts go under the ring.
-    <div className="mt-8 flex items-center justify-center gap-14 max-md:mt-6 max-md:flex-col max-md:gap-6">
+    // Beside the headline on desktop, under it and centred on a phone; the colour key under the ring, its
+    // counts in the tooltip (owner, 5 Nov 2026).
+    <div className="flex shrink-0 flex-col items-center gap-5 max-md:self-center">
       <div className="relative size-58 shrink-0">
         <svg
           viewBox="0 0 240 240"
@@ -154,11 +155,12 @@ export function VerdictDonut({
         {tip && (
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute z-10 min-w-42 rounded-[10px] border border-void-line bg-void px-3 py-2.5 text-void-text shadow-[0_6px_18px_rgb(0_0_0/0.28)]"
+            className="pointer-events-none absolute z-10 w-max min-w-42 rounded-[10px] whitespace-nowrap border border-void-line bg-void px-3 py-2.5 text-void-text shadow-[0_6px_18px_rgb(0_0_0/0.28)]"
             style={{
               left: `${((C + (R + 6) * tip.sin) / 240) * 100}%`,
               top: `${((C - (R + 6) * tip.cos) / 240) * 100}%`,
-              transform: `translate(calc(-50% + ${tip.sin * 50}%), calc(-50% + ${-tip.cos * 50}%))`,
+              // Opens toward the ring's middle sideways, so it stays inside the card with the ring at its edge.
+              transform: `translate(calc(-50% - ${tip.sin * 50}%), calc(-50% + ${-tip.cos * 50}%))`,
             }}
           >
             <p className="text-xs text-void-muted">{t("donutTip")}</p>
@@ -174,28 +176,21 @@ export function VerdictDonut({
           </div>
         )}
       </div>
-      <dl className="grid grid-cols-[repeat(2,minmax(0,13.75rem))] gap-x-10 gap-y-7 max-md:w-full max-md:grid-cols-2 max-md:gap-4">
+      <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
         {order.map((res) => (
-          <div key={res} className="min-w-0">
-            <dt className="flex items-center gap-2 text-[15px] text-ink max-md:text-sm">
-              <i
-                aria-hidden="true"
-                className={`size-[15px] shrink-0 rounded-[5px] border-[1.5px] ${count[res] ? SWATCH[res] : "border-dashed border-line-control"}`}
-                style={count[res] ? { borderColor: EDGE } : undefined}
-              />
-              {t(`result_${res}`)}
-            </dt>
-            <dd
-              className={`mt-1 font-[family-name:var(--font-title)] text-[40px] leading-none font-[620] [font-stretch:112%] tracking-[-0.03em] max-md:text-[32px] ${count[res] ? "text-ink" : "text-muted"}`}
-            >
-              {num(count[res])}
-              <small className="ml-1 font-sans text-sm font-medium tracking-normal text-muted">
-                / {num(total)}
-              </small>
-            </dd>
-          </div>
+          <li
+            key={res}
+            className={`flex items-center gap-2 text-sm ${count[res] ? "text-ink" : "text-muted"}`}
+          >
+            <i
+              aria-hidden="true"
+              className={`size-[15px] shrink-0 rounded-[5px] border-[1.5px] ${count[res] ? SWATCH[res] : "border-dashed border-line-control"}`}
+              style={count[res] ? { borderColor: EDGE } : undefined}
+            />
+            {t(`result_${res}`)}
+          </li>
         ))}
-      </dl>
+      </ul>
     </div>
   );
 }
