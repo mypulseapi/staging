@@ -230,6 +230,19 @@ export function CatalogueTest({
     };
   }, [id, run, apply, t]);
 
+  // The clock ticks every second while the test runs, not only when a poll lands (owner, 6 Nov 2026).
+  const live =
+    startedAt !== null &&
+    !["done", "failed", "blocked"].includes(state?.status ?? "");
+  useEffect(() => {
+    if (!live) return;
+    const h = window.setInterval(
+      () => setElapsed(Date.now() - startedAt!),
+      1000,
+    );
+    return () => clearInterval(h);
+  }, [live, startedAt]);
+
   const domain = domainOf(pages[0] ?? "");
 
   const submit = async (ev: React.FormEvent) => {
