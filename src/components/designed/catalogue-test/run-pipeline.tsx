@@ -143,6 +143,7 @@ export function RunPipeline({
   category,
   draft,
   onReset,
+  reason,
 }: {
   t: T;
   num: (n: number) => string;
@@ -163,6 +164,8 @@ export function RunPipeline({
   category: string | null;
   draft: boolean;
   onReset: () => void;
+  /** Why a run ended without a result, in the reader's words, shown in the card under the figures. */
+  reason?: string | null;
 }) {
   const plot = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(960);
@@ -571,6 +574,12 @@ export function RunPipeline({
       {draft && category && (
         <p className="mx-7 mt-4 text-sm text-pretty text-muted max-md:mx-4">
           {t("draftProgress", { category })}
+        </p>
+      )}
+
+      {reason && (
+        <p className="mx-7 mt-4 text-sm text-pretty text-critical max-md:mx-4">
+          {reason}
         </p>
       )}
 

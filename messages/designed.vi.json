@@ -2270,7 +2270,7 @@
       "runningTitle": "Chờ chút, đang kiểm tra danh mục",
       "doneTitle": "Đã kiểm tra xong",
       "endedTitle": "Lượt kiểm tra đã dừng",
-      "runningProgress": "Đã đọc {n} trên {of} trang sản phẩm",
+      "runningProgress": "Đã đọc {n} trên {of} trang",
       "requirementsTitle": "Yêu cầu mua hàng",
       "colRequirement": "Yêu cầu",
       "colSupported": "Sản phẩm chứng minh được",
