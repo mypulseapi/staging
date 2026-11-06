@@ -450,49 +450,55 @@ export function RunPipeline({
     const sec = Math.max(0, Math.round(ms / 1000));
     return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
   };
+  // A beat beside each figure the current stage is moving, and the clock, while the test runs
+  // (owner, 6 Nov 2026): finding pages moves the pages and products, reading moves the pages.
+  const running = !finished && !stuck;
+  const live = (on: boolean, value: ReactNode) => (
+    <span className="inline-flex items-center gap-2.5 tabular-nums">
+      {value}
+      {on && (
+        <span aria-hidden className="relative flex size-2.5">
+          <span className="absolute inline-flex size-full rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
+          <span className="relative inline-flex size-2.5 rounded-full bg-primary" />
+        </span>
+      )}
+    </span>
+  );
+  const finding = running && status === "discovering";
   const stats: [string, ReactNode][] = [
     [
       t("stRead"),
-      <>
-        {num(read)}
-        <small className="ml-1 font-sans text-lg font-medium tracking-normal text-muted max-md:text-sm">
-          / {sampled ? num(sampled) : "–"}
-        </small>
-      </>,
+      live(
+        finding || (running && status === "inspecting"),
+        <span>
+          {num(read)}
+          <small className="ml-1 font-sans text-lg font-medium tracking-normal text-muted max-md:text-sm">
+            / {sampled ? num(sampled) : "–"}
+          </small>
+        </span>,
+      ),
     ],
     // Pages read and found not to be products come off the count, so it never claims products a
     // store does not have (agoda.com: 32 "found", all hotel map pages; owner, 6 Nov 2026).
     [
       t("stFound"),
-      found !== null
-        ? num(
-            Math.max(
-              0,
-              found -
-                pages.filter(
-                  (p) => p.state === "skipped" && p.reason === "not-a-product",
-                ).length,
-            ),
-          )
-        : "–",
-    ],
-    [
-      t("stElapsed"),
-      elapsed !== null ? (
-        <span className="inline-flex items-center gap-2.5 tabular-nums">
-          {clock(elapsed)}
-          {/* A beat beside the clock while the test runs (owner, 6 Nov 2026). */}
-          {!finished && !stuck && (
-            <span aria-hidden className="relative flex size-2.5">
-              <span className="absolute inline-flex size-full rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
-              <span className="relative inline-flex size-2.5 rounded-full bg-primary" />
-            </span>
-          )}
-        </span>
-      ) : (
-        "–"
+      live(
+        finding,
+        found !== null
+          ? num(
+              Math.max(
+                0,
+                found -
+                  pages.filter(
+                    (p) =>
+                      p.state === "skipped" && p.reason === "not-a-product",
+                  ).length,
+              ),
+            )
+          : "–",
       ),
     ],
+    [t("stElapsed"), elapsed !== null ? live(running, clock(elapsed)) : "–"],
   ];
 
   return (
@@ -541,7 +547,11 @@ export function RunPipeline({
             aria-live="polite"
             className="mt-1.5 text-lg leading-snug font-semibold text-balance text-(--st-fg)"
           >
-            {statusText}
+            {/* In line and testing requirements move no figure, so the status beats. */}
+            {live(
+              running && (status === "queued" || status === "evaluating"),
+              statusText,
+            )}
           </dd>
         </div>
         {stats.map(([lab, value], i) => (
