@@ -2157,6 +2157,7 @@
       "earlierPages": "{n} trang trước đó",
       "stoppedNone": "Cửa hàng đã chặn chúng tôi trước khi đọc được trang nào.",
       "reason_no_category": "Chúng tôi không thấy sản phẩm nào thuộc ngành hàng đang được kiểm tra. Hãy chọn một ngành hàng trong danh sách, hoặc yêu cầu một Decision Audit cho bất kỳ ngành hàng nào.",
+      "reason_no_products": "Không trang nào chúng tôi tìm thấy là trang sản phẩm: địa chỉ có nhắc đến ngành hàng, nhưng nội dung là thứ khác (bản đồ, bài viết, tin đăng). Có thể website không bán mặt hàng này. Hãy thử địa chỉ một trang trong cửa hàng của bạn, hoặc một ngành hàng khác.",
       "reading": "Đang đọc",
       "soFar": "Đến lúc này, từng trang",
       "legend": "Đủ: mọi thông tin đều ghi. Một phần: thiếu vài thông tin. Bị chôn: chỉ có trong tiêu đề hoặc mô tả. Không đủ: thiếu hoặc tự mâu thuẫn.",
