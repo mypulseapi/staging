@@ -2,6 +2,7 @@
 
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type ClipboardEvent,
@@ -11,6 +12,7 @@ import {
 } from "react";
 import { X } from "lucide-react";
 import { domainOf, type CategoryGroup } from "@/lib/catalogue-test";
+import { CategoryField } from "./category-field";
 
 /**
  * Test My Catalogue's address bar, "Flow" (owner's pick from mockups, 5 Nov 2026): one rounded bar with
@@ -58,6 +60,7 @@ export function AddressBar({
   categories,
   groups,
   labels,
+  draft,
   locale,
   onCategory,
   onPages,
@@ -74,6 +77,8 @@ export function AddressBar({
   groups: CategoryGroup[];
   /** Labels from the service, both languages; a key without one falls back to the messages. */
   labels: Record<string, { en: string; vi: string }>;
+  /** Keys whose checklist is still a first draft, tagged in the list. */
+  draft: string[];
   locale: string;
   onCategory: (c: string) => void;
   /** The pages to test, and whether they can be sent as they are. */
@@ -84,9 +89,6 @@ export function AddressBar({
   children: ReactNode;
 }) {
   const [typed, setTyped] = useState<string | null>(null);
-  const lang = locale === "vi" ? "vi" : "en";
-  const name = (g: CategoryGroup) => g[lang];
-  const label = (c: string) => labels[c]?.[lang] ?? t(`cat_${c}`);
   const text = typed ?? initial;
   const [tags, setTags] = useState<string[]>([]);
   const [delays, setDelays] = useState<Record<string, number>>({});
@@ -97,7 +99,7 @@ export function AddressBar({
   const [focused, setFocused] = useState(false);
   const [example, setExample] = useState(0);
   const [phase, setPhase] = useState<"idle" | "out" | "in">("idle");
-  const input = useRef<HTMLInputElement>(null);
+  const input = useRef<HTMLTextAreaElement>(null);
   // The latest tags and text, for a removal that finishes after its shrink.
   const latest = useRef({ tags, text });
   useEffect(() => {
@@ -132,6 +134,14 @@ export function AddressBar({
       }, 300);
     }, 2600);
     return () => window.clearInterval(id);
+  }, [text, tags.length]);
+
+  // The field grows to its text, so a long address shows in full.
+  useLayoutEffect(() => {
+    const el = input.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
   }, [text, tags.length]);
 
   const later = (key: string, fn: () => void, ms: number) => {
@@ -181,7 +191,7 @@ export function AddressBar({
   };
 
   const change = (value: string) => {
-    const v = value.replace(/^\s*https?:\/\//i, "");
+    const v = value.replace(/\n/g, " ").replace(/^\s*https?:\/\//i, "");
     setPaused(false);
     later("pause", () => setPaused(true), 600);
     const parts = v.split(SEP);
@@ -191,7 +201,7 @@ export function AddressBar({
     commit(parts.filter(isAddress), [...left, last].filter(Boolean).join(" "));
   };
 
-  const paste = (e: ClipboardEvent<HTMLInputElement>) => {
+  const paste = (e: ClipboardEvent<HTMLTextAreaElement>) => {
     const pasted = e.clipboardData.getData("text").split(SEP).filter(Boolean);
     e.preventDefault();
     const before = text.trim();
@@ -201,7 +211,13 @@ export function AddressBar({
     commit([...(before ? [before] : []), ...pasted], "");
   };
 
-  const key = (e: KeyboardEvent<HTMLInputElement>) => {
+  const key = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    // One line of text that wraps: Enter never breaks a line, and with no tags it sends the form.
+    if (e.key === "Enter" && !(tags.length && text.trim())) {
+      e.preventDefault();
+      e.currentTarget.form?.requestSubmit();
+      return;
+    }
     if ((e.key === "," || (e.key === "Enter" && tags.length)) && text.trim()) {
       e.preventDefault();
       if (typedPage) commit([typedPage], "");
@@ -312,17 +328,19 @@ export function AddressBar({
           {!tags.length && (
             <span
               aria-hidden
-              className={`font-mono text-base transition-colors duration-200 ease-out-soft ${focused ? "text-primary" : "text-muted"}`}
+              className={`font-mono text-base leading-6 transition-colors duration-200 ease-out-soft ${focused ? "text-primary" : "text-muted"}`}
             >
               https://
             </span>
           )}
           <div className="relative flex min-h-10 min-w-30 flex-[1_1_11rem] self-stretch">
-            <input
+            {/* A long address wraps onto the next line rather than being cut (owner, 6 Nov 2026). */}
+            <textarea
               ref={input}
               id="test-url"
+              rows={1}
               aria-describedby="test-url-tip"
-              className={`min-w-0 flex-1 bg-transparent font-mono! text-base outline-none placeholder:text-muted ${ghost.length ? "text-transparent" : "text-ink"}`}
+              className={`min-w-0 flex-1 resize-none self-center overflow-hidden bg-transparent py-2 font-mono! text-base leading-6 [overflow-wrap:anywhere] outline-none placeholder:text-muted ${ghost.length ? "text-transparent" : "text-ink"}`}
               inputMode="url"
               autoComplete="url"
               value={text}
@@ -389,40 +407,16 @@ export function AddressBar({
             {t("category")}
           </label>
           {/* No ring and no blue label (owner, 5 Nov 2026): the bar's light shows focus is in the bar. */}
-          <select
-            id="test-category"
-            className="min-h-11 cursor-pointer rounded-full bg-transparent pr-2 pl-1 text-[0.9375rem] text-ink outline-none"
+          <CategoryField
+            t={t}
             value={category}
-            onChange={(e) => onCategory(e.target.value)}
-          >
-            <option value="">{t("catAuto")}</option>
-            {groups.length
-              ? [...groups]
-                  .sort((a, b) => name(a).localeCompare(name(b), locale))
-                  .map((g) => (
-                    <optgroup key={g.key} label={name(g)}>
-                      <option value={g.key}>
-                        {t("catAll", { group: name(g) })}
-                      </option>
-                      {[...g.categories]
-                        .sort((a, b) =>
-                          label(a).localeCompare(label(b), locale),
-                        )
-                        .map((c) => (
-                          <option key={`${g.key}/${c}`} value={c}>
-                            {label(c)}
-                          </option>
-                        ))}
-                    </optgroup>
-                  ))
-              : [...categories]
-                  .sort((a, b) => label(a).localeCompare(label(b), locale))
-                  .map((c) => (
-                    <option key={c} value={c}>
-                      {label(c)}
-                    </option>
-                  ))}
-          </select>
+            categories={categories}
+            groups={groups}
+            labels={labels}
+            draft={draft}
+            locale={locale}
+            onChange={onCategory}
+          />
         </div>
         <div className="ml-auto md:ml-0">{children}</div>
       </div>
