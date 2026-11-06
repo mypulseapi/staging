@@ -2511,6 +2511,14 @@
     "r6": "Học từ kết quả gộp",
     "r6s": "Đang tích lũy: cần kết quả có sự đồng ý",
     "ctaTitle": "Kiểm tra danh mục của bạn",
-    "ctaButton": "Kiểm tra danh mục"
+    "ctaButton": "Kiểm tra danh mục",
+    "tag_live": "Đang chạy",
+    "tag_build": "Đang xây dựng",
+    "tag_sample": "Dữ liệu mẫu",
+    "tag_liveEvidence": "Đọc bằng chứng: đang chạy",
+    "tag_liveRepair": "Cách sửa: đang chạy",
+    "tag_proposedExport": "Xuất dữ liệu: đề xuất",
+    "tag_testing": "Đang kiểm chứng",
+    "tag_proposed": "Đề xuất"
   }
 }

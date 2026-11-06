@@ -509,9 +509,42 @@ export function Mvp({ l, testHref }: { l: L; testHref: string }) {
   );
 }
 
+// What each step is today, so no reader mistakes a sample for a result (ChatGPT review, 2026-11-06).
+const TAGS: Record<string, [string, string][]> = {
+  s1: [["tag_live", "badge-success"]],
+  s2: [
+    ["tag_build", "badge-warning"],
+    ["tag_sample", ""],
+  ],
+  s3: [["tag_sample", ""]],
+  s4: [
+    ["tag_liveEvidence", "badge-success"],
+    ["tag_sample", ""],
+  ],
+  s5: [
+    ["tag_liveRepair", "badge-success"],
+    ["tag_proposedExport", "badge-warning"],
+  ],
+  s6: [
+    ["tag_testing", "badge-warning"],
+    ["tag_sample", ""],
+  ],
+  s7: [
+    ["tag_proposed", "badge-warning"],
+    ["tag_sample", ""],
+  ],
+};
+
 function Head({ l, k }: { l: L; k: string }) {
   return (
     <div>
+      <p className="mb-2 flex flex-wrap gap-1.5">
+        {TAGS[k]!.map(([t, tone]) => (
+          <span key={t} className={`badge ${tone}`}>
+            {l[t]}
+          </span>
+        ))}
+      </p>
       <h2 className="text-h2 text-balance">{l[`${k}Title`]}</h2>
       <p className="mt-2 max-w-2xl text-body text-pretty text-muted">
         {l[`${k}Lede`]}
