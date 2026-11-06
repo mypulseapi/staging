@@ -10,6 +10,7 @@ import {
   FileSearch,
   RotateCcw,
   ShieldCheck,
+  X,
 } from "lucide-react";
 
 /**
@@ -228,6 +229,27 @@ export function Mvp({ l, testHref }: { l: L; testHref: string }) {
           />
         </dl>
         <p className="mt-4 text-data text-pretty text-ink">{l.s4Why}</p>
+        <p className="mt-4 text-caption font-medium text-muted">
+          {l.s4Abstain}
+        </p>
+        <ul className="mt-2 grid gap-1.5 text-data text-ink">
+          {(
+            [
+              ["s4a1", Check, "text-success"],
+              ["s4a2", CircleAlert, "text-critical"],
+              ["s4a3", X, "text-gap-strong"],
+              ["s4a4", X, "text-gap-strong"],
+            ] as const
+          ).map(([k, Icon, tone]) => (
+            <li key={k} className="flex items-center gap-2">
+              <Icon aria-hidden className={`size-4 shrink-0 ${tone}`} />
+              {l[k]}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-data font-medium text-pretty text-ink">
+          {l.s4Standard}
+        </p>
       </div>
       <div className={`${card} overflow-hidden`}>
         <p className="border-b border-line px-5 py-3 text-caption text-muted">

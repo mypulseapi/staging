@@ -2574,7 +2574,7 @@
     "s5Export": "Planned export targets",
     "s5Apply": "Start verification",
     "s5ApplyNote": "Eligible products are split at random into verified repair, matched filler and unchanged control groups.",
-    "s6Title": "Did the fix work? Measured against a control",
+    "s6Title": "Did the fix work? Test it against a control",
     "s6Lede": "Products are split at random: repaired with verified evidence, padded with filler of the same length, or left alone. Agents are asked again after the pages are re-read.",
     "arm_verified": "Verified repair",
     "arm_filler": "Filler, same length",
@@ -2641,6 +2641,12 @@
     "f2bv": "USB 3.2",
     "srcDesc": "Product description",
     "s5Planned": "Planned",
-    "s6Watermark": "Illustrative example: not a Pulse result"
+    "s6Watermark": "Illustrative example: not a Pulse result",
+    "s4Abstain": "Why Pulse abstained",
+    "s4a1": "HDMI evidence exists",
+    "s4a2": "USB-C evidence conflicts",
+    "s4a3": "External display count missing",
+    "s4a4": "Maximum external resolution missing",
+    "s4Standard": "Pulse will not infer two-monitor support from HDMI 2.1 alone."
   }
 }

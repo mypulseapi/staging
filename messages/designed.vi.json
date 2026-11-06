@@ -2458,7 +2458,7 @@
     "s5Export": "Nơi xuất dữ liệu dự kiến",
     "s5Apply": "Bắt đầu kiểm chứng",
     "s5ApplyNote": "Các sản phẩm đủ điều kiện được chia ngẫu nhiên thành ba nhóm: sửa có xác minh, nội dung độn tương đương và đối chứng giữ nguyên.",
-    "s6Title": "Bản sửa có hiệu quả không? Đo so với nhóm đối chứng",
+    "s6Title": "Bản sửa có hiệu quả không? Kiểm chứng với nhóm đối chứng",
     "s6Lede": "Sản phẩm được chia ngẫu nhiên: sửa bằng bằng chứng đã xác minh, thêm nội dung độn cùng độ dài, hoặc giữ nguyên. AI được hỏi lại sau khi trang được đọc lại.",
     "arm_verified": "Sửa có xác minh",
     "arm_filler": "Nội dung độn, cùng độ dài",
@@ -2525,6 +2525,12 @@
     "f2bv": "USB 3.2",
     "srcDesc": "Mô tả sản phẩm",
     "s5Planned": "Dự kiến",
-    "s6Watermark": "Ví dụ minh họa: không phải kết quả của Pulse"
+    "s6Watermark": "Ví dụ minh họa: không phải kết quả của Pulse",
+    "s4Abstain": "Vì sao Pulse không kết luận",
+    "s4a1": "Có bằng chứng về HDMI",
+    "s4a2": "Bằng chứng USB-C mâu thuẫn",
+    "s4a3": "Thiếu số màn hình ngoài",
+    "s4a4": "Thiếu độ phân giải ngoài tối đa",
+    "s4Standard": "Pulse không suy ra việc hỗ trợ hai màn hình chỉ từ HDMI 2.1."
   }
 }
