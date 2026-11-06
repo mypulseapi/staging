@@ -12,6 +12,7 @@ import { Turnstile } from "@/components/Turnstile";
 import { HeroAurora } from "@/components/designed/hero-aurora";
 import { AddressBar } from "./address-bar";
 import { Result } from "./result";
+import { RunPipeline } from "./run-pipeline";
 import {
   domainOf,
   pollTest,
@@ -36,19 +37,6 @@ import {
  * cannot. `{name}` in a label is filled here.
  */
 export type Labels = Record<string, string>;
-
-const RESULTS: RequirementResult[] = [
-  "supported",
-  "partial",
-  "buried",
-  "insufficient",
-];
-const BAR: Record<RequirementResult, string> = {
-  supported: "bg-primary",
-  partial: "bg-primary/50",
-  buried: "bg-muted/50",
-  insufficient: "bg-muted/25",
-};
 
 function fill(s: string, vars: Record<string, string | number>) {
   return s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
@@ -120,6 +108,14 @@ export function CatalogueTest({
     Record<string, Record<RequirementResult, number>>
   >({});
   const [now, setNow] = useState<string | null>(null);
+  // From the live events: spider says "evaluating" only as an event, never as the stored status, so
+  // the page keeps it here (step 4 of the pipeline); the products found on the store; when it started.
+  const [evaluating, setEvaluating] = useState(false);
+  const [found, setFound] = useState<number | null>(null);
+  const [startedAt, setStartedAt] = useState<number | null>(null);
+  const [elapsed, setElapsed] = useState<number | null>(null);
+  const started = useRef<number | null>(null);
+  const runAt = useRef<HTMLDivElement>(null);
   const cursor = useRef(0);
   const timers = useRef<number[]>([]);
 
@@ -134,6 +130,9 @@ export function CatalogueTest({
   }, []);
 
   const apply = useCallback((e: LiveEvent) => {
+    if (e.type === "status" && e.status === "evaluating") setEvaluating(true);
+    if (e.type === "discovered" && e.discovered !== undefined)
+      setFound(e.discovered);
     if (e.type === "discovered" && e.urls)
       setRows(e.urls.map((url) => ({ url, state: "queued" })));
     if (e.type === "inspecting" && e.url) {
@@ -176,6 +175,17 @@ export function CatalogueTest({
       );
   }, []);
 
+  // A new test brings its pipeline into view (owner, 6 Nov 2026).
+  useEffect(() => {
+    if (!run) return;
+    requestAnimationFrame(() =>
+      runAt.current?.scrollIntoView({
+        behavior: reducedMotion() ? "auto" : "smooth",
+        block: "start",
+      }),
+    );
+  }, [run]);
+
   // Poll while running; play each batch across the interval so the ticker moves rather than jumps.
   useEffect(() => {
     if (!id) return;
@@ -187,6 +197,11 @@ export function CatalogueTest({
         if (stop) return;
         cursor.current = s.cursor;
         setState(s);
+        if (started.current === null && s.events.length) {
+          started.current = s.events[0].at;
+          setStartedAt(started.current);
+        }
+        if (started.current !== null) setElapsed(Date.now() - started.current);
         const gap =
           s.nextPollMs && !reducedMotion()
             ? s.nextPollMs / Math.max(1, s.events.length)
@@ -228,9 +243,15 @@ export function CatalogueTest({
       cursor.current = 0;
       setRows([]);
       setReqs({});
+      setEvaluating(false);
+      setFound(null);
+      setStartedAt(null);
+      setElapsed(null);
+      started.current = null;
       setState(null);
       setId(r.id);
       setRun((n) => n + 1);
+      setToken("");
       window.history.replaceState(null, "", `?id=${r.id}`);
     } catch (e) {
       const err = e as TestError;
@@ -253,43 +274,77 @@ export function CatalogueTest({
     setState(null);
     setRows([]);
     setReqs({});
+    setEvaluating(false);
+    setFound(null);
+    setStartedAt(null);
+    setElapsed(null);
+    started.current = null;
     cursor.current = 0;
     window.history.replaceState(null, "", window.location.pathname);
   };
 
   const status = state?.status ?? (id ? "queued" : null);
-  // A drafted checklist runs and reports, and says so (catalogue-categories Q5).
-  const draftNote =
-    state?.category && taxonomy.draft?.includes(state.category) ? (
-      <p className="mt-3 rounded-2xl bg-surface-1 px-4 py-3 text-sm text-muted">
-        <span className="mr-2 rounded-full bg-card px-2 py-0.5 text-xs font-semibold text-ink">
-          {t("draftBadge")}
-        </span>
-        {t("draftNote", {
-          category:
-            taxonomy.labels?.[state.category]?.[
-              locale === "vi" ? "vi" : "en"
-            ] ?? state.category,
-        })}
-      </p>
-    ) : null;
+  // The tested category in the page's language, from the service's labels (develop #8), and whether
+  // its checklist is still a first draft: a drafted checklist runs and reports, and says so
+  // (catalogue-categories Q5), as a tag and one sentence (the designer's draft notice, owner, 6 Nov 2026).
+  const categoryLabel = state?.category
+    ? (taxonomy.labels?.[state.category]?.[locale === "vi" ? "vi" : "en"] ??
+      (labels[`cat_${state.category}`] ? t(`cat_${state.category}`) : null))
+    : null;
+  const draft = Boolean(
+    state?.category && taxonomy.draft?.includes(state.category),
+  );
   const teaser = state?.teaser ?? null;
-  const running =
-    Boolean(id) && !teaser && status !== "failed" && status !== "blocked";
   const done = rows.filter(
     (r) => r.state === "done" || r.state === "skipped",
   ).length;
+
+  // The run as a pipeline of stations (owner, 5 Nov 2026; the designer's progress mockup).
+  const pipeline = (
+    <>
+      <RunPipeline
+        t={t}
+        num={num}
+        status={
+          evaluating && status === "inspecting"
+            ? "evaluating"
+            : (status ?? "queued")
+        }
+        domain={state?.domain ?? domain ?? ""}
+        ahead={state?.ahead}
+        found={found}
+        sampled={rows.length}
+        read={done}
+        now={now}
+        pages={rows}
+        reqs={reqs}
+        startedAt={startedAt}
+        elapsed={elapsed}
+        category={categoryLabel}
+        draft={draft}
+        onReset={reset}
+      />
+      {state?.reason === "no_category" && (
+        <p className="mt-4 text-sm text-ink">{t("reason_no_category")}</p>
+      )}
+      {error && (
+        <p className="mt-4 text-sm text-ink" role="alert">
+          {error}
+        </p>
+      )}
+    </>
+  );
 
   return (
     <div className="flex flex-1 flex-col">
       {/* Pingdom's layout (owner, 2026-11-04): a band with the heading and one row, address,
           category and the button, which stays put while the result builds underneath. The hero
           background (`hero-bg` and the aurora), like every other hero's (owner, 5 Nov 2026); `isolate` also keeps the bar's
-          glow behind the bar. Pricing's hero padding, `pt-12 pb-16 lg:pt-16 lg:pb-20`, as the other heroes (owner, 5 Nov 2026). Until a test starts the page stretches the hero to fill the first
+          glow behind the bar. It clips sideways only, so the category list can hang below it over the next section (`z-10`). Pricing's hero padding, `pt-12 pb-16 lg:pt-16 lg:pb-20`, as the other heroes (owner, 5 Nov 2026). Until a test starts the page stretches the hero to fill the first
           screen with About Pulse under it, About at its own height and the hero's content centred in the room left
           over; the title and the bar keep their fixed gap (owner, 5 Nov 2026). */}
       <section
-        className={`relative isolate hero-bg overflow-hidden border-b border-line ${id ? "" : "flex flex-1 flex-col"}`}
+        className={`relative isolate z-10 hero-bg overflow-x-clip border-b border-line ${id ? "" : "flex flex-1 flex-col"}`}
       >
         <HeroAurora />
         {/* A row around `frame` so it grows to its usual width (it is content-box with auto margins, and a
@@ -298,23 +353,9 @@ export function CatalogueTest({
           <div
             className={`frame pt-12 pb-16 lg:pt-16 lg:pb-20 ${id ? "" : "flex flex-1 flex-col justify-center"}`}
           >
-            {running ? (
-              <div className="mx-auto max-w-xl text-center" aria-live="polite">
-                <h2 className="text-title text-balance">{t("runningTitle")}</h2>
-                <Gauge />
-                <p className="mt-2 text-muted">
-                  {status === "queued" && state?.ahead
-                    ? t("queuedAhead", { n: state.ahead })
-                    : rows.length
-                      ? t("runningProgress", { n: done, of: rows.length })
-                      : t(`status_${status}`)}
-                </p>
-              </div>
-            ) : (
-              header
-            )}
+            {/* The hero and its form stay put through a run; the run plays below (owner, 6 Nov 2026). */}
+            {header}
             <form
-              hidden={running}
               onSubmit={submit}
               className="mx-auto mt-12 w-full max-w-5xl lg:mt-16"
               noValidate
@@ -335,6 +376,7 @@ export function CatalogueTest({
                   categories={categories}
                   groups={taxonomy.groups ?? []}
                   labels={taxonomy.labels ?? {}}
+                  draft={taxonomy.draft ?? []}
                   locale={locale}
                   onCategory={setCategory}
                   onPages={(list, ok) => {
@@ -375,7 +417,8 @@ export function CatalogueTest({
                     </li>
                   ))}
                 </ul>
-                {enabled && <Turnstile onToken={setToken} />}
+                {/* A token is good for one test: a new one after each start (owner, 6 Nov 2026). */}
+                {enabled && <Turnstile key={run} onToken={setToken} />}
                 {error && !id && (
                   <p className="text-sm text-ink" role="alert">
                     {error}
@@ -383,216 +426,41 @@ export function CatalogueTest({
                 )}
               </fieldset>
             </form>
-            {!running && ask}
+            {ask}
           </div>
         </div>
       </section>
 
-      <div className="frame py-12 lg:py-16 empty:hidden">
-        {id && !teaser && (
-          <section
-            aria-live="polite"
-            className="rounded-3xl border border-line bg-card p-6 shadow-sm sm:p-8"
-          >
-            <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h2 className="text-lg font-semibold text-ink">
-                {state?.domain ?? domain}
-              </h2>
-              <p className="text-sm text-muted">
-                {status === "queued" && state?.ahead
-                  ? t("queuedAhead", { n: state.ahead })
-                  : status === "blocked"
-                    ? t("status_stopped")
-                    : t(`status_${status}`)}
-              </p>
+      {/* A plain block around `frame`: the root is a flex column, which would size `frame` (content-box,
+          auto margins) to its widest line instead of the page's width. */}
+      <div className="empty:hidden">
+        <div className="frame py-12 lg:py-16 empty:hidden">
+          {/* The run as a pipeline of stations, kept above the result once it is done; a new test
+              scrolls here (owner, 6 Nov 2026). */}
+          {id && (
+            <div ref={runAt} className="scroll-mt-24">
+              {pipeline}
             </div>
-            {draftNote}
-            {rows.length > 0 && (
-              <>
-                <div
-                  className="mt-4 h-1.5 overflow-hidden rounded-full bg-surface-1"
-                  role="progressbar"
-                  aria-valuenow={done}
-                  aria-valuemax={rows.length}
-                >
-                  <div
-                    className="h-full rounded-full bg-primary transition-[width] duration-700 motion-reduce:transition-none"
-                    style={{ width: `${(done / rows.length) * 100}%` }}
-                  />
-                </div>
-                {now && (
-                  <p className="mt-3 truncate font-mono text-xs text-muted">
-                    {t("reading")} {now}
-                  </p>
-                )}
-                <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                  <ol className="max-h-80 space-y-1 overflow-y-auto pr-2 text-sm">
-                    {rows.map((r) => (
-                      <li
-                        key={r.url}
-                        className="flex items-center gap-2 border-t border-line py-1.5 first:border-t-0"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className={`size-2 shrink-0 rounded-full ${r.state === "inspecting" ? "animate-pulse bg-primary motion-reduce:animate-none" : r.state === "done" ? "bg-primary" : r.state === "skipped" ? "bg-muted/40" : "bg-line"}`}
-                        />
-                        <span className="min-w-0 flex-1 truncate text-ink">
-                          {r.title || new URL(r.url).pathname}
-                        </span>
-                        {r.facts && (
-                          <span className="flex shrink-0 gap-1 font-mono text-xs">
-                            <span
-                              title={t("factVisible")}
-                              className="rounded bg-primary/10 px-1.5 text-primary"
-                            >
-                              {r.facts.visible}
-                            </span>
-                            <span
-                              title={t("factBuried")}
-                              className="rounded bg-surface-1 px-1.5 text-muted"
-                            >
-                              {r.facts.buried}
-                            </span>
-                            <span
-                              title={t("factMissing")}
-                              className="rounded bg-surface-1 px-1.5 text-ink"
-                            >
-                              {r.facts.missing}
-                            </span>
-                            {r.facts.conflicting > 0 && (
-                              <span
-                                title={t("factConflicting")}
-                                className="rounded bg-surface-1 px-1.5 text-ink"
-                              >
-                                !{r.facts.conflicting}
-                              </span>
-                            )}
-                          </span>
-                        )}
-                        {r.state === "skipped" && (
-                          <span className="shrink-0 text-xs text-muted">
-                            {t(`skip_${r.reason}`)}
-                          </span>
-                        )}
-                      </li>
-                    ))}
-                  </ol>
-                  <div>
-                    <p className="text-xs font-semibold tracking-wide text-muted uppercase">
-                      {t("soFar")}
-                    </p>
-                    <ul className="mt-2 space-y-2.5">
-                      {Object.entries(reqs).map(([rid, c]) => {
-                        const total =
-                          RESULTS.reduce((n, r) => n + c[r], 0) || 1;
-                        return (
-                          <li key={rid}>
-                            <div className="flex justify-between text-sm">
-                              <span className="text-ink">
-                                {t(`req_${rid}`)}
-                              </span>
-                              <span className="font-mono text-xs text-muted">
-                                {c.supported}/{total}
-                              </span>
-                            </div>
-                            <div className="mt-1 flex h-2 overflow-hidden rounded-full bg-surface-1">
-                              {RESULTS.map((r) => (
-                                <div
-                                  key={r}
-                                  className={`${BAR[r]} transition-[width] duration-700 motion-reduce:transition-none`}
-                                  style={{ width: `${(c[r] / total) * 100}%` }}
-                                />
-                              ))}
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                    <p className="mt-3 text-xs text-pretty text-muted">
-                      {t("legend")}
-                    </p>
-                  </div>
-                </div>
-              </>
-            )}
-            {(status === "failed" || (status === "blocked" && !teaser)) && (
-              <div className="mt-4">
-                <p className="text-sm text-ink">
-                  {state?.reason === "no_category"
-                    ? t("reason_no_category")
-                    : (state?.reason ?? t(`status_${status}`))}
-                </p>
-                <button
-                  type="button"
-                  onClick={reset}
-                  className="mt-3 text-sm font-medium text-primary underline-offset-4 hover:underline"
-                >
-                  {t("testAnother")}
-                </button>
-              </div>
-            )}
-            {error && (
-              <p className="mt-4 text-sm text-ink" role="alert">
-                {error}
-              </p>
-            )}
-          </section>
-        )}
+          )}
 
-        {teaser && state && draftNote}
-        {teaser && state && (
-          <Result
-            teaser={teaser}
-            state={state}
-            t={t}
-            num={num}
-            id={id!}
-            locale={locale}
-            calculator={calculator}
-            onReset={reset}
-          />
-        )}
+          {teaser && state && (
+            <div className="mt-14 max-md:mt-10">
+              <Result
+                teaser={teaser}
+                state={state}
+                t={t}
+                num={num}
+                id={id!}
+                locale={locale}
+                calculator={calculator}
+                category={categoryLabel}
+                draft={draft}
+                onReset={reset}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  );
-}
-
-/** A gauge whose needle sweeps while the test runs, like Pingdom's (owner, 2026-11-04). Still under reduced motion. */
-function Gauge() {
-  return (
-    <svg
-      viewBox="0 0 120 120"
-      className="mx-auto mt-6 size-28 text-primary"
-      aria-hidden="true"
-    >
-      <circle
-        cx="60"
-        cy="60"
-        r="48"
-        fill="none"
-        stroke="currentColor"
-        strokeOpacity="0.15"
-        strokeWidth="12"
-      />
-      <path
-        d="M60 12a48 48 0 0 1 48 48"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="12"
-        strokeLinecap="round"
-      />
-      <g className="origin-center animate-spin [animation-duration:2.4s] motion-reduce:animate-none">
-        <line
-          x1="60"
-          y1="60"
-          x2="60"
-          y2="26"
-          stroke="currentColor"
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-      </g>
-      <circle cx="60" cy="60" r="9" fill="currentColor" />
-    </svg>
   );
 }
