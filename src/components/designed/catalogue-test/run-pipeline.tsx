@@ -460,7 +460,22 @@ export function RunPipeline({
         </small>
       </>,
     ],
-    [t("stFound"), found !== null ? num(found) : "–"],
+    // Pages read and found not to be products come off the count, so it never claims products a
+    // store does not have (agoda.com: 32 "found", all hotel map pages; owner, 6 Nov 2026).
+    [
+      t("stFound"),
+      found !== null
+        ? num(
+            Math.max(
+              0,
+              found -
+                pages.filter(
+                  (p) => p.state === "skipped" && p.reason === "not-a-product",
+                ).length,
+            ),
+          )
+        : "–",
+    ],
     [
       t("stElapsed"),
       elapsed !== null ? (
@@ -497,7 +512,9 @@ export function RunPipeline({
               {domain}
             </h2>
             <p className="text-[13px] text-muted">
-              {t(finished ? "doneTitle" : "runningTitle")}
+              {t(
+                finished ? "doneTitle" : stuck ? "endedTitle" : "runningTitle",
+              )}
             </p>
           </div>
         </div>
