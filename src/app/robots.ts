@@ -14,10 +14,9 @@ export const dynamic = "force-static";
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = SITE.www;
 
-  // Staging (NEXT_PUBLIC_NOINDEX=true) is never crawled, so it cannot compete with the live site.
-  if (process.env.NEXT_PUBLIC_NOINDEX === "true")
-    return { rules: [{ userAgent: "*", disallow: "/" }] };
-
+  // Staging (NEXT_PUBLIC_NOINDEX=true) is crawlable, so agents and reviewers can fetch it to test
+  // (dev, 2026-11-06); the noindex meta on every page keeps it out of search results, and a
+  // crawler has to fetch a page to see that.
   return {
     rules: [
       {
