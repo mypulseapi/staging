@@ -2273,6 +2273,7 @@
       "earlierPages": "{n} earlier pages",
       "stoppedNone": "Your store stopped us before we could read a page.",
       "reason_no_category": "We found no product here in a category we test yet. Pick one from the list, or request a Decision Audit for any category.",
+      "reason_no_products": "None of the pages we found are product pages: their addresses mention the category, but they are something else (maps, articles, listings). This site may not sell it. Try a page address from your shop, or another category.",
       "reading": "Reading",
       "soFar": "So far, page by page",
       "legend": "Supported: every fact stated. Partly: some missing. Buried: only in the title or description. Insufficient: missing or contradicting itself.",
