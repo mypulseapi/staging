@@ -740,7 +740,7 @@ export function Result({
                 key={p.key}
                 className={`grid grid-cols-[minmax(0,4.4fr)_minmax(0,6.9fr)_minmax(0,3.8fr)] overflow-hidden rounded-[18px] max-lg:grid-cols-2 max-md:grid-cols-1 ${
                   hi
-                    ? "border-[1.5px] border-[color-mix(in_oklab,var(--color-primary)_38%,var(--color-card))] bg-[linear-gradient(112deg_in_oklch,color-mix(in_oklab,var(--brand-red)_16%,var(--color-card)),color-mix(in_oklab,var(--brand-blue)_16%,var(--color-card)))] theme-dark:bg-[linear-gradient(112deg_in_oklch,color-mix(in_oklab,var(--brand-red)_14%,var(--color-card)),color-mix(in_oklab,var(--brand-blue)_14%,var(--color-card)))]"
+                    ? "border border-transparent bg-origin-border bg-[linear-gradient(112deg_in_oklch,color-mix(in_oklab,var(--brand-red)_16%,var(--color-card)),color-mix(in_oklab,var(--brand-blue)_16%,var(--color-card)))] theme-dark:bg-[linear-gradient(112deg_in_oklch,color-mix(in_oklab,var(--brand-red)_14%,var(--color-card)),color-mix(in_oklab,var(--brand-blue)_14%,var(--color-card)))]"
                     : "border border-line bg-card"
                 }`}
               >
