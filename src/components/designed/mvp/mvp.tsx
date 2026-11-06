@@ -34,7 +34,9 @@ const GRID = [
 ] as const;
 const FACTS = [
   { f: "f1", v: "f1v", src: "srcPage", state: "stated" },
-  { f: "f2", v: "f2v", src: "srcTable", state: "conflicting" },
+  // Two sources disagree, so each is its own row: provenance shows the conflict.
+  { f: "f2a", v: "f2av", src: "srcDesc", state: "conflicting" },
+  { f: "f2b", v: "f2bv", src: "srcTable", state: "conflicting" },
   { f: "f3", v: "f3v", src: "srcNone", state: "missing" },
   { f: "f4", v: "f4v", src: "srcNone", state: "missing" },
 ] as const;
@@ -191,6 +193,13 @@ export function Mvp({ l, testHref }: { l: L; testHref: string }) {
           </Row>
         ))}
       </div>
+      <p className="flex items-start gap-2 text-data text-pretty text-ink">
+        <ShieldCheck
+          aria-hidden
+          className="mt-0.5 size-4 shrink-0 text-success"
+        />
+        {l.s3Neutral}
+      </p>
     </div>,
 
     // 4. Verdict
@@ -309,7 +318,7 @@ export function Mvp({ l, testHref }: { l: L; testHref: string }) {
         {l.s5Export}
         {EXPORTS.map((e) => (
           <span key={e} className="badge">
-            {e}
+            {e} · {l.s5Planned}
           </span>
         ))}
       </div>
@@ -324,7 +333,10 @@ export function Mvp({ l, testHref }: { l: L; testHref: string }) {
     // 6. Verify
     <div key="s6" className="grid gap-6">
       <Head l={l} k="s6" />
-      <div className={`${card} grid gap-5 p-5`}>
+      <div className={`${card} grid gap-5 border-dashed p-5`}>
+        <p className="rounded-lg border border-dashed border-warning-line bg-warning-bg px-3 py-2 text-center text-data font-semibold text-warning">
+          {l.s6Watermark}
+        </p>
         <p className="text-caption text-muted">{l.s6PickRate}</p>
         {ARMS.map((a) => (
           <div key={a.id}>
