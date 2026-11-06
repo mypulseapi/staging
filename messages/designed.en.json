@@ -2386,7 +2386,7 @@
       "runningTitle": "Hang on, testing your catalogue",
       "doneTitle": "Test complete",
       "endedTitle": "Test ended",
-      "runningProgress": "Read {n} of {of} product pages",
+      "runningProgress": "Read {n} of {of} pages",
       "requirementsTitle": "Buying requirements",
       "colRequirement": "Requirement",
       "colSupported": "Products that establish it",

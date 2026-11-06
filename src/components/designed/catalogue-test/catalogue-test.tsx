@@ -336,16 +336,19 @@ export function CatalogueTest({
         category={categoryLabel}
         draft={draft}
         onReset={reset}
+        reason={
+          state?.reason === "no_category"
+            ? t("reason_no_category")
+            : // Every page read was something else, agoda.com's hotel maps under "tea-garden".
+              status === "failed" &&
+                rows.length > 0 &&
+                rows.every(
+                  (r) => r.state === "skipped" && r.reason === "not-a-product",
+                )
+              ? t("reason_no_products")
+              : null
+        }
       />
-      {state?.reason === "no_category" && (
-        <p className="mt-4 text-sm text-ink">{t("reason_no_category")}</p>
-      )}
-      {/* Every page read was something else, agoda.com's hotel maps under "tea-garden" (owner, 6 Nov 2026). */}
-      {status === "failed" &&
-        rows.length > 0 &&
-        rows.every(
-          (r) => r.state === "skipped" && r.reason === "not-a-product",
-        ) && <p className="mt-4 text-sm text-ink">{t("reason_no_products")}</p>}
       {error && (
         <p className="mt-4 text-sm text-ink" role="alert">
           {error}
