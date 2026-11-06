@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ReactNode,
@@ -12,6 +13,7 @@ import { Turnstile } from "@/components/Turnstile";
 import { HeroAurora } from "@/components/designed/hero-aurora";
 import { AddressBar } from "./address-bar";
 import { Result } from "./result";
+import { BlockedGuide } from "./blocked-guide";
 import { RunPipeline } from "./run-pipeline";
 import {
   domainOf,
@@ -308,6 +310,25 @@ export function CatalogueTest({
     state?.category && taxonomy.draft?.includes(state.category),
   );
   const teaser = state?.teaser ?? null;
+  // A draft checklist's requirements and questions have no catalogue line, and an id like "brand"
+  // can mean something else in a calibrated one: the service's own words for those, else the id.
+  const said = useMemo(
+    () =>
+      Object.fromEntries([
+        ...(teaser?.requirements ?? []).map((r) => [`req_${r.id}`, r.label]),
+        ...(teaser?.requests ?? []).map((q) => [`ask_${q.id}`, q.ask]),
+      ]) as Record<string, string>,
+    [teaser],
+  );
+  const tr = useCallback(
+    (k: string, vars?: Record<string, string | number>) => {
+      if (!/^(req|ask|fact)_/.test(k) || (labels[k] && !(draft && said[k])))
+        return t(k, vars);
+      const s = said[k] ?? k.slice(k.indexOf("_") + 1).replace(/[-_]/g, " ");
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    },
+    [t, labels, draft, said],
+  );
   const done = rows.filter(
     (r) => r.state === "done" || r.state === "skipped",
   ).length;
@@ -316,7 +337,7 @@ export function CatalogueTest({
   const pipeline = (
     <>
       <RunPipeline
-        t={t}
+        t={tr}
         num={num}
         status={
           evaluating && status === "inspecting"
@@ -349,6 +370,9 @@ export function CatalogueTest({
               : null
         }
       />
+      {status === "blocked" && (
+        <BlockedGuide t={t} contactHref={`/${locale}/contact`} />
+      )}
       {error && (
         <p className="mt-4 text-sm text-ink" role="alert">
           {error}
@@ -470,7 +494,7 @@ export function CatalogueTest({
               <Result
                 teaser={teaser}
                 state={state}
-                t={t}
+                t={tr}
                 num={num}
                 id={id!}
                 locale={locale}
