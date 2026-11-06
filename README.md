@@ -59,6 +59,10 @@ pnpm lint
 filesystem, placeholder copy, intent ranking, the requirement parser and the semantic fallback. A
 page added without a catalogue entry fails the build rather than silently shipping unattributed.
 
+`/mvp` (2026-11-06) is the investor walkthrough: the whole journey, from a store's address through the
+AI Shelf Test, the 2×2, a verdict with its evidence, the repair plan and the holdback, on a sample store
+with labelled, illustrative figures. It is noindex and out of the sitemap, and is sent by link.
+
 ### Configuration
 
 Every origin the site points at is read from the environment; none is hardcoded. See

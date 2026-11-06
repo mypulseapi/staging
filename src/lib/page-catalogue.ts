@@ -316,6 +316,14 @@ export const PAGE_CATALOGUE: readonly PageItem[] = [
     depth: "transactional",
     decides: ["how-do-i-start"],
   },
+  // The investor walkthrough of the whole journey on a sample store (2026-11-06), noindex.
+  {
+    route: "/mvp",
+    audience: "any",
+    area: "audit",
+    depth: "explainer",
+    decides: ["does-it-fit-me"],
+  },
   {
     route: "/pricing",
     audience: "merchant",
