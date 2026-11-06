@@ -2627,6 +2627,14 @@
     "r6": "Pooled outcome learning",
     "r6s": "Being earned: needs consented outcomes",
     "ctaTitle": "Test your own catalogue",
-    "ctaButton": "Test My Catalogue"
+    "ctaButton": "Test My Catalogue",
+    "tag_live": "Live today",
+    "tag_build": "Being built",
+    "tag_sample": "Sample data",
+    "tag_liveEvidence": "Evidence reading: live",
+    "tag_liveRepair": "Repair actions: live",
+    "tag_proposedExport": "Exports: proposed",
+    "tag_testing": "In testing",
+    "tag_proposed": "Proposed"
   }
 }
