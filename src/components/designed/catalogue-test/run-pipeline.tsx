@@ -461,7 +461,23 @@ export function RunPipeline({
       </>,
     ],
     [t("stFound"), found !== null ? num(found) : "–"],
-    [t("stElapsed"), elapsed !== null ? clock(elapsed) : "–"],
+    [
+      t("stElapsed"),
+      elapsed !== null ? (
+        <span className="inline-flex items-center gap-2.5 tabular-nums">
+          {clock(elapsed)}
+          {/* A beat beside the clock while the test runs (owner, 6 Nov 2026). */}
+          {!finished && !stuck && (
+            <span aria-hidden className="relative flex size-2.5">
+              <span className="absolute inline-flex size-full rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
+              <span className="relative inline-flex size-2.5 rounded-full bg-primary" />
+            </span>
+          )}
+        </span>
+      ) : (
+        "–"
+      ),
+    ],
   ];
 
   return (
