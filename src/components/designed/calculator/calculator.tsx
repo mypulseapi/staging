@@ -252,8 +252,10 @@ function useTween(
 
 /**
  * A counting number. The visible text and an invisible copy of the widest text it will show share one
- * grid cell, so the box never changes size while it counts. A `[data-fit]` ancestor gets the ghost
- * length as `--len`, which the big figures use to shrink rather than overflow a narrow column.
+ * grid cell, so the box never changes size while it counts; when it lands, the box fits the final
+ * text again. `hold` is a text the box never gets narrower than, for a number whose landing would
+ * otherwise move what sits beside it. A `[data-fit]` ancestor gets the ghost length as `--len`, which
+ * the big figures use to shrink rather than overflow a narrow column.
  */
 function Count({
   v,
@@ -263,6 +265,7 @@ function Count({
   play = 0,
   enter,
   align = "start",
+  hold,
 }: {
   v: number | null;
   f: (x: number) => string;
@@ -271,6 +274,7 @@ function Count({
   play?: number;
   enter?: Enter;
   align?: "start" | "end" | "center";
+  hold?: string;
 }) {
   const box = useRef<HTMLSpanElement>(null);
   const text = v === null ? none : f(v);
@@ -287,9 +291,9 @@ function Count({
         const c = show(from + (v - from) * (1 - (1 - p) ** 3));
         if (c.length > g.length) g = c;
       }
-    // The ghost stays at its widest until the next change: shrinking it when the count lands would
-    // move whatever sits beside the number, which is the jump it exists to prevent.
-    if (ghost && (done || from !== undefined)) ghost.nodeValue = g;
+    if (hold && hold.length > g.length) g = hold;
+    // Widest at the start of a count, back to the final text when it lands (x === v).
+    if (ghost && (done || from !== undefined || x === v)) ghost.nodeValue = g;
     const host = el.closest<HTMLElement>("[data-fit]");
     if (host)
       host.style.setProperty(
@@ -1611,6 +1615,10 @@ export function Calculator({
                         v={c.cacAfter}
                         f={cac}
                         none={t.undefined}
+                        // Counts down from the cost before; holding its width keeps "before →" still when it lands.
+                        hold={
+                          c.cacBefore === null ? undefined : cac(c.cacBefore)
+                        }
                         play={p[3]}
                         enter={
                           c.cacBefore === null
