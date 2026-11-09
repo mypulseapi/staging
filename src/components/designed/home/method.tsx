@@ -196,7 +196,7 @@ export function MethodSection() {
                             <span
                               className="relative inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 text-xs font-semibold text-muted transition-colors duration-200 at-2:border-primary at-2:text-primary at-3:border-primary at-3:bg-primary at-3:text-on-primary"
                             >
-                              Export CSV
+                              {t('scan')}
                               {/* 3 click ring */}
                               <span
                                 className="pointer-events-none absolute -inset-1 rounded-lg border-2 border-primary opacity-0 transition-all duration-500 ease-out-soft at-3:scale-125 at-3:opacity-0 pre-3:scale-90 pre-3:opacity-0 at-3:delay-100"
