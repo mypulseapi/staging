@@ -22,7 +22,6 @@ import type {
   TestState,
 } from "@/lib/catalogue-test";
 import { VerdictDonut } from "./verdict-donut";
-import { DRAFT_TAG } from "./run-pipeline";
 import { TestedGapsContext } from "../calculator/calculator";
 
 /**
@@ -216,7 +215,6 @@ export function Result({
   locale,
   calculator,
   category,
-  draft,
   onReset,
 }: {
   teaser: Teaser;
@@ -226,9 +224,8 @@ export function Result({
   id: string;
   locale: string;
   calculator: ReactNode;
-  /** The category tested, in the page's language, and whether its checklist is a first draft. */
+  /** The category tested, in the page's language. */
   category: string | null;
-  draft: boolean;
   onReset: () => void;
 }) {
   const [copied, setCopied] = useState(false);
@@ -356,9 +353,6 @@ export function Result({
                 {[category, t("pagesSampled", { n: num(sampled) })]
                   .filter(Boolean)
                   .join(" · ")}
-                {draft && (
-                  <span className={DRAFT_TAG}>{t("draftChecklist")}</span>
-                )}
               </p>
             </div>
             <div className="flex flex-wrap gap-2 max-md:w-full">
@@ -431,12 +425,6 @@ export function Result({
               </div>
             ))}
           </dl>
-          {/* A first-draft checklist qualifies the verdict, so it says so inside it (owner, 6 Nov 2026). */}
-          {draft && category && (
-            <p className="mt-7 border-t border-[color-mix(in_oklab,var(--color-ink)_14%,transparent)] pt-5 text-sm text-pretty text-muted">
-              {t("draftNote", { category })}
-            </p>
-          )}
         </section>
       </section>
 
