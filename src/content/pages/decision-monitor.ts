@@ -36,7 +36,7 @@ export const DECISION_MONITOR: StoryContent = {
         n: "01",
         meta: "Once",
         title: "Set the cadence",
-        body: "Weekly, monthly or on a feed. It reads the same export the audit read, so there is nothing new to build and no integration to maintain.",
+        body: "Weekly or monthly. It rescans the same pages the audit read, so there is nothing new to build and no integration to maintain.",
       },
       {
         n: "02",
@@ -74,7 +74,7 @@ export const DECISION_MONITOR: StoryContent = {
       {
         icon: Layers,
         title: "Nothing new to maintain",
-        body: "It reads the export you already produce. No tag, no integration, no library to keep up to date as your platform changes.",
+        body: "It reads the pages you already publish. No tag, no integration, no library to keep up to date as your platform changes.",
       },
     ],
   },
@@ -86,7 +86,7 @@ export const DECISION_MONITOR: StoryContent = {
     },
     {
       q: "Does Pulse need access to my database, servers, or website backend?",
-      a: "No. It reads the same export the audit read. If you can schedule that export, monitoring works, and nothing on your site or in your stack changes.",
+      a: "No. It rescans the same public pages the audit read, on a schedule, and nothing on your site or in your stack changes.",
     },
     {
       q: "Can we monitor categories we have not audited?",
@@ -144,7 +144,7 @@ export const DECISION_MONITOR_VI: StoryContent = {
         n: "01",
         meta: "Một lần",
         title: "Đặt nhịp chạy",
-        body: "Hàng tuần, hàng tháng, hoặc theo nguồn dữ liệu. Nó đọc đúng tệp xuất mà bản kiểm tra đã đọc, nên không có gì mới phải xây và không có tích hợp nào phải bảo trì.",
+        body: "Hàng tuần hoặc hàng tháng. Nó quét lại đúng các trang mà bản kiểm tra đã đọc, nên không có gì mới phải xây và không có tích hợp nào phải bảo trì.",
       },
       {
         n: "02",
@@ -182,7 +182,7 @@ export const DECISION_MONITOR_VI: StoryContent = {
       {
         icon: Layers,
         title: "Không có gì mới phải bảo trì",
-        body: "Nó đọc tệp xuất bạn vốn đã tạo ra. Không thẻ theo dõi, không tích hợp, không thư viện nào phải cập nhật theo nền tảng của bạn.",
+        body: "Nó đọc các trang bạn vốn đã đăng. Không thẻ theo dõi, không tích hợp, không thư viện nào phải cập nhật theo nền tảng của bạn.",
       },
     ],
   },
@@ -194,7 +194,7 @@ export const DECISION_MONITOR_VI: StoryContent = {
     },
     {
       q: "Pulse có cần quyền truy cập cơ sở dữ liệu, máy chủ hay hệ thống nền của website không?",
-      a: "Không. Nó đọc đúng tệp xuất mà bản kiểm tra đã đọc. Nếu bạn hẹn lịch được tệp xuất đó thì giám sát chạy được, và không có gì trên website hay trong hệ thống của bạn phải thay đổi.",
+      a: "Không. Nó quét lại đúng các trang công khai mà bản kiểm tra đã đọc, theo lịch, và không có gì trên website hay trong hệ thống của bạn phải thay đổi.",
     },
     {
       q: "Chúng tôi giám sát được ngành hàng chưa kiểm tra không?",

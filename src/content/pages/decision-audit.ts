@@ -14,7 +14,7 @@ export const DECISION_AUDIT: StoryContent = {
   meta: {
     title: "Product data audit: missing attributes to fix first",
     description:
-      "Send one category export. In 48 hours, a ranked list of the attributes worth recording, the products missing each, and where each fact already lives.",
+      "Paste your store's address. In minutes, a ranked list of the facts worth recording, the products missing each, and where each fact already lives.",
   },
   eyebrow: "Decision Audit",
   title: "Fix the product data shoppers decide on",
@@ -38,12 +38,12 @@ export const DECISION_AUDIT: StoryContent = {
       {
         n: "01",
         meta: "You, once",
-        title: "Send one category",
-        body: "A CSV or JSON export of a single category. Product name, description, category, price, and whatever attributes you already record. Pick the shelf where you most suspect shoppers struggle.",
+        title: "Paste your store's address",
+        body: "Pick the shelf where you most suspect shoppers struggle. We read its public product pages: name, description, category, price and the facts each page states.",
       },
       {
         n: "02",
-        meta: "Us, 48 hours",
+        meta: "Us, minutes",
         title: "We measure it",
         body: "We work out how much each attribute contributes to telling your products apart today, and how much it would contribute if it were recorded everywhere. The difference is what that field is worth, measured in bits rather than guessed from clicks.",
       },
@@ -59,15 +59,15 @@ export const DECISION_AUDIT: StoryContent = {
   faq: [
     {
       q: "What exactly do I need to send you?",
-      a: "One category export as CSV or JSON, containing product name, description, category, price and any attributes you already record. Nothing else. No customer records, no order history, no access to your systems, and no code on your site. Most merchants can produce this from their PIM or platform in under an hour.",
+      a: "Your store's address and the category to test. Nothing else. No customer records, no order history, no access to your systems, and no code on your site. We read only the public product pages any shopper or AI agent can see.",
     },
     {
       q: "Do I need a technical coordinator to use the product?",
-      a: "No. One person to produce the export, and whoever owns merchandising for the walkthrough. No engineering time, because nothing is being installed.",
+      a: "No. Anyone can paste the address, and whoever owns merchandising reads the result. No engineering time, because nothing is being installed.",
     },
     {
       q: "How long does it take to receive the result?",
-      a: "48 hours from receiving the file. The measurement itself is fast; the time is in reading your taxonomy properly so the attributes we score are the ones your category actually uses.",
+      a: "Minutes. We read a sample of your product pages in the category, judge each against what shoppers need to decide, and show the result as it comes in.",
     },
   ],
 
@@ -85,7 +85,7 @@ export const DECISION_AUDIT_VI: StoryContent = {
   meta: {
     title: "Kiểm tra dữ liệu sản phẩm: thuộc tính thiếu cần sửa",
     description:
-      "Gửi một tệp xuất ngành hàng. Trong 48 giờ, nhận danh sách xếp hạng các thuộc tính đáng ghi, sản phẩm còn thiếu, và nơi từng dữ kiện đang nằm.",
+      "Dán địa chỉ cửa hàng của bạn. Trong vài phút, nhận danh sách xếp hạng các thông tin đáng ghi, những sản phẩm còn thiếu, và nơi từng dữ kiện đang nằm.",
   },
   eyebrow: "Decision Audit",
   title: "Sửa đúng dữ liệu sản phẩm mà người mua dựa vào để quyết định",
@@ -108,12 +108,12 @@ export const DECISION_AUDIT_VI: StoryContent = {
       {
         n: "01",
         meta: "Bạn, một lần",
-        title: "Gửi một ngành hàng",
-        body: "Một tệp CSV hoặc JSON của một ngành hàng. Tên sản phẩm, mô tả, ngành hàng, giá, và bất kỳ thuộc tính nào bạn đã ghi. Hãy chọn nhóm hàng bạn nghi ngờ người mua gặp khó nhất.",
+        title: "Dán địa chỉ cửa hàng",
+        body: "Hãy chọn nhóm hàng bạn nghi ngờ người mua gặp khó nhất. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, ngành hàng, giá và những thông tin mỗi trang nêu ra.",
       },
       {
         n: "02",
-        meta: "Chúng tôi, 48 giờ",
+        meta: "Chúng tôi, vài phút",
         title: "Chúng tôi đo",
         body: "Chúng tôi tính xem mỗi thuộc tính hiện đóng góp bao nhiêu vào việc phân biệt các sản phẩm của bạn, và sẽ đóng góp bao nhiêu nếu được ghi ở mọi sản phẩm. Chênh lệch đó là giá trị của trường ấy, đo bằng bit chứ không đoán từ lượt nhấp.",
       },
@@ -129,15 +129,15 @@ export const DECISION_AUDIT_VI: StoryContent = {
   faq: [
     {
       q: "Chính xác thì tôi cần gửi gì cho các bạn?",
-      a: "Một tệp xuất ngành hàng dạng CSV hoặc JSON, gồm tên sản phẩm, mô tả, ngành hàng, giá và bất kỳ thuộc tính nào bạn đã ghi. Không cần gì thêm. Không hồ sơ khách hàng, không lịch sử đơn hàng, không quyền truy cập hệ thống, và không đoạn mã nào trên website của bạn. Phần lớn nhà bán tạo được tệp này từ PIM hoặc nền tảng của mình trong chưa đầy một giờ.",
+      a: "Địa chỉ cửa hàng và ngành hàng cần kiểm tra. Không cần gì thêm. Không hồ sơ khách hàng, không lịch sử đơn hàng, không quyền truy cập hệ thống, và không đoạn mã nào trên website của bạn. Chúng tôi chỉ đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được.",
     },
     {
       q: "Chúng tôi có cần một đầu mối kỹ thuật để dùng sản phẩm không?",
-      a: "Không. Một người để tạo tệp xuất, và người phụ trách trưng bày hàng hoá cho buổi rà soát. Không tốn thời gian của đội kỹ thuật, vì không có gì được cài đặt cả.",
+      a: "Không. Ai cũng có thể dán địa chỉ, và người phụ trách trưng bày hàng hoá đọc kết quả. Không tốn thời gian của đội kỹ thuật, vì không có gì được cài đặt cả.",
     },
     {
       q: "Bao lâu thì chúng tôi nhận được kết quả?",
-      a: "48 giờ kể từ khi nhận được tệp. Bản thân phép đo rất nhanh; thời gian nằm ở việc đọc kỹ hệ phân loại của bạn, để các thuộc tính chúng tôi chấm đúng là những thuộc tính ngành hàng của bạn thực sự dùng.",
+      a: "Vài phút. Chúng tôi đọc một mẫu các trang sản phẩm trong ngành hàng, đánh giá từng trang theo những gì người mua cần để quyết định, và hiển thị kết quả ngay khi có.",
     },
   ],
 

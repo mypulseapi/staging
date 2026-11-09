@@ -6,7 +6,7 @@ export const DECISION_VERIFICATION: StoryContent = {
   meta: {
     title: "Decision Verification: verify product data fixes",
     description:
-      "Re-export the repaired catalogue and we recompute the same measurement, so you can show exactly what moved. No traffic, no waiting, no test to design.",
+      "Rescan the repaired pages and we recompute the same measurement, so you can show exactly what moved. No traffic, no waiting, no test to design.",
   },
   eyebrow: "Decision Verification",
   title: "Verify every fix against what shoppers need",
@@ -32,7 +32,7 @@ export const DECISION_VERIFICATION: StoryContent = {
       {
         n: "01",
         meta: "You",
-        title: "Re-export the category",
+        title: "Rescan the category",
         body: "The same shelf, with whatever your team managed to populate. It does not need to be finished; partial repairs measure fine and often tell you where to stop.",
       },
       {
@@ -106,7 +106,7 @@ export const DECISION_VERIFICATION_VI: StoryContent = {
   meta: {
     title: "Decision Verification: xác minh dữ liệu đã sửa",
     description:
-      "Xuất lại danh mục đã sửa và chúng tôi chạy lại đúng phép đo đó, để bạn chỉ rõ chính xác điều gì đã dịch chuyển. Không cần lưu lượng, không phải chờ đợi.",
+      "Quét lại các trang đã sửa và chúng tôi chạy lại đúng phép đo đó, để bạn chỉ rõ chính xác điều gì đã dịch chuyển. Không cần lưu lượng, không phải chờ đợi.",
   },
   eyebrow: "Decision Verification",
   title: "Kiểm chứng mọi thay đổi theo đúng thứ người mua cần",
@@ -131,7 +131,7 @@ export const DECISION_VERIFICATION_VI: StoryContent = {
       {
         n: "01",
         meta: "Bạn",
-        title: "Xuất lại ngành hàng",
+        title: "Quét lại ngành hàng",
         body: "Cùng kệ hàng đó, với những gì đội của bạn điền được. Không cần hoàn tất; sửa một phần vẫn đo tốt và thường cho biết nên dừng ở đâu.",
       },
       {

@@ -191,7 +191,7 @@ export const MERCHANDISING_STUDIO: ChapterContent = {
 
   cta: {
     title: "The catalogue work comes first anyway.",
-    body: "The console is most useful once the shelf underneath it can support decisions. That starts with one category export and no integration at all.",
+    body: "The console is most useful once the shelf underneath it can support decisions. That starts with your store's address and no integration at all.",
     label: "Request a Decision Audit",
     href: "/contact",
     note: "If overrides are a hard requirement, tell us on the call and we will say where that leaves us.",
@@ -375,7 +375,7 @@ export const MERCHANDISING_STUDIO_VI: ChapterContent = {
 
   cta: {
     title: "Việc trên danh mục dù sao cũng đến trước.",
-    body: "Bảng điều khiển hữu ích nhất khi kệ hàng bên dưới nó đã đủ sức hỗ trợ quyết định. Việc đó bắt đầu bằng một tệp xuất ngành hàng và không cần tích hợp gì cả.",
+    body: "Bảng điều khiển hữu ích nhất khi kệ hàng bên dưới nó đã đủ sức hỗ trợ quyết định. Việc đó bắt đầu bằng địa chỉ cửa hàng của bạn và không cần tích hợp gì cả.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Nếu quyền ghi đè là yêu cầu bắt buộc, hãy nói trong cuộc gọi và chúng tôi sẽ cho biết điều đó đặt chúng ta ở đâu.",

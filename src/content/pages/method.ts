@@ -165,7 +165,7 @@ export const METHOD: StoryContent = {
 
   cta: {
     title: "Run it against your own shelf.",
-    body: "The method is only interesting if it says something about your catalogue. One category export is enough to find out.",
+    body: "The method is only interesting if it says something about your catalogue. Your store's address is enough to find out.",
     label: "Request a Decision Audit",
     href: "/contact",
   },
@@ -338,7 +338,7 @@ export const METHOD_VI: StoryContent = {
 
   cta: {
     title: "Chạy thử trên chính kệ hàng của bạn.",
-    body: "Phương pháp chỉ thú vị khi nó nói được điều gì đó về danh mục của bạn. Một tệp xuất ngành hàng là đủ để biết.",
+    body: "Phương pháp chỉ thú vị khi nó nói được điều gì đó về danh mục của bạn. Địa chỉ cửa hàng của bạn là đủ để biết.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
   },

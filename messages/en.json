@@ -70,7 +70,7 @@
   "home": {
     "hero": {
       "title": "Your catalogue can't<br></br>answer the question<br></br>your shoppers are asking.",
-      "description": "PULSE measures whether your product data is ready to support the decisions your shoppers are trying to make, ranked, in your own catalogue, in 48 hours. Then it decides what to show, and when one more question is worth their time.",
+      "description": "PULSE measures whether your product pages are ready to support the decisions your shoppers are trying to make, ranked, on your own store, in minutes. Then it decides what to show, and when one more question is worth their time.",
       "ctaPrimary": "Request a Decision Audit",
       "ctaSecondary": "See how we measured it",
       "illustrationAlt": ""
@@ -87,8 +87,8 @@
       "body": "Personalisation sold on top of a catalogue that records nothing is personalisation that cannot work. We start one step earlier than everyone else.",
       "s1": {
         "title": "Decision Audit",
-        "body": "Send one catalogue export. We rank every attribute by how much deciding power it carries today, and how much it would carry if it were recorded everywhere. The gap is what the missing data costs you.",
-        "meta": "48 hours · no code · product data only"
+        "body": "Paste your store's address. We rank every fact by how much deciding power it carries today, and how much it would carry if it were stated everywhere. The gap is what the missing data costs you.",
+        "meta": "Minutes · no code · public pages only"
       },
       "s2": {
         "title": "You fix what it points at",
@@ -184,8 +184,8 @@
       ]
     },
     "finalCta": {
-      "title": "Send one category.<br></br>Get the audit in <accent>48 hours.</accent>",
-      "description": "Pick the shelf where you most suspect shoppers struggle. A catalogue export is all we need, no code, no tag on your site, no customer data. You'll get the ranked findings and a 30-minute walkthrough.",
+      "title": "Paste your store's address.<br></br>Get the audit in <accent>minutes.</accent>",
+      "description": "Pick the shelf where you most suspect shoppers struggle. Your store's address is all we need, no code, no tag on your site, no customer data. You'll get the ranked findings, and a 30-minute walkthrough if you want one.",
       "ctaPrimary": "Request a Decision Audit",
       "ctaSecondary": "Read the documentation",
       "illustrationAlt": ""
@@ -308,14 +308,14 @@
   "contact": {
     "meta": {
       "title": "Contact Pulse: request a product data audit",
-      "description": "Send one category export and get back a ranked list of what to record first, inside 48 hours. No code, no tag, no customer data and no obligation.",
+      "description": "Paste your store's address and get back a ranked list of what to record first, in minutes. No code, no tag, no customer data and no obligation.",
       "ogTitle": "Contact Pulse: request a product data audit",
-      "ogDescription": "Send one category export and get back a ranked list of what to record first, inside 48 hours. No code, no tag, no customer data and no obligation."
+      "ogDescription": "Paste your store's address and get back a ranked list of what to record first, in minutes. No code, no tag, no customer data and no obligation."
     },
     "badge": "Request a Decision Audit",
     "title": "Send one catalogue.",
-    "titleHighlight": "Get the findings in 48 hours.",
-    "description": "Pick the category where you most suspect shoppers struggle. We need a product export, no code, no tag on your site, no customer data, and we come back with what your catalogue cannot currently tell anyone.",
+    "titleHighlight": "Get the findings in minutes.",
+    "description": "Pick the category where you most suspect shoppers struggle. We read your public product pages, no code, no tag on your site, no customer data, and come back with what your pages cannot currently tell anyone.",
     "form": {
       "title": "Send us a Message",
       "name": "Your Name",
@@ -337,11 +337,7 @@
       "and": "and",
       "termsOfService": "Terms of Service",
       "apply": "apply.",
-      "sector": "What do you sell?",
-      "catalogue": "Catalogue export (optional)",
-      "catalogueHint": "CSV, JSON or a spreadsheet, up to 15MB. One category is enough. Send it now and we can start without a second email.",
-      "catalogueType": "Please attach a CSV, JSON or spreadsheet file",
-      "catalogueSize": "File must be smaller than {mb}MB"
+      "sector": "What do you sell?"
     },
     "inquiryTypes": {
       "sales": "Sales Inquiry",
@@ -372,11 +368,11 @@
       "items": [
         {
           "question": "How long does the first audit take?",
-          "answer": "Forty-eight hours from the moment your export lands. There is nothing to integrate first, because the audit reads a file rather than your website. Most teams get the export out of their PIM or platform in under an hour."
+          "answer": "Minutes. There is nothing to integrate first: paste your store's address, and we read the public product pages any shopper or AI agent can see."
         },
         {
           "question": "Is the first audit really free?",
-          "answer": "Yes. One category, one export, no account and no card. We would rather you judged the method on your own products than on somebody else's case study. What comes after is priced per cycle, and nobody has to decide that on day one."
+          "answer": "Yes. One category, your store's address, no account and no card. We would rather you judged the method on your own products than on somebody else's case study. What comes after is priced per cycle, and nobody has to decide that on day one."
         },
         {
           "question": "How quickly will someone reply?",
@@ -384,7 +380,7 @@
         },
         {
           "question": "Do you work with agencies and consultants?",
-          "answer": "Yes. We are building a partner programme for agencies, consultants and systems integrators who run catalogue work for their clients, and we are talking to the first partners now. An audit takes the same single export whether it comes from you or from your client. Write to partners@thepulseapi.com and tell us whose catalogue it is."
+          "answer": "Yes. We are building a partner programme for agencies, consultants and systems integrators who run catalogue work for their clients, and we are talking to the first partners now. An audit needs only the store's address, whether it is yours or your client's. Write to partners@thepulseapi.com and tell us whose store it is."
         }
       ]
     },
@@ -559,8 +555,8 @@
         "description": "The entry point. Which missing product information most limits your catalogue's ability to support buying decisions, ranked, in your own products, with the specific items listed.",
         "cta": "Request an audit",
         "features": [
-          "48 hours from receiving your file",
-          "A catalogue export is all we need, no code, no tag, no customer data",
+          "Results in minutes",
+          "Your store's address is all we need, no code, no tag, no customer data",
           "Ranked attribute list with the products affected",
           "What we could already recover from your existing titles",
           "Shelf-level coverage, which categories can support discovery today",
@@ -603,7 +599,7 @@
         },
         {
           "question": "What does the audit actually cost me if it finds nothing?",
-          "answer": "One catalogue export, and nothing else: the audit is free for one category. If it says your catalogue is fine, it says so, and you have learned that discovery is not your bottleneck at no cost. That is a useful answer."
+          "answer": "Your store's address, and nothing else: the audit is free for one category. If it says your pages are fine, it says so, and you have learned that discovery is not your bottleneck at no cost. That is a useful answer."
         },
         {
           "question": "We already have search and recommendations. Does this replace them?",
@@ -626,7 +622,7 @@
     "cta": {
       "title": "Start with one category.",
       "titleHighlight": "The one where shoppers struggle.",
-      "description": "Send a catalogue export and we will come back within 48 hours with what your products cannot currently tell anyone.",
+      "description": "Paste your store's address and in minutes you will see what your products cannot currently tell anyone.",
       "button": "Request a Decision Audit"
     }
   },
@@ -639,13 +635,13 @@
     "metricLabel": "what we can show today",
     "viewPricing": "See the business model",
     "anyTitle": "Your sector is not on this list?",
-    "anyBody": "The audit reads product data and nothing else, so the method does not change with your sector. What changes is which attributes matter, and that is the thing we measure rather than assume. Send one category and we will tell you whether it is worth your time.",
+    "anyBody": "The audit reads your public product pages and nothing else, so the method does not change with your sector. What changes is which facts matter, and that is the thing we measure rather than assume. Paste your store's address and see whether it is worth your time.",
     "anyCta": "Request a Decision Audit",
     "meta": {
       "title": "Product data solutions for every category",
-      "description": "Decision Audits for ecommerce, marketplaces, B2B distribution, shopping feeds, travel and AI shopping agents. One category export, ranked findings in 48 hours.",
+      "description": "Decision Audits for ecommerce, marketplaces, B2B distribution, shopping feeds, travel and AI shopping agents. Your store's address, ranked findings in minutes.",
       "ogTitle": "Product data solutions for every category",
-      "ogDescription": "Decision Audits for ecommerce, marketplaces, B2B distribution, shopping feeds, travel and AI shopping agents. One category export, ranked findings in 48 hours."
+      "ogDescription": "Decision Audits for ecommerce, marketplaces, B2B distribution, shopping feeds, travel and AI shopping agents. Your store's address, ranked findings in minutes."
     }
   },
   "errors": {
@@ -670,9 +666,9 @@
   "integrations": {
     "meta": {
       "title": "Integrations: connect Pulse to your platform",
-      "description": "Pulse reads a CSV or JSON category export and hands back a ranked repair list. The optional runtime is one script tag alongside your existing stack.",
+      "description": "Pulse reads your store's public product pages and hands back a ranked repair list. The optional runtime is one script tag alongside your existing stack.",
       "ogTitle": "Integrations: connect Pulse to your platform",
-      "ogDescription": "Pulse reads a CSV or JSON category export and hands back a ranked repair list. The optional runtime is one script tag alongside your existing stack."
+      "ogDescription": "Pulse reads your store's public product pages and hands back a ranked repair list. The optional runtime is one script tag alongside your existing stack."
     },
     "title": "Ecommerce integrations for Pulse",
     "description": "Connect Pulse with your existing tech stack. Native integrations for all major platforms, plus flexible APIs for custom setups.",
@@ -839,7 +835,7 @@
     "cta2": {
       "title": "See it against",
       "titleHighlight": "your own catalogue.",
-      "description": "The audit runs on a product export alone. No integration, no code, no customer data, and the finding is yours whether or not you ever work with us again.",
+      "description": "The audit needs only your store's address. No integration, no code, no customer data, and the finding is yours whether or not you ever work with us again.",
       "button": "Request a Decision Audit"
     }
   },
@@ -1034,9 +1030,9 @@
   "gdpr": {
     "meta": {
       "title": "GDPR compliance at Pulse and your data rights",
-      "description": "The audit runs on product data alone. No customer records, no order history, no profiles, and deletion of a submitted catalogue export on request.",
+      "description": "The audit reads public product pages alone. No customer records, no order history, no shopper profiles, and anything you send us is deleted on request.",
       "ogTitle": "GDPR compliance at Pulse and your data rights",
-      "ogDescription": "The audit runs on product data alone. No customer records, no order history, no profiles, and deletion of a submitted catalogue export on request."
+      "ogDescription": "The audit reads public product pages alone. No customer records, no order history, no shopper profiles, and anything you send us is deleted on request."
     },
     "title": "GDPR compliance at Pulse",
     "description": "Pulse is committed to protecting the privacy rights of individuals in the European Union under the General Data Protection Regulation (GDPR).",
@@ -1141,8 +1137,8 @@
     "problemsTitle": "What usually goes wrong in {sector}",
     "stepsTitle": "What we do about it",
     "stepsBody": "Three things, and only the first one needs anything from you.",
-    "step1Title": "Send one category",
-    "step1Body": "A CSV or JSON export of a single category. Product name, description, category, price, and whatever attributes you already record.",
+    "step1Title": "Paste your store's address",
+    "step1Body": "Pick one category. We read its public product pages: name, description, category, price and the facts each page states.",
     "step2Title": "We rank what to record first",
     "step2Body": "Every missing attribute scored by how much recording it would change what a buyer in your sector can decide, with the affected products attached.",
     "step3Title": "You fix it, then we verify",
@@ -1151,7 +1147,7 @@
     "useCasesTitle": "Where this shows up in your catalogue",
     "integrationEyebrow": "What it takes",
     "integrationTitle": "What we need from you",
-    "needCsv": "One category export",
+    "needCsv": "Your store's address",
     "needNoCode": "No code",
     "needNoTag": "No tag on your site",
     "needNoCustomerData": "No customer data",
@@ -1165,7 +1161,7 @@
     "provenanceLabel": "Where it usually already lives:",
     "faqEyebrow": "Questions from this sector",
     "faqTitle": "What {sector} teams ask us",
-    "metricLabel": "from one category export",
+    "metricLabel": "from your store's address",
     "contextEyebrow": "The market",
     "contextTitle": "What {sector} looks like right now",
     "chartTitle": "Attribute coverage on a typical {sector} catalogue",

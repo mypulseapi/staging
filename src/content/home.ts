@@ -209,15 +209,15 @@ export const STEPS = {
   items: [
     {
       n: "01",
-      title: "Send one category",
-      body: "A CSV or JSON export. Product name, description, category, price, and whatever attributes you already record. No code, no tag, no access to your systems.",
+      title: "Paste your store's address",
+      body: "We read your public product pages: name, description, category, price and the facts each page states. No code, no tag, no access to your systems.",
       meta: "You do this once",
     },
     {
       n: "02",
       title: "Get the Decision Audit",
-      body: "Within 48 hours: the ranked list of what to record first, the specific products missing each field, where each missing fact actually lives, and your decision-readiness number.",
-      meta: "48 hours",
+      body: "In minutes: the ranked list of what to record first, the specific products missing each fact, where each missing fact actually lives, and your decision-readiness number.",
+      meta: "Minutes",
     },
     {
       n: "03",
@@ -289,7 +289,7 @@ export const PRIVACY = {
     },
     {
       title: "Deleted on request",
-      body: "Including the catalogue export itself, at any point, on request.",
+      body: "Including anything you send us, at any point, on request.",
     },
   ],
 } as const;
@@ -351,8 +351,8 @@ export const REASONS = {
       body: "Scored against your category's buying criteria, not a generic completeness rule.",
     },
     {
-      label: "48 hours",
-      body: "One category export in, a ranked repair list back, two days later.",
+      label: "Minutes",
+      body: "Your store's address in, a ranked repair list back, minutes later.",
     },
     {
       label: "Real time",
@@ -546,7 +546,7 @@ export const blindSpot = (l: string) =>
  * ------------------------------------------------------------------ */
 const MID_CTA_EN = {
   question: "Curious where your catalogue lands?",
-  body: "One category export. A ranked list of what to fix, in 48 hours.",
+  body: "Your store's address. A ranked list of what to fix, in minutes.",
   label: "Request a Decision Audit",
   href: "/contact",
   note: "No code. No tag. No customer data.",
@@ -554,7 +554,7 @@ const MID_CTA_EN = {
 
 const MID_CTA_VI: typeof MID_CTA_EN = {
   question: "Muốn biết danh mục của bạn đang ở đâu?",
-  body: "Một tệp xuất ngành hàng. Danh sách xếp hạng những gì cần sửa, trong 48 giờ.",
+  body: "Địa chỉ cửa hàng của bạn. Danh sách xếp hạng những gì cần sửa, trong vài phút.",
   label: "Yêu cầu Decision Audit",
   href: "/contact",
   note: "Không mã nguồn. Không thẻ theo dõi. Không dữ liệu khách hàng.",
@@ -689,8 +689,8 @@ const CHAIN_EN = {
   usLane: {
     eyebrow: "The Decision Audit",
     title: "Computes the break point before a single session runs.",
-    body: "Where the chain breaks is a property of your catalogue, not of your visitors, so it can be measured from an export. That is why this works on a new category, a new market or a launch range with no history at all.",
-    needs: "Needs one CSV. Works on day one, with zero traffic.",
+    body: "Where the chain breaks is a property of your catalogue, not of your visitors, so it can be measured from your public pages. That is why this works on a new category, a new market or a launch range with no history at all.",
+    needs: "Needs your store's address. Works on day one, with zero traffic.",
   },
 } as const;
 
@@ -716,8 +716,8 @@ const CHAIN_VI: Widen<typeof CHAIN_EN> = {
   usLane: {
     eyebrow: "Decision Audit",
     title: "Tính ra điểm đứt gãy trước cả khi có một phiên truy cập nào.",
-    body: "Chỗ chuỗi đứt là thuộc tính của danh mục chứ không phải của khách truy cập, nên đo được từ một tệp xuất. Vì vậy cách này chạy được trên một ngành hàng mới, một thị trường mới, hay một dòng hàng vừa ra mắt chưa có lịch sử gì.",
-    needs: "Cần một tệp CSV. Chạy được ngay ngày đầu, không cần lưu lượng.",
+    body: "Chỗ chuỗi đứt là thuộc tính của danh mục chứ không phải của khách truy cập, nên đo được từ các trang công khai của bạn. Vì vậy cách này chạy được trên một ngành hàng mới, một thị trường mới, hay một dòng hàng vừa ra mắt chưa có lịch sử gì.",
+    needs: "Cần địa chỉ cửa hàng. Chạy được ngay ngày đầu, không cần lưu lượng.",
   },
 };
 
@@ -764,7 +764,7 @@ const VERIFY_EN = {
     title: "Recompute the catalogue",
     duration: "Same week",
     beats: [
-      "Re-export the repaired category",
+      "Rescan the repaired category",
       "Run the identical measurement",
       "Read the difference, attribute by attribute",
     ],
@@ -848,7 +848,7 @@ const MONITOR_EN = {
   causesOut: "-9",
   causesOutLabel: "Readiness, one quarter",
   costSteps: [
-    { when: "Week 1", cost: "One export to remap. Nobody to ask." },
+    { when: "Week 1", cost: "A few products to fix. Nobody to ask." },
     { when: "Month 1", cost: "A backlog item, done inside a sprint." },
     { when: "Month 3", cost: "A project, and a conversation about it." },
     {
@@ -883,7 +883,7 @@ const MONITOR_VI: Widen<typeof MONITOR_EN> = {
   causesOut: "-9",
   causesOutLabel: "Mức sẵn sàng, một quý",
   costSteps: [
-    { when: "Tuần 1", cost: "Một tệp xuất cần ánh xạ lại. Không phải hỏi ai." },
+    { when: "Tuần 1", cost: "Vài sản phẩm cần sửa. Không phải hỏi ai." },
     {
       when: "Tháng 1",
       cost: "Một việc trong hàng đợi, xong trong một sprint.",

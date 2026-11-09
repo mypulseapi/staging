@@ -59,12 +59,12 @@
       "vi": "Bạn"
     },
     "step-1-title": {
-      "en": "Send one category",
-      "vi": "Gửi một ngành hàng"
+      "en": "Paste your store's address",
+      "vi": "Dán địa chỉ cửa hàng"
     },
     "step-1-body": {
-      "en": "Provide a CSV or JSON file containing product names, descriptions, categories, prices, and existing attributes. Choose a category where shoppers struggle to find the right product.",
-      "vi": "Cung cấp một tệp CSV hoặc JSON chứa tên sản phẩm, mô tả, danh mục, giá và các thuộc tính hiện có. Hãy chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp."
+      "en": "Paste your store's address and choose a category where shoppers struggle to find the right product. We read the public product pages: names, descriptions, prices and the facts each one states.",
+      "vi": "Dán địa chỉ cửa hàng và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra."
     },
     "step-2-label": {
       "en": "Us",
@@ -75,8 +75,8 @@
       "vi": "Chúng tôi đo nó"
     },
     "step-2-body": {
-      "en": "Within 48 hours, we measure how much each attribute helps tell products apart, and what it would be worth if recorded across the category, in bits rather than clicks.",
-      "vi": "Trong vòng 48 giờ, chúng tôi đo xem mỗi thuộc tính giúp phân biệt sản phẩm đến đâu, và nó sẽ đáng giá bao nhiêu nếu được ghi nhận trên toàn ngành hàng, tính bằng bit chứ không phải bằng lượt nhấp."
+      "en": "In minutes, we measure how much each fact helps tell products apart, and what it would be worth if stated across the category, in bits rather than clicks.",
+      "vi": "Trong vài phút, chúng tôi đo xem mỗi thông tin giúp phân biệt sản phẩm đến đâu, và nó sẽ đáng giá bao nhiêu nếu được nêu trên toàn ngành hàng, tính bằng bit chứ không phải bằng lượt nhấp."
     },
     "step-3-label": {
       "en": "Both",
@@ -95,14 +95,14 @@
       "vi": "Bản kiểm tra hoạt động thế nào?"
     },
     "text-11": {
-      "en": "You: Send one category. Provide a CSV or JSON file containing product names, descriptions, categories, prices, and existing attributes. Choose a category where shoppers struggle to find the right product. Us: We measure it. Within 48 hours, we measure how much each attribute helps tell products apart, and what it would be worth if recorded across the category, in bits rather than clicks. Both: We walk you through it. Receive a ranked list of attributes and supporting files. We walk you through the findings and discuss what it would take to act on them.",
-      "vi": "Bạn: Gửi một ngành hàng. Cung cấp tệp CSV hoặc JSON gồm tên sản phẩm, mô tả, ngành hàng, giá và các thuộc tính hiện có. Chọn ngành hàng mà người mua khó tìm đúng sản phẩm. Chúng tôi: Đo lường. Trong 48 giờ, chúng tôi đo mỗi thuộc tính giúp phân biệt sản phẩm đến mức nào, và nó đáng giá bao nhiêu nếu được ghi trên cả ngành hàng, tính bằng bit chứ không phải lượt nhấp. Cả hai: Cùng xem kết quả. Nhận danh sách thuộc tính đã xếp hạng và các tệp đi kèm. Chúng tôi giải thích kết quả và bàn về những gì cần để hành động."
+      "en": "You: Paste your store's address. Paste your store's address and choose a category where shoppers struggle to find the right product. We read the public product pages: names, descriptions, prices and the facts each one states. Us: We measure it. In minutes, we measure how much each fact helps tell products apart, and what it would be worth if stated across the category, in bits rather than clicks. Both: We walk you through it. Receive a ranked list of attributes and supporting files. We walk you through the findings and discuss what it would take to act on them.",
+      "vi": "Bạn: Dán địa chỉ cửa hàng. Dán địa chỉ cửa hàng và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra. Chúng tôi: Đo lường. Trong vài phút, chúng tôi đo xem mỗi thông tin giúp phân biệt sản phẩm đến đâu, và nó sẽ đáng giá bao nhiêu nếu được nêu trên toàn ngành hàng, tính bằng bit chứ không phải bằng lượt nhấp. Cả hai: Cùng xem kết quả. Nhận danh sách thuộc tính đã xếp hạng và các tệp đi kèm. Chúng tôi giải thích kết quả và bàn về những gì cần để hành động."
     }
   },
   "decision-monitor/decision-monitor-gap-grows": {
     "row-1-note": {
-      "en": "One export to remap. Nobody to ask.",
-      "vi": "Một bản xuất cần ánh xạ lại. Không phải hỏi ai."
+      "en": "A few products to fix. Nobody to ask.",
+      "vi": "Vài sản phẩm cần sửa. Không phải hỏi ai."
     },
     "row-2-note": {
       "en": "A backlog item, done inside a sprint.",
@@ -155,8 +155,8 @@
       "vi": "Đặt nhịp chạy"
     },
     "step-1-body": {
-      "en": "Weekly or monthly, matched to how often your catalogue changes. It reads the same export the audit read, so there is nothing new to build and no integration to maintain.",
-      "vi": "Hằng tuần hoặc hằng tháng, khớp với tần suất danh mục của bạn thay đổi. Nó đọc đúng bản xuất mà bản kiểm tra đã đọc, nên không có gì mới phải xây và không có tích hợp nào phải bảo trì."
+      "en": "Weekly or monthly, matched to how often your catalogue changes. It rescans the same pages the audit read, so there is nothing new to build and no integration to maintain.",
+      "vi": "Hằng tuần hoặc hằng tháng, khớp với tần suất danh mục của bạn thay đổi. Nó quét lại đúng các trang mà bản kiểm tra đã đọc, nên không có gì mới phải xây và không có tích hợp nào phải bảo trì."
     },
     "step-2-label": {
       "en": "Ongoing",
@@ -187,8 +187,8 @@
       "vi": "Thiết lập một lần, rồi được báo khi điều đó quan trọng"
     },
     "text-11": {
-      "en": "Once: Set the cadence. Weekly or monthly, matched to how often your catalogue changes. It reads the same export the audit read, so there is nothing new to build and no integration to maintain. Ongoing: Monitor re-measures. The same method on every run, so the numbers are comparable over time rather than a series of unrelated snapshots. When it matters: You get told, with the reason. Not a dashboard you have to remember to open. An alert naming the shelf, the attribute and what caused the drop.",
-      "vi": "Một lần: Đặt nhịp. Hằng tuần hoặc hằng tháng, theo mức danh mục của bạn thay đổi. Nó đọc đúng tệp xuất mà bản kiểm tra đã đọc, nên không có gì mới phải xây và không có tích hợp nào phải duy trì. Liên tục: Monitor đo lại. Cùng một phương pháp mỗi lần chạy, nên các con số so sánh được theo thời gian thay vì là những ảnh chụp rời rạc. Khi quan trọng: Bạn được báo, kèm lý do. Không phải một bảng điều khiển bạn phải nhớ mở. Một cảnh báo nêu tên kệ hàng, thuộc tính và nguyên nhân sụt giảm."
+      "en": "Once: Set the cadence. Weekly or monthly, matched to how often your catalogue changes. It rescans the same pages the audit read, so there is nothing new to build and no integration to maintain. Ongoing: Monitor re-measures. The same method on every run, so the numbers are comparable over time rather than a series of unrelated snapshots. When it matters: You get told, with the reason. Not a dashboard you have to remember to open. An alert naming the shelf, the attribute and what caused the drop.",
+      "vi": "Một lần: Đặt nhịp. Hằng tuần hoặc hằng tháng, theo mức danh mục của bạn thay đổi. Nó quét lại đúng các trang mà bản kiểm tra đã đọc, nên không có gì mới phải xây và không có tích hợp nào phải duy trì. Liên tục: Monitor đo lại. Cùng một phương pháp mỗi lần chạy, nên các con số so sánh được theo thời gian thay vì là những ảnh chụp rời rạc. Khi quan trọng: Bạn được báo, kèm lý do. Không phải một bảng điều khiển bạn phải nhớ mở. Một cảnh báo nêu tên kệ hàng, thuộc tính và nguyên nhân sụt giảm."
     }
   },
   "decision-monitor/decision-monitor-shelf-slips": {
@@ -251,12 +251,12 @@
       "vi": "Bạn"
     },
     "step-1-title": {
-      "en": "Re-export the category",
-      "vi": "Xuất lại ngành hàng"
+      "en": "Rescan the category",
+      "vi": "Quét lại ngành hàng"
     },
     "step-1-body": {
-      "en": "Export your shelf with current progress. Partial data is saved and supported, no need to wait for a full completion.",
-      "vi": "Xuất kệ hàng của bạn với tiến độ hiện tại. Dữ liệu chưa hoàn chỉnh vẫn được lưu và hỗ trợ, không cần chờ hoàn thành toàn bộ."
+      "en": "Rescan your pages with the repairs made so far. A part-finished repair is fine, no need to wait for a full completion.",
+      "vi": "Quét lại các trang của bạn với những phần đã sửa. Sửa chưa xong vẫn được, không cần chờ hoàn thành toàn bộ."
     },
     "step-2-label": {
       "en": "Us",
@@ -287,8 +287,8 @@
       "vi": "Việc xác minh hoạt động thế nào?"
     },
     "text-11": {
-      "en": "You: Re-export the category. Export your shelf with current progress. Partial data is saved and supported, no need to wait for a full completion. Us: Comparable before & after results. We use the same method and product attributes in both audits, ensuring accurate and reliable before-and-after comparisons without changing the evaluation criteria. Both: See what has improved. Track product attribute coverage, measure catalogue gap improvements, and assess your readiness score in a clear, shareable report for business decision-makers.",
-      "vi": "Bạn: Xuất lại ngành hàng. Xuất kệ hàng với tiến độ hiện tại. Dữ liệu một phần vẫn được lưu và hỗ trợ, không cần chờ hoàn tất. Chúng tôi: Kết quả trước và sau so sánh được. Chúng tôi dùng cùng phương pháp và thuộc tính sản phẩm ở cả hai lần kiểm tra, để so sánh trước và sau chính xác, đáng tin mà không đổi tiêu chí đánh giá. Cả hai: Xem điều gì đã cải thiện. Theo dõi độ phủ thuộc tính, đo mức khoảng trống danh mục được thu hẹp, và đánh giá điểm sẵn sàng trong một báo cáo rõ ràng, dễ chia sẻ cho người ra quyết định."
+      "en": "You: Rescan the category. Rescan your pages with the repairs made so far. A part-finished repair is fine, no need to wait for a full completion. Us: Comparable before & after results. We use the same method and product attributes in both audits, ensuring accurate and reliable before-and-after comparisons without changing the evaluation criteria. Both: See what has improved. Track product attribute coverage, measure catalogue gap improvements, and assess your readiness score in a clear, shareable report for business decision-makers.",
+      "vi": "Bạn: Quét lại ngành hàng. Quét lại các trang của bạn với những phần đã sửa. Sửa chưa xong vẫn được, không cần chờ hoàn tất. Chúng tôi: Kết quả trước và sau so sánh được. Chúng tôi dùng cùng phương pháp và thuộc tính sản phẩm ở cả hai lần kiểm tra, để so sánh trước và sau chính xác, đáng tin mà không đổi tiêu chí đánh giá. Cả hai: Xem điều gì đã cải thiện. Theo dõi độ phủ thuộc tính, đo mức khoảng trống danh mục được thu hẹp, và đánh giá điểm sẵn sàng trong một báo cáo rõ ràng, dễ chia sẻ cho người ra quyết định."
     }
   },
   "decision-verification/decision-verification-meter": {
@@ -331,12 +331,12 @@
       "vi": "Danh sách sửa đã xếp hạng của bạn"
     },
     "text-2": {
-      "en": "Example data, ranked by bits of decision information: 1 Screen size, 80 of 216 products missing it, 1.067 bits; 2 Memory, 60 of 216, 1.012 bits; 3 Processor, 162 of 216, 0.747 bits; 4 Storage, 55 of 216, 0.688 bits. Back within 48 hours.",
-      "vi": "Dữ liệu ví dụ, xếp theo bit thông tin quyết định: 1 Kích thước màn hình, 80 trong 216 sản phẩm thiếu, 1,067 bit; 2 Bộ nhớ, 60 trong 216, 1,012 bit; 3 Bộ xử lý, 162 trong 216, 0,747 bit; 4 Ổ lưu trữ, 55 trong 216, 0,688 bit. Có kết quả trong 48 giờ."
+      "en": "Example data, ranked by bits of decision information: 1 Screen size, 80 of 216 products missing it, 1.067 bits; 2 Memory, 60 of 216, 1.012 bits; 3 Processor, 162 of 216, 0.747 bits; 4 Storage, 55 of 216, 0.688 bits. Back in minutes.",
+      "vi": "Dữ liệu ví dụ, xếp theo bit thông tin quyết định: 1 Kích thước màn hình, 80 trong 216 sản phẩm thiếu, 1,067 bit; 2 Bộ nhớ, 60 trong 216, 1,012 bit; 3 Bộ xử lý, 162 trong 216, 0,747 bit; 4 Ổ lưu trữ, 55 trong 216, 0,688 bit. Có kết quả trong vài phút."
     },
     "text-3": {
-      "en": "Back within 48 hours",
-      "vi": "Có kết quả trong 48 giờ"
+      "en": "Back in minutes",
+      "vi": "Có kết quả trong vài phút"
     },
     "text-4": {
       "en": "Screen size",

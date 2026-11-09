@@ -193,7 +193,7 @@ export const COMPARE: StoryContent = {
   limits: {
     heading: "Where we are the wrong tool",
     will: [
-      "Run on a catalogue export, so nothing in your existing stack has to change to try it",
+      "Run on your public product pages, so nothing in your existing stack has to change to try it",
       "Stay comparable across categories, because the unit does not depend on the shelf it measured",
       "Say plainly when your existing tooling already covers the gap, and stop there",
       "Publish the method, so your team can check a ranking rather than take it on trust",
@@ -235,7 +235,7 @@ export const COMPARE: StoryContent = {
 
   cta: {
     title: "Find out what your shelf cannot answer.",
-    body: "One category export. If everything comes back answerable, that is a useful answer too.",
+    body: "Your store's address. If everything comes back answerable, that is a useful answer too.",
     label: "Request a Decision Audit",
     href: "/contact",
   },
@@ -415,7 +415,7 @@ export const COMPARE_VI: StoryContent = {
   limits: {
     heading: "Những chỗ chúng tôi là công cụ sai",
     will: [
-      "Chạy trên một tệp xuất danh mục, nên không có gì trong hệ thống sẵn có phải thay đổi để dùng thử",
+      "Chạy trên các trang sản phẩm công khai của bạn, nên không có gì trong hệ thống sẵn có phải thay đổi để dùng thử",
       "Giữ tính so sánh giữa các ngành hàng, vì đơn vị đo không phụ thuộc vào kệ hàng đã đo",
       "Nói thẳng khi công cụ sẵn có của bạn đã lấp được khoảng trống đó, rồi dừng lại",
       "Công bố phương pháp, để đội của bạn kiểm tra được một bảng xếp hạng thay vì phải tin",
@@ -457,7 +457,7 @@ export const COMPARE_VI: StoryContent = {
 
   cta: {
     title: "Xem thử kệ hàng của bạn không trả lời được những gì.",
-    body: "Một tệp xuất ngành hàng. Nếu mọi thứ đều trả lời được, đó cũng là một câu trả lời hữu ích.",
+    body: "Địa chỉ cửa hàng của bạn. Nếu mọi thứ đều trả lời được, đó cũng là một câu trả lời hữu ích.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
   },

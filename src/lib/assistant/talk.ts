@@ -148,8 +148,8 @@ const TERMS: {
   {
     names: ["decision audit", "audit"],
     reply: (l) => ({
-      en: `The **Decision Audit** ranks the missing facts in one category of your catalogue by how many buying decisions each one costs, so your team fixes the right column first, not just the emptiest. You send a CSV to \`POST /catalog/audit\` and get the attributes back in priority order, with where each missing value already lives. [Read more](${l.catalogue}/decision-audit).`,
-      vi: `**Decision Audit** xếp hạng các thông tin còn thiếu trong một ngành hàng theo số quyết định mua mà mỗi thông tin làm mất, để đội của bạn sửa đúng cột trước chứ không chỉ cột trống nhất. Bạn gửi một tệp CSV tới \`POST /catalog/audit\` và nhận lại các thuộc tính theo thứ tự ưu tiên, kèm nơi giá trị còn thiếu đang nằm sẵn. [Xem thêm](${l.catalogue}/decision-audit).`,
+      en: `The **Decision Audit** ranks the missing facts in one category of your catalogue by how many buying decisions each one costs, so your team fixes the right column first, not just the emptiest. Paste your store's address and get the missing facts back in priority order, in minutes, with where each missing value already lives. [Read more](${l.catalogue}/decision-audit).`,
+      vi: `**Decision Audit** xếp hạng các thông tin còn thiếu trong một ngành hàng theo số quyết định mua mà mỗi thông tin làm mất, để đội của bạn sửa đúng cột trước chứ không chỉ cột trống nhất. Dán địa chỉ cửa hàng và nhận lại các thông tin còn thiếu theo thứ tự ưu tiên, trong vài phút, kèm nơi giá trị còn thiếu đang nằm sẵn. [Xem thêm](${l.catalogue}/decision-audit).`,
     }),
   },
   {
@@ -397,8 +397,8 @@ const TERMS: {
     ],
     any: true,
     reply: (l) => ({
-      en: `Pulse works with merchants in Vietnam and across Southeast Asia, starting with one category each. Search reads Vietnamese, Thai, Bahasa and English, and the catalogue products work on any export, wherever you sell. Headquarters are in Singapore, engineering in Ho Chi Minh City. [Talk to the team](${l.contact}).`,
-      vi: `Pulse làm việc với người bán ở Việt Nam và khắp Đông Nam Á, mỗi nơi bắt đầu với một ngành hàng. Tìm kiếm hiểu tiếng Việt, Thái, Bahasa và tiếng Anh, còn các sản phẩm cho danh mục dùng được với mọi bản xuất, dù bạn bán ở đâu. Trụ sở chính ở Singapore, đội kỹ thuật ở Thành phố Hồ Chí Minh. [Liên hệ đội ngũ](${l.contact}).`,
+      en: `Pulse works with merchants in Vietnam and across Southeast Asia, starting with one category each. Search reads Vietnamese, Thai, Bahasa and English, and the catalogue products read any public store, wherever you sell. Headquarters are in Singapore, engineering in Ho Chi Minh City. [Talk to the team](${l.contact}).`,
+      vi: `Pulse làm việc với người bán ở Việt Nam và khắp Đông Nam Á, mỗi nơi bắt đầu với một ngành hàng. Tìm kiếm hiểu tiếng Việt, Thái, Bahasa và tiếng Anh, còn các sản phẩm cho danh mục đọc được mọi cửa hàng công khai, dù bạn bán ở đâu. Trụ sở chính ở Singapore, đội kỹ thuật ở Thành phố Hồ Chí Minh. [Liên hệ đội ngũ](${l.contact}).`,
     }),
   },
   {

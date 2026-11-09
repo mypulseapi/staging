@@ -70,7 +70,7 @@
   "home": {
     "hero": {
       "title": "Danh mục của bạn<br></br>không trả lời được câu hỏi<br></br>khách hàng đang đặt ra.",
-      "description": "PULSE đo xem dữ liệu sản phẩm của bạn đã đủ để hỗ trợ những quyết định khách hàng đang cố đưa ra hay chưa, xếp hạng, trên chính danh mục của bạn, trong 48 giờ. Sau đó quyết định nên hiển thị gì, và khi nào một câu hỏi nữa đáng thời gian của họ.",
+      "description": "PULSE đo xem các trang sản phẩm của bạn đã đủ để hỗ trợ những quyết định khách hàng đang cố đưa ra hay chưa, xếp hạng, trên chính cửa hàng của bạn, trong vài phút. Sau đó quyết định nên hiển thị gì, và khi nào một câu hỏi nữa đáng thời gian của họ.",
       "ctaPrimary": "Yêu cầu Decision Audit",
       "ctaSecondary": "Xem cách chúng tôi đo",
       "illustrationAlt": ""
@@ -87,8 +87,8 @@
       "body": "Cá nhân hoá đặt trên một danh mục không ghi nhận gì thì không thể hoạt động. Chúng tôi bắt đầu sớm hơn mọi người một bước.",
       "s1": {
         "title": "Decision Audit",
-        "body": "Gửi một file xuất danh mục. Chúng tôi xếp hạng từng thuộc tính theo sức mạnh ra quyết định hiện tại, và theo mức nó sẽ đạt được nếu được ghi nhận đầy đủ. Khoảng cách đó chính là cái giá của dữ liệu còn thiếu.",
-        "meta": "48 giờ · không cần code · chỉ dữ liệu sản phẩm"
+        "body": "Dán địa chỉ cửa hàng. Chúng tôi xếp hạng từng thông tin theo sức mạnh ra quyết định hiện tại, và theo mức nó sẽ đạt được nếu được nêu đầy đủ. Khoảng cách đó chính là cái giá của dữ liệu còn thiếu.",
+        "meta": "Vài phút · không cần code · chỉ trang công khai"
       },
       "s2": {
         "title": "Bạn sửa đúng chỗ báo cáo chỉ ra",
@@ -184,8 +184,8 @@
       ]
     },
     "finalCta": {
-      "title": "Gửi một ngành hàng.<br></br>Nhận báo cáo trong <accent>48 giờ.</accent>",
-      "description": "Chọn kệ hàng mà bạn nghi ngờ khách gặp khó khăn nhất. Chúng tôi chỉ cần một file xuất danh mục, không code, không gắn tag lên website, không dữ liệu khách hàng. Bạn sẽ nhận kết quả xếp hạng và một buổi trao đổi 30 phút.",
+      "title": "Dán địa chỉ cửa hàng.<br></br>Nhận báo cáo trong <accent>vài phút.</accent>",
+      "description": "Chọn kệ hàng mà bạn nghi ngờ khách gặp khó khăn nhất. Chúng tôi chỉ cần địa chỉ cửa hàng, không code, không gắn tag lên website, không dữ liệu khách hàng. Bạn sẽ nhận kết quả xếp hạng, và một buổi trao đổi 30 phút nếu bạn muốn.",
       "ctaPrimary": "Yêu cầu Decision Audit",
       "ctaSecondary": "Đọc tài liệu",
       "illustrationAlt": ""
@@ -308,14 +308,14 @@
   "contact": {
     "meta": {
       "title": "Liên hệ Pulse: yêu cầu kiểm tra dữ liệu sản phẩm",
-      "description": "Gửi một tệp xuất ngành hàng và nhận lại danh sách xếp hạng những gì cần ghi trước, trong 48 giờ. Không mã nguồn, không thẻ, không dữ liệu khách hàng.",
+      "description": "Dán địa chỉ cửa hàng và nhận lại danh sách xếp hạng những gì cần ghi trước, trong vài phút. Không mã nguồn, không thẻ, không dữ liệu khách hàng.",
       "ogTitle": "Liên hệ Pulse: yêu cầu kiểm tra dữ liệu sản phẩm",
-      "ogDescription": "Gửi một tệp xuất ngành hàng và nhận lại danh sách xếp hạng những gì cần ghi trước, trong 48 giờ. Không mã nguồn, không thẻ, không dữ liệu khách hàng."
+      "ogDescription": "Dán địa chỉ cửa hàng và nhận lại danh sách xếp hạng những gì cần ghi trước, trong vài phút. Không mã nguồn, không thẻ, không dữ liệu khách hàng."
     },
     "badge": "Yêu cầu Decision Audit",
     "title": "Gửi một danh mục.",
-    "titleHighlight": "Nhận kết quả trong 48 giờ.",
-    "description": "Chọn ngành hàng mà bạn nghi ngờ khách gặp khó khăn nhất. Chúng tôi cần một file xuất sản phẩm, không code, không gắn tag lên website, không dữ liệu khách hàng, và sẽ trả lời bạn danh mục hiện chưa nói được điều gì với ai.",
+    "titleHighlight": "Nhận kết quả trong vài phút.",
+    "description": "Chọn ngành hàng mà bạn nghi ngờ khách gặp khó khăn nhất. Chúng tôi đọc các trang sản phẩm công khai của bạn, không code, không gắn tag lên website, không dữ liệu khách hàng, và sẽ cho bạn biết các trang hiện chưa nói được điều gì với ai.",
     "form": {
       "title": "Gửi tin nhắn cho chúng tôi",
       "name": "Họ và tên",
@@ -337,11 +337,7 @@
       "and": "và",
       "termsOfService": "Điều khoản Dịch vụ",
       "apply": "của Google được áp dụng.",
-      "sector": "Bạn đang bán gì?",
-      "catalogue": "Tệp xuất danh mục (không bắt buộc)",
-      "catalogueHint": "CSV, JSON hoặc bảng tính, tối đa 15MB. Một ngành hàng là đủ. Gửi ngay bây giờ thì chúng tôi bắt đầu được mà không cần thêm một email nữa.",
-      "catalogueType": "Vui lòng đính kèm tệp CSV, JSON hoặc bảng tính",
-      "catalogueSize": "Tệp phải nhỏ hơn {mb}MB"
+      "sector": "Bạn đang bán gì?"
     },
     "inquiryTypes": {
       "sales": "Yêu cầu Bán hàng",
@@ -372,11 +368,11 @@
       "items": [
         {
           "question": "Bản kiểm tra đầu tiên mất bao lâu?",
-          "answer": "Bốn mươi tám giờ kể từ lúc tệp xuất của bạn tới nơi. Không cần tích hợp gì trước, vì bản kiểm tra đọc một tệp chứ không đọc website của bạn. Phần lớn các đội lấy được tệp xuất từ PIM hoặc nền tảng của họ trong chưa đầy một giờ."
+          "answer": "Vài phút. Không cần tích hợp gì trước: dán địa chỉ cửa hàng, và chúng tôi đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được."
         },
         {
           "question": "Bản kiểm tra đầu tiên có thực sự miễn phí không?",
-          "answer": "Có. Một ngành hàng, một tệp xuất, không cần tài khoản và không cần thẻ. Chúng tôi muốn bạn đánh giá phương pháp trên chính sản phẩm của mình hơn là trên một nghiên cứu điển hình của người khác. Phần sau đó được tính phí theo chu kỳ, và không ai phải quyết định điều đó ngay ngày đầu."
+          "answer": "Có. Một ngành hàng, địa chỉ cửa hàng của bạn, không cần tài khoản và không cần thẻ. Chúng tôi muốn bạn đánh giá phương pháp trên chính sản phẩm của mình hơn là trên một nghiên cứu điển hình của người khác. Phần sau đó được tính phí theo chu kỳ, và không ai phải quyết định điều đó ngay ngày đầu."
         },
         {
           "question": "Bao lâu thì có người trả lời?",
@@ -384,7 +380,7 @@
         },
         {
           "question": "Các bạn có làm việc với agency và đơn vị tư vấn không?",
-          "answer": "Có. Chúng tôi đang xây dựng chương trình đối tác cho các agency, đơn vị tư vấn và nhà tích hợp hệ thống đang làm công việc danh mục cho khách hàng của họ, và chúng tôi đang trao đổi với những đối tác đầu tiên. Một bản kiểm tra vẫn chỉ cần một tệp xuất, dù nó đến từ bạn hay từ khách hàng của bạn. Hãy viết cho partners@thepulseapi.com và cho chúng tôi biết đó là danh mục của ai."
+          "answer": "Có. Chúng tôi đang xây dựng chương trình đối tác cho các agency, đơn vị tư vấn và nhà tích hợp hệ thống đang làm công việc danh mục cho khách hàng của họ, và chúng tôi đang trao đổi với những đối tác đầu tiên. Một bản kiểm tra chỉ cần địa chỉ cửa hàng, dù là của bạn hay của khách hàng. Hãy viết cho partners@thepulseapi.com và cho chúng tôi biết đó là cửa hàng của ai."
         }
       ]
     },
@@ -559,8 +555,8 @@
         "description": "Điểm khởi đầu. Thông tin sản phẩm còn thiếu nào đang giới hạn nhiều nhất khả năng hỗ trợ quyết định mua của danh mục, xếp hạng, trên chính sản phẩm của bạn, kèm danh sách cụ thể.",
         "cta": "Yêu cầu audit",
         "features": [
-          "48 giờ kể từ khi nhận file",
-          "Chỉ cần một file xuất danh mục, không code, không gắn tag, không dữ liệu khách hàng",
+          "Có kết quả trong vài phút",
+          "Chỉ cần địa chỉ cửa hàng, không code, không gắn tag, không dữ liệu khách hàng",
           "Danh sách thuộc tính xếp hạng kèm sản phẩm bị ảnh hưởng",
           "Phần chúng tôi khôi phục được từ tên sản phẩm hiện có",
           "Độ phủ theo từng kệ hàng, ngành nào đủ dữ liệu để khách tìm được sản phẩm",
@@ -603,7 +599,7 @@
         },
         {
           "question": "Nếu audit không tìm ra gì thì tôi mất gì?",
-          "answer": "Một file xuất danh mục, không gì khác: bản audit miễn phí cho một ngành hàng. Nếu danh mục của bạn ổn, báo cáo sẽ nói đúng như vậy, và bạn biết được nút thắt không nằm ở khâu tìm sản phẩm mà không tốn gì. Đó là một câu trả lời có ích."
+          "answer": "Địa chỉ cửa hàng, không gì khác: bản audit miễn phí cho một ngành hàng. Nếu các trang của bạn ổn, báo cáo sẽ nói đúng như vậy, và bạn biết được nút thắt không nằm ở khâu tìm sản phẩm mà không tốn gì. Đó là một câu trả lời có ích."
         },
         {
           "question": "Chúng tôi đã có tìm kiếm và gợi ý sản phẩm. Cái này thay thế chúng à?",
@@ -626,7 +622,7 @@
     "cta": {
       "title": "Bắt đầu với một ngành hàng.",
       "titleHighlight": "Ngành mà khách gặp khó khăn nhất.",
-      "description": "Gửi một file xuất danh mục, trong 48 giờ chúng tôi sẽ cho bạn biết sản phẩm của bạn hiện chưa nói được điều gì với ai.",
+      "description": "Dán địa chỉ cửa hàng, trong vài phút bạn sẽ thấy sản phẩm của mình hiện chưa nói được điều gì với ai.",
       "button": "Yêu cầu Decision Audit"
     }
   },
@@ -652,9 +648,9 @@
   "integrations": {
     "meta": {
       "title": "Tích hợp: kết nối Pulse với nền tảng của bạn",
-      "description": "Pulse đọc một tệp CSV hoặc JSON và trả lại danh sách sửa đã xếp hạng. Bộ máy thời gian thực tuỳ chọn chỉ là một thẻ script chạy song song với hệ thống sẵn có.",
+      "description": "Pulse đọc các trang sản phẩm công khai và trả lại danh sách sửa đã xếp hạng. Bộ máy thời gian thực tuỳ chọn chỉ là một thẻ script bên cạnh hệ thống sẵn có.",
       "ogTitle": "Tích hợp: kết nối Pulse với nền tảng của bạn",
-      "ogDescription": "Pulse đọc một tệp CSV hoặc JSON và trả lại danh sách sửa đã xếp hạng. Bộ máy thời gian thực tuỳ chọn chỉ là một thẻ script chạy song song với hệ thống sẵn có."
+      "ogDescription": "Pulse đọc các trang sản phẩm công khai và trả lại danh sách sửa đã xếp hạng. Bộ máy thời gian thực tuỳ chọn chỉ là một thẻ script bên cạnh hệ thống sẵn có."
     },
     "title": "Tích hợp thương mại điện tử cho Pulse",
     "description": "Kết nối Pulse với hệ thống thương mại điện tử hiện có. Tích hợp gốc cho tất cả các nền tảng chính, cùng với API linh hoạt cho cài đặt tùy chỉnh.",
@@ -821,7 +817,7 @@
     "cta2": {
       "title": "Xem nó chạy trên",
       "titleHighlight": "danh mục của chính bạn.",
-      "description": "Bản audit chỉ cần một file xuất sản phẩm. Không tích hợp, không code, không dữ liệu khách hàng, và kết quả thuộc về bạn, dù sau đó bạn có làm việc với chúng tôi hay không.",
+      "description": "Bản audit chỉ cần địa chỉ cửa hàng. Không tích hợp, không code, không dữ liệu khách hàng, và kết quả thuộc về bạn, dù sau đó bạn có làm việc với chúng tôi hay không.",
       "button": "Yêu cầu Decision Audit"
     }
   },
@@ -1119,13 +1115,13 @@
     "metricLabel": "những gì chúng tôi chứng minh được hôm nay",
     "viewPricing": "Xem mô hình kinh doanh",
     "anyTitle": "Ngành của bạn không có trong danh sách này?",
-    "anyBody": "Bản kiểm tra chỉ đọc dữ liệu sản phẩm và không đọc gì khác, nên phương pháp không thay đổi theo ngành của bạn. Thứ thay đổi là những thuộc tính nào quan trọng, và đó chính là thứ chúng tôi đo thay vì phỏng đoán. Gửi một ngành hàng và chúng tôi sẽ cho biết việc này có đáng thời gian của bạn hay không.",
+    "anyBody": "Bản kiểm tra chỉ đọc các trang sản phẩm công khai của bạn, nên phương pháp không thay đổi theo ngành. Thứ thay đổi là những thông tin nào quan trọng, và đó chính là thứ chúng tôi đo thay vì phỏng đoán. Dán địa chỉ cửa hàng và xem việc này có đáng thời gian của bạn hay không.",
     "anyCta": "Yêu cầu Decision Audit",
     "meta": {
       "title": "Dữ liệu sản phẩm cho mọi ngành hàng",
-      "description": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Một tệp xuất, kết quả trong 48 giờ.",
+      "description": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Địa chỉ cửa hàng, kết quả trong vài phút.",
       "ogTitle": "Dữ liệu sản phẩm cho mọi ngành hàng",
-      "ogDescription": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Một tệp xuất, kết quả trong 48 giờ."
+      "ogDescription": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Địa chỉ cửa hàng, kết quả trong vài phút."
     }
   },
   "auth": {
@@ -1141,8 +1137,8 @@
     "problemsTitle": "Điều thường trục trặc trong ngành {sector}",
     "stepsTitle": "Chúng tôi làm gì với điều đó",
     "stepsBody": "Ba việc, và chỉ việc đầu tiên cần đến bạn.",
-    "step1Title": "Gửi một ngành hàng",
-    "step1Body": "Một tệp CSV hoặc JSON của một ngành hàng. Tên sản phẩm, mô tả, ngành hàng, giá, và bất kỳ thuộc tính nào bạn đã ghi.",
+    "step1Title": "Dán địa chỉ cửa hàng",
+    "step1Body": "Chọn một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, ngành hàng, giá và những thông tin mỗi trang nêu ra.",
     "step2Title": "Chúng tôi xếp hạng những gì cần ghi trước",
     "step2Body": "Mọi thuộc tính còn thiếu đều được chấm theo mức thay đổi khả năng quyết định của người mua trong ngành của bạn, kèm danh sách sản phẩm bị ảnh hưởng.",
     "step3Title": "Bạn sửa, rồi chúng tôi xác minh",
@@ -1151,7 +1147,7 @@
     "useCasesTitle": "Điều này xuất hiện ở đâu trong danh mục của bạn",
     "integrationEyebrow": "Cần những gì",
     "integrationTitle": "Chúng tôi cần gì từ bạn",
-    "needCsv": "Một tệp xuất ngành hàng",
+    "needCsv": "Địa chỉ cửa hàng của bạn",
     "needNoCode": "Không mã nguồn",
     "needNoTag": "Không thẻ theo dõi trên website",
     "needNoCustomerData": "Không dữ liệu khách hàng",
@@ -1165,7 +1161,7 @@
     "provenanceLabel": "Nơi nó thường đã nằm sẵn:",
     "faqEyebrow": "Câu hỏi từ ngành này",
     "faqTitle": "Các đội ngành {sector} hay hỏi chúng tôi điều gì",
-    "metricLabel": "từ một tệp xuất ngành hàng",
+    "metricLabel": "từ địa chỉ cửa hàng của bạn",
     "contextEyebrow": "Thị trường",
     "contextTitle": "Ngành {sector} hiện đang ra sao",
     "chartTitle": "Độ phủ thuộc tính trên một danh mục {sector} điển hình",

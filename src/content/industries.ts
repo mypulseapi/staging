@@ -163,7 +163,7 @@ const EN: Sector[] = [
         source: "Akeneo PX Pulse 2025",
       },
     ],
-    metric: "Ranked repair list in 48 hours",
+    metric: "Ranked repair list in minutes",
   },
   {
     slug: "fmcg",
@@ -215,7 +215,7 @@ const EN: Sector[] = [
         source: "Adobe Analytics",
       },
     ],
-    metric: "Ranked repair list in 48 hours",
+    metric: "Ranked repair list in minutes",
   },
   {
     slug: "technology",
@@ -320,7 +320,7 @@ const EN: Sector[] = [
         source: "Akeneo PX Pulse 2025",
       },
     ],
-    metric: "Ranked repair list in 48 hours",
+    metric: "Ranked repair list in minutes",
   },
   {
     slug: "cosmetics",
@@ -385,7 +385,7 @@ const EN: Sector[] = [
         source: "Adobe Analytics",
       },
     ],
-    metric: "Ranked repair list in 48 hours",
+    metric: "Ranked repair list in minutes",
   },
   {
     slug: "distribution",
@@ -516,7 +516,7 @@ const VI: Sector[] = [
         source: "Akeneo PX Pulse 2025",
       },
     ],
-    metric: "Danh sách sửa đã xếp hạng trong 48 giờ",
+    metric: "Danh sách sửa đã xếp hạng trong vài phút",
   },
   {
     slug: "fmcg",
@@ -568,7 +568,7 @@ const VI: Sector[] = [
         source: "Adobe Analytics",
       },
     ],
-    metric: "Danh sách sửa đã xếp hạng trong 48 giờ",
+    metric: "Danh sách sửa đã xếp hạng trong vài phút",
   },
   {
     slug: "technology",
@@ -672,7 +672,7 @@ const VI: Sector[] = [
         source: "Akeneo PX Pulse 2025",
       },
     ],
-    metric: "Danh sách sửa đã xếp hạng trong 48 giờ",
+    metric: "Danh sách sửa đã xếp hạng trong vài phút",
   },
   {
     slug: "cosmetics",
@@ -738,7 +738,7 @@ const VI: Sector[] = [
         source: "Adobe Analytics",
       },
     ],
-    metric: "Danh sách sửa đã xếp hạng trong 48 giờ",
+    metric: "Danh sách sửa đã xếp hạng trong vài phút",
   },
   {
     slug: "distribution",
