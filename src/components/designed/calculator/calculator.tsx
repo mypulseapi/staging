@@ -403,21 +403,6 @@ function Grow({
   );
 }
 
-/** Fades a sentence in again when the number it states changes as the visitor types. */
-function usePulse<E extends HTMLElement>(key: number) {
-  const el = useRef<E>(null);
-  const last = useRef(key);
-  useEffect(() => {
-    if (last.current !== key && !reduced())
-      el.current?.animate([{ opacity: 0.55 }, { opacity: 1 }], {
-        duration: 340,
-        easing: SETTLE,
-      });
-    last.current = key;
-  }, [key]);
-  return el;
-}
-
 /** Staged reveals, declared on the element: `data-in="kind delay duration"`. */
 const KEYFRAMES: Record<string, Keyframe[]> = {
   up: [
@@ -476,8 +461,6 @@ export function Calculator({
   const H = heading ? "h3" : "h4";
   const hasSpend = s.spend !== null;
   const b100 = c.base * 100;
-  const caption = usePulse<HTMLParagraphElement>(Math.round(b100 * 100));
-  const liftCaption = usePulse<HTMLParagraphElement>(Math.round(c.extraOrders));
   const real = gaps !== null;
   const audit = gaps ?? ILLUSTRATIVE;
   const cellCount = Math.min(audit.tested, MAX_CELLS);
@@ -1100,7 +1083,7 @@ export function Calculator({
                 {errors("e1")}
               </div>
               <div className={visual}>
-                <p ref={caption} className={takeaway}>
+                <p className={takeaway}>
                   <span className="block min-w-0">
                     {parts(F.pts(b100) === "1" ? t.per100One : t.per100, {
                       n: (
@@ -1252,7 +1235,7 @@ export function Calculator({
                 </div>
               </div>
               <div className={visual}>
-                <p ref={liftCaption} className={`${takeaway} text-(--a)`}>
+                <p className={`${takeaway} text-(--a)`}>
                   <span className="block min-w-0">
                     {parts(
                       Math.round(c.extraOrders) === 1 ? t.extraOne : t.extra,
