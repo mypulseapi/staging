@@ -23,6 +23,7 @@ import type {
 } from "@/lib/catalogue-test";
 import { VerdictDonut } from "./verdict-donut";
 import { DRAFT_TAG } from "./run-pipeline";
+import { TestedGapsContext } from "../calculator/calculator";
 
 /**
  * The result as one ranked list (the designer's version C, styled "Report", owner's pick C-3, 5 Nov
@@ -441,7 +442,11 @@ export function Result({
 
       {/* Every finding in one list, most products first: what, how many, and what fixes it. */}
       {findings > 0 && (
-        <section aria-labelledby="findings-title">
+        <section
+          id="findings"
+          aria-labelledby="findings-title"
+          className="scroll-mt-24"
+        >
           <h3 id="findings-title" className={h3}>
             {t("findingsTitle", { n: num(findings) })}
           </h3>
@@ -684,7 +689,16 @@ export function Result({
             of: num(teaser.tiles.productsTested),
           })}
         </p>
-        <div className="mt-4">{calculator}</div>
+        {/* The calculator's step 5 shows this run's gaps, and leads back to the findings above. */}
+        <TestedGapsContext
+          value={{
+            toFix: teaser.tiles.productsToFix,
+            tested: teaser.tiles.productsTested,
+            findingsId: findings > 0 ? "findings" : null,
+          }}
+        >
+          <div className="mt-4">{calculator}</div>
+        </TestedGapsContext>
       </section>
 
       <section aria-labelledby="cannot-title">
