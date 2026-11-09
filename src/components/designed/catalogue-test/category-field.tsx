@@ -17,7 +17,7 @@ import type { CategoryGroup } from "@/lib/catalogue-test";
  *
  * With the service's taxonomy (41 groups, ~740 categories, develop #8) the list has two levels (the
  * designer's option B, owner's pick, 6 Nov 2026): the groups A–Z with their counts, then a group's
- * own "All of" and its categories, a draft checklist tagged "Draft". Typing searches every level.
+ * own "All of" and its categories. Typing searches every level.
  * Arrows move, Enter or → opens a group, ← or the back row returns, Esc closes; leaving the field
  * keeps an exact match and otherwise the category it had.
  */
@@ -38,7 +38,6 @@ interface Choice {
   group?: string;
   /** On a group's "All of" row: how many categories it covers. */
   count?: number;
-  draft?: boolean;
 }
 /** A row in the list: a choice, a group to open, or the way back. */
 type Row =
@@ -52,7 +51,6 @@ export function CategoryField({
   categories,
   groups,
   labels,
-  draft,
   locale,
   onChange,
 }: {
@@ -64,8 +62,6 @@ export function CategoryField({
   groups: CategoryGroup[];
   /** Labels from the service, both languages; a key without one falls back to the messages. */
   labels: Record<string, { en: string; vi: string }>;
-  /** Keys whose checklist is still a first draft. */
-  draft: string[];
   locale: string;
   onChange: (c: string) => void;
 }) {
@@ -85,7 +81,6 @@ export function CategoryField({
   const label = (c: string) => labels[c]?.[lang] ?? t(`cat_${c}`);
   const byText = (a: { text: string }, b: { text: string }) =>
     a.text.localeCompare(b.text, locale);
-  const drafts = new Set(draft);
   const sortedGroups = [...groups].sort((a, b) =>
     a[lang].localeCompare(b[lang], locale),
   );
@@ -105,7 +100,6 @@ export function CategoryField({
           value: c,
           text: label(c),
           group: g[lang],
-          draft: drafts.has(c),
         }),
       )
       .sort(byText),
@@ -119,7 +113,6 @@ export function CategoryField({
             kind: "choice",
             value: c,
             text: label(c),
-            draft: drafts.has(c),
           }),
         )
         .sort(byText);
@@ -378,11 +371,6 @@ export function CategoryField({
                       </span>
                     )}
                   </span>
-                  {r.draft && (
-                    <span className="shrink-0 rounded-full border border-dashed border-line-control px-1.5 text-[0.6875rem] font-normal whitespace-nowrap text-muted">
-                      {t("draftBadge")}
-                    </span>
-                  )}
                   {r.count !== undefined && (
                     <span className="text-[0.8125rem] font-normal text-muted">
                       {r.count}

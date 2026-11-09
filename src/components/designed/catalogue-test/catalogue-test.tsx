@@ -87,7 +87,7 @@ export function CatalogueTest({
   const [unavailable, setUnavailable] = useState(false);
   // What spider can test today, from its config; laptops and monitors until it answers.
   const [categories, setCategories] = useState<string[]>(["laptop", "monitor"]);
-  // All 780 categories of the canonical taxonomy, grouped, labelled and marked draft by the service.
+  // All 780 categories of the canonical taxonomy, grouped and labelled by the service.
   const [taxonomy, setTaxonomy] = useState<
     Pick<TestConfig, "groups" | "labels" | "draft">
   >({});
@@ -299,9 +299,8 @@ export function CatalogueTest({
   };
 
   const status = state?.status ?? (id ? "queued" : null);
-  // The tested category in the page's language, from the service's labels (develop #8), and whether
-  // its checklist is still a first draft: a drafted checklist runs and reports, and says so
-  // (catalogue-categories Q5), as a tag and one sentence (the designer's draft notice, owner, 6 Nov 2026).
+  // The tested category in the page's language, from the service's labels (develop #8). No category
+  // is shown as a draft (owner, 9 Nov 2026); `draft` only picks the service's own words below.
   const categoryLabel = state?.category
     ? (taxonomy.labels?.[state.category]?.[locale === "vi" ? "vi" : "en"] ??
       (labels[`cat_${state.category}`] ? t(`cat_${state.category}`) : null))
@@ -355,7 +354,6 @@ export function CatalogueTest({
         startedAt={startedAt}
         elapsed={elapsed}
         category={categoryLabel}
-        draft={draft}
         onReset={reset}
         reason={
           state?.reason === "no_category"
@@ -422,7 +420,6 @@ export function CatalogueTest({
                   categories={categories}
                   groups={taxonomy.groups ?? []}
                   labels={taxonomy.labels ?? {}}
-                  draft={taxonomy.draft ?? []}
                   locale={locale}
                   onCategory={setCategory}
                   onPages={(list, ok) => {
@@ -500,7 +497,6 @@ export function CatalogueTest({
                 locale={locale}
                 calculator={calculator}
                 category={categoryLabel}
-                draft={draft}
                 onReset={reset}
               />
             </div>
