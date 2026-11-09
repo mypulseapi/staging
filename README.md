@@ -19,9 +19,10 @@ merchant's site for any of that, and no traffic history is needed.
 
 Two figures from our own measurements, each with the dataset it came from:
 
-- On a **216-product laptop shelf**, 94 products remain indistinguishable after every question a
-  shopper could answer, because the attributes that would separate them are recorded nowhere.
-- Across a **2,176-product catalogue**, 52.6% of recorded attribute values duplicate what the
+- On a **216-product test shelf we built** (156 generated laptop listings and 60 real marketplace
+  listings, 47 of them accessories and software), 94 products remain indistinguishable after every
+  question a shopper could answer. The 94 includes those 47, which no laptop question can separate.
+- Across our **2,176-product demonstration catalogue**, 52.6% of recorded attribute values duplicate what the
   product photograph already shows.
 
 **We publish no conversion or revenue uplift figure.** We have run no live revenue experiment, so
@@ -58,6 +59,10 @@ pnpm lint
 `pnpm build` runs five content guards before `next build`: the page catalogue against the
 filesystem, placeholder copy, intent ranking, the requirement parser and the semantic fallback. A
 page added without a catalogue entry fails the build rather than silently shipping unattributed.
+
+`/mvp` (2026-11-06) is the investor walkthrough: the whole journey, from a store's address through the
+AI Shelf Test, the 2×2, a verdict with its evidence, the repair plan and the holdback, on a sample store
+with labelled, illustrative figures. It is noindex and out of the sitemap, and is sent by link.
 
 ### Configuration
 

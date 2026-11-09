@@ -21,9 +21,9 @@ const WARN_ONLY = process.argv.includes("--warn");
 
 /* Pages that are deliberately not indexed carry no schema and need no canonical (section 2.4). */
 const NOINDEX =
-  /\/(signin|signup|forgot-password|reset-password|verify-email)\.html$/;
+  /\/(signin|signup|forgot-password|reset-password|verify-email|mvp)\.html$/;
 /* The root redirect documents (`/`, `/opensource`) and Next's internal 404 shell are not pages in their own right. */
-const NOT_A_PAGE = /^(index|opensource|404|_not-found)\.html$/;
+const NOT_A_PAGE = /^(index|opensource|mvp|404|_not-found)\.html$/;
 
 const failures = [];
 const fail = (file, rule, detail) => failures.push({ file, rule, detail });
