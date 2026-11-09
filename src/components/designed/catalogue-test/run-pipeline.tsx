@@ -78,9 +78,6 @@ const RESULTS: RequirementResult[] = [
   "buried",
   "insufficient",
 ];
-/** A first-draft checklist: dashed, so it reads as unfinished, and not amber, which means missing. */
-export const DRAFT_TAG =
-  "inline-flex shrink-0 items-center rounded-full border border-dashed border-line-control px-2 py-0.5 text-xs font-semibold whitespace-nowrap text-ink";
 const BAR: Record<RequirementResult, string> = {
   supported: "bg-success",
   partial: "bg-[color-mix(in_oklab,var(--color-gap)_78%,var(--color-card))]",
@@ -141,7 +138,6 @@ export function RunPipeline({
   startedAt,
   elapsed,
   category,
-  draft,
   onReset,
   reason,
 }: {
@@ -160,9 +156,8 @@ export function RunPipeline({
   reqs: Record<string, Record<RequirementResult, number>>;
   startedAt: number | null;
   elapsed: number | null;
-  /** The category tested, in the page's language, and whether its checklist is a first draft. */
+  /** The category tested, in the page's language. */
   category: string | null;
-  draft: boolean;
   onReset: () => void;
   /** Why a run ended without a result, in the reader's words, shown in the card under the figures. */
   reason?: string | null;
@@ -530,11 +525,7 @@ export function RunPipeline({
         {category && (
           <p className="inline-flex max-w-full items-center gap-2 rounded-full border border-line py-1 pr-1.5 pl-3.5 text-sm text-ink">
             <span className="truncate">{category}</span>
-            {draft ? (
-              <span className={DRAFT_TAG}>{t("draftBadge")}</span>
-            ) : (
-              <span aria-hidden className="w-0" />
-            )}
+            <span aria-hidden className="w-0" />
           </p>
         )}
       </header>
@@ -571,11 +562,6 @@ export function RunPipeline({
           </div>
         ))}
       </dl>
-      {draft && category && (
-        <p className="mx-7 mt-4 text-sm text-pretty text-muted max-md:mx-4">
-          {t("draftProgress", { category })}
-        </p>
-      )}
 
       {reason && (
         <p className="mx-7 mt-4 text-sm text-pretty text-critical max-md:mx-4">
