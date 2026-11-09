@@ -36,9 +36,9 @@ import { StepsZigzag } from "../steps-zigzag";
 const STEPS = [
   {
     n: "step-1",
-    src: "product/decision-audit-catalogue-export-csv-json.webp",
-    w: 514,
-    h: 836,
+    src: "use-cases/seo-aeo-hero-page-read-by-two-engines.webp",
+    w: 1600,
+    h: 846,
     alt: "figure1Alt",
   },
   {

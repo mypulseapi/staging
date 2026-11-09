@@ -176,7 +176,7 @@ export const LIMITS: StoryContent = {
     },
     {
       q: "Is it safe to buy from a company with no customers?",
-      a: "For the audit, the risk is a catalogue export and nothing else, because it is free, and you keep the finding whether or not you work with us again. For the runtime it is a fair reason to insist on a pilot with a control group, which is how we would want to sell it anyway.",
+      a: "For the audit, the risk is a few minutes and nothing else, because it is free, and you keep the finding whether or not you work with us again. For the runtime it is a fair reason to insist on a pilot with a control group, which is how we would want to sell it anyway.",
     },
     {
       q: "What would change your mind about the method?",
@@ -190,7 +190,7 @@ export const LIMITS: StoryContent = {
 
   cta: {
     title: "Read the limits, then test them on your own shelf.",
-    body: "One category export is the cheapest way to find out whether any of this holds for your catalogue.",
+    body: "Your store's address is the cheapest way to find out whether any of this holds for your catalogue.",
     label: "Request a Decision Audit",
     href: "/contact",
     note: "If the audit finds nothing useful, we will tell you that on the call.",
@@ -373,7 +373,7 @@ export const LIMITS_VI: StoryContent = {
     },
     {
       q: "Mua hàng của một công ty chưa có khách hàng nào thì có an toàn không?",
-      a: "Với bản kiểm tra, rủi ro chỉ là một tệp xuất danh mục, vì bản kiểm tra miễn phí, còn kết quả tìm được thì bạn giữ, dù có làm việc tiếp với chúng tôi hay không. Với bộ máy thời gian thực, đó là lý do chính đáng để bạn đòi một chương trình thử nghiệm có nhóm đối chứng, vốn cũng là cách chúng tôi muốn bán nó.",
+      a: "Với bản kiểm tra, rủi ro chỉ là vài phút, vì bản kiểm tra miễn phí, còn kết quả tìm được thì bạn giữ, dù có làm việc tiếp với chúng tôi hay không. Với bộ máy thời gian thực, đó là lý do chính đáng để bạn đòi một chương trình thử nghiệm có nhóm đối chứng, vốn cũng là cách chúng tôi muốn bán nó.",
     },
     {
       q: "Điều gì sẽ khiến các bạn đổi ý về phương pháp này?",
@@ -387,7 +387,7 @@ export const LIMITS_VI: StoryContent = {
 
   cta: {
     title: "Đọc các giới hạn, rồi kiểm chứng chúng trên chính kệ hàng của bạn.",
-    body: "Một tệp xuất ngành hàng là cách rẻ nhất để biết liệu có điều nào ở đây đúng với danh mục của bạn hay không.",
+    body: "Địa chỉ cửa hàng của bạn là cách rẻ nhất để biết liệu có điều nào ở đây đúng với danh mục của bạn hay không.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Nếu bản kiểm tra không tìm ra điều gì hữu ích, chúng tôi sẽ nói vậy ngay trong cuộc gọi.",

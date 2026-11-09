@@ -277,7 +277,7 @@ const EN: ResearchContent = {
   ],
   cta: {
     title: "Run the measurement on your own catalogue.",
-    body: "The Decision Audit is free. Send one category and get back which missing facts cost the most buying decisions, with the limits stated.",
+    body: "The Decision Audit is free. Paste your store's address and get back which missing facts cost the most buying decisions, with the limits stated.",
     label: "Request a Decision Audit",
     href: "/contact",
   },
@@ -492,7 +492,7 @@ const VI: ResearchContent = {
   ],
   cta: {
     title: "Chạy phép đo trên danh mục của chính bạn.",
-    body: "Decision Audit miễn phí. Gửi một ngành hàng và nhận lại những thông tin còn thiếu làm mất nhiều quyết định mua nhất, kèm các giới hạn.",
+    body: "Decision Audit miễn phí. Dán địa chỉ cửa hàng và nhận lại những thông tin còn thiếu làm mất nhiều quyết định mua nhất, kèm các giới hạn.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
   },

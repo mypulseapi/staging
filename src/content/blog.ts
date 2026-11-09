@@ -1078,7 +1078,7 @@ export const ARTICLES: Article[] = [
       },
       {
         t: "p",
-        text: "Whether your shelf can support the decisions buyers are trying to make is measurable the day you send an export. Whether a repair improved it is measurable the week you finish. Neither of those is a revenue claim and we are careful not to let them sound like one, but both are checkable immediately and both are actionable.",
+        text: "Whether your shelf can support the decisions buyers are trying to make is measurable the minute you paste your store's address. Whether a repair improved it is measurable the week you finish. Neither of those is a revenue claim and we are careful not to let them sound like one, but both are checkable immediately and both are actionable.",
       },
       { t: "h", text: "The cost of publishing this" },
       {

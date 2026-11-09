@@ -750,7 +750,7 @@
       "section5": {
         "1": "What we do about it",
         "2": "Three things, and only the first one needs anything from you.",
-        "3": "Send one category",
+        "3": "Paste your store's address",
         "4": "Your store's address and one category. We read the public product pages: name, description, category, price and the facts each page states.",
         "5": "We rank what to record first",
         "6": "Every missing attribute scored by how much recording it would change what a buyer in your sector can decide, with the affected products attached.",
@@ -834,7 +834,7 @@
       "section5": {
         "1": "What we do about it",
         "2": "Three things, and only the first one needs anything from you.",
-        "3": "Send one category",
+        "3": "Paste your store's address",
         "4": "Your store's address and one category. We read the public product pages: name, description, category, price and the facts each page states.",
         "5": "We rank what to record first",
         "6": "Every missing attribute scored by how much recording it would change what a buyer in your sector can decide, with the affected products attached.",
@@ -963,7 +963,7 @@
       "section5": {
         "1": "What we do about it",
         "2": "Three things, and only the first one needs anything from you.",
-        "3": "Send one category",
+        "3": "Paste your store's address",
         "4": "Your store's address and one category. We read the public product pages: name, description, category, price and the facts each page states.",
         "5": "We rank what to record first",
         "6": "Every missing attribute scored by how much recording it would change what a buyer in your sector can decide, with the affected products attached.",
@@ -1072,7 +1072,7 @@
       "section5": {
         "1": "What we do about it",
         "2": "Three things, and only the first one needs anything from you.",
-        "3": "Send one category",
+        "3": "Paste your store's address",
         "4": "Your store's address and one category. We read the public product pages: name, description, category, price and the facts each page states.",
         "5": "We rank what to record first",
         "6": "Every missing attribute scored by how much recording it would change what a buyer in your sector can decide, with the affected products attached.",
@@ -1157,7 +1157,7 @@
       "section5": {
         "1": "What we do about it",
         "2": "Three things, and only the first one needs anything from you.",
-        "3": "Send one category",
+        "3": "Paste your store's address",
         "4": "Your store's address and one category. We read the public product pages: name, description, category, price and the facts each page states.",
         "5": "We rank what to record first",
         "6": "Every missing attribute scored by how much recording it would change what a buyer in your sector can decide, with the affected products attached.",
@@ -1242,7 +1242,7 @@
       "section5": {
         "1": "What we do about it",
         "2": "Three things, and only the first one needs anything from you.",
-        "3": "Send one category",
+        "3": "Paste your store's address",
         "4": "Your store's address and one category. We read the public product pages: name, description, category, price and the facts each page states.",
         "5": "We rank what to record first",
         "6": "Every missing attribute scored by how much recording it would change what a buyer in your sector can decide, with the affected products attached.",
@@ -1599,7 +1599,7 @@
       "section4": {
         "1": "How does the audit work?",
         "2": "You",
-        "3": "Send one category",
+        "3": "Paste your store's address",
         "4": "Paste your store's address and choose a category where shoppers struggle to find the right product. We read the public product pages: names, descriptions, prices and the facts each one states.",
         "5": "Us",
         "6": "We measure it",
@@ -1607,7 +1607,7 @@
         "8": "Both",
         "9": "We walk you through it",
         "10": "Receive a ranked list of attributes and supporting files. We walk you through the findings and discuss what it would take to act on them.",
-        "figure1Alt": "A store's product pages feeding a product data table of corn flakes, body lotion, shampoo and a chocolate bar, each with its price and category, above an open carton holding the same four products.",
+        "figure1Alt": "A laptop's product page read by a search engine and an answer engine: product name and type found, two lines of description, and the screen size missing.",
         "figure2Alt": "An attribute coverage panel reading brand 97 per cent, pack size 58 per cent, dietary claim 31 per cent and concentration 22 per cent, with a magnifier over a 400 ml body lotion and all four attributes ticked off beside it.",
         "figure3Alt": "A ranked list of attribute opportunities: concentration high, pack size medium, dietary claim medium and brand low, above a report with a bar chart and a pie chart, and a panel offering to view the full report, download files, discuss findings and plan next steps."
       },
@@ -1670,7 +1670,7 @@
         "3": "Products carrying the gap",
         "4": "Example data",
         "5": "Week 1",
-        "6": "One address to rescan. Nobody to ask.",
+        "6": "A few products to fix. Nobody to ask.",
         "7": "Month 1",
         "8": "A backlog item, done inside a sprint.",
         "9": "Month 3",
@@ -1756,7 +1756,7 @@
         "8": "Both",
         "9": "See what has improved",
         "10": "Track product attribute coverage, measure catalogue gap improvements, and assess your readiness score in a clear, shareable report for business decision-makers.",
-        "figure1Alt": "A product catalogue of baby lotion, laundry powder and face cream with their categories and prices, being read again. A progress bar reads 78 per cent, because a part-finished repair can be verified.",
+        "figure1Alt": "A store's product grid beside its attribute table, screen size, memory and storage, read again after the repairs.",
         "figure2Alt": "The same baby lotion before and after, side by side. Both cards carry brand GentleCare, category Baby Care and price 8.90; the after card adds fragrance free, dermatologist tested and suitable for sensitive skin, each answered yes, where the before card has blanks.",
         "figure3Alt": "A catalogue gap reduced panel: attribute coverage rises from 32 to 87 per cent, 68 points of added coverage. A bar chart sets before against after for product identification, ingredients, safety and usage, size and dimensions, and brand and origin, beside a twelve page verification report to download."
       },

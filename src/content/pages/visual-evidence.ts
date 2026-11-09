@@ -47,13 +47,13 @@ export const VISUAL_EVIDENCE: ChapterContent = {
   steps: {
     heading: "How does Visual Evidence work?",
     intro:
-      "The same export as the Decision Audit, with your image links. Nothing goes on your site.",
+      "The same product pages as the Decision Audit, with the photos they show. Nothing goes on your site.",
     items: [
       {
         n: "01",
         meta: "You",
-        title: "Send one category with its images",
-        body: "Your catalogue export for one category, with the image links you already publish. No customer data.",
+        title: "Paste your store's address",
+        body: "One category's product pages, with the photos you already publish. No customer data.",
       },
       {
         n: "02",
@@ -136,7 +136,7 @@ export const VISUAL_EVIDENCE: ChapterContent = {
     },
     {
       q: "What data do you need?",
-      a: "One category export with the image links you already publish. No customer data and no access to your systems.",
+      a: "Your store's address and one category. We read the photos your product pages already publish. No customer data and no access to your systems.",
     },
   ],
 
@@ -180,13 +180,13 @@ export const VISUAL_EVIDENCE_VI: ChapterContent = {
   steps: {
     heading: "Visual Evidence hoạt động thế nào?",
     intro:
-      "Cùng tệp xuất như Decision Audit, kèm đường dẫn ảnh. Không cần gắn gì lên website.",
+      "Cùng các trang sản phẩm như Decision Audit, kèm ảnh trên trang. Không cần gắn gì lên website.",
     items: [
       {
         n: "01",
         meta: "Bạn",
-        title: "Gửi một ngành hàng kèm ảnh",
-        body: "Tệp xuất danh mục của một ngành hàng, kèm đường dẫn ảnh bạn đang dùng. Không cần dữ liệu khách hàng.",
+        title: "Dán địa chỉ cửa hàng",
+        body: "Các trang sản phẩm của một ngành hàng, kèm ảnh bạn đang đăng. Không cần dữ liệu khách hàng.",
       },
       {
         n: "02",
@@ -269,7 +269,7 @@ export const VISUAL_EVIDENCE_VI: ChapterContent = {
     },
     {
       q: "Các bạn cần dữ liệu gì?",
-      a: "Một tệp xuất ngành hàng kèm đường dẫn ảnh bạn đang dùng. Không cần dữ liệu khách hàng, không cần truy cập hệ thống.",
+      a: "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc ảnh mà các trang sản phẩm đang đăng. Không cần dữ liệu khách hàng, không cần truy cập hệ thống.",
     },
   ],
 

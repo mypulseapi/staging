@@ -50,15 +50,15 @@ export const STEPS_VI = {
   items: [
     {
       n: "01",
-      title: "Gửi một ngành hàng",
-      body: "Một tệp CSV hoặc JSON. Tên sản phẩm, mô tả, ngành hàng, giá, và bất kỳ thuộc tính nào bạn đã có. Không mã nguồn, không thẻ theo dõi, không quyền truy cập hệ thống.",
+      title: "Dán địa chỉ cửa hàng",
+      body: "Chúng tôi đọc các trang sản phẩm công khai của bạn: tên, mô tả, ngành hàng, giá và những thông tin mỗi trang nêu ra. Không mã nguồn, không thẻ theo dõi, không quyền truy cập hệ thống.",
       meta: "Bạn làm một lần",
     },
     {
       n: "02",
       title: "Nhận bản Decision Audit",
-      body: "Trong 48 giờ: danh sách xếp hạng những gì cần ghi trước, các sản phẩm thiếu từng trường, nơi mỗi dữ kiện còn thiếu đang nằm, và chỉ số sẵn sàng quyết định của bạn.",
-      meta: "48 giờ",
+      body: "Trong vài phút: danh sách xếp hạng những gì cần ghi trước, các sản phẩm thiếu từng thông tin, nơi mỗi dữ kiện còn thiếu đang nằm, và chỉ số sẵn sàng quyết định của bạn.",
+      meta: "Vài phút",
     },
     {
       n: "03",
@@ -130,7 +130,7 @@ export const PRIVACY_VI = {
     },
     {
       title: "Xoá theo yêu cầu",
-      body: "Bao gồm cả tệp danh mục bạn đã gửi, vào bất kỳ lúc nào, khi bạn yêu cầu.",
+      body: "Bao gồm mọi thứ bạn đã gửi cho chúng tôi, vào bất kỳ lúc nào, khi bạn yêu cầu.",
     },
   ],
 } as const;
@@ -190,8 +190,8 @@ export const REASONS_VI = {
       body: "Chấm theo tiêu chí mua của chính ngành hàng bạn, không theo một quy tắc hoàn thiện chung chung.",
     },
     {
-      label: "48 giờ",
-      body: "Gửi vào một tệp xuất ngành hàng, nhận lại danh sách sửa đã xếp hạng sau hai ngày.",
+      label: "Vài phút",
+      body: "Gửi địa chỉ cửa hàng, nhận lại danh sách sửa đã xếp hạng sau vài phút.",
     },
     {
       label: "Thời gian thực",

@@ -164,7 +164,7 @@ export const DECISION_API: ChapterContent = {
 
   cta: {
     title: "Start with the catalogue, not the engine.",
-    body: "The runtime comes after a pilot, and the pilot comes after a shelf worth ranking. That begins with one category export.",
+    body: "The runtime comes after a pilot, and the pilot comes after a shelf worth ranking. That begins with your store's address.",
     label: "Request a Decision Audit",
     href: "/contact",
     note: "The Decision API is in the Growth plan and above, from $990 a month.",
@@ -334,7 +334,7 @@ export const DECISION_API_VI: ChapterContent = {
 
   cta: {
     title: "Bắt đầu từ danh mục, không phải từ bộ máy.",
-    body: "Bộ máy thời gian thực đến sau một chương trình thử nghiệm, và chương trình đó đến sau một kệ hàng đáng xếp hạng. Việc ấy bắt đầu bằng một tệp xuất ngành hàng.",
+    body: "Bộ máy thời gian thực đến sau một chương trình thử nghiệm, và chương trình đó đến sau một kệ hàng đáng xếp hạng. Việc ấy bắt đầu bằng địa chỉ cửa hàng của bạn.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Decision API có trong gói Growth trở lên, từ $990 mỗi tháng.",

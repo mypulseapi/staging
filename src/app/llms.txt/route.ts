@@ -31,8 +31,8 @@ export function GET() {
 > Pulse measures whether a merchant's product data is ready to support the buying decisions their
 > shoppers are trying to make. It ranks the attributes worth recording, in the merchant's own
 > catalogue, and re-measures once they have been filled in. It is built by ${COMPANY_NAME}. The first
-> useful answer comes from a single category export: nothing has to go on the merchant's site, and
-> no traffic history is needed.
+> useful answer comes from the store's address alone: Pulse reads the public product pages, nothing
+> has to go on the merchant's site, and no traffic history is needed.
 
 Key facts, each one checkable:
 - On a 216-product test shelf (156 generated laptop listings and 60 real marketplace listings), 94 products remain indistinguishable after every

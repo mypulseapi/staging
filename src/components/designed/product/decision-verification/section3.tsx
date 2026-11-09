@@ -38,9 +38,9 @@ import { StepsZigzag } from "../steps-zigzag";
 const STEPS = [
   {
     n: "step-1",
-    src: "product/decision-verification-export-progress.webp",
-    w: 720,
-    h: 480,
+    src: "product/merchandising-studio-step-1-manage-what-the-engine-reads.webp",
+    w: 1000,
+    h: 667,
     alt: "figure1Alt",
   },
   {

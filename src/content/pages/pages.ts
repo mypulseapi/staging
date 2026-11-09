@@ -167,7 +167,7 @@ export const PAGES: ChapterContent = {
 
   cta: {
     title: "Fix the shelf, then order the page.",
-    body: "A grid can only be ordered on facts the catalogue records. One category export tells you which ones yours is missing.",
+    body: "A grid can only be ordered on facts the catalogue records. Your store's address tells you which ones yours is missing.",
     label: "Request a Decision Audit",
     href: "/contact",
     note: "No price is quoted before a pilot, because there is nothing yet to price it against.",
@@ -326,7 +326,7 @@ export const PAGES_VI: ChapterContent = {
 
   cta: {
     title: "Sửa kệ hàng trước, rồi mới sắp xếp trang.",
-    body: "Một lưới sản phẩm chỉ sắp xếp được theo những dữ kiện mà danh mục có ghi. Một tệp xuất ngành hàng cho biết danh mục của bạn đang thiếu những dữ kiện nào.",
+    body: "Một lưới sản phẩm chỉ sắp xếp được theo những dữ kiện mà danh mục có ghi. Địa chỉ cửa hàng của bạn cho biết danh mục của bạn đang thiếu những dữ kiện nào.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Không báo giá trước khi thử nghiệm, vì chưa có gì để định giá dựa vào.",

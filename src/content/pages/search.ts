@@ -214,7 +214,7 @@ export const SEARCH: ChapterContent = {
 
   cta: {
     title: "Start with the catalogue, then rank it.",
-    body: "Search is worth turning on once your shelf can answer the questions people ask of it. One category export settles that.",
+    body: "Search is worth turning on once your shelf can answer the questions people ask of it. Your store's address settles that.",
     label: "Request a Decision Audit",
     href: "/contact",
     note: "Nothing is priced until a pilot has run on your own searches.",
@@ -409,7 +409,7 @@ export const SEARCH_VI: ChapterContent = {
 
   cta: {
     title: "Bắt đầu từ danh mục, rồi mới xếp hạng nó.",
-    body: "Tìm kiếm đáng bật lên khi kệ hàng của bạn đã trả lời được những câu người ta hỏi. Một tệp xuất ngành hàng cho biết kệ của bạn đã làm được chưa.",
+    body: "Tìm kiếm đáng bật lên khi kệ hàng của bạn đã trả lời được những câu người ta hỏi. Địa chỉ cửa hàng của bạn cho biết kệ của bạn đã làm được chưa.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Không có giá nào được chốt trước khi một chương trình thử nghiệm chạy trên chính lượt tìm kiếm của bạn.",
