@@ -63,13 +63,13 @@ export const metadata: Metadata = {
     siteName: "Pulse",
     title: "Pulse | Decide what to show, and when to ask",
     description:
-      "Is your product data ready to support the decisions shoppers are trying to make? Measured on your own catalogue in 48 hours.",
+      "Is your product data ready to support the decisions shoppers are trying to make? Measured on your own product pages in minutes.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Pulse | Decide what to show, and when to ask",
     description:
-      "Is your product data ready to support the decisions shoppers are trying to make? Measured on your own catalogue in 48 hours.",
+      "Is your product data ready to support the decisions shoppers are trying to make? Measured on your own product pages in minutes.",
   },
   // Staging sets NEXT_PUBLIC_NOINDEX=true: every page says noindex; robots.txt lets crawlers fetch it.
   robots:

@@ -41,7 +41,7 @@ function Frame({ children, shown }: { children: React.ReactNode; shown: boolean 
   );
 }
 
-/** 01 — one category export leaves your system. */
+/** 01: the store's public product pages are read. */
 function SendArt({ shown }: { shown: boolean }) {
   return (
     <Frame shown={shown}>

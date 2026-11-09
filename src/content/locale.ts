@@ -104,7 +104,7 @@ const UI = {
 
     // AuditVisual
     rankedList: "Your ranked repair list",
-    hours48: "48 hours",
+    hours48: "Minutes",
     productsMissing: (n: number) => `${n} products missing it`,
     rankedByBits:
       "Ranked by bits of decision information, not by how much is absent.",
@@ -227,7 +227,7 @@ const UI = {
     processor: "Vi xử lý",
 
     rankedList: "Danh sách sửa đã xếp hạng của bạn",
-    hours48: "48 giờ",
+    hours48: "Vài phút",
     productsMissing: (n: number) => `${n} sản phẩm còn thiếu`,
     rankedByBits:
       "Xếp theo bit thông tin quyết định, không theo mức độ vắng mặt.",

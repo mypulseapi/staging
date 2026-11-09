@@ -33,7 +33,7 @@ export const BELIEFS = [
   },
   {
     title: "Earn the integration, do not assume it",
-    body: "The first thing we sell needs no code, no tag and no access to your systems. If the audit is not useful, you have lost a catalogue export and an afternoon. Nothing about the runtime is worth discussing until that part has proved itself.",
+    body: "The first thing we sell needs no code, no tag and no access to your systems. If the audit is not useful, you have lost a few minutes. Nothing about the runtime is worth discussing until that part has proved itself.",
   },
 ] as const;
 
@@ -102,7 +102,7 @@ export const BELIEFS_VI = [
   },
   {
     title: "Giành lấy việc tích hợp, đừng mặc định nó",
-    body: "Thứ đầu tiên chúng tôi bán không cần mã nguồn, không cần thẻ theo dõi và không cần quyền truy cập hệ thống của bạn. Nếu bản kiểm tra không hữu ích, bạn mất một tệp xuất danh mục và một buổi chiều. Không có gì về bộ máy thời gian thực đáng bàn tới cho tới khi phần kia đã tự chứng minh được mình.",
+    body: "Thứ đầu tiên chúng tôi bán không cần mã nguồn, không cần thẻ theo dõi và không cần quyền truy cập hệ thống của bạn. Nếu bản kiểm tra không hữu ích, bạn chỉ mất vài phút. Không có gì về bộ máy thời gian thực đáng bàn tới cho tới khi phần kia đã tự chứng minh được mình.",
   },
 ] as const;
 

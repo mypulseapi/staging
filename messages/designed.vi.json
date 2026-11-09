@@ -1109,7 +1109,7 @@
       "section4": {
         "1": "Bản kiểm tra hoạt động thế nào?",
         "2": "Bạn",
-        "3": "Gửi một ngành hàng",
+        "3": "Dán địa chỉ cửa hàng",
         "4": "Dán địa chỉ cửa hàng và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi",
         "6": "Chúng tôi đo nó",
@@ -1117,7 +1117,7 @@
         "8": "Cả hai",
         "9": "Chúng tôi cùng bạn đi qua kết quả",
         "10": "Nhận một danh sách thuộc tính đã xếp hạng cùng các tệp kèm theo. Chúng tôi sẽ đi qua kết quả cùng bạn và trao đổi xem cần gì để hành động dựa trên đó.",
-        "figure1Alt": "Các trang sản phẩm của một cửa hàng đưa dữ liệu vào bảng sản phẩm gồm ngũ cốc bắp, sữa dưỡng thể, dầu gội và một thanh sô cô la, mỗi mục kèm giá và ngành hàng, phía trên là một thùng giấy mở nắp đựng đúng bốn sản phẩm đó.",
+        "figure1Alt": "Trang sản phẩm của một chiếc laptop được công cụ tìm kiếm và công cụ trả lời đọc: tìm thấy tên và loại sản phẩm, hai dòng mô tả, còn kích thước màn hình bị thiếu.",
         "figure2Alt": "Khung độ phủ thuộc tính cho thấy thương hiệu 97 phần trăm, quy cách đóng gói 58 phần trăm, công bố dinh dưỡng 31 phần trăm và nồng độ 22 phần trăm, với một kính lúp soi chai sữa dưỡng thể 400 ml và cả bốn thuộc tính được tích bên cạnh.",
         "figure3Alt": "Danh sách xếp hạng các cơ hội thuộc tính: nồng độ mức cao, quy cách đóng gói mức trung bình, công bố dinh dưỡng mức trung bình và thương hiệu mức thấp, phía trên là một báo cáo có biểu đồ cột và biểu đồ tròn, cùng một khung mời xem báo cáo đầy đủ, tải tệp, trao đổi phát hiện và lên kế hoạch bước tiếp theo."
       },
@@ -1182,7 +1182,7 @@
         "8": "Cả hai",
         "9": "Xem điều gì đã cải thiện",
         "10": "Theo dõi độ bao phủ thuộc tính sản phẩm, đo mức cải thiện của lỗ hổng danh mục, và đánh giá chỉ số sẵn sàng của bạn trong một báo cáo rõ ràng, dễ chia sẻ cho người ra quyết định.",
-        "figure1Alt": "Một danh mục sản phẩm gồm sữa dưỡng thể cho bé, bột giặt và kem dưỡng mặt kèm ngành hàng và giá, đang được đọc lại. Thanh tiến độ hiện 78 phần trăm, vì một lần sửa chưa xong vẫn được kiểm chứng.",
+        "figure1Alt": "Lưới sản phẩm của một cửa hàng bên cạnh bảng thuộc tính, kích thước màn hình, bộ nhớ và ổ lưu trữ, được đọc lại sau khi sửa.",
         "figure2Alt": "Cùng một lọ sữa dưỡng thể cho bé, trước và sau, đặt cạnh nhau. Cả hai thẻ đều ghi thương hiệu GentleCare, ngành hàng Baby Care và giá 8,90; thẻ sau bổ sung không hương liệu, đã kiểm nghiệm da liễu và phù hợp da nhạy cảm, mỗi mục đều trả lời có, trong khi thẻ trước còn để trống.",
         "figure3Alt": "Khung lỗ hổng danh mục đã thu hẹp: độ phủ thuộc tính tăng từ 32 lên 87 phần trăm, thêm 68 điểm độ phủ. Một biểu đồ cột đặt trước cạnh sau cho nhận diện sản phẩm, thành phần, an toàn và cách dùng, kích thước và kích cỡ, thương hiệu và xuất xứ, bên cạnh là báo cáo xác minh mười hai trang để tải về."
       },
@@ -1245,7 +1245,7 @@
         "3": "Số sản phẩm mang lỗ hổng",
         "4": "Dữ liệu ví dụ",
         "5": "Tuần 1",
-        "6": "Một địa chỉ để quét lại. Không phải hỏi ai.",
+        "6": "Vài sản phẩm cần sửa. Không phải hỏi ai.",
         "7": "Tháng 1",
         "8": "Một đầu việc tồn đọng, làm xong trong một sprint.",
         "9": "Tháng 3",
@@ -1354,7 +1354,7 @@
       "section5": {
         "1": "Chúng tôi làm gì với chuyện đó",
         "2": "Ba việc, và chỉ việc đầu tiên cần đến bạn.",
-        "3": "Gửi một ngành hàng",
+        "3": "Dán địa chỉ cửa hàng",
         "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp hạng những gì nên ghi nhận trước",
         "6": "Mỗi thuộc tính còn thiếu được chấm điểm theo mức độ việc ghi nhận nó sẽ thay đổi điều mà một người mua trong ngành của bạn có thể quyết định, kèm theo các sản phẩm bị ảnh hưởng.",
@@ -1434,7 +1434,7 @@
       "section5": {
         "1": "Chúng tôi làm gì với chuyện đó",
         "2": "Ba việc, và chỉ việc đầu tiên cần đến bạn.",
-        "3": "Gửi một ngành hàng",
+        "3": "Dán địa chỉ cửa hàng",
         "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp hạng những gì nên ghi nhận trước",
         "6": "Mỗi thuộc tính còn thiếu được chấm điểm theo mức độ việc ghi nhận nó sẽ thay đổi điều mà một người mua trong ngành của bạn có thể quyết định, kèm theo các sản phẩm bị ảnh hưởng.",
@@ -1563,7 +1563,7 @@
       "section5": {
         "1": "Chúng tôi làm gì với chuyện đó",
         "2": "Ba việc, và chỉ việc đầu tiên cần đến bạn.",
-        "3": "Gửi một ngành hàng",
+        "3": "Dán địa chỉ cửa hàng",
         "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp hạng những gì nên ghi nhận trước",
         "6": "Mỗi thuộc tính còn thiếu được chấm điểm theo mức độ việc ghi nhận nó sẽ thay đổi điều mà một người mua trong ngành của bạn có thể quyết định, kèm theo các sản phẩm bị ảnh hưởng.",
@@ -1668,7 +1668,7 @@
       "section5": {
         "1": "Chúng tôi làm gì với chuyện đó",
         "2": "Ba việc, và chỉ việc đầu tiên cần đến bạn.",
-        "3": "Gửi một ngành hàng",
+        "3": "Dán địa chỉ cửa hàng",
         "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp hạng những gì nên ghi nhận trước",
         "6": "Mỗi thuộc tính còn thiếu được chấm điểm theo mức độ việc ghi nhận nó sẽ thay đổi điều mà một người mua trong ngành của bạn có thể quyết định, kèm theo các sản phẩm bị ảnh hưởng.",
@@ -1752,7 +1752,7 @@
       "section5": {
         "1": "Chúng tôi làm gì với chuyện đó",
         "2": "Ba việc, và chỉ việc đầu tiên cần đến bạn.",
-        "3": "Gửi một ngành hàng",
+        "3": "Dán địa chỉ cửa hàng",
         "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp hạng những gì nên ghi nhận trước",
         "6": "Mỗi thuộc tính còn thiếu được chấm điểm theo mức độ việc ghi nhận nó sẽ thay đổi điều mà một người mua trong ngành của bạn có thể quyết định, kèm theo các sản phẩm bị ảnh hưởng.",
@@ -1835,7 +1835,7 @@
       "section5": {
         "1": "Chúng tôi làm gì với chuyện đó",
         "2": "Ba việc, và chỉ việc đầu tiên cần đến bạn.",
-        "3": "Gửi một ngành hàng",
+        "3": "Dán địa chỉ cửa hàng",
         "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp hạng những gì nên ghi nhận trước",
         "6": "Mỗi thuộc tính còn thiếu được chấm điểm theo mức độ việc ghi nhận nó sẽ thay đổi điều mà một người mua trong ngành của bạn có thể quyết định, kèm theo các sản phẩm bị ảnh hưởng.",

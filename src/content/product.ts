@@ -32,7 +32,7 @@ export const PILLARS: readonly Pillar[] = [
     name: "Decision Audit",
     headline: "What should we record first?",
     body:
-      "You send one category export. We work out which missing attributes would do the most to help your shoppers tell your products apart, rank them, and hand you the list with the affected products attached. The ranking is measured in bits of decision information, not guessed from click data.",
+      "You paste your store's address. We read your product pages, work out which missing facts would do the most to help your shoppers tell your products apart, rank them, and hand you the list with the affected products attached. The ranking is measured in bits of decision information, not guessed from click data.",
     bullets: [
       "Attributes ranked by what recording them everywhere would be worth",
       "The exact products missing each one",
@@ -40,7 +40,7 @@ export const PILLARS: readonly Pillar[] = [
       "How much we recovered from your titles and descriptions before you lift a finger",
       "A decision-readiness number you can re-measure later",
     ],
-    needs: "One CSV or JSON export. No code, no tag, no system access.",
+    needs: "Your store's address. No code, no tag, no system access.",
   },
   {
     step: "02",
@@ -54,7 +54,7 @@ export const PILLARS: readonly Pillar[] = [
       "Confirmation the week you finish, not the quarter after",
       "Evidence for whoever signed off the work",
     ],
-    needs: "The repaired catalogue, re-exported.",
+    needs: "The repaired pages, read again.",
   },
   {
     step: "03",
@@ -66,9 +66,9 @@ export const PILLARS: readonly Pillar[] = [
       "Re-measured on a schedule you set",
       "An alert that names the shelf, the attribute and the cause",
       "Trend per category, so you can see decay before a buyer does",
-      "Nothing to install: it reads the same export",
+      "Nothing to install: it rescans the same pages",
     ],
-    needs: "A recurring export, or a feed.",
+    needs: "A rescan of your pages, on a schedule.",
   },
   {
     step: "04",
@@ -108,7 +108,7 @@ export const PILLARS_VI: readonly Pillar[] = [
     name: "Decision Audit",
     headline: "Chúng ta nên ghi lại gì trước?",
     body:
-      "Bạn gửi một tệp xuất ngành hàng. Chúng tôi tìm ra những thuộc tính còn thiếu nào sẽ giúp người mua phân biệt sản phẩm của bạn nhiều nhất, xếp hạng chúng, và trả bạn danh sách kèm các sản phẩm bị ảnh hưởng. Thứ hạng được đo bằng bit thông tin quyết định, không phải đoán từ dữ liệu nhấp chuột.",
+      "Bạn dán địa chỉ cửa hàng. Chúng tôi đọc các trang sản phẩm, tìm ra những thông tin còn thiếu nào sẽ giúp người mua phân biệt sản phẩm của bạn nhiều nhất, xếp hạng chúng, và trả bạn danh sách kèm các sản phẩm bị ảnh hưởng. Thứ hạng được đo bằng bit thông tin quyết định, không phải đoán từ dữ liệu nhấp chuột.",
     bullets: [
       "Các thuộc tính xếp theo giá trị của việc ghi chúng ở khắp nơi",
       "Chính xác những sản phẩm còn thiếu từng thuộc tính",
@@ -116,7 +116,7 @@ export const PILLARS_VI: readonly Pillar[] = [
       "Chúng tôi đã lấy lại được bao nhiêu từ tiêu đề và mô tả của bạn, trước khi bạn động tay",
       "Một chỉ số sẵn sàng quyết định mà bạn đo lại được về sau",
     ],
-    needs: "Một tệp CSV hoặc JSON. Không mã nguồn, không thẻ theo dõi, không quyền truy cập hệ thống.",
+    needs: "Địa chỉ cửa hàng của bạn. Không mã nguồn, không thẻ theo dõi, không quyền truy cập hệ thống.",
   },
   {
     step: "02",
@@ -142,9 +142,9 @@ export const PILLARS_VI: readonly Pillar[] = [
       "Đo lại theo lịch bạn đặt",
       "Một cảnh báo nêu tên kệ hàng, thuộc tính và nguyên nhân",
       "Xu hướng theo từng ngành hàng, để bạn thấy sự xuống cấp trước người mua",
-      "Không phải cài gì: nó đọc chính tệp xuất đó",
+      "Không phải cài gì: nó quét lại đúng các trang đó",
     ],
-    needs: "Một tệp xuất định kỳ, hoặc một nguồn dữ liệu.",
+    needs: "Quét lại các trang của bạn, theo lịch.",
   },
   {
     step: "04",
