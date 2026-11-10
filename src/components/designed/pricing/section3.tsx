@@ -17,7 +17,7 @@ const DRIVERS = [
 export function Section3Section() {
   const t = designedText("pricing.section1");
   return (
-    <section className="border-b border-line">
+    <section className="border-b border-line bg-surface-1">
       <div className="frame py-16 lg:py-20">
         <h2 className="reveal text-center text-title text-balance">
           {t("driversTitle")}

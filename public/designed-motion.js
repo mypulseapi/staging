@@ -7,6 +7,7 @@
 //   [data-demo]            → plays the hero workflow demo (tabs, steps, captions — see DESIGN.md §6)
 //   [data-spy] links       → highlight the section currently in view (sets [data-active], aria-current)
 //   [data-boxes]           → call-to-action grid: each cell the cursor enters gets a random colour (--lit)
+//   [data-scroll-story="4"] → pinned scroll story: data-scroll-step (1..n), --story (0..1) from scroll progress
 //   [data-why]             → Why PULSE orbit: turning ring; a circle turns to the top and opens its reason
 //   [data-pause] buttons   → pause the hero demo (sets [data-held] on [data-pausable])
 //   [data-bg-video]        → product hero background video: theme-matched source, plays only while on screen
@@ -857,6 +858,28 @@ feature("[data-boxes]", function initBoxes(grid, signal) {
     },
     { signal },
   );
+});
+
+// Pinned scroll story (pricing). Progress is how far the element's top has scrolled past the viewport, over the
+// height it has beyond one screen; the step is that progress in n equal parts. CSS does the rest (globals.css).
+feature("[data-scroll-story]", function initScrollStory(story, signal) {
+  const n = Number(story.dataset.scrollStory) || 4;
+  let frame = 0;
+  const update = () => {
+    frame = 0;
+    const box = story.getBoundingClientRect();
+    const span = box.height - window.innerHeight;
+    const p = span > 0 ? Math.min(1, Math.max(0, -box.top / span)) : 0;
+    story.dataset.scrollStep = String(Math.min(n, Math.floor(p * n) + 1));
+    story.style.setProperty("--story", p.toFixed(3));
+  };
+  const queue = () => {
+    frame ||= requestAnimationFrame(update);
+  };
+  window.addEventListener("scroll", queue, { passive: true, signal });
+  window.addEventListener("resize", queue, { signal });
+  onAbort(signal, () => cancelAnimationFrame(frame));
+  update();
 });
 
 feature("[data-why]", function initWhy(why, signal) {
