@@ -154,7 +154,7 @@ export function DesignedHeader() {
                     data-nav-content
                     className="nav-content flex w-228 flex-col"
                   >
-                    {/* The catalogue tools side by side; the storefront, which comes later, as a row under them. */}
+                    {/* The catalogue tools side by side; the storefront, which comes later, as a row of three under them (owner, 2026-11-10). */}
                     <div className="flex w-full justify-center">
                       <div className="nav-column min-w-76 flex-1 p-3">
                         <p className="px-3 pt-1 pb-2 text-xs font-medium text-muted">
@@ -305,7 +305,7 @@ export function DesignedHeader() {
                       <p className="mx-3 px-3 pt-1 pb-2 text-xs font-medium text-muted">
                         {t("storefront")}
                       </p>
-                      <ul className="grid grid-cols-2 gap-y-1">
+                      <ul className="grid grid-cols-3 gap-y-1">
                         {STOREFRONT.map((p) => (
                           <li key={p.href} className="px-3">
                             <Link
