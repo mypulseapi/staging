@@ -2624,6 +2624,42 @@ html[data-theme="dark"] {
   }
 }
 
+/* Pricing billing switch: the monthly and yearly figures share one grid cell. Checking the other radio blurs the
+   shown one out and the other in, the owner's AnimateCount reference (450 ms, its easing, 2px blur, 12px out and 8px
+   in), in CSS so the page needs no motion library and no script. Opacity, translate and filter only. */
+.price-swap {
+  display: inline-grid;
+}
+.price-swap > * {
+  grid-area: 1 / 1;
+  transition-property: opacity, translate, filter, visibility;
+  transition-duration: 450ms;
+  transition-timing-function: cubic-bezier(0.23, 0.88, 0.26, 0.92);
+}
+.price-swap > [data-y],
+#plans:has(#billing-yearly:checked) .price-swap > [data-m] {
+  opacity: 0;
+  filter: blur(2px);
+  visibility: hidden;
+}
+.price-swap > [data-y] {
+  translate: 0 8px;
+}
+#plans:has(#billing-yearly:checked) .price-swap > [data-m] {
+  translate: 0 -12px;
+}
+#plans:has(#billing-yearly:checked) .price-swap > [data-y] {
+  opacity: 1;
+  translate: 0 0;
+  filter: none;
+  visibility: visible;
+}
+@media (prefers-reduced-motion: reduce) {
+  .price-swap > * {
+    transition: none;
+  }
+}
+
 /* Pricing scroll story (`[data-scroll-story]` in designed-motion.js sets data-scroll-step). Pinned only on a wide, tall screen
    that allows motion; anywhere else the stacked cards show instead. The active step lifts, its number fills, its
    figure fades up; transform and opacity only. */
