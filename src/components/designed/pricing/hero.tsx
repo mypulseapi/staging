@@ -102,7 +102,11 @@ function Check() {
   );
 }
 
-/** Monthly by default; the yearly figure shows once the switch's Yearly radio is checked. */
+/**
+ * Monthly by default; the yearly figure shows once the switch's Yearly radio is checked. Both sit in
+ * one `.price-swap` cell, so switching blurs one out and the other in (globals.css), and the yearly
+ * figure carries the full-year price it replaces, struck through, right beside it.
+ */
 function Price({
   usd,
   size,
@@ -115,27 +119,29 @@ function Price({
 }) {
   const t = designedText("pricing.plans");
   const num = `font-display ${size} leading-none font-medium tracking-tight text-ink tabular-nums`;
-  const pre = from && (
-    <span className="mr-2 text-sm text-muted">{t("from")}</span>
-  );
   return (
-    <>
-      <p className="whitespace-nowrap group-has-[#billing-yearly:checked]/billing:hidden">
-        {pre}
-        <span className={num}>{money(usd)}</span>
-        <span className="ml-1 text-sm text-muted">{t("perMonth")}</span>
+    <div>
+      {from && <p className="mb-1 text-sm text-muted">{t("from")}</p>}
+      <p className="price-swap">
+        <span data-m className="flex items-baseline whitespace-nowrap">
+          <span className={num}>{money(usd)}</span>
+          <span className="ml-1 text-sm text-muted">{t("perMonth")}</span>
+        </span>
+        <span
+          data-y
+          className="flex flex-wrap items-baseline gap-x-2 whitespace-nowrap"
+        >
+          <span className={num}>{money(usd * 10)}</span>
+          {usd > 0 && (
+            <s className="text-lg text-muted">
+              <span className="sr-only">{t("instead")} </span>
+              {money(usd * 12)}
+            </s>
+          )}
+          <span className="text-sm text-muted">{t("perYear")}</span>
+        </span>
       </p>
-      <p className="hidden whitespace-nowrap group-has-[#billing-yearly:checked]/billing:block">
-        {pre}
-        <span className={num}>{money(usd * 10)}</span>
-        <span className="ml-1 text-sm text-muted">{t("perYear")}</span>
-        {usd > 0 && (
-          <span className="mt-2 block text-sm whitespace-normal text-muted">
-            {t("instead")} <s>{money(usd * 12)}</s>
-          </span>
-        )}
-      </p>
-    </>
+    </div>
   );
 }
 
@@ -238,7 +244,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         {cta}
       </div>
       {pushed ? (
-        <div className="mt-6 grid flex-1 gap-6 lg:grid-cols-[4fr_6fr] lg:gap-10">
+        <div className="mt-6 grid flex-1 gap-6 xl:grid-cols-2 xl:gap-10">
           <div>
             <Price usd={plan.usd} size="text-[clamp(48px,4.4vw,64px)]" />
             <p className="mt-3 text-data text-pretty text-muted">
@@ -375,11 +381,11 @@ export function PricingHero() {
                 className="sr-only"
               />
               {t("yearly")}
+              <span className="ml-2 rounded-full border border-primary-line bg-primary-tint px-2 py-0.5 text-xs font-semibold text-primary">
+                {t("save")}
+              </span>
             </label>
           </div>
-          <span className="rounded-full border border-primary-line bg-primary-tint px-3 py-1 text-sm font-semibold text-primary">
-            {t("save")}
-          </span>
         </fieldset>
         <ul className="reveal mx-auto mt-10 grid max-w-[1200px] grid-cols-1 gap-4 delay-200 lg:grid-cols-12">
           {PLANS.map((p) => (
