@@ -22,7 +22,7 @@ import {
   Plus,
   RotateCcw,
 } from "lucide-react";
-import { calculate, EXAMPLE, FX, type Inputs } from "./calc";
+import { calculate, EXAMPLE, FX, type Inputs, type Tool } from "./calc";
 
 /**
  * The calculator as five steps (the approved design, `pulse/design/rainbow-calculator.html`, owner,
@@ -434,7 +434,11 @@ export function Calculator({
   const gaps = useContext(TestedGapsContext);
   const initial: Currency = locale === "vi" ? "VND" : "USD";
   const [currency, setCurrency] = useState<Currency>(initial);
-  const [s, setS] = useState<Inputs>(EXAMPLE);
+  // A tested store starts from its own share of products with gaps, the nearest measure of exposure.
+  const start: Inputs = gaps?.tested
+    ? { ...EXAMPLE, exposure: Math.round((gaps.toFix / gaps.tested) * 100) }
+    : EXAMPLE;
+  const [s, setS] = useState<Inputs>(start);
   const [bad, setBad] = useState<Field[]>([]);
   const [step, setStep] = useState(0);
   const [reached, setReached] = useState(0); // steps below this one have been passed
@@ -649,8 +653,22 @@ export function Calculator({
     }
     setCurrency(to);
   };
+  const setTool = (i: number, patch: Partial<Tool>) =>
+    setS((prev) => ({
+      ...prev,
+      tools: prev.tools.map((x, k) => (k === i ? { ...x, ...patch } : x)),
+    }));
+  const onToolCost = (i: number, raw: string) => {
+    const p = parseParts(raw, F.group);
+    const v = p ? Number(p.int + (p.frac ? `.${p.frac}` : "")) : 0;
+    setTool(i, { cost: Number.isFinite(v) ? (F.vnd ? v / FX : v) : 0 });
+  };
+  const toolCostShown = (x: Tool) =>
+    new Intl.NumberFormat(F.loc, { maximumFractionDigits: 2 }).format(
+      F.vnd ? x.cost * FX : x.cost,
+    );
   const reset = () => {
-    setS(EXAMPLE);
+    setS(start);
     setCurrency(initial);
     setBad([]);
     setSpendOpen(true);
@@ -1214,6 +1232,50 @@ export function Calculator({
                   <span>20%</span>
                   <span>30%</span>
                 </div>
+                <div className="mt-6 flex items-baseline justify-between gap-5">
+                  <label
+                    htmlFor={`${uid}-exposure`}
+                    className="text-sm font-semibold text-ink"
+                  >
+                    {t.exposureLabel}
+                  </label>
+                  <output
+                    htmlFor={`${uid}-exposure`}
+                    className="text-2xl font-bold tracking-[-0.03em] text-(--a) tabular-nums"
+                  >
+                    {s.exposure}%
+                  </output>
+                </div>
+                <input
+                  id={`${uid}-exposure`}
+                  type="range"
+                  min={0}
+                  max={100}
+                  step={5}
+                  value={s.exposure}
+                  aria-valuetext={fill(t.exposureValue, { n: s.exposure })}
+                  aria-describedby={`${uid}-exposure-help`}
+                  onChange={(e) =>
+                    setS({ ...s, exposure: Number(e.target.value) })
+                  }
+                  className="range-control mt-2.5"
+                  style={
+                    {
+                      "--color-primary": "var(--af)",
+                      "--range-fill": `${s.exposure}%`,
+                    } as CSSProperties
+                  }
+                />
+                <p
+                  id={`${uid}-exposure-help`}
+                  className="mt-1.5 text-[13.5px] text-muted"
+                >
+                  {real && gaps?.tested
+                    ? fill(t.exposureTested, {
+                        n: Math.round((gaps.toFix / gaps.tested) * 100),
+                      })
+                    : t.exposureNote}
+                </p>
                 <div
                   id={`${uid}-lift-help`}
                   className="mt-7 rounded-[14px] border border-line bg-card px-5 py-[18px]"
@@ -1221,7 +1283,7 @@ export function Calculator({
                   <p className="text-xl font-semibold tracking-[-0.015em] tabular-nums [overflow-wrap:anywhere] max-sm:min-h-[3.1em]">
                     {parts(t.liftEq, {
                       base: <span className="text-primary">{F.pct(b100)}</span>,
-                      mult: F.num(1 + s.lift / 100, 2),
+                      mult: F.num(1 + c.storeLift / 100, 4),
                       new: (
                         <span className="text-(--a)">
                           {F.pct(c.newCR * 100)}
@@ -1321,7 +1383,7 @@ export function Calculator({
                     <i className="absolute inset-y-0 left-0 w-[76.923%] bg-primary" />
                     <span className="absolute inset-y-0 left-[76.923%] w-[23.077%]">
                       <Grow
-                        v={s.lift}
+                        v={c.storeLift}
                         max={30}
                         play={p[1]}
                         enter={{ from: 0, dur: 800, delay: 80 }}
@@ -1357,7 +1419,7 @@ export function Calculator({
                     <p>
                       {fill(t.liftFormula, {
                         base: F.pct(b100),
-                        lift: s.lift,
+                        lift: F.num(c.storeLift, 2),
                         new: F.pct(c.newCR * 100),
                       })}
                     </p>
@@ -1513,6 +1575,7 @@ export function Calculator({
                     <p>
                       {fill(t.mathOrders, {
                         orders: F.num(s.orders),
+                        exposure: s.exposure,
                         lift: s.lift,
                       })}
                     </p>
@@ -1562,7 +1625,7 @@ export function Calculator({
               <p className="mt-1 min-h-[1.55em] text-muted">
                 {fill(
                   [8, 11, 18].includes(s.lift) ? t.heroLiftAn : t.heroLift,
-                  { lift: s.lift },
+                  { lift: s.lift, exposure: s.exposure },
                 )}
               </p>
               <div className="mt-[30px] text-left [--w:100cqw] sm:[--w:60cqw]">
@@ -1643,6 +1706,96 @@ export function Calculator({
                     </span>
                   </div>
                 </div>
+              </div>
+              <div
+                data-in="up8 1200 420"
+                className="border-t border-line py-5 text-left"
+              >
+                <span className="block text-[17px] font-bold text-ink">
+                  {t.toolsTitle}
+                </span>
+                <span className="mt-0.5 block text-sm text-muted">
+                  {t.toolsSub}
+                </span>
+                <ul className="mt-4 space-y-2.5">
+                  {s.tools.map((x, i) => (
+                    <li
+                      key={`${i}-${gen}`}
+                      className="grid grid-cols-[minmax(0,1fr)_6.5rem_auto] sm:grid-cols-[minmax(0,1fr)_9rem_auto] items-center gap-2.5"
+                    >
+                      <input
+                        type="text"
+                        aria-label={fill(t.toolName, { n: i + 1 })}
+                        defaultValue={x.name}
+                        placeholder={t[`toolExample${i + 1}`] ?? t.toolPlaceholder}
+                        title={t[`toolExample${i + 1}`] ?? t.toolPlaceholder}
+                        onInput={(e) =>
+                          setTool(i, { name: e.currentTarget.value })
+                        }
+                        className="h-11 min-w-0 rounded-lg border border-line-control bg-card px-3 text-ink outline-none placeholder:text-muted focus:border-(--af)"
+                      />
+                      <input
+                        key={currency}
+                        type="text"
+                        inputMode="decimal"
+                        aria-label={fill(t.toolCost, { currency })}
+                        defaultValue={toolCostShown(x)}
+                        onInput={(e) => onToolCost(i, e.currentTarget.value)}
+                        className="h-11 min-w-0 rounded-lg border border-line-control bg-card px-3 text-right font-semibold text-ink tabular-nums outline-none focus:border-(--af)"
+                      />
+                      <button
+                        type="button"
+                        aria-label={fill(t.toolRemove, {
+                          name: x.name || t.toolPlaceholder,
+                        })}
+                        onClick={() =>
+                          setS((prev) => ({
+                            ...prev,
+                            tools: prev.tools.filter((_, k) => k !== i),
+                          }))
+                        }
+                        className="min-h-11 rounded-lg px-2 text-sm text-muted hover:text-ink"
+                      >
+                        ×
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setS((prev) => ({
+                      ...prev,
+                      tools: [...prev.tools, { name: "", cost: 0 }],
+                    }))
+                  }
+                  className="btn-secondary mt-3 inline-flex min-h-11 items-center gap-1.5 px-3.5 text-sm"
+                >
+                  <Plus aria-hidden className="size-4" />
+                  {t.toolAdd}
+                </button>
+                {c.toolsCost > 0 && (
+                  <dl className="mt-4 space-y-1.5 text-sm tabular-nums">
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-muted">{t.toolsPerOrder}</dt>
+                      <dd className="font-semibold text-ink">
+                        {c.toolsBefore === null
+                          ? t.undefined
+                          : `${F.money(c.toolsBefore, "cac")} → ${
+                              c.toolsAfter === null
+                                ? t.undefined
+                                : F.money(c.toolsAfter, "cac")
+                            }`}
+                      </dd>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-muted">{t.toolsShare}</dt>
+                      <dd className="font-semibold text-success">
+                        {c.toolsShare === null ? "" : F.pct(c.toolsShare)}
+                      </dd>
+                    </div>
+                  </dl>
+                )}
               </div>
               <p
                 data-in="fade 1300 400"

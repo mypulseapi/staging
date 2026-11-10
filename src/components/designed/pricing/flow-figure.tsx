@@ -24,11 +24,20 @@ export type FlowFigureName = keyof typeof VI;
 export function FlowFigure({
   name,
   label,
+  idSuffix,
 }: {
   name: FlowFigureName;
   label: string;
+  /**
+   * For a second copy on the same page: its `pf-*` ids (the audit gradient) get this suffix, so its
+   * `url(#…)` does not resolve to the other copy, which may be hidden and then paints nothing.
+   */
+  idSuffix?: string;
 }) {
   let svg = readFileSync(join(DIR, `${name}.svg`), "utf8");
+  if (idSuffix) {
+    svg = svg.replace(/(id="|url\(#|href="#)(pf-[\w-]+)/g, `$1$2${idSuffix}`);
+  }
   if (renderLocale() === "vi") {
     for (const [en, vi] of Object.entries(VI[name] as Record<string, string>)) {
       svg = svg.split(`>${en}<`).join(`>${vi}<`);

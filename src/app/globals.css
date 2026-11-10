@@ -2624,6 +2624,57 @@ html[data-theme="dark"] {
   }
 }
 
+/* Pricing scroll story (`[data-scroll-story]` in designed-motion.js sets data-scroll-step). Pinned only on a wide, tall screen
+   that allows motion; anywhere else the stacked cards show instead. The active step lifts, its number fills, its
+   figure fades up; transform and opacity only. */
+.story-pin {
+  display: none;
+}
+@media (min-width: 64rem) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+  .story-pin {
+    display: block;
+  }
+  .story-stack {
+    display: none;
+  }
+}
+.story-step {
+  transition:
+    translate 0.3s ease-out,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+.story-fig {
+  opacity: 0;
+  translate: 0 12px;
+  transition:
+    opacity 0.4s ease-out,
+    translate 0.4s ease-out;
+}
+:is(
+    [data-scroll-step="1"] [data-i="1"],
+    [data-scroll-step="2"] [data-i="2"],
+    [data-scroll-step="3"] [data-i="3"],
+    [data-scroll-step="4"] [data-i="4"]
+  ) {
+  &.story-step {
+    translate: 8px 0;
+    border-color: var(--color-primary-line);
+    box-shadow: var(--shadow-md);
+  }
+  & .story-num {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+  &.story-fig {
+    opacity: 1;
+    translate: 0 0;
+  }
+  &.story-label {
+    display: inline;
+  }
+}
+
 /* Calm gradient (§4): Sky → Pulse Blue, for product UI where red would read as an error (the How it works progress
    line). Same text rule as the Signal gradient. */
 @utility bg-calm-gradient {
