@@ -7,7 +7,7 @@
  * Text is still inline. Extracting it into the content modules for Vietnamese is the next pass.
  */
 import type { ReactNode } from "react";
-import { asset, img } from "@/lib/cdn";
+import { asset } from "@/lib/cdn";
 import { renderLocale } from "@/i18n/render-locale";
 import { DesignedLocaleMenu } from "./designed-locale-switch";
 import { DesignedThemeSwitch } from "./designed-theme-switch";
@@ -204,22 +204,6 @@ export function DesignedHeader() {
                             </Link>
                           </li>
                         </ul>
-                        {/* ponytail: placeholder until the designer's menu picture, the audit hero for now. */}
-                        <Link
-                          href={designedHref("/en/product/decision-audit")}
-                          className="mx-3 mt-3 block overflow-hidden rounded-xl border border-line bg-surface-1"
-                        >
-                          <Image
-                            src={img(
-                              "product/decision-audit-hero-dashboard.webp",
-                            )}
-                            alt={t("menuPictureAlt")}
-                            width={1536}
-                            height={1024}
-                            sizes="18rem"
-                            className="h-auto w-full"
-                          />
-                        </Link>
                       </div>
                       <div className="nav-column min-w-76 flex-1 p-3">
                         <p className="px-3 pt-1 pb-2 text-xs font-medium text-muted">
