@@ -7,7 +7,7 @@
  * Text is still inline. Extracting it into the content modules for Vietnamese is the next pass.
  */
 import type { ReactNode } from "react";
-import { asset, img } from "@/lib/cdn";
+import { asset } from "@/lib/cdn";
 import { renderLocale } from "@/i18n/render-locale";
 import { DesignedLocaleMenu } from "./designed-locale-switch";
 import { DesignedThemeSwitch } from "./designed-theme-switch";
@@ -154,17 +154,19 @@ export function DesignedHeader() {
                     data-nav-content
                     className="nav-content flex w-228 flex-col"
                   >
-                    {/* The catalogue tools side by side; the storefront, which comes later, as a row under them. */}
-                    <div className="flex w-full justify-center">
-                      <div className="nav-column min-w-76 flex-1 p-3">
+                    {/* The catalogue tools side by side, three each (Decision Monitor with Measure & repair, owner,
+                        2026-11-10), on one row grid, items top-aligned, so an item's name lines up with the one beside it
+                        however many lines its description takes; the storefront as a row of three under them. */}
+                    <div className="grid w-full grid-cols-2 grid-rows-[auto_repeat(3,auto)]">
+                      <div className="nav-column row-span-4 grid grid-rows-subgrid p-3">
                         <p className="px-3 pt-1 pb-2 text-xs font-medium text-muted">
                           {t("2")}
                         </p>
-                        <ul className="space-y-1">
+                        <ul className="row-span-3 grid grid-rows-subgrid gap-y-1">
                           <li>
                             <Link
                               href={designedHref("/en/product/decision-audit")}
-                              className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -186,7 +188,7 @@ export function DesignedHeader() {
                               href={designedHref(
                                 "/en/product/decision-verification",
                               )}
-                              className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -203,35 +205,12 @@ export function DesignedHeader() {
                               </span>
                             </Link>
                           </li>
-                        </ul>
-                        {/* ponytail: placeholder until the designer's menu picture, the audit hero for now. */}
-                        <Link
-                          href={designedHref("/en/product/decision-audit")}
-                          className="mx-3 mt-3 block overflow-hidden rounded-xl border border-line bg-surface-1"
-                        >
-                          <Image
-                            src={img(
-                              "product/decision-audit-hero-dashboard.webp",
-                            )}
-                            alt={t("menuPictureAlt")}
-                            width={1536}
-                            height={1024}
-                            sizes="18rem"
-                            className="h-auto w-full"
-                          />
-                        </Link>
-                      </div>
-                      <div className="nav-column min-w-76 flex-1 p-3">
-                        <p className="px-3 pt-1 pb-2 text-xs font-medium text-muted">
-                          {t("7")}
-                        </p>
-                        <ul className="space-y-1">
                           <li>
                             <Link
                               href={designedHref(
                                 "/en/product/decision-monitor",
                               )}
-                              className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -251,12 +230,19 @@ export function DesignedHeader() {
                               </span>
                             </Link>
                           </li>
+                        </ul>
+                      </div>
+                      <div className="nav-column row-span-4 grid grid-rows-subgrid p-3">
+                        <p className="px-3 pt-1 pb-2 text-xs font-medium text-muted">
+                          {t("7")}
+                        </p>
+                        <ul className="row-span-3 grid grid-rows-subgrid gap-y-1">
                           <li>
                             <Link
                               href={designedHref(
                                 "/en/product/return-verification",
                               )}
-                              className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -276,7 +262,7 @@ export function DesignedHeader() {
                           <li>
                             <Link
                               href={designedHref("/en/product/visual-evidence")}
-                              className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -296,7 +282,7 @@ export function DesignedHeader() {
                           <li>
                             <Link
                               href={designedHref("/en/product/promotion-audit")}
-                              className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -321,12 +307,12 @@ export function DesignedHeader() {
                       <p className="mx-3 px-3 pt-1 pb-2 text-xs font-medium text-muted">
                         {t("storefront")}
                       </p>
-                      <ul className="grid grid-cols-2 gap-y-1">
+                      <ul className="grid grid-cols-3 gap-y-1">
                         {STOREFRONT.map((p) => (
                           <li key={p.href} className="px-3">
                             <Link
                               href={designedHref(p.href)}
-                              className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
