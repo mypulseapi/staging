@@ -281,7 +281,7 @@
       "5": "Chúng tôi đọc các trang sản phẩm công khai của bạn: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra. Không cần gắn mã, không cần gắn thẻ, không cần truy cập hệ thống của bạn.",
       "6": "Nhận Decision Audit",
       "7": "Vài phút",
-      "8": "Trong vài phút, bạn nhận được danh sách ưu tiên bổ sung thông tin, những sản phẩm đang thiếu từng thông tin, nơi thông tin đó thực sự đang nằm và chỉ số sẵn sàng hỗ trợ quyết định mua hàng.",
+      "8": "Trong vài phút, bạn nhận được danh sách ưu tiên bổ sung thông tin, những sản phẩm đang thiếu từng thông tin, nơi thông tin đó thực sự đang nằm và điểm đủ thông tin để mua của danh mục.",
       "9": "Sửa, rồi kiểm chứng",
       "10": "Nhóm của bạn hoặc chúng tôi",
       "11": "Có thể bạn không cần chúng tôi hỗ trợ sửa. Sau khi hoàn tất, chúng tôi tính lại trên danh mục đã sửa và chỉ rõ những gì thay đổi. Không cần lưu lượng truy cập, chạy thử hay chờ đợi.",
@@ -300,7 +300,7 @@
       "50": "Tìm thấy 216 sản phẩm trên cửa hàng của bạn",
       "51": "Vài phút",
       "52": "Nhận Decision Audit",
-      "53": "Trong vài phút, bạn nhận được danh sách ưu tiên bổ sung thông tin, những sản phẩm đang thiếu từng thông tin, nơi thông tin đó thực sự đang nằm và chỉ số sẵn sàng hỗ trợ quyết định mua hàng.",
+      "53": "Trong vài phút, bạn nhận được danh sách ưu tiên bổ sung thông tin, những sản phẩm đang thiếu từng thông tin, nơi thông tin đó thực sự đang nằm và điểm đủ thông tin để mua của danh mục.",
       "54": "yourstore.vn · 216 sản phẩm",
       "55": "Sản phẩm",
       "56": "Kích thước màn hình",
@@ -510,7 +510,7 @@
       "10": "Những sản phẩm đang thiếu từng thuộc tính",
       "11": "Thông tin còn thiếu đang nằm ở đâu",
       "12": "Những gì chúng tôi khôi phục được từ tiêu đề của bạn",
-      "13": "Chỉ số sẵn sàng hỗ trợ quyết định mua",
+      "13": "Điểm đủ thông tin để mua của danh mục",
       "14": "Buổi trao đổi 30 phút về trưng bày sản phẩm",
       "15": "Sau đó",
       "16": "Kế hoạch sửa và kiểm chứng",
@@ -520,7 +520,7 @@
       "20": "Trao đổi với chúng tôi",
       "21": "về kế hoạch sửa và kiểm chứng",
       "22": "Kế hoạch ưu tiên kèm bằng chứng và công sức cần bỏ ra",
-      "23": "Trước và sau: độ phủ, thiếu hụt, độ sẵn sàng",
+      "23": "Trước và sau: độ phủ, thiếu hụt, điểm đủ thông tin",
       "24": "Báo cáo điểm giảm chất lượng trước",
       "25": "Các con số chỉ tính trên sản phẩm được đọc ở cả hai lần chạy",
       "26": "Chúng tôi nói rõ khi việc sửa không đáng làm",
@@ -1044,11 +1044,11 @@
       "7": "Chính xác những sản phẩm đang thiếu từng thuộc tính",
       "8": "Thông tin đang nằm ở đâu: đã có trong nội dung của bạn, trong dữ liệu nhà cung cấp hoặc chưa có ở đâu",
       "9": "Lượng thông tin khôi phục được từ tiêu đề và mô tả trước khi bạn bắt tay vào sửa",
-      "10": "Chỉ số sẵn sàng hỗ trợ quyết định mua có thể đo lại"
+      "10": "Điểm đủ thông tin để mua, đo lại được về sau"
     },
     "verification": {
       "1": "Việc sửa có thực sự hiệu quả không?",
-      "2": "Sau khi nhóm của bạn bổ sung xong thuộc tính ưu tiên nhất, chúng tôi dùng lại đúng phép đo ban đầu để chỉ rõ thay đổi: độ phủ từng thuộc tính, mức giảm thông tin thiếu và chỉ số sẵn sàng mới của danh mục. Bạn không cần lưu lượng truy cập hay chờ đợi, vì phép đo dựa trên đặc tính của danh mục, thay vì hành vi khách truy cập.",
+      "2": "Sau khi nhóm của bạn bổ sung xong thuộc tính ưu tiên nhất, chúng tôi dùng lại đúng phép đo ban đầu để chỉ rõ thay đổi: độ phủ từng thuộc tính, mức giảm thông tin thiếu và điểm đủ thông tin để mua của danh mục sau khi sửa. Bạn không cần lưu lượng truy cập hay chờ đợi, vì phép đo dựa trên đặc tính của danh mục, thay vì hành vi khách truy cập.",
       "3": "Bạn cung cấp:",
       "4": "Các trang đã sửa, để chúng tôi đọc lại.",
       "5": "Đọc về Decision Verification",
@@ -1221,7 +1221,7 @@
         "7": "Chúng tôi dùng cùng một phương pháp và cùng những thuộc tính sản phẩm trong cả hai lần kiểm tra, đảm bảo so sánh trước và sau chính xác và đáng tin cậy mà không thay đổi tiêu chí đánh giá.",
         "8": "Cả hai",
         "9": "Xem điều gì đã cải thiện",
-        "10": "Theo dõi độ phủ thuộc tính sản phẩm, đo mức giảm thông tin thiếu trong danh mục và đánh giá chỉ số sẵn sàng qua báo cáo rõ ràng, dễ chia sẻ với người ra quyết định.",
+        "10": "Theo dõi độ phủ thuộc tính sản phẩm, đo mức giảm thông tin thiếu trong danh mục và đánh giá điểm đủ thông tin để mua qua báo cáo rõ ràng, dễ chia sẻ với người ra quyết định.",
         "figure1Alt": "Lưới sản phẩm của một cửa hàng bên cạnh bảng thuộc tính, kích thước màn hình, bộ nhớ và ổ lưu trữ, được đọc lại sau khi sửa.",
         "figure2Alt": "Cùng một lọ sữa dưỡng thể cho bé, trước và sau, đặt cạnh nhau. Cả hai thẻ đều ghi thương hiệu GentleCare, ngành hàng Baby Care và giá 8,90; thẻ sau bổ sung không hương liệu, đã kiểm nghiệm da liễu và phù hợp da nhạy cảm, mỗi mục đều trả lời có, trong khi thẻ trước còn để trống.",
         "figure3Alt": "Khung cho thấy danh mục giảm thông tin thiếu: độ phủ thuộc tính từ 32 lên 87 phần trăm, tăng 68 điểm. Biểu đồ cột so sánh trước và sau về nhận diện sản phẩm, thành phần, an toàn và cách dùng, kích cỡ và số đo, thương hiệu và xuất xứ. Bên cạnh là báo cáo kiểm chứng mười hai trang để tải về."
@@ -1262,7 +1262,7 @@
         "3": "Danh mục âm thầm xuống cấp, chất lượng dữ liệu sản phẩm cũng giảm theo. Sản phẩm mới về chưa đủ thông tin, và nhóm hàng từng sẵn sàng quý trước nay không còn sẵn sàng. Monitor đo lại khi danh mục thay đổi và chỉ rõ nhóm hàng, thuộc tính cùng nguyên nhân.",
         "4": "Yêu cầu Decision Audit",
         "5": "Hỏi AI",
-        "figureAlt": "Decision Monitor theo dõi nhóm hàng chăm sóc da. Chỉ số đủ thông tin để lựa chọn đạt 78 phần trăm, tăng 18 điểm trên đường xu hướng đi lên; phép đo được chạy lại hằng tuần. Độ phủ loại da đang giảm trong khi thành phần chính vẫn được ghi nhận; loại da trả lời câu hỏi của người mua: sản phẩm có hợp với da mình không. Hình trước và sau cho thấy kem đêm từ hai thuộc tính còn trống thành đủ cả hai. Thay đổi nổi bật tuần này: loại da có ảnh hưởng cao, thành phần chính trung bình, dịp sử dụng thấp."
+        "figureAlt": "Decision Monitor theo dõi nhóm hàng chăm sóc da. Điểm đủ thông tin để mua đạt 78 phần trăm, tăng 18 điểm trên đường xu hướng đi lên; phép đo được chạy lại hằng tuần. Độ phủ loại da đang giảm trong khi thành phần chính vẫn được ghi nhận; loại da trả lời câu hỏi của người mua: sản phẩm có hợp với da mình không. Hình trước và sau cho thấy kem đêm từ hai thuộc tính còn trống thành đủ cả hai. Thay đổi nổi bật tuần này: loại da có ảnh hưởng cao, thành phần chính trung bình, dịp sử dụng thấp."
       },
       "section2": {
         "1": "Nhóm hàng giảm chất lượng ra sao?",
@@ -2499,7 +2499,7 @@
       "pricePerPlan": "Mỗi mức giá tính theo gói, không theo sản phẩm.",
       "moreProducts": "{n} sản phẩm Pulse khác, từ theo dõi đến tìm kiếm.",
       "seePricing": "Xem bảng giá →",
-      "benefits_audit": "Thông tin thiếu theo mức ảnh hưởng|Sản phẩm thiếu thông tin|Vị trí thông tin còn thiếu|Thông tin khôi phục từ tiêu đề|Điểm sẵn sàng ra quyết định|Buổi trao đổi 30 phút",
+      "benefits_audit": "Thông tin thiếu theo mức ảnh hưởng|Sản phẩm thiếu thông tin|Vị trí thông tin còn thiếu|Thông tin khôi phục từ tiêu đề|Điểm đủ thông tin để mua|Buổi trao đổi 30 phút",
       "benefits_visual": "Thông tin thiếu mà ảnh chứng minh được|Ảnh mâu thuẫn với dữ liệu|Ảnh cần bổ sung, khi cần|Thông tin ảnh không chứng minh được|Nói thẳng khi chưa chắc",
       "benefits_api": "Xếp hạng theo phiên truy cập|Một thẻ script, không đổi nền tảng|Phân tích từng sản phẩm|Nhóm đối chứng tích hợp sẵn|Tự chuyển sang dự phòng",
       "benefits_pages": "Mọi lưới, mọi trang|Bối cảnh chiến dịch tức thì|Bố cục giữ nguyên|Nhóm đối chứng cho từng trang",

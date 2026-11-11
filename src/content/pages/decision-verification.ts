@@ -144,7 +144,7 @@ export const DECISION_VERIFICATION_VI: StoryContent = {
         n: "03",
         meta: "Cả hai",
         title: "Bạn nhận phần chênh lệch",
-        body: "Độ phủ theo từng thuộc tính, bao nhiêu phần khoảng trống đã đóng lại, và chỉ số sẵn sàng của bạn giờ ở đâu. Viết sao cho chuyển tiếp được cho người đã duyệt ngân sách.",
+        body: "Độ phủ theo từng thuộc tính, bao nhiêu phần khoảng trống đã đóng lại, và điểm đủ thông tin để mua của bạn giờ ở đâu. Viết sao cho chuyển tiếp được cho người đã duyệt ngân sách.",
       },
     ],
   },
@@ -165,7 +165,7 @@ export const DECISION_VERIFICATION_VI: StoryContent = {
       label: "Sau khi xác minh",
       items: [
         "Trước và sau trên từng thuộc tính bạn đã động vào, không phải một điểm số gộp",
-        "Chỉ số sẵn sàng của bạn đã dịch chuyển: trên kệ hàng chúng tôi đo, số sản phẩm người mua không phân biệt được giảm từ 94 xuống 31",
+        "Điểm đủ thông tin để mua của bạn đã dịch chuyển: trên kệ hàng chúng tôi đo, số sản phẩm người mua không phân biệt được giảm từ 94 xuống 31",
         "Những khoảng trống còn lại được xếp hạng lại, nên đợt việc tiếp theo đã có sẵn thứ tự",
         "Một tài liệu đứng độc lập được, viết cho người đã duyệt khoản chi",
         "Câu trả lời ngay trong tuần, vì nó được tính từ danh mục của bạn chứ không phải tích luỹ từ lưu lượng",

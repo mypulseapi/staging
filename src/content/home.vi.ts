@@ -57,7 +57,7 @@ export const STEPS_VI = {
     {
       n: "02",
       title: "Nhận bản Decision Audit",
-      body: "Trong vài phút: danh sách xếp hạng những gì cần ghi trước, các sản phẩm thiếu từng thông tin, nơi mỗi dữ kiện còn thiếu đang nằm, và chỉ số sẵn sàng quyết định của bạn.",
+      body: "Trong vài phút: danh sách xếp hạng những gì cần ghi trước, các sản phẩm thiếu từng thông tin, nơi mỗi dữ kiện còn thiếu đang nằm, và điểm đủ thông tin để mua của bạn.",
       meta: "Vài phút",
     },
     {

@@ -114,7 +114,7 @@ export const PILLARS_VI: readonly Pillar[] = [
       "Chính xác những sản phẩm còn thiếu từng thuộc tính",
       "Nơi mỗi dữ kiện đang nằm: đã có trong văn bản của bạn, trong nguồn nhà cung cấp, hay chưa ở đâu cả",
       "Chúng tôi đã lấy lại được bao nhiêu từ tiêu đề và mô tả của bạn, trước khi bạn động tay",
-      "Một chỉ số sẵn sàng quyết định mà bạn đo lại được về sau",
+      "Điểm đủ thông tin để mua, đo lại được về sau",
     ],
     needs: "Địa chỉ website của bạn. Không mã nguồn, không thẻ theo dõi, không quyền truy cập hệ thống.",
   },
@@ -123,7 +123,7 @@ export const PILLARS_VI: readonly Pillar[] = [
     name: "Decision Verification",
     headline: "Việc sửa có thực sự hiệu quả không?",
     body:
-      "Khi đội của bạn đã điền xong thuộc tính đứng đầu bảng, chúng tôi chạy lại đúng phép đo đó và cho bạn thấy điều gì đã dịch chuyển: độ phủ theo từng thuộc tính, bao nhiêu phần khoảng trống đã đóng lại, và chỉ số sẵn sàng của bạn giờ ở đâu. Việc này không cần lưu lượng và không phải chờ, vì đây là thuộc tính của danh mục chứ không phải của khách truy cập.",
+      "Khi đội của bạn đã điền xong thuộc tính đứng đầu bảng, chúng tôi chạy lại đúng phép đo đó và cho bạn thấy điều gì đã dịch chuyển: độ phủ theo từng thuộc tính, bao nhiêu phần khoảng trống đã đóng lại, và điểm đủ thông tin để mua của bạn giờ ở đâu. Việc này không cần lưu lượng và không phải chờ, vì đây là thuộc tính của danh mục chứ không phải của khách truy cập.",
     bullets: [
       "Cùng một phép đo, trên danh mục đã sửa",
       "Trước và sau, theo từng thuộc tính",
