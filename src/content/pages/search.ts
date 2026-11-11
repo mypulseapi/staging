@@ -409,7 +409,7 @@ export const SEARCH_VI: ChapterContent = {
 
   cta: {
     title: "Bắt đầu từ danh mục, rồi mới xếp hạng nó.",
-    body: "Tìm kiếm đáng bật lên khi kệ hàng của bạn đã trả lời được những câu người ta hỏi. Địa chỉ website của bạn cho biết kệ của bạn đã làm được chưa.",
+    body: "Công cụ tìm kiếm hữu ích khi nhóm hàng có đủ thông tin trả lời câu hỏi của người mua. Gửi địa chỉ website để kiểm tra điều đó.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Không có giá nào được chốt trước khi một chương trình thử nghiệm chạy trên chính lượt tìm kiếm của bạn.",

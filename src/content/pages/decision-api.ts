@@ -334,7 +334,7 @@ export const DECISION_API_VI: ChapterContent = {
 
   cta: {
     title: "Bắt đầu từ danh mục, không phải từ bộ máy.",
-    body: "Bộ máy thời gian thực đến sau một chương trình thử nghiệm, và chương trình đó đến sau một kệ hàng đáng xếp hạng. Việc ấy bắt đầu bằng địa chỉ website của bạn.",
+    body: "Bộ máy thời gian thực được triển khai sau giai đoạn thử nghiệm. Trước đó, nhóm hàng cần có đủ thông tin để xếp hạng. Bắt đầu bằng địa chỉ website của bạn.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Decision API có trong gói Growth trở lên, từ $990 mỗi tháng.",

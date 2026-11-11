@@ -269,7 +269,7 @@ export const VISUAL_EVIDENCE_VI: ChapterContent = {
     },
     {
       q: "Các bạn cần dữ liệu gì?",
-      a: "Địa chỉ website và một ngành hàng. Chúng tôi đọc ảnh mà các trang sản phẩm đang đăng. Không cần dữ liệu khách hàng, không cần truy cập hệ thống.",
+      a: "Địa chỉ website và một ngành hàng. Chúng tôi đọc ảnh đang đăng trên các trang sản phẩm, không cần dữ liệu khách hàng hay quyền truy cập hệ thống.",
     },
   ],
 

@@ -57,7 +57,7 @@ export const STEPS_VI = {
     {
       n: "02",
       title: "Nhận bản Decision Audit",
-      body: "Trong vài phút: danh sách xếp hạng những gì cần ghi trước, các sản phẩm thiếu từng thông tin, nơi mỗi dữ kiện còn thiếu đang nằm, và điểm đủ thông tin để mua của bạn.",
+      body: "Trong vài phút, bạn nhận được danh sách thông tin cần bổ sung theo thứ tự ưu tiên, các sản phẩm thiếu từng thông tin, nơi có thể tìm thông tin đó và điểm đủ thông tin để mua của danh mục.",
       meta: "Vài phút",
     },
     {
@@ -191,7 +191,7 @@ export const REASONS_VI = {
     },
     {
       label: "Vài phút",
-      body: "Gửi địa chỉ website, nhận lại danh sách sửa đã xếp hạng sau vài phút.",
+      body: "Gửi địa chỉ website. Nhận danh sách cần sửa theo thứ tự ưu tiên trong vài phút.",
     },
     {
       label: "Thời gian thực",

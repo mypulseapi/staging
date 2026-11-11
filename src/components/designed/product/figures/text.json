@@ -96,7 +96,7 @@
     },
     "text-11": {
       "en": "You: Paste your store's address. Paste your store's address and choose a category where shoppers struggle to find the right product. We read the public product pages: names, descriptions, prices and the facts each one states. Us: We measure it. In minutes, we measure how much each fact helps tell products apart, and what it would be worth if stated across the category, in bits rather than clicks. Both: We walk you through it. Receive a ranked list of attributes and supporting files. We walk you through the findings and discuss what it would take to act on them.",
-      "vi": "Bạn: Dán địa chỉ website. Dán địa chỉ website và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra. Chúng tôi: Đo lường. Trong vài phút, chúng tôi đo xem mỗi thông tin giúp phân biệt sản phẩm đến đâu, và nó sẽ đáng giá bao nhiêu nếu được nêu trên toàn ngành hàng, tính bằng bit chứ không phải bằng lượt nhấp. Cả hai: Cùng xem kết quả. Nhận danh sách thuộc tính đã xếp hạng và các tệp đi kèm. Chúng tôi giải thích kết quả và bàn về những gì cần để hành động."
+      "vi": "Bạn: Dán địa chỉ website và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra. Chúng tôi: Trong vài phút, đo mức độ mỗi thông tin giúp phân biệt sản phẩm và mức hỗ trợ nếu thông tin có trên toàn ngành hàng, tính bằng bit thay vì lượt nhấp. Cùng xem kết quả: Bạn nhận danh sách thuộc tính theo thứ tự ưu tiên cùng các tệp đi kèm. Chúng tôi giải thích kết quả và trao đổi về những việc cần làm để áp dụng."
     }
   },
   "decision-monitor/decision-monitor-gap-grows": {
@@ -280,7 +280,7 @@
     },
     "step-3-body": {
       "en": "Track product attribute coverage, measure catalogue gap improvements, and assess your readiness score in a clear, shareable report for business decision-makers.",
-      "vi": "Theo dõi độ bao phủ thuộc tính sản phẩm, đo mức cải thiện của lỗ hổng danh mục, và đánh giá điểm đủ thông tin để mua của bạn trong một báo cáo rõ ràng, dễ chia sẻ cho người ra quyết định."
+      "vi": "Theo dõi độ phủ thuộc tính sản phẩm, đo mức giảm thiếu hụt thông tin trong danh mục và đánh giá điểm đủ thông tin để mua qua báo cáo rõ ràng, dễ chia sẻ với người ra quyết định."
     },
     "text-10": {
       "en": "How does the verification work?",
@@ -288,7 +288,7 @@
     },
     "text-11": {
       "en": "You: Rescan the category. Rescan your pages with the repairs made so far. A part-finished repair is fine, no need to wait for a full completion. Us: Comparable before & after results. We use the same method and product attributes in both audits, ensuring accurate and reliable before-and-after comparisons without changing the evaluation criteria. Both: See what has improved. Track product attribute coverage, measure catalogue gap improvements, and assess your readiness score in a clear, shareable report for business decision-makers.",
-      "vi": "Bạn: Quét lại ngành hàng. Quét lại các trang của bạn với những phần đã sửa. Sửa chưa xong vẫn được, không cần chờ hoàn tất. Chúng tôi: Kết quả trước và sau so sánh được. Chúng tôi dùng cùng phương pháp và thuộc tính sản phẩm ở cả hai lần kiểm tra, để so sánh trước và sau chính xác, đáng tin mà không đổi tiêu chí đánh giá. Cả hai: Xem điều gì đã cải thiện. Theo dõi độ phủ thuộc tính, đo mức khoảng trống danh mục được thu hẹp, và đánh giá điểm đủ thông tin để mua trong một báo cáo rõ ràng, dễ chia sẻ cho người ra quyết định."
+      "vi": "Bạn: Quét lại các trang trong ngành hàng đã sửa. Có thể đo khi mới sửa một phần. Chúng tôi: Dùng cùng phương pháp và thuộc tính ở cả hai lần kiểm tra để so sánh trước và sau trên cùng tiêu chí. Cùng xem kết quả: Theo dõi độ phủ thuộc tính, mức giảm thiếu hụt thông tin trong danh mục và điểm đủ thông tin để mua qua báo cáo rõ ràng, dễ chia sẻ với người ra quyết định."
     }
   },
   "decision-verification/decision-verification-meter": {

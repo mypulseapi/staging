@@ -326,7 +326,7 @@ export const PAGES_VI: ChapterContent = {
 
   cta: {
     title: "Sửa kệ hàng trước, rồi mới sắp xếp trang.",
-    body: "Một lưới sản phẩm chỉ sắp xếp được theo những dữ kiện mà danh mục có ghi. Địa chỉ website của bạn cho biết danh mục của bạn đang thiếu những dữ kiện nào.",
+    body: "Lưới sản phẩm chỉ sắp xếp được theo thông tin đã ghi trong danh mục. Gửi địa chỉ website để biết danh mục còn thiếu thông tin gì.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Không báo giá trước khi thử nghiệm, vì chưa có gì để định giá dựa vào.",

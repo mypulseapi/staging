@@ -87,7 +87,7 @@
       "body": "Cá nhân hoá đặt trên một danh mục không ghi nhận gì thì không thể hoạt động. Chúng tôi bắt đầu sớm hơn mọi người một bước.",
       "s1": {
         "title": "Decision Audit",
-        "body": "Dán địa chỉ website. Chúng tôi xếp hạng từng thông tin theo sức mạnh ra quyết định hiện tại, và theo mức nó sẽ đạt được nếu được nêu đầy đủ. Khoảng cách đó chính là cái giá của dữ liệu còn thiếu.",
+        "body": "Dán địa chỉ website. Chúng tôi xếp hạng từng thông tin theo khả năng hỗ trợ quyết định mua hiện tại và khả năng hỗ trợ khi thông tin được nêu đầy đủ. Chênh lệch này thể hiện mức thiếu hụt thông tin phục vụ quyết định mua.",
         "meta": "Vài phút · không cần code · chỉ trang công khai"
       },
       "s2": {
@@ -185,7 +185,7 @@
     },
     "finalCta": {
       "title": "Dán địa chỉ website.<br></br>Nhận báo cáo trong <accent>vài phút.</accent>",
-      "description": "Chọn kệ hàng mà bạn nghi ngờ khách gặp khó khăn nhất. Chúng tôi chỉ cần địa chỉ website, không code, không gắn tag lên website, không dữ liệu khách hàng. Bạn sẽ nhận kết quả xếp hạng, và một buổi trao đổi 30 phút nếu bạn muốn.",
+      "description": "Chọn nhóm hàng mà bạn cho rằng người mua khó lựa chọn nhất. Chúng tôi chỉ cần địa chỉ website, không cần viết mã, gắn thẻ lên website hay cung cấp dữ liệu khách hàng. Bạn sẽ nhận kết quả theo thứ tự ưu tiên và có thể đặt buổi trao đổi 30 phút nếu muốn.",
       "ctaPrimary": "Yêu cầu Decision Audit",
       "ctaSecondary": "Đọc tài liệu",
       "illustrationAlt": ""
@@ -308,9 +308,9 @@
   "contact": {
     "meta": {
       "title": "Liên hệ Pulse: yêu cầu kiểm tra dữ liệu sản phẩm",
-      "description": "Dán địa chỉ website và nhận lại danh sách xếp hạng những gì cần ghi trước, trong vài phút. Không mã nguồn, không thẻ, không dữ liệu khách hàng.",
+      "description": "Dán địa chỉ website để nhận danh sách thông tin cần bổ sung theo thứ tự ưu tiên trong vài phút. Không cần viết mã, gắn thẻ hay cung cấp dữ liệu khách hàng.",
       "ogTitle": "Liên hệ Pulse: yêu cầu kiểm tra dữ liệu sản phẩm",
-      "ogDescription": "Dán địa chỉ website và nhận lại danh sách xếp hạng những gì cần ghi trước, trong vài phút. Không mã nguồn, không thẻ, không dữ liệu khách hàng."
+      "ogDescription": "Dán địa chỉ website để nhận danh sách thông tin cần bổ sung theo thứ tự ưu tiên trong vài phút. Không cần viết mã, gắn thẻ hay cung cấp dữ liệu khách hàng."
     },
     "badge": "Yêu cầu Decision Audit",
     "title": "Gửi một danh mục.",
@@ -368,11 +368,11 @@
       "items": [
         {
           "question": "Bản kiểm tra đầu tiên mất bao lâu?",
-          "answer": "Vài phút. Không cần tích hợp gì trước: dán địa chỉ website, và chúng tôi đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được."
+          "answer": "Vài phút. Bạn chỉ cần dán địa chỉ website, chưa cần tích hợp gì. Chúng tôi đọc các trang sản phẩm công khai mà người mua và AI agent có thể truy cập."
         },
         {
           "question": "Bản kiểm tra đầu tiên có thực sự miễn phí không?",
-          "answer": "Có. Một ngành hàng, địa chỉ website của bạn, không cần tài khoản và không cần thẻ. Chúng tôi muốn bạn đánh giá phương pháp trên chính sản phẩm của mình hơn là trên một nghiên cứu điển hình của người khác. Phần sau đó được tính phí theo chu kỳ, và không ai phải quyết định điều đó ngay ngày đầu."
+          "answer": "Có. Chỉ cần một ngành hàng và địa chỉ website, không cần tài khoản hay thẻ thanh toán. Chúng tôi muốn bạn đánh giá phương pháp trên chính sản phẩm của mình thay vì qua nghiên cứu tình huống của người khác. Các bước tiếp theo tính phí theo chu kỳ; bạn chưa cần quyết định ngay ngày đầu."
         },
         {
           "question": "Bao lâu thì có người trả lời?",
@@ -380,7 +380,7 @@
         },
         {
           "question": "Các bạn có làm việc với agency và đơn vị tư vấn không?",
-          "answer": "Có. Chúng tôi đang xây dựng chương trình đối tác cho các agency, đơn vị tư vấn và nhà tích hợp hệ thống đang làm công việc danh mục cho khách hàng của họ, và chúng tôi đang trao đổi với những đối tác đầu tiên. Một bản kiểm tra chỉ cần địa chỉ website, dù là của bạn hay của khách hàng. Hãy viết cho partners@thepulseapi.com và cho chúng tôi biết đó là cửa hàng của ai."
+          "answer": "Có. Chúng tôi đang xây dựng chương trình đối tác cho các đơn vị dịch vụ, tư vấn và tích hợp hệ thống phụ trách danh mục sản phẩm của khách hàng. Chúng tôi hiện trao đổi với những đối tác đầu tiên. Để kiểm tra, chỉ cần địa chỉ website của bạn hoặc khách hàng. Hãy gửi thư đến partners@thepulseapi.com và cho biết cửa hàng thuộc về ai."
         }
       ]
     },
@@ -556,11 +556,11 @@
         "cta": "Yêu cầu audit",
         "features": [
           "Có kết quả trong vài phút",
-          "Chỉ cần địa chỉ website, không code, không gắn tag, không dữ liệu khách hàng",
+          "Chỉ cần địa chỉ website, không cần viết mã, gắn thẻ hay cung cấp dữ liệu khách hàng",
           "Danh sách thuộc tính xếp hạng kèm sản phẩm bị ảnh hưởng",
           "Phần chúng tôi khôi phục được từ tên sản phẩm hiện có",
           "Độ phủ theo từng kệ hàng, ngành nào đủ dữ liệu để khách tìm được sản phẩm",
-          "30 phút cùng xem kết quả với người phụ trách ngành hàng"
+          "Buổi xem kết quả 30 phút cùng người phụ trách ngành hàng"
         ]
       },
       "api": {
@@ -599,7 +599,7 @@
         },
         {
           "question": "Nếu audit không tìm ra gì thì tôi mất gì?",
-          "answer": "Địa chỉ website, không gì khác: bản audit miễn phí cho một ngành hàng. Nếu các trang của bạn ổn, báo cáo sẽ nói đúng như vậy, và bạn biết được nút thắt không nằm ở khâu tìm sản phẩm mà không tốn gì. Đó là một câu trả lời có ích."
+          "answer": "Chỉ cần địa chỉ website: bản kiểm tra miễn phí cho một ngành hàng. Nếu các trang sản phẩm đã ổn, báo cáo sẽ nêu rõ, và bạn biết được nút thắt không nằm ở khâu tìm sản phẩm mà không mất phí. Đó cũng là một câu trả lời hữu ích."
         },
         {
           "question": "Chúng tôi đã có tìm kiếm và gợi ý sản phẩm. Cái này thay thế chúng à?",
@@ -622,7 +622,7 @@
     "cta": {
       "title": "Bắt đầu với một ngành hàng.",
       "titleHighlight": "Ngành mà khách gặp khó khăn nhất.",
-      "description": "Dán địa chỉ website, trong vài phút bạn sẽ thấy sản phẩm của mình hiện chưa nói được điều gì với ai.",
+      "description": "Dán địa chỉ website. Trong vài phút, bạn sẽ biết các trang sản phẩm còn thiếu thông tin gì.",
       "button": "Yêu cầu Decision Audit"
     }
   },
@@ -817,7 +817,7 @@
     "cta2": {
       "title": "Xem nó chạy trên",
       "titleHighlight": "danh mục của chính bạn.",
-      "description": "Bản audit chỉ cần địa chỉ website. Không tích hợp, không code, không dữ liệu khách hàng, và kết quả thuộc về bạn, dù sau đó bạn có làm việc với chúng tôi hay không.",
+      "description": "Bản kiểm tra chỉ cần địa chỉ website, không cần tích hợp, viết mã hay cung cấp dữ liệu khách hàng. Kết quả thuộc về bạn, dù sau đó bạn có làm việc với chúng tôi hay không.",
       "button": "Yêu cầu Decision Audit"
     }
   },
@@ -1115,13 +1115,13 @@
     "metricLabel": "những gì chúng tôi chứng minh được hôm nay",
     "viewPricing": "Xem mô hình kinh doanh",
     "anyTitle": "Ngành của bạn không có trong danh sách này?",
-    "anyBody": "Bản kiểm tra chỉ đọc các trang sản phẩm công khai của bạn, nên phương pháp không thay đổi theo ngành. Thứ thay đổi là những thông tin nào quan trọng, và đó chính là thứ chúng tôi đo thay vì phỏng đoán. Dán địa chỉ website và xem việc này có đáng thời gian của bạn hay không.",
+    "anyBody": "Bản kiểm tra chỉ đọc các trang sản phẩm công khai nên dùng cùng phương pháp cho các ngành. Điểm khác nhau là thông tin nào quan trọng; chúng tôi đo điều này thay vì phỏng đoán. Dán địa chỉ website để xem kết quả có hữu ích với bạn không.",
     "anyCta": "Yêu cầu Decision Audit",
     "meta": {
       "title": "Dữ liệu sản phẩm cho mọi ngành hàng",
-      "description": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Địa chỉ website, kết quả trong vài phút.",
+      "description": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và AI agent. Gửi địa chỉ website, nhận kết quả trong vài phút.",
       "ogTitle": "Dữ liệu sản phẩm cho mọi ngành hàng",
-      "ogDescription": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Địa chỉ website, kết quả trong vài phút."
+      "ogDescription": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và AI agent. Gửi địa chỉ website, nhận kết quả trong vài phút."
     }
   },
   "auth": {

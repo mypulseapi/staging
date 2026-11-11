@@ -457,7 +457,7 @@ export const COMPARE_VI: StoryContent = {
 
   cta: {
     title: "Xem thử kệ hàng của bạn không trả lời được những gì.",
-    body: "Địa chỉ website của bạn. Nếu mọi thứ đều trả lời được, đó cũng là một câu trả lời hữu ích.",
+    body: "Gửi địa chỉ website. Nếu danh mục đã trả lời được mọi câu hỏi trong phạm vi kiểm tra, đó cũng là kết quả hữu ích.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
   },

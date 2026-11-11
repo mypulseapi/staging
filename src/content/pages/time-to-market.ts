@@ -226,7 +226,7 @@ export const TIME_TO_MARKET_VI: StoryContent = {
     will: [
       "Cho biết tập thuộc tính nhỏ nhất khiến một dòng hàng mới đủ rõ để quyết định, đã xếp hạng, trước khi lên hàng",
       "Tách phần lấy lại được từ văn bản nhà cung cấp khỏi phần phải đi hỏi hoặc đi thu thập",
-      "Đưa bạn điểm đủ thông tin để mua của dòng hàng, đo lại được khi phần bù dữ liệu về tới",
+      "Cung cấp điểm đủ thông tin để mua của dòng hàng, có thể đo lại khi nhận được dữ liệu bổ sung",
       "Chạy được trên dữ liệu đầu vào còn thiếu và lộn xộn, vì đó đúng là trạng thái nó được thiết kế để đánh giá",
     ],
     wont: [
