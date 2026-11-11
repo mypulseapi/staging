@@ -87,7 +87,7 @@
       "body": "Cá nhân hoá đặt trên một danh mục không ghi nhận gì thì không thể hoạt động. Chúng tôi bắt đầu sớm hơn mọi người một bước.",
       "s1": {
         "title": "Decision Audit",
-        "body": "Dán địa chỉ cửa hàng. Chúng tôi xếp hạng từng thông tin theo sức mạnh ra quyết định hiện tại, và theo mức nó sẽ đạt được nếu được nêu đầy đủ. Khoảng cách đó chính là cái giá của dữ liệu còn thiếu.",
+        "body": "Dán địa chỉ website. Chúng tôi xếp hạng từng thông tin theo sức mạnh ra quyết định hiện tại, và theo mức nó sẽ đạt được nếu được nêu đầy đủ. Khoảng cách đó chính là cái giá của dữ liệu còn thiếu.",
         "meta": "Vài phút · không cần code · chỉ trang công khai"
       },
       "s2": {
@@ -184,8 +184,8 @@
       ]
     },
     "finalCta": {
-      "title": "Dán địa chỉ cửa hàng.<br></br>Nhận báo cáo trong <accent>vài phút.</accent>",
-      "description": "Chọn kệ hàng mà bạn nghi ngờ khách gặp khó khăn nhất. Chúng tôi chỉ cần địa chỉ cửa hàng, không code, không gắn tag lên website, không dữ liệu khách hàng. Bạn sẽ nhận kết quả xếp hạng, và một buổi trao đổi 30 phút nếu bạn muốn.",
+      "title": "Dán địa chỉ website.<br></br>Nhận báo cáo trong <accent>vài phút.</accent>",
+      "description": "Chọn kệ hàng mà bạn nghi ngờ khách gặp khó khăn nhất. Chúng tôi chỉ cần địa chỉ website, không code, không gắn tag lên website, không dữ liệu khách hàng. Bạn sẽ nhận kết quả xếp hạng, và một buổi trao đổi 30 phút nếu bạn muốn.",
       "ctaPrimary": "Yêu cầu Decision Audit",
       "ctaSecondary": "Đọc tài liệu",
       "illustrationAlt": ""
@@ -308,9 +308,9 @@
   "contact": {
     "meta": {
       "title": "Liên hệ Pulse: yêu cầu kiểm tra dữ liệu sản phẩm",
-      "description": "Dán địa chỉ cửa hàng và nhận lại danh sách xếp hạng những gì cần ghi trước, trong vài phút. Không mã nguồn, không thẻ, không dữ liệu khách hàng.",
+      "description": "Dán địa chỉ website và nhận lại danh sách xếp hạng những gì cần ghi trước, trong vài phút. Không mã nguồn, không thẻ, không dữ liệu khách hàng.",
       "ogTitle": "Liên hệ Pulse: yêu cầu kiểm tra dữ liệu sản phẩm",
-      "ogDescription": "Dán địa chỉ cửa hàng và nhận lại danh sách xếp hạng những gì cần ghi trước, trong vài phút. Không mã nguồn, không thẻ, không dữ liệu khách hàng."
+      "ogDescription": "Dán địa chỉ website và nhận lại danh sách xếp hạng những gì cần ghi trước, trong vài phút. Không mã nguồn, không thẻ, không dữ liệu khách hàng."
     },
     "badge": "Yêu cầu Decision Audit",
     "title": "Gửi một danh mục.",
@@ -368,11 +368,11 @@
       "items": [
         {
           "question": "Bản kiểm tra đầu tiên mất bao lâu?",
-          "answer": "Vài phút. Không cần tích hợp gì trước: dán địa chỉ cửa hàng, và chúng tôi đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được."
+          "answer": "Vài phút. Không cần tích hợp gì trước: dán địa chỉ website, và chúng tôi đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được."
         },
         {
           "question": "Bản kiểm tra đầu tiên có thực sự miễn phí không?",
-          "answer": "Có. Một ngành hàng, địa chỉ cửa hàng của bạn, không cần tài khoản và không cần thẻ. Chúng tôi muốn bạn đánh giá phương pháp trên chính sản phẩm của mình hơn là trên một nghiên cứu điển hình của người khác. Phần sau đó được tính phí theo chu kỳ, và không ai phải quyết định điều đó ngay ngày đầu."
+          "answer": "Có. Một ngành hàng, địa chỉ website của bạn, không cần tài khoản và không cần thẻ. Chúng tôi muốn bạn đánh giá phương pháp trên chính sản phẩm của mình hơn là trên một nghiên cứu điển hình của người khác. Phần sau đó được tính phí theo chu kỳ, và không ai phải quyết định điều đó ngay ngày đầu."
         },
         {
           "question": "Bao lâu thì có người trả lời?",
@@ -380,7 +380,7 @@
         },
         {
           "question": "Các bạn có làm việc với agency và đơn vị tư vấn không?",
-          "answer": "Có. Chúng tôi đang xây dựng chương trình đối tác cho các agency, đơn vị tư vấn và nhà tích hợp hệ thống đang làm công việc danh mục cho khách hàng của họ, và chúng tôi đang trao đổi với những đối tác đầu tiên. Một bản kiểm tra chỉ cần địa chỉ cửa hàng, dù là của bạn hay của khách hàng. Hãy viết cho partners@thepulseapi.com và cho chúng tôi biết đó là cửa hàng của ai."
+          "answer": "Có. Chúng tôi đang xây dựng chương trình đối tác cho các agency, đơn vị tư vấn và nhà tích hợp hệ thống đang làm công việc danh mục cho khách hàng của họ, và chúng tôi đang trao đổi với những đối tác đầu tiên. Một bản kiểm tra chỉ cần địa chỉ website, dù là của bạn hay của khách hàng. Hãy viết cho partners@thepulseapi.com và cho chúng tôi biết đó là cửa hàng của ai."
         }
       ]
     },
@@ -556,7 +556,7 @@
         "cta": "Yêu cầu audit",
         "features": [
           "Có kết quả trong vài phút",
-          "Chỉ cần địa chỉ cửa hàng, không code, không gắn tag, không dữ liệu khách hàng",
+          "Chỉ cần địa chỉ website, không code, không gắn tag, không dữ liệu khách hàng",
           "Danh sách thuộc tính xếp hạng kèm sản phẩm bị ảnh hưởng",
           "Phần chúng tôi khôi phục được từ tên sản phẩm hiện có",
           "Độ phủ theo từng kệ hàng, ngành nào đủ dữ liệu để khách tìm được sản phẩm",
@@ -599,7 +599,7 @@
         },
         {
           "question": "Nếu audit không tìm ra gì thì tôi mất gì?",
-          "answer": "Địa chỉ cửa hàng, không gì khác: bản audit miễn phí cho một ngành hàng. Nếu các trang của bạn ổn, báo cáo sẽ nói đúng như vậy, và bạn biết được nút thắt không nằm ở khâu tìm sản phẩm mà không tốn gì. Đó là một câu trả lời có ích."
+          "answer": "Địa chỉ website, không gì khác: bản audit miễn phí cho một ngành hàng. Nếu các trang của bạn ổn, báo cáo sẽ nói đúng như vậy, và bạn biết được nút thắt không nằm ở khâu tìm sản phẩm mà không tốn gì. Đó là một câu trả lời có ích."
         },
         {
           "question": "Chúng tôi đã có tìm kiếm và gợi ý sản phẩm. Cái này thay thế chúng à?",
@@ -622,7 +622,7 @@
     "cta": {
       "title": "Bắt đầu với một ngành hàng.",
       "titleHighlight": "Ngành mà khách gặp khó khăn nhất.",
-      "description": "Dán địa chỉ cửa hàng, trong vài phút bạn sẽ thấy sản phẩm của mình hiện chưa nói được điều gì với ai.",
+      "description": "Dán địa chỉ website, trong vài phút bạn sẽ thấy sản phẩm của mình hiện chưa nói được điều gì với ai.",
       "button": "Yêu cầu Decision Audit"
     }
   },
@@ -817,7 +817,7 @@
     "cta2": {
       "title": "Xem nó chạy trên",
       "titleHighlight": "danh mục của chính bạn.",
-      "description": "Bản audit chỉ cần địa chỉ cửa hàng. Không tích hợp, không code, không dữ liệu khách hàng, và kết quả thuộc về bạn, dù sau đó bạn có làm việc với chúng tôi hay không.",
+      "description": "Bản audit chỉ cần địa chỉ website. Không tích hợp, không code, không dữ liệu khách hàng, và kết quả thuộc về bạn, dù sau đó bạn có làm việc với chúng tôi hay không.",
       "button": "Yêu cầu Decision Audit"
     }
   },
@@ -1115,13 +1115,13 @@
     "metricLabel": "những gì chúng tôi chứng minh được hôm nay",
     "viewPricing": "Xem mô hình kinh doanh",
     "anyTitle": "Ngành của bạn không có trong danh sách này?",
-    "anyBody": "Bản kiểm tra chỉ đọc các trang sản phẩm công khai của bạn, nên phương pháp không thay đổi theo ngành. Thứ thay đổi là những thông tin nào quan trọng, và đó chính là thứ chúng tôi đo thay vì phỏng đoán. Dán địa chỉ cửa hàng và xem việc này có đáng thời gian của bạn hay không.",
+    "anyBody": "Bản kiểm tra chỉ đọc các trang sản phẩm công khai của bạn, nên phương pháp không thay đổi theo ngành. Thứ thay đổi là những thông tin nào quan trọng, và đó chính là thứ chúng tôi đo thay vì phỏng đoán. Dán địa chỉ website và xem việc này có đáng thời gian của bạn hay không.",
     "anyCta": "Yêu cầu Decision Audit",
     "meta": {
       "title": "Dữ liệu sản phẩm cho mọi ngành hàng",
-      "description": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Địa chỉ cửa hàng, kết quả trong vài phút.",
+      "description": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Địa chỉ website, kết quả trong vài phút.",
       "ogTitle": "Dữ liệu sản phẩm cho mọi ngành hàng",
-      "ogDescription": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Địa chỉ cửa hàng, kết quả trong vài phút."
+      "ogDescription": "Decision Audit cho thương mại điện tử, sàn thương mại, phân phối B2B, nguồn cấp dữ liệu, du lịch và tác tử AI. Địa chỉ website, kết quả trong vài phút."
     }
   },
   "auth": {
@@ -1137,7 +1137,7 @@
     "problemsTitle": "Điều thường trục trặc trong ngành {sector}",
     "stepsTitle": "Chúng tôi làm gì với điều đó",
     "stepsBody": "Ba việc, và chỉ việc đầu tiên cần đến bạn.",
-    "step1Title": "Dán địa chỉ cửa hàng",
+    "step1Title": "Dán địa chỉ website",
     "step1Body": "Chọn một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, ngành hàng, giá và những thông tin mỗi trang nêu ra.",
     "step2Title": "Chúng tôi xếp hạng những gì cần ghi trước",
     "step2Body": "Mọi thuộc tính còn thiếu đều được chấm theo mức thay đổi khả năng quyết định của người mua trong ngành của bạn, kèm danh sách sản phẩm bị ảnh hưởng.",
@@ -1147,7 +1147,7 @@
     "useCasesTitle": "Điều này xuất hiện ở đâu trong danh mục của bạn",
     "integrationEyebrow": "Cần những gì",
     "integrationTitle": "Chúng tôi cần gì từ bạn",
-    "needCsv": "Địa chỉ cửa hàng của bạn",
+    "needCsv": "Địa chỉ website của bạn",
     "needNoCode": "Không mã nguồn",
     "needNoTag": "Không thẻ theo dõi trên website",
     "needNoCustomerData": "Không dữ liệu khách hàng",
@@ -1161,7 +1161,7 @@
     "provenanceLabel": "Nơi nó thường đã nằm sẵn:",
     "faqEyebrow": "Câu hỏi từ ngành này",
     "faqTitle": "Các đội ngành {sector} hay hỏi chúng tôi điều gì",
-    "metricLabel": "từ địa chỉ cửa hàng của bạn",
+    "metricLabel": "từ địa chỉ website của bạn",
     "contextEyebrow": "Thị trường",
     "contextTitle": "Ngành {sector} hiện đang ra sao",
     "chartTitle": "Độ phủ thuộc tính trên một danh mục {sector} điển hình",

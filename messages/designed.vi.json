@@ -268,15 +268,15 @@
       "currentlyIdentifies": "Hiện tại, Pulse nhận diện",
       "oneMoreAttribute": "Thêm một thuộc tính đã giúp người mua phân biệt được",
       "rankDisagreement": "thiếu ở 162 sản phẩm, nên cách kiểm tra truyền thống xếp thuộc tính này đầu bảng. Nhưng chỉ 2 trên 32 yêu cầu của người mua nhắc đến nó, nên Pulse xếp nó cuối bảng.",
-      "testLabel": "Kiểm tra danh mục: nhập địa chỉ cửa hàng",
+      "testLabel": "Kiểm tra danh mục: nhập địa chỉ website",
       "testPlaceholder": "cuahangcuaban.vn",
       "testSubmit": "Kiểm tra danh mục",
       "testNote": "Miễn phí. Chỉ đọc trang công khai. Xem người mua và AI agent chưa biết được gì."
     },
     "method": {
       "1": "Cách hoạt động",
-      "2": "Gửi địa chỉ cửa hàng, nhận danh sách ưu tiên. Không cần gắn mã, gắn thẻ hay truy cập hệ thống của bạn.",
-      "3": "Dán địa chỉ cửa hàng",
+      "2": "Gửi địa chỉ website, nhận danh sách ưu tiên. Không cần gắn mã, gắn thẻ hay truy cập hệ thống của bạn.",
+      "3": "Dán địa chỉ website",
       "4": "Bạn chỉ làm một lần",
       "5": "Chúng tôi đọc các trang sản phẩm công khai của bạn: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra. Không cần gắn mã, không cần gắn thẻ, không cần truy cập hệ thống của bạn.",
       "6": "Nhận Decision Audit",
@@ -286,7 +286,7 @@
       "10": "Nhóm của bạn hoặc chúng tôi",
       "11": "Có thể bạn không cần chúng tôi hỗ trợ sửa. Sau khi hoàn tất, chúng tôi tính lại trên danh mục đã sửa và chỉ rõ những gì thay đổi. Không cần lưu lượng truy cập, chạy thử hay chờ đợi.",
       "12": "Bạn chỉ làm một lần",
-      "13": "Dán địa chỉ cửa hàng",
+      "13": "Dán địa chỉ website",
       "14": "Chúng tôi đọc các trang sản phẩm công khai của bạn: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra. Không cần gắn mã, không cần gắn thẻ, không cần truy cập hệ thống của bạn.",
       "24": "216 trang sản phẩm",
       "26": "Tên",
@@ -480,7 +480,7 @@
       "pagesBlurb": "Sắp xếp trang danh mục cho người vừa ghé vào",
       "studioName": "Merchandising Studio",
       "studioBlurb": "Quản lý danh mục và xem vì sao mỗi sản phẩm được xếp ở vị trí đó",
-      "facts": "Địa chỉ cửa hàng · Không cần tích hợp · Vài phút",
+      "facts": "Địa chỉ website · Không cần tích hợp · Vài phút",
       "exampleTitle": "Theo điều người mua cần, trên 32 yêu cầu",
       "exampleNote": "Dữ liệu minh họa",
       "exampleCaption": "Vi xử lý thiếu ở 162 sản phẩm, nhưng chỉ 2 trên 32 yêu cầu của người mua nhắc đến nó.",
@@ -500,11 +500,11 @@
   },
   "pricing": {
     "section1": {
-      "2": "Gửi địa chỉ cửa hàng. Nhận Decision Audit với danh sách ưu tiên trong vài phút.",
+      "2": "Gửi địa chỉ website. Nhận Decision Audit với danh sách ưu tiên trong vài phút.",
       "3": "Bắt đầu từ đây",
       "5": "Danh sách xếp hạng những gì nên ghi nhận trước, trên chính sản phẩm của bạn.",
       "6": "Miễn phí",
-      "7": "Một ngành hàng, địa chỉ cửa hàng, không cần tài khoản",
+      "7": "Một ngành hàng, địa chỉ website, không cần tài khoản",
       "8": "Yêu cầu kiểm tra",
       "9": "Thuộc tính xếp theo mức thiếu thông tin quyết định",
       "10": "Những sản phẩm đang thiếu từng thuộc tính",
@@ -582,7 +582,7 @@
       "finalTitle": "Bắt đầu với một ngành hàng.",
       "finalLede": "Chúng tôi sẽ cho bạn biết thông tin sản phẩm nào đáng sửa trước khi bạn cam kết vào một dự án lớn hơn.",
       "finalCta": "Yêu cầu Decision Audit",
-      "finalNote": "Địa chỉ cửa hàng · Không cần tích hợp · Vài phút",
+      "finalNote": "Địa chỉ website · Không cần tích hợp · Vài phút",
       "growsIntro": "Một lộ trình rõ ràng từ hiểu biết tới tác động đo lường được.",
       "grows1Copy": "Phân tích danh mục để tìm ra điều quan trọng.",
       "grows1Alt": "Bản kiểm tra sản phẩm cho thấy bằng chứng còn thiếu và mâu thuẫn",
@@ -737,9 +737,9 @@
   },
   "contact": {
     "section1": {
-      "1": "Dán địa chỉ cửa hàng. Nhận kết quả trong vài phút",
+      "1": "Dán địa chỉ website. Nhận kết quả trong vài phút",
       "2": "Chọn ngành hàng mà bạn cho rằng người mua khó lựa chọn nhất. Chúng tôi đọc các trang sản phẩm công khai, không cần gắn mã, gắn thẻ hay dữ liệu khách hàng, rồi chỉ ra những điều các trang hiện chưa cho ai biết được.",
-      "3": "Một ngành hàng, địa chỉ cửa hàng của bạn, không cần tài khoản và không cần thẻ",
+      "3": "Một ngành hàng, địa chỉ website của bạn, không cần tài khoản và không cần thẻ",
       "4": "Có kết quả trong vài phút, trên chính các trang sản phẩm của bạn",
       "5": "Không cần gắn mã, không gắn thẻ trên website, không cần dữ liệu khách hàng",
       "6": "Yêu cầu kiểm tra",
@@ -756,14 +756,14 @@
     "section2": {
       "1": "Câu hỏi thường gặp",
       "2": "Bản kiểm tra đầu tiên mất bao lâu?",
-      "3": "Vài phút. Không cần tích hợp gì trước: dán địa chỉ cửa hàng, và chúng tôi đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được.",
+      "3": "Vài phút. Không cần tích hợp gì trước: dán địa chỉ website, và chúng tôi đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được.",
       "4": "Bản kiểm tra đầu tiên có thực sự miễn phí không?",
-      "5": "Có. Chỉ cần một ngành hàng và địa chỉ cửa hàng, không cần tài khoản hay thẻ. Chúng tôi muốn bạn đánh giá phương pháp trên chính sản phẩm của bạn thay vì qua case study của người khác. Các bước sau tính phí theo chu kỳ, và bạn chưa cần quyết định ngay ngày đầu.",
+      "5": "Có. Chỉ cần một ngành hàng và địa chỉ website, không cần tài khoản hay thẻ. Chúng tôi muốn bạn đánh giá phương pháp trên chính sản phẩm của bạn thay vì qua case study của người khác. Các bước sau tính phí theo chu kỳ, và bạn chưa cần quyết định ngay ngày đầu.",
       "6": "Bao lâu thì có người trả lời?",
       "7": "Thường trong cùng ngày làm việc. Thư được chính những người làm việc với danh mục đọc, không qua hàng đợi, nên người trả lời bạn có thể trực tiếp mở danh mục của bạn.",
       "8": "Pulse có làm việc với đơn vị dịch vụ và tư vấn không?",
       "10": "và cho chúng tôi biết đó là danh mục của ai.",
-      "partnerAnswer": "Có. Chúng tôi đang xây dựng chương trình đối tác cho các đơn vị dịch vụ, tư vấn và tích hợp hệ thống phụ trách danh mục sản phẩm của khách hàng. Chúng tôi hiện trao đổi với các đối tác đầu tiên. Để kiểm tra, chỉ cần địa chỉ cửa hàng của bạn hoặc khách hàng. Bạn có thể gửi thư tới"
+      "partnerAnswer": "Có. Chúng tôi đang xây dựng chương trình đối tác cho các đơn vị dịch vụ, tư vấn và tích hợp hệ thống phụ trách danh mục sản phẩm của khách hàng. Chúng tôi hiện trao đổi với các đối tác đầu tiên. Để kiểm tra, chỉ cần địa chỉ website của bạn hoặc khách hàng. Bạn có thể gửi thư tới"
     },
     "section3": {
       "1": "Bạn muốn xem trực tiếp?",
@@ -889,12 +889,12 @@
       "11": "Điều chúng tôi chưa chắc chắn",
       "12": "Phương pháp này áp dụng được đến đâu ngoài những ngành hàng chúng tôi đã đo. Chúng tôi sẽ biết khi có thêm nhà bán hàng dùng thử.",
       "13": "Khách hàng chúng tôi có thể nêu tên",
-      "14": "Chưa có. Lần kiểm tra đầu chỉ cần địa chỉ cửa hàng, không cần cài đặt. Chúng tôi chỉ nêu tên khách hàng ở đây khi có sự cho phép của họ.",
+      "14": "Chưa có. Lần kiểm tra đầu chỉ cần địa chỉ website, không cần cài đặt. Chúng tôi chỉ nêu tên khách hàng ở đây khi có sự cho phép của họ.",
       "15": "Kênh mà chúng tôi không đo",
       "16": "Chúng tôi đã công bố phép đo",
       "17": "Yêu cầu Decision Audit",
       "threeWays": "Một dữ kiện có thể được truyền tới người mua theo ba cách: một trường họ lọc được, một bức ảnh họ nhìn được, hoặc một câu họ thực sự sẽ đọc. Chúng tôi đo cách thứ nhất. Trên kệ laptop mà chúng tôi dùng cho nghiên cứu của mình, hai cách đầu hoàn toàn không chồng lấn nhau, nên một danh mục có thể đạt điểm cao ở đây mà vẫn khiến người mua không thấy được thứ họ cần tìm.",
-      "oneExport": "Chỉ cần địa chỉ cửa hàng, không cài đặt gì cả."
+      "oneExport": "Chỉ cần địa chỉ website, không cài đặt gì cả."
     },
     "section5": {
       "1": "Gặp gỡ đội ngũ",
@@ -1036,9 +1036,9 @@
     },
     "audit": {
       "1": "Bạn nên ghi nhận gì trước?",
-      "2": "Bạn dán địa chỉ cửa hàng. Chúng tôi đọc các trang sản phẩm, xác định thông tin thiếu nào giúp người mua phân biệt sản phẩm tốt nhất, rồi gửi danh sách ưu tiên kèm các sản phẩm bị ảnh hưởng. Thứ tự này được đo bằng bit thông tin hỗ trợ quyết định, thay vì suy đoán từ dữ liệu nhấp chuột.",
+      "2": "Bạn dán địa chỉ website. Chúng tôi đọc các trang sản phẩm, xác định thông tin thiếu nào giúp người mua phân biệt sản phẩm tốt nhất, rồi gửi danh sách ưu tiên kèm các sản phẩm bị ảnh hưởng. Thứ tự này được đo bằng bit thông tin hỗ trợ quyết định, thay vì suy đoán từ dữ liệu nhấp chuột.",
       "3": "Bạn cung cấp:",
-      "4": "Địa chỉ cửa hàng của bạn. Không cần gắn mã, không gắn thẻ, không cần truy cập hệ thống.",
+      "4": "Địa chỉ website của bạn. Không cần gắn mã, không gắn thẻ, không cần truy cập hệ thống.",
       "5": "Đọc về Decision Audit",
       "6": "Thuộc tính được xếp hạng theo giá trị nếu ghi nhận chúng ở mọi nơi",
       "7": "Chính xác những sản phẩm đang thiếu từng thuộc tính",
@@ -1149,8 +1149,8 @@
       "section4": {
         "1": "Bản kiểm tra hoạt động thế nào?",
         "2": "Bạn",
-        "3": "Dán địa chỉ cửa hàng",
-        "4": "Dán địa chỉ cửa hàng và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra.",
+        "3": "Dán địa chỉ website",
+        "4": "Dán địa chỉ website và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi",
         "6": "Chúng tôi đo",
         "7": "Trong vài phút, chúng tôi đo xem mỗi thông tin giúp phân biệt sản phẩm đến đâu, và nó sẽ đáng giá bao nhiêu nếu được nêu trên toàn ngành hàng, tính bằng bit chứ không phải bằng lượt nhấp.",
@@ -1178,9 +1178,9 @@
       "section6": {
         "1": "Những câu hỏi quyết định",
         "2": "Chính xác thì tôi cần gửi gì cho Pulse?",
-        "3": "Địa chỉ cửa hàng và ngành hàng cần kiểm tra. Không cần gì khác. Không cần hồ sơ khách hàng, không cần lịch sử đơn hàng, không cần truy cập hệ thống của bạn, và không cần gắn mã lên trang của bạn. Chúng tôi chỉ đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được.",
+        "3": "Địa chỉ website và ngành hàng cần kiểm tra. Không cần gì khác. Không cần hồ sơ khách hàng, không cần lịch sử đơn hàng, không cần truy cập hệ thống của bạn, và không cần gắn mã lên trang của bạn. Chúng tôi chỉ đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được.",
         "4": "Tôi có cần một người phụ trách kỹ thuật để dùng sản phẩm không?",
-        "5": "Không. Ai cũng có thể dán địa chỉ cửa hàng; người phụ trách quản lý ngành hàng sẽ đọc kết quả. Không cần cài đặt nên không tốn thời gian của nhóm kỹ thuật.",
+        "5": "Không. Ai cũng có thể dán địa chỉ website; người phụ trách quản lý ngành hàng sẽ đọc kết quả. Không cần cài đặt nên không tốn thời gian của nhóm kỹ thuật.",
         "6": "Mất bao lâu để nhận được kết quả?",
         "7": "Vài phút. Chúng tôi đọc một mẫu các trang sản phẩm trong ngành hàng, đánh giá từng trang theo những gì người mua cần để quyết định, và hiển thị kết quả ngay khi có."
       }
@@ -1340,7 +1340,7 @@
       "section1": {
         "3": "Yêu cầu Decision Audit",
         "4": "Xem bạn nhận được gì",
-        "6": "từ địa chỉ cửa hàng của bạn",
+        "6": "từ địa chỉ website của bạn",
         "1": "Mức độ phù hợp quyết định việc bán hàng, mà mức độ phù hợp lại không phải một trường dữ liệu",
         "5": "Danh sách ưu tiên sửa trong vài phút",
         "eyebrow": "Mỹ phẩm và chăm sóc cá nhân",
@@ -1394,13 +1394,13 @@
       "section5": {
         "1": "Cách chúng tôi xử lý",
         "2": "Ba việc, bạn chỉ cần tham gia việc đầu tiên.",
-        "3": "Dán địa chỉ cửa hàng",
-        "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
+        "3": "Dán địa chỉ website",
+        "4": "Địa chỉ website và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp thứ tự thông tin cần bổ sung",
         "6": "Chúng tôi chấm điểm từng thuộc tính còn thiếu theo mức độ thông tin đó giúp người mua trong ngành của bạn ra quyết định, kèm danh sách sản phẩm bị ảnh hưởng.",
         "7": "Bạn sửa, rồi chúng tôi kiểm chứng",
         "8": "Nhóm của bạn có thể tự làm phần lớn việc sửa dữ liệu. Khi hoàn tất, chúng tôi tính lại trên danh mục đã sửa và cho bạn thấy chính xác những gì đã thay đổi.",
-        "9": "Địa chỉ cửa hàng của bạn",
+        "9": "Địa chỉ website của bạn",
         "10": "Không cần gắn mã",
         "11": "Không gắn thẻ trên trang của bạn",
         "12": "Không cần dữ liệu khách hàng"
@@ -1423,7 +1423,7 @@
       "section1": {
         "3": "Yêu cầu Decision Audit",
         "4": "Xem bạn nhận được gì",
-        "6": "từ địa chỉ cửa hàng của bạn",
+        "6": "từ địa chỉ website của bạn",
         "1": "Người mua của bạn chọn theo thông số. Danh mục của bạn lại được xây cho mã đặt hàng",
         "5": "Nên ánh xạ thông số nào trước",
         "eyebrow": "Phân phối B2B và công nghiệp",
@@ -1474,13 +1474,13 @@
       "section5": {
         "1": "Cách chúng tôi xử lý",
         "2": "Ba việc, bạn chỉ cần tham gia việc đầu tiên.",
-        "3": "Dán địa chỉ cửa hàng",
-        "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
+        "3": "Dán địa chỉ website",
+        "4": "Địa chỉ website và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp thứ tự thông tin cần bổ sung",
         "6": "Chúng tôi chấm điểm từng thuộc tính còn thiếu theo mức độ thông tin đó giúp người mua trong ngành của bạn ra quyết định, kèm danh sách sản phẩm bị ảnh hưởng.",
         "7": "Bạn sửa, rồi chúng tôi kiểm chứng",
         "8": "Nhóm của bạn có thể tự làm phần lớn việc sửa dữ liệu. Khi hoàn tất, chúng tôi tính lại trên danh mục đã sửa và cho bạn thấy chính xác những gì đã thay đổi.",
-        "9": "Địa chỉ cửa hàng của bạn",
+        "9": "Địa chỉ website của bạn",
         "10": "Không cần gắn mã",
         "11": "Không gắn thẻ trên trang của bạn",
         "12": "Không cần dữ liệu khách hàng"
@@ -1524,7 +1524,7 @@
       "section1": {
         "3": "Yêu cầu Decision Audit",
         "4": "Xem bạn nhận được gì",
-        "6": "từ địa chỉ cửa hàng của bạn",
+        "6": "từ địa chỉ website của bạn",
         "1": "Kệ hàng của bạn có chín mươi sản phẩm và không có cách nào để chọn giữa chúng",
         "2": "Danh mục bán lẻ lớn lên bằng cách thêm sản phẩm, chứ không phải thêm cột dữ liệu. Đến một lúc, một ngành hàng chứa đủ nhiều món gần như giống hệt nhau khiến người mua không thu hẹp được, và cái trường lẽ ra giúp thu hẹp lại chính là trường không ai được giao điền.",
         "5": "Danh sách ưu tiên sửa trong vài phút",
@@ -1603,13 +1603,13 @@
       "section5": {
         "1": "Cách chúng tôi xử lý",
         "2": "Ba việc, bạn chỉ cần tham gia việc đầu tiên.",
-        "3": "Dán địa chỉ cửa hàng",
-        "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
+        "3": "Dán địa chỉ website",
+        "4": "Địa chỉ website và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp thứ tự thông tin cần bổ sung",
         "6": "Chúng tôi chấm điểm từng thuộc tính còn thiếu theo mức độ thông tin đó giúp người mua trong ngành của bạn ra quyết định, kèm danh sách sản phẩm bị ảnh hưởng.",
         "7": "Bạn sửa, rồi chúng tôi kiểm chứng",
         "8": "Nhóm của bạn có thể tự làm phần lớn việc sửa dữ liệu. Khi hoàn tất, chúng tôi tính lại trên danh mục đã sửa và cho bạn thấy chính xác những gì đã thay đổi.",
-        "9": "Địa chỉ cửa hàng của bạn",
+        "9": "Địa chỉ website của bạn",
         "10": "Không cần gắn mã",
         "11": "Không gắn thẻ trên trang của bạn",
         "12": "Không cần dữ liệu khách hàng"
@@ -1648,7 +1648,7 @@
       "section1": {
         "3": "Yêu cầu Decision Audit",
         "4": "Xem bạn nhận được gì",
-        "6": "từ địa chỉ cửa hàng của bạn",
+        "6": "từ địa chỉ website của bạn",
         "1": "Bao bì trông giống hệt nhau. Quyết định nằm trên nhãn",
         "5": "Danh sách ưu tiên sửa trong vài phút",
         "figureAlt": "Hai hộp ngũ cốc. Hộp phía trước được chú thích những gì nhãn ghi: quy cách đóng gói 500g và công bố dinh dưỡng giàu chất xơ, đọc được từ ảnh chụp, trong khi nồng độ và phù hợp cho trẻ em bị đánh dấu là không nêu. Bên cạnh, độ phủ thuộc tính trên một danh mục FMCG điển hình xếp nồng độ đứng đầu ở 22 phần trăm, rồi quy cách đóng gói 58, công bố dinh dưỡng 31 và thương hiệu 97.",
@@ -1708,13 +1708,13 @@
       "section5": {
         "1": "Cách chúng tôi xử lý",
         "2": "Ba việc, bạn chỉ cần tham gia việc đầu tiên.",
-        "3": "Dán địa chỉ cửa hàng",
-        "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
+        "3": "Dán địa chỉ website",
+        "4": "Địa chỉ website và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp thứ tự thông tin cần bổ sung",
         "6": "Chúng tôi chấm điểm từng thuộc tính còn thiếu theo mức độ thông tin đó giúp người mua trong ngành của bạn ra quyết định, kèm danh sách sản phẩm bị ảnh hưởng.",
         "7": "Bạn sửa, rồi chúng tôi kiểm chứng",
         "8": "Nhóm của bạn có thể tự làm phần lớn việc sửa dữ liệu. Khi hoàn tất, chúng tôi tính lại trên danh mục đã sửa và cho bạn thấy chính xác những gì đã thay đổi.",
-        "9": "Địa chỉ cửa hàng của bạn",
+        "9": "Địa chỉ website của bạn",
         "10": "Không cần gắn mã",
         "11": "Không gắn thẻ trên trang của bạn",
         "12": "Không cần dữ liệu khách hàng"
@@ -1738,7 +1738,7 @@
       "section1": {
         "3": "Yêu cầu Decision Audit",
         "4": "Xem bạn nhận được gì",
-        "6": "từ địa chỉ cửa hàng của bạn",
+        "6": "từ địa chỉ website của bạn",
         "1": "Trông thì ổn. Có vừa hay không lại là chuyện khác",
         "5": "Danh sách ưu tiên sửa trong vài phút",
         "eyebrow": "Nội thất và đồ gia dụng",
@@ -1792,13 +1792,13 @@
       "section5": {
         "1": "Cách chúng tôi xử lý",
         "2": "Ba việc, bạn chỉ cần tham gia việc đầu tiên.",
-        "3": "Dán địa chỉ cửa hàng",
-        "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
+        "3": "Dán địa chỉ website",
+        "4": "Địa chỉ website và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp thứ tự thông tin cần bổ sung",
         "6": "Chúng tôi chấm điểm từng thuộc tính còn thiếu theo mức độ thông tin đó giúp người mua trong ngành của bạn ra quyết định, kèm danh sách sản phẩm bị ảnh hưởng.",
         "7": "Bạn sửa, rồi chúng tôi kiểm chứng",
         "8": "Nhóm của bạn có thể tự làm phần lớn việc sửa dữ liệu. Khi hoàn tất, chúng tôi tính lại trên danh mục đã sửa và cho bạn thấy chính xác những gì đã thay đổi.",
-        "9": "Địa chỉ cửa hàng của bạn",
+        "9": "Địa chỉ website của bạn",
         "10": "Không cần gắn mã",
         "11": "Không gắn thẻ trên trang của bạn",
         "12": "Không cần dữ liệu khách hàng"
@@ -1821,7 +1821,7 @@
       "section1": {
         "3": "Yêu cầu Decision Audit",
         "4": "Xem bạn nhận được gì",
-        "6": "từ địa chỉ cửa hàng của bạn",
+        "6": "từ địa chỉ website của bạn",
         "1": "Hai thiết bị, cách nhau đúng một con số, và con số đó đang thiếu",
         "5": "Danh sách ưu tiên sửa trong vài phút",
         "eyebrow": "Công nghệ và điện tử",
@@ -1875,13 +1875,13 @@
       "section5": {
         "1": "Cách chúng tôi xử lý",
         "2": "Ba việc, bạn chỉ cần tham gia việc đầu tiên.",
-        "3": "Dán địa chỉ cửa hàng",
-        "4": "Địa chỉ cửa hàng và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
+        "3": "Dán địa chỉ website",
+        "4": "Địa chỉ website và một ngành hàng. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, danh mục, giá và những thông tin mỗi trang nêu ra.",
         "5": "Chúng tôi xếp thứ tự thông tin cần bổ sung",
         "6": "Chúng tôi chấm điểm từng thuộc tính còn thiếu theo mức độ thông tin đó giúp người mua trong ngành của bạn ra quyết định, kèm danh sách sản phẩm bị ảnh hưởng.",
         "7": "Bạn sửa, rồi chúng tôi kiểm chứng",
         "8": "Nhóm của bạn có thể tự làm phần lớn việc sửa dữ liệu. Khi hoàn tất, chúng tôi tính lại trên danh mục đã sửa và cho bạn thấy chính xác những gì đã thay đổi.",
-        "9": "Địa chỉ cửa hàng của bạn",
+        "9": "Địa chỉ website của bạn",
         "10": "Không cần gắn mã",
         "11": "Không gắn thẻ trên trang của bạn",
         "12": "Không cần dữ liệu khách hàng"
@@ -2228,7 +2228,7 @@
   "catalogueTest": {
     "meta": {
       "title": "Kiểm tra danh mục: bài kiểm tra quyết định miễn phí",
-      "description": "Nhập địa chỉ cửa hàng. Pulse đọc các trang sản phẩm công khai và chỉ ra câu hỏi mua hàng nào chúng chưa trả lời được cho người mua và AI agent. Miễn phí."
+      "description": "Nhập địa chỉ website. Pulse đọc các trang sản phẩm công khai và chỉ ra câu hỏi mua hàng nào chúng chưa trả lời được cho người mua và AI agent. Miễn phí."
     },
     "page": {
       "title": "Khám phá những gì trang sản phẩm của bạn còn thiếu",
@@ -2237,7 +2237,7 @@
       "statProducts": "sản phẩm đã đọc",
       "statRequirements": "yêu cầu đã kiểm tra",
       "statGaps": "chỗ thiếu đã tìm",
-      "urlLabel": "Địa chỉ cửa hàng của bạn",
+      "urlLabel": "Địa chỉ website của bạn",
       "urlPlaceholder": "cuahangcuaban.vn",
       "sameDomain": "Mọi trang phải thuộc {domain}.",
       "urlExamples": "cuahangcuaban.vn|shop.example.com|example.com/laptop|store.example.com/man-hinh",
@@ -2545,7 +2545,7 @@
     "step7": "Học",
     "s1Title": "Nhập cửa hàng",
     "s1Lede": "Pulse đọc các trang sản phẩm công khai của cửa hàng. Không cần tải dữ liệu, không cần tích hợp.",
-    "s1Store": "Địa chỉ cửa hàng",
+    "s1Store": "Địa chỉ website",
     "s1Category": "Danh mục",
     "s1CategoryValue": "Laptop",
     "s1Run": "Chạy AI Shelf Test",

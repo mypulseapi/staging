@@ -492,7 +492,7 @@ const VI: ResearchContent = {
   ],
   cta: {
     title: "Chạy phép đo trên danh mục của chính bạn.",
-    body: "Decision Audit miễn phí. Dán địa chỉ cửa hàng và nhận lại những thông tin còn thiếu làm mất nhiều quyết định mua nhất, kèm các giới hạn.",
+    body: "Decision Audit miễn phí. Dán địa chỉ website và nhận lại những thông tin còn thiếu làm mất nhiều quyết định mua nhất, kèm các giới hạn.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
   },

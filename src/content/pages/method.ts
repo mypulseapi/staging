@@ -338,7 +338,7 @@ export const METHOD_VI: StoryContent = {
 
   cta: {
     title: "Chạy thử trên chính kệ hàng của bạn.",
-    body: "Phương pháp chỉ thú vị khi nó nói được điều gì đó về danh mục của bạn. Địa chỉ cửa hàng của bạn là đủ để biết.",
+    body: "Phương pháp chỉ thú vị khi nó nói được điều gì đó về danh mục của bạn. Địa chỉ website của bạn là đủ để biết.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
   },

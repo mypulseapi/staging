@@ -60,11 +60,11 @@
     },
     "step-1-title": {
       "en": "Paste your store's address",
-      "vi": "Dán địa chỉ cửa hàng"
+      "vi": "Dán địa chỉ website"
     },
     "step-1-body": {
       "en": "Paste your store's address and choose a category where shoppers struggle to find the right product. We read the public product pages: names, descriptions, prices and the facts each one states.",
-      "vi": "Dán địa chỉ cửa hàng và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra."
+      "vi": "Dán địa chỉ website và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra."
     },
     "step-2-label": {
       "en": "Us",
@@ -96,7 +96,7 @@
     },
     "text-11": {
       "en": "You: Paste your store's address. Paste your store's address and choose a category where shoppers struggle to find the right product. We read the public product pages: names, descriptions, prices and the facts each one states. Us: We measure it. In minutes, we measure how much each fact helps tell products apart, and what it would be worth if stated across the category, in bits rather than clicks. Both: We walk you through it. Receive a ranked list of attributes and supporting files. We walk you through the findings and discuss what it would take to act on them.",
-      "vi": "Bạn: Dán địa chỉ cửa hàng. Dán địa chỉ cửa hàng và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra. Chúng tôi: Đo lường. Trong vài phút, chúng tôi đo xem mỗi thông tin giúp phân biệt sản phẩm đến đâu, và nó sẽ đáng giá bao nhiêu nếu được nêu trên toàn ngành hàng, tính bằng bit chứ không phải bằng lượt nhấp. Cả hai: Cùng xem kết quả. Nhận danh sách thuộc tính đã xếp hạng và các tệp đi kèm. Chúng tôi giải thích kết quả và bàn về những gì cần để hành động."
+      "vi": "Bạn: Dán địa chỉ website. Dán địa chỉ website và chọn ngành hàng mà người mua khó tìm được sản phẩm phù hợp. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, giá và những thông tin mỗi trang nêu ra. Chúng tôi: Đo lường. Trong vài phút, chúng tôi đo xem mỗi thông tin giúp phân biệt sản phẩm đến đâu, và nó sẽ đáng giá bao nhiêu nếu được nêu trên toàn ngành hàng, tính bằng bit chứ không phải bằng lượt nhấp. Cả hai: Cùng xem kết quả. Nhận danh sách thuộc tính đã xếp hạng và các tệp đi kèm. Chúng tôi giải thích kết quả và bàn về những gì cần để hành động."
     }
   },
   "decision-monitor/decision-monitor-gap-grows": {

@@ -416,7 +416,7 @@ export const SEO_AEO_VI: StoryContent = {
 
   cta: {
     title: "Tìm ra điều danh mục của bạn không diễn đạt được.",
-    body: "Địa chỉ cửa hàng của bạn, và một danh sách xếp hạng những thuộc tính đang giới hạn điều mà công cụ tìm kiếm và answer engine làm được với sản phẩm của bạn.",
+    body: "Địa chỉ website của bạn, và một danh sách xếp hạng những thuộc tính đang giới hạn điều mà công cụ tìm kiếm và answer engine làm được với sản phẩm của bạn.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Không mã nguồn, không thẻ theo dõi, không thay đổi gì trên website. Việc đánh dấu đến sau, và nó là của bạn.",

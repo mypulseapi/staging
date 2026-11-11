@@ -387,7 +387,7 @@ export const LIMITS_VI: StoryContent = {
 
   cta: {
     title: "Đọc các giới hạn, rồi kiểm chứng chúng trên chính kệ hàng của bạn.",
-    body: "Địa chỉ cửa hàng của bạn là cách rẻ nhất để biết liệu có điều nào ở đây đúng với danh mục của bạn hay không.",
+    body: "Địa chỉ website của bạn là cách rẻ nhất để biết liệu có điều nào ở đây đúng với danh mục của bạn hay không.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Nếu bản kiểm tra không tìm ra điều gì hữu ích, chúng tôi sẽ nói vậy ngay trong cuộc gọi.",

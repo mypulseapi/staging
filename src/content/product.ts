@@ -108,7 +108,7 @@ export const PILLARS_VI: readonly Pillar[] = [
     name: "Decision Audit",
     headline: "Chúng ta nên ghi lại gì trước?",
     body:
-      "Bạn dán địa chỉ cửa hàng. Chúng tôi đọc các trang sản phẩm, tìm ra những thông tin còn thiếu nào sẽ giúp người mua phân biệt sản phẩm của bạn nhiều nhất, xếp hạng chúng, và trả bạn danh sách kèm các sản phẩm bị ảnh hưởng. Thứ hạng được đo bằng bit thông tin quyết định, không phải đoán từ dữ liệu nhấp chuột.",
+      "Bạn dán địa chỉ website. Chúng tôi đọc các trang sản phẩm, tìm ra những thông tin còn thiếu nào sẽ giúp người mua phân biệt sản phẩm của bạn nhiều nhất, xếp hạng chúng, và trả bạn danh sách kèm các sản phẩm bị ảnh hưởng. Thứ hạng được đo bằng bit thông tin quyết định, không phải đoán từ dữ liệu nhấp chuột.",
     bullets: [
       "Các thuộc tính xếp theo giá trị của việc ghi chúng ở khắp nơi",
       "Chính xác những sản phẩm còn thiếu từng thuộc tính",
@@ -116,7 +116,7 @@ export const PILLARS_VI: readonly Pillar[] = [
       "Chúng tôi đã lấy lại được bao nhiêu từ tiêu đề và mô tả của bạn, trước khi bạn động tay",
       "Một chỉ số sẵn sàng quyết định mà bạn đo lại được về sau",
     ],
-    needs: "Địa chỉ cửa hàng của bạn. Không mã nguồn, không thẻ theo dõi, không quyền truy cập hệ thống.",
+    needs: "Địa chỉ website của bạn. Không mã nguồn, không thẻ theo dõi, không quyền truy cập hệ thống.",
   },
   {
     step: "02",

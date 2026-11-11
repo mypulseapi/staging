@@ -323,7 +323,7 @@ export const RECOMMENDATIONS_VI: ChapterContent = {
 
   cta: {
     title: "Làm cho kệ hàng đủ rõ để quyết định, rồi gợi ý từ đó.",
-    body: "Một dải gợi ý chỉ sắp xếp được những sản phẩm mà danh mục của bạn phân biệt nổi. Địa chỉ cửa hàng của bạn cho biết danh mục của bạn có làm được không.",
+    body: "Một dải gợi ý chỉ sắp xếp được những sản phẩm mà danh mục của bạn phân biệt nổi. Địa chỉ website của bạn cho biết danh mục của bạn có làm được không.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
     note: "Định giá sau chương trình thử nghiệm, dựa trên đúng những gì nhánh đối chứng cho thấy.",
