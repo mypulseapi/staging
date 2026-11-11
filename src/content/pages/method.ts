@@ -331,14 +331,14 @@ export const METHOD_VI: StoryContent = {
       a: "Không. Đây là lý thuyết thông tin áp lên danh mục của bạn và một tập yêu cầu đã nêu. Không có mô hình được huấn luyện, không có embedding và không có gì cần huấn luyện lại, đó cũng là lý do nó cho cùng một đáp án ở hai lần chạy.",
     },
     {
-      q: "Chỉ số sẵn sàng quyết định là gì?",
+      q: "Điểm đủ thông tin để mua là gì?",
       a: "Sau mọi câu hỏi mà danh mục của bạn hiện trả lời được, người mua vẫn còn phải chọn giữa bao nhiêu sản phẩm? Trên kệ thử nghiệm của chúng tôi, con số là 94 trên 216, so với một danh sách rút gọn hữu ích khoảng năm sản phẩm. Đây chính là con số dịch chuyển khi bạn sửa danh mục.",
     },
   ],
 
   cta: {
     title: "Chạy thử trên chính kệ hàng của bạn.",
-    body: "Phương pháp chỉ thú vị khi nó nói được điều gì đó về danh mục của bạn. Địa chỉ cửa hàng của bạn là đủ để biết.",
+    body: "Phương pháp có ý nghĩa khi giúp bạn hiểu danh mục của mình. Chỉ cần địa chỉ website để bắt đầu.",
     label: "Yêu cầu Decision Audit",
     href: "/contact",
   },

@@ -149,7 +149,7 @@ const TERMS: {
     names: ["decision audit", "audit"],
     reply: (l) => ({
       en: `The **Decision Audit** ranks the missing facts in one category of your catalogue by how many buying decisions each one costs, so your team fixes the right column first, not just the emptiest. Paste your store's address and get the missing facts back in priority order, in minutes, with where each missing value already lives. [Read more](${l.catalogue}/decision-audit).`,
-      vi: `**Decision Audit** xếp hạng các thông tin còn thiếu trong một ngành hàng theo số quyết định mua mà mỗi thông tin làm mất, để đội của bạn sửa đúng cột trước chứ không chỉ cột trống nhất. Dán địa chỉ cửa hàng và nhận lại các thông tin còn thiếu theo thứ tự ưu tiên, trong vài phút, kèm nơi giá trị còn thiếu đang nằm sẵn. [Xem thêm](${l.catalogue}/decision-audit).`,
+      vi: `**Decision Audit** xếp hạng thông tin còn thiếu trong một ngành hàng theo số quyết định mua bị cản trở, để đội ngũ của bạn ưu tiên sửa trường dữ liệu quan trọng. Dán địa chỉ website để nhận danh sách thông tin còn thiếu theo thứ tự ưu tiên trong vài phút, kèm nơi có thể tìm giá trị cần bổ sung. [Xem thêm](${l.catalogue}/decision-audit).`,
     }),
   },
   {
