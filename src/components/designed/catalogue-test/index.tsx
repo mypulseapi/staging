@@ -27,8 +27,9 @@ export function CatalogueTestPage() {
   const [before, after] = t("title").split(t("titleMark"));
   const header = (
     <div key="header" className="mx-auto w-full max-w-3xl text-center">
-      {/* No description under it (owner, 5 Nov 2026); the missing word in Signal Red, its one use here. */}
-      <h1 className="text-hero text-balance">
+      {/* No description under it (owner, 5 Nov 2026); the missing word in Signal Red, its one use here.
+          28px in both languages (owner, 12 Nov 2026): the hero face, weight and tracking at a fixed size. */}
+      <h1 className="text-hero text-balance [--text-hero:1.75rem]">
         {before}
         <span className="text-signal-text">{t("titleMark")}</span>
         {after}
