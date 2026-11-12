@@ -2333,7 +2333,7 @@
       "description": "Enter your store's address. Pulse reads your public product pages and shows which buying questions they cannot answer for shoppers and AI agents. Free."
     },
     "page": {
-      "title": "Discover what's missing from your product pages",
+      "title": "discover missing product information",
       "titleMark": "missing",
       "statStores": "stores tested",
       "statProducts": "products checked",
