@@ -17,8 +17,11 @@ import {
   Hourglass,
   ListChecks,
   LoaderCircle,
+  Pause,
+  Play,
   ScanSearch,
   ScanText,
+  Square,
   X,
 } from "lucide-react";
 import type { RequirementResult } from "@/lib/catalogue-test";
@@ -106,16 +109,19 @@ const numeral =
 function MarkIcon({
   m,
   className = "size-3.5",
+  still = false,
 }: {
   m: Mark;
   className?: string;
+  /** A paused run's spinner stands still (WCAG 2.2.2). */
+  still?: boolean;
 }) {
   if (m === "passed") return <Check aria-hidden className={className} />;
   if (m === "running")
     return (
       <LoaderCircle
         aria-hidden
-        className={`${className} motion-safe:animate-spin`}
+        className={`${className} ${still ? "" : "motion-safe:animate-spin"}`}
       />
     );
   if (m === "failed") return <X aria-hidden className={className} />;
@@ -139,6 +145,11 @@ export function RunPipeline({
   elapsed,
   category,
   onReset,
+  paused,
+  byYou,
+  onPause,
+  onResume,
+  onStop,
   reason,
 }: {
   t: T;
@@ -159,6 +170,12 @@ export function RunPipeline({
   /** The category tested, in the page's language. */
   category: string | null;
   onReset: () => void;
+  /** The reader paused the view (the test goes on at our end), or stopped watching it. */
+  paused: boolean;
+  byYou: boolean;
+  onPause: () => void;
+  onResume: () => void;
+  onStop: () => void;
   /** Why a run ended without a result, in the reader's words, shown in the card under the figures. */
   reason?: string | null;
 }) {
@@ -172,31 +189,42 @@ export function RunPipeline({
   const stuck = status === "failed" || status === "blocked";
   // The run finished: every stage passed, the pipeline stays as a record above the result.
   const finished = status === "done";
-  const at = stuck ? 2 : Math.max(0, ids.indexOf(status as Stage));
+  // A run that ended without a result stopped at the stage it had reached: before any page was chosen it
+  // was still finding them. It used to show "Read pages" for a store that stopped us first (17 Nov 2026).
+  const at = stuck
+    ? sampled > 0
+      ? 2
+      : 1
+    : Math.max(0, ids.indexOf(status as Stage));
   const mark = (i: number): Mark =>
     finished || i < at
       ? "passed"
       : i > at
         ? "waiting"
-        : status === "failed"
-          ? "failed"
-          : status === "blocked"
-            ? "stopped"
-            : status === "queued"
-              ? "waiting"
-              : "running";
+        : byYou
+          ? "stopped"
+          : status === "failed"
+            ? "failed"
+            : status === "blocked"
+              ? "stopped"
+              : status === "queued"
+                ? "waiting"
+                : "running";
   // The stage the reader opened lapses when the run moves on.
   const sel = chosen?.at === at ? ids.indexOf(chosen.stage) : at;
   const runMark: Mark = finished
     ? "passed"
-    : stuck
+    : stuck || byYou
       ? mark(at)
       : at === 0
         ? "waiting"
         : "running";
-  const statusText = t(
-    status === "blocked" ? "status_stopped" : `status_${status}`,
-  );
+  const stopWord = byYou ? t("status_stopped_you") : t("status_stopped");
+  const statusText = byYou
+    ? stopWord
+    : paused && !stuck && !finished
+      ? t("status_paused")
+      : t(status === "blocked" ? "status_stopped" : `status_${status}`);
 
   useLayoutEffect(() => {
     const el = plot.current;
@@ -229,7 +257,7 @@ export function RunPipeline({
       : m === "failed"
         ? t("markFailed")
         : m === "stopped"
-          ? t("status_stopped")
+          ? stopWord
           : detail(i);
   };
   const label = (i: number) => {
@@ -242,7 +270,7 @@ export function RunPipeline({
           : m === "failed"
             ? t("markFailed")
             : m === "stopped"
-              ? t("status_stopped")
+              ? stopWord
               : t("notStarted")
     }`;
   };
@@ -343,6 +371,17 @@ export function RunPipeline({
     const quiet = (text: string) => (
       <p className="px-5 py-4.5 text-sm text-muted max-md:px-4">{text}</p>
     );
+    if (sel === 1)
+      return status === "blocked" ? (
+        <div
+          className={`flex items-start gap-3 bg-(--st-bg) px-5 py-3.5 text-sm text-ink max-md:px-4 ${TONE.stopped}`}
+        >
+          <Hand aria-hidden className="mt-0.5 size-4 text-(--st-fg)" />
+          <p>{t("stoppedNone")}</p>
+        </div>
+      ) : (
+        quiet(t("status_failed"))
+      );
     if (sel === 2) {
       if (m === "waiting") return quiet(t("notStarted"));
       if (status === "blocked")
@@ -450,11 +489,11 @@ export function RunPipeline({
   };
   // A beat beside each figure the current stage is moving, and the clock, while the test runs
   // (owner, 6 Nov 2026): finding pages moves the pages and products, reading moves the pages.
-  const running = !finished && !stuck;
+  const running = !finished && !stuck && !byYou;
   const live = (on: boolean, value: ReactNode) => (
     <span className="inline-flex items-center gap-2.5 tabular-nums">
       {value}
-      {on && (
+      {on && !paused && (
         <span aria-hidden className="relative flex size-2.5">
           <span className="absolute inline-flex size-full rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
           <span className="relative inline-flex size-2.5 rounded-full bg-primary" />
@@ -528,6 +567,35 @@ export function RunPipeline({
             <span aria-hidden className="w-0" />
           </p>
         )}
+        {running && (
+          <div
+            role="group"
+            aria-label={t("runControls")}
+            className="flex items-center gap-2 max-md:w-full"
+          >
+            <button
+              type="button"
+              onClick={paused ? onResume : onPause}
+              aria-pressed={paused}
+              className="btn-secondary btn-sm inline-flex items-center gap-2"
+            >
+              {paused ? (
+                <Play aria-hidden className="size-3.5" />
+              ) : (
+                <Pause aria-hidden className="size-3.5" />
+              )}
+              {paused ? t("resume") : t("pause")}
+            </button>
+            <button
+              type="button"
+              onClick={onStop}
+              className="btn-ghost btn-sm inline-flex items-center gap-2"
+            >
+              <Square aria-hidden className="size-3.5" />
+              {t("stopTest")}
+            </button>
+          </div>
+        )}
       </header>
 
       <dl className="mx-7 mt-6 grid grid-cols-[1.5fr_1fr_1fr_1fr] border-y border-line max-md:mx-4 max-md:mt-4.5 max-md:grid-cols-3">
@@ -568,6 +636,14 @@ export function RunPipeline({
           {reason}
         </p>
       )}
+      {(paused && running) || byYou ? (
+        <p
+          role="status"
+          className="mx-7 mt-4 text-sm text-pretty text-muted max-md:mx-4"
+        >
+          {byYou ? t("stoppedYouNote") : t("pausedNote")}
+        </p>
+      ) : null}
 
       <div className="px-7 pt-6 max-md:px-4 max-md:pt-2">
         {/* Desktop: the blocks. Phones: the list (owner, 5 Nov 2026). */}
@@ -616,21 +692,54 @@ export function RunPipeline({
                 const edge = n.x + dir * Math.min(46, width / cols / 2 - 6);
                 d = `M${n.x + dir * 36 * s},${y} H${edge} V${m.top + 48 * s} H${m.x + dir * 38 * s}`;
               }
+              // The connector leaving the running stage shows the work (owner, 17 Nov 2026): the pages read out of
+              // the pages chosen while they are read, which is known, and a dash travelling toward the next
+              // stage while it is not. Both hold when paused; none for a stage that is only waiting.
+              const lead = i === at && at > 0 && running;
+              const reading = status === "inspecting" && sampled > 0;
               return (
-                <path
-                  key={i}
-                  d={d}
-                  fill="none"
-                  stroke={
-                    passed
-                      ? "var(--color-success)"
-                      : "var(--color-line-control)"
-                  }
-                  strokeWidth={1.5}
-                  strokeDasharray={passed ? undefined : "4 4"}
-                  strokeLinejoin="round"
-                  markerEnd={`url(#${passed ? "rp-pass" : "rp-wait"})`}
-                />
+                <g key={i}>
+                  <path
+                    d={d}
+                    fill="none"
+                    stroke={
+                      passed
+                        ? "var(--color-success)"
+                        : "var(--color-line-control)"
+                    }
+                    strokeWidth={1.5}
+                    strokeDasharray={passed ? undefined : "4 4"}
+                    strokeLinejoin="round"
+                    markerEnd={`url(#${passed ? "rp-pass" : "rp-wait"})`}
+                  />
+                  {lead && reading && (
+                    <path
+                      d={d}
+                      fill="none"
+                      stroke="var(--color-primary)"
+                      strokeWidth={2.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      pathLength={1}
+                      strokeDasharray={1}
+                      strokeDashoffset={1 - Math.min(1, read / sampled)}
+                      className="pipe-fill"
+                    />
+                  )}
+                  {lead && !reading && (
+                    <path
+                      d={d}
+                      fill="none"
+                      stroke="var(--color-primary)"
+                      strokeWidth={2.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeDasharray="5 11"
+                      className="pipe-flow"
+                      data-paused={paused}
+                    />
+                  )}
+                </g>
               );
             })}
           </svg>
@@ -695,7 +804,11 @@ export function RunPipeline({
                   {t(st.name)}
                 </span>
                 <span className="inline-flex max-w-full items-start justify-center gap-1.5 text-xs leading-snug font-medium text-balance text-(--st-fg)">
-                  <MarkIcon m={m} className="mt-0.5 size-3.5 shrink-0" />
+                  <MarkIcon
+                    m={m}
+                    className="mt-0.5 size-3.5 shrink-0"
+                    still={paused}
+                  />
                   {word(i)}
                 </span>
               </button>
@@ -727,7 +840,7 @@ export function RunPipeline({
                     {m === "running" ? "" : detail(i)}
                   </span>
                   <span className="inline-flex min-w-30 items-center justify-end gap-1.5 text-xs font-medium text-(--st-fg) max-md:min-w-0">
-                    <MarkIcon m={m} />
+                    <MarkIcon m={m} still={paused} />
                     {word(i) ||
                       (m === "waiting" ? (
                         <span className="sr-only">{t("notStarted")}</span>
@@ -743,7 +856,7 @@ export function RunPipeline({
       {/* The stage's table while it runs; once done, the result below says it all (owner, 6 Nov 2026). */}
       {/* A table only while pages are read and requirements tested: the queue and the search for pages
           need none (owner, 6 Nov 2026). */}
-      {!finished && sel >= 2 && (
+      {!finished && (sel >= 2 || (stuck && sel === 1)) && (
         <section
           aria-live="polite"
           className="mx-7 mt-6 overflow-hidden rounded-xl border border-line bg-surface-1 max-md:mx-4 max-md:mt-5"
@@ -764,7 +877,7 @@ export function RunPipeline({
             <span
               className={`${readNow ? "ml-auto max-md:ml-0" : ""} inline-flex shrink-0 items-center gap-1.5 rounded-full border border-(--st-line) bg-(--st-bg) px-2.5 py-0.5 text-xs font-semibold text-(--st-fg)`}
             >
-              <MarkIcon m={mark(sel)} className="size-3" />
+              <MarkIcon m={mark(sel)} className="size-3" still={paused} />
               {mark(sel) === "passed"
                 ? t("status_done")
                 : mark(sel) === "running"
@@ -772,7 +885,7 @@ export function RunPipeline({
                   : mark(sel) === "failed"
                     ? t("markFailed")
                     : mark(sel) === "stopped"
-                      ? t("status_stopped")
+                      ? stopWord
                       : sel === 0 && status === "queued"
                         ? t("status_queued")
                         : t("notStarted")}
@@ -793,7 +906,7 @@ export function RunPipeline({
             })} · `}
           {t("stageCount", { n: num(STAGES.length) })}
         </span>
-        {stuck && (
+        {(stuck || byYou) && (
           <button
             type="button"
             onClick={onReset}
