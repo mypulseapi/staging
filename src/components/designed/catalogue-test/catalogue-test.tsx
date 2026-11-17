@@ -120,6 +120,14 @@ export function CatalogueTest({
   const runAt = useRef<HTMLDivElement>(null);
   const cursor = useRef(0);
   const timers = useRef<number[]>([]);
+  // Watching a run. Paused holds the view and stopped leaves it; spider has no cancel route, so the test
+  // goes on there either way (owner, 17 Nov 2026). `backlog` is what was polled but not yet shown, kept
+  // across a pause; `ended` is when the run's last event happened, which is its real end.
+  const [paused, setPaused] = useState(false);
+  const [stopped, setStopped] = useState(false);
+  const backlog = useRef<LiveEvent[]>([]);
+  const ended = useRef<number | null>(null);
+  const watching = useRef("");
 
   useEffect(() => {
     testConfig()
@@ -188,11 +196,24 @@ export function CatalogueTest({
     );
   }, [run]);
 
-  // Poll while running; play each batch across the interval so the ticker moves rather than jumps.
+  // Poll while running; play each batch across the interval so the ticker moves rather than jumps. A pause
+  // or a stop ends the poll but keeps its place: the cursor stays, so resuming reads what happened in the
+  // meantime, and the events not yet shown wait in `backlog` (owner, 17 Nov 2026).
   useEffect(() => {
-    if (!id) return;
+    if (!id || paused || stopped) return;
     let stop = false;
     let handle: number | undefined;
+    const key = `${id}:${run}`;
+    if (watching.current !== key) {
+      watching.current = key;
+      backlog.current = [];
+      ended.current = null;
+    }
+    const show = (e: LiveEvent) => {
+      backlog.current = backlog.current.filter((x) => x !== e);
+      apply(e);
+    };
+    [...backlog.current].forEach(show);
     const tick = async () => {
       try {
         const s = await pollTest(id, cursor.current);
@@ -203,15 +224,28 @@ export function CatalogueTest({
           started.current = s.events[0].at;
           setStartedAt(started.current);
         }
-        if (started.current !== null) setElapsed(Date.now() - started.current);
+        // The run's end is its last event, not the moment this page last asked: a reopened or reused
+        // run would otherwise count its whole age (a store stopped at 113:04, 17 Nov 2026).
+        if (ended.current === null && s.events.length) {
+          const last = s.events[s.events.length - 1];
+          const over = s.events.find((e) =>
+            ["done", "failed", "blocked"].includes(e.type),
+          );
+          if (over) ended.current = over.at;
+          else if (["done", "failed", "blocked"].includes(s.status))
+            ended.current = last.at;
+        }
+        if (started.current !== null)
+          setElapsed((ended.current ?? Date.now()) - started.current);
         const gap =
           s.nextPollMs && !reducedMotion()
             ? s.nextPollMs / Math.max(1, s.events.length)
             : 0;
         s.events.forEach((e, i) => {
+          backlog.current.push(e);
           if (gap)
-            timers.current.push(window.setTimeout(() => apply(e), i * gap));
-          else apply(e);
+            timers.current.push(window.setTimeout(() => show(e), i * gap));
+          else show(e);
         });
         if (s.nextPollMs) handle = window.setTimeout(tick, s.nextPollMs);
       } catch (e) {
@@ -230,11 +264,14 @@ export function CatalogueTest({
       timers.current.forEach(clearTimeout);
       timers.current = [];
     };
-  }, [id, run, apply, t]);
+  }, [id, run, paused, stopped, apply, t]);
 
-  // The clock ticks every second while the test runs, not only when a poll lands (owner, 6 Nov 2026).
+  // The clock ticks every second while the test runs and is being watched, not only when a poll lands
+  // (owner, 6 Nov 2026); it holds while paused.
   const live =
     startedAt !== null &&
+    !paused &&
+    !stopped &&
     !["done", "failed", "blocked"].includes(state?.status ?? "");
   useEffect(() => {
     if (!live) return;
@@ -263,6 +300,9 @@ export function CatalogueTest({
       setStartedAt(null);
       setElapsed(null);
       started.current = null;
+      ended.current = null;
+      setPaused(false);
+      setStopped(false);
       setState(null);
       setId(r.id);
       setRun((n) => n + 1);
@@ -294,6 +334,9 @@ export function CatalogueTest({
     setStartedAt(null);
     setElapsed(null);
     started.current = null;
+    ended.current = null;
+    setPaused(false);
+    setStopped(false);
     cursor.current = 0;
     window.history.replaceState(null, "", window.location.pathname);
   };
@@ -355,6 +398,11 @@ export function CatalogueTest({
         elapsed={elapsed}
         category={categoryLabel}
         onReset={reset}
+        paused={paused}
+        byYou={stopped}
+        onPause={() => setPaused(true)}
+        onResume={() => setPaused(false)}
+        onStop={() => setStopped(true)}
         reason={
           state?.reason === "no_category"
             ? t("reason_no_category")
