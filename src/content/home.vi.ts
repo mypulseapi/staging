@@ -50,14 +50,14 @@ export const STEPS_VI = {
   items: [
     {
       n: "01",
-      title: "Dán địa chỉ cửa hàng",
+      title: "Dán địa chỉ website",
       body: "Chúng tôi đọc các trang sản phẩm công khai của bạn: tên, mô tả, ngành hàng, giá và những thông tin mỗi trang nêu ra. Không mã nguồn, không thẻ theo dõi, không quyền truy cập hệ thống.",
       meta: "Bạn làm một lần",
     },
     {
       n: "02",
       title: "Nhận bản Decision Audit",
-      body: "Trong vài phút: danh sách xếp hạng những gì cần ghi trước, các sản phẩm thiếu từng thông tin, nơi mỗi dữ kiện còn thiếu đang nằm, và chỉ số sẵn sàng quyết định của bạn.",
+      body: "Trong vài phút, bạn nhận được danh sách thông tin cần bổ sung theo thứ tự ưu tiên, các sản phẩm thiếu từng thông tin, nơi có thể tìm thông tin đó và điểm đủ thông tin để mua của danh mục.",
       meta: "Vài phút",
     },
     {
@@ -191,7 +191,7 @@ export const REASONS_VI = {
     },
     {
       label: "Vài phút",
-      body: "Gửi địa chỉ cửa hàng, nhận lại danh sách sửa đã xếp hạng sau vài phút.",
+      body: "Gửi địa chỉ website. Nhận danh sách cần sửa theo thứ tự ưu tiên trong vài phút.",
     },
     {
       label: "Thời gian thực",

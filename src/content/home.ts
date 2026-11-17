@@ -554,7 +554,7 @@ const MID_CTA_EN = {
 
 const MID_CTA_VI: typeof MID_CTA_EN = {
   question: "Muốn biết danh mục của bạn đang ở đâu?",
-  body: "Địa chỉ cửa hàng của bạn. Danh sách xếp hạng những gì cần sửa, trong vài phút.",
+  body: "Gửi địa chỉ website. Nhận danh sách cần sửa theo thứ tự ưu tiên trong vài phút.",
   label: "Yêu cầu Decision Audit",
   href: "/contact",
   note: "Không mã nguồn. Không thẻ theo dõi. Không dữ liệu khách hàng.",
@@ -717,7 +717,7 @@ const CHAIN_VI: Widen<typeof CHAIN_EN> = {
     eyebrow: "Decision Audit",
     title: "Tính ra điểm đứt gãy trước cả khi có một phiên truy cập nào.",
     body: "Chỗ chuỗi đứt là thuộc tính của danh mục chứ không phải của khách truy cập, nên đo được từ các trang công khai của bạn. Vì vậy cách này chạy được trên một ngành hàng mới, một thị trường mới, hay một dòng hàng vừa ra mắt chưa có lịch sử gì.",
-    needs: "Cần địa chỉ cửa hàng. Chạy được ngay ngày đầu, không cần lưu lượng.",
+    needs: "Cần địa chỉ website. Có thể thực hiện ngay ngày đầu, không cần lưu lượng truy cập.",
   },
 };
 

@@ -85,7 +85,7 @@ export const DECISION_AUDIT_VI: StoryContent = {
   meta: {
     title: "Kiểm tra dữ liệu sản phẩm: thuộc tính thiếu cần sửa",
     description:
-      "Dán địa chỉ cửa hàng của bạn. Trong vài phút, nhận danh sách xếp hạng các thông tin đáng ghi, những sản phẩm còn thiếu, và nơi từng dữ kiện đang nằm.",
+      "Dán địa chỉ website. Trong vài phút, nhận danh sách thông tin cần bổ sung theo thứ tự ưu tiên, các sản phẩm còn thiếu thông tin và nơi có thể tìm thông tin đó.",
   },
   eyebrow: "Decision Audit",
   title: "Sửa đúng dữ liệu sản phẩm mà người mua dựa vào để quyết định",
@@ -108,7 +108,7 @@ export const DECISION_AUDIT_VI: StoryContent = {
       {
         n: "01",
         meta: "Bạn, một lần",
-        title: "Dán địa chỉ cửa hàng",
+        title: "Dán địa chỉ website",
         body: "Hãy chọn nhóm hàng bạn nghi ngờ người mua gặp khó nhất. Chúng tôi đọc các trang sản phẩm công khai: tên, mô tả, ngành hàng, giá và những thông tin mỗi trang nêu ra.",
       },
       {
@@ -129,7 +129,7 @@ export const DECISION_AUDIT_VI: StoryContent = {
   faq: [
     {
       q: "Chính xác thì tôi cần gửi gì cho các bạn?",
-      a: "Địa chỉ cửa hàng và ngành hàng cần kiểm tra. Không cần gì thêm. Không hồ sơ khách hàng, không lịch sử đơn hàng, không quyền truy cập hệ thống, và không đoạn mã nào trên website của bạn. Chúng tôi chỉ đọc các trang sản phẩm công khai mà bất kỳ người mua hay AI agent nào cũng thấy được.",
+      a: "Địa chỉ website và ngành hàng cần kiểm tra. Không cần cung cấp hồ sơ khách hàng, lịch sử đơn hàng hay quyền truy cập hệ thống; cũng không cần viết mã trên website. Chúng tôi chỉ đọc các trang sản phẩm công khai mà người mua và AI agent có thể truy cập.",
     },
     {
       q: "Chúng tôi có cần một đầu mối kỹ thuật để dùng sản phẩm không?",

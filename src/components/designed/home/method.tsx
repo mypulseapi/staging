@@ -6,7 +6,17 @@
  *
  * Text is still inline. Extracting it into the content modules for Vietnamese is the next pass.
  */
+import type { CSSProperties } from "react";
 import { designedText } from "../t";
+
+/**
+ * Step 1's 24 product pages: which of the five facts (name, category, price, screen size, memory)
+ * each page does not state, or -1 where it states all five. A fixed pattern, so the scene is the
+ * same on every render.
+ */
+const PAGES = Array.from({ length: 24 }, (_, i) =>
+  i % 4 === 3 ? -1 : [2, 4, 1, 3, 0, 3, 4, 2][(i * 5 + (i % 3)) % 8] % 5,
+);
 export function MethodSection() {
   const t = designedText("home.method");
   return (
@@ -148,245 +158,88 @@ export function MethodSection() {
                     <div
                       className="how-glow flex items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface-1 p-3 sm:p-8 lg:min-h-136"
                     >
+                      {/*
+                        Step 1: the store's address goes in and Pulse reads its public product pages
+                        (owner's pick B, 2026-11-10). It used to show a product export; the test now reads
+                        the live store. Styles and beats: `.how-scan` in globals.css.
+                      */}
                       <div
-                        className="how-scene relative h-104 w-full max-w-3xl max-md:h-128"
+                        className="how-scene how-scan relative h-104 w-full max-w-3xl max-md:h-128"
                         data-scene
-                        data-beats="0 900 1900 2500 3600 6000 6900 7600"
+                        data-beats="0 700 1700 2600 5500"
                       >
-                        {/* 1 the merchant's store: big and centred, then (4) steps aside to the left */}
-                        <div
-                          className="rounded-xl border border-line bg-card shadow-sm absolute top-1/2 left-0 z-10 w-64 origin-left -translate-y-1/2 scale-90 p-4 transition-all duration-700 ease-out-soft pre-4:left-1/2 pre-4:-translate-x-1/2 pre-4:scale-125 max-md:top-0 max-md:left-1/2 max-md:w-full max-md:max-w-64 max-md:origin-top max-md:-translate-x-1/2 max-md:translate-y-0 max-md:pre-4:top-1/2 max-md:pre-4:-translate-y-1/2 max-md:pre-4:scale-100"
-                        >
-                          <p className="eyebrow">{t('15')}</p>
-                          <p className="mt-1 font-semibold text-ink">
-                            Laptops{" "}
-                            <span className="font-normal text-muted tabular-nums"
-                              >{t('16')}</span
-                            >
-                          </p>
-                          <ul className="mt-3 divide-y divide-line text-sm text-ink">
-                            <li className="flex items-center gap-2.5 py-1.5">
+                        <div className="scan-bar scan-box">
+                          <span className="scan-url">
+                            <svg className="size-3.5 shrink-0 text-muted" aria-hidden="true">
+                              <use href="#i-globe" />
+                            </svg>
+                            <span className="scan-typed">{t("22")}</span>
+                            <span className="scan-caret" aria-hidden="true"></span>
+                          </span>
+                          <span className="scan-btn">
+                            {t("scan")}
+                            <span className="scan-ring" aria-hidden="true"></span>
+                            <svg className="scan-cur" aria-hidden="true">
+                              <use href="#i-pointer" />
+                            </svg>
+                          </span>
+                        </div>
+                        {/* 24 product pages; each shows its five facts, amber where the page does not state one */}
+                        <div className="scan-grid" aria-hidden="true">
+                          {PAGES.map((missing, i) => (
+                            <span key={i} className="scan-th" style={{ "--i": i } as CSSProperties}>
+                              <span className="scan-im"></span>
+                              <span className="scan-sk"></span>
+                              <span className="scan-sk w-3/5"></span>
+                              <span className="scan-dots">
+                                {[0, 1, 2, 3, 4].map((d) => (
+                                  <i key={d} className={d === missing ? "scan-gap" : undefined}></i>
+                                ))}
+                              </span>
+                            </span>
+                          ))}
+                        </div>
+                        <span className="scan-band" aria-hidden="true"></span>
+                        <div className="scan-meta">
+                          <span className="flex flex-wrap items-center gap-3.5">
+                            <span>
+                              <span className="scan-dot" aria-hidden="true"></span>
+                              {t("stated")}
+                            </span>
+                            <span className="missing-flag">
+                              <svg className="size-3" aria-hidden="true">
+                                <use href="#i-triangle-alert" />
+                              </svg>
+                              {t("35")}
+                            </span>
+                          </span>
+                          <span className="scan-pages tabular-nums">{t("24")}</span>
+                        </div>
+                        <div className="scan-pulse scan-box">
+                          <div className="grid min-w-0 gap-0.5">
+                            <p className="font-display text-lg font-semibold text-ink">{t("47")}</p>
+                            <p className="scan-facts text-xs text-muted">
+                              {t("26")} · {t("28")} · {t("29")} · {t("30")} · {t("31")}
+                            </p>
+                          </div>
+                          <div className="scan-swap">
+                            <div className="scan-reading">
                               <span
-                                className="size-6 shrink-0 rounded bg-surface-1"
-                              ></span
-                              ><span className="truncate">{t('17')}</span>
-                            </li>
-                            <li className="flex items-center gap-2.5 py-1.5">
-                              <span
-                                className="size-6 shrink-0 rounded bg-surface-1"
-                              ></span
-                              ><span className="truncate">{t('18')}</span>
-                            </li>
-                            <li className="flex items-center gap-2.5 py-1.5">
-                              <span
-                                className="size-6 shrink-0 rounded bg-surface-1"
-                              ></span
-                              ><span className="truncate"
-                                >{t('19')}</span
-                              >
-                            </li>
-                            <li className="flex items-center gap-2.5 py-1.5">
-                              <span
-                                className="size-6 shrink-0 rounded bg-surface-1"
-                              ></span
-                              ><span className="truncate">{t('20')}</span>
-                            </li>
-                          </ul>
-                          <div className="mt-3 flex justify-end">
-                            <span
-                              className="relative inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 text-xs font-semibold text-muted transition-colors duration-200 at-2:border-primary at-2:text-primary at-3:border-primary at-3:bg-primary at-3:text-on-primary"
-                            >
-                              {t('scan')}
-                              {/* 3 click ring */}
-                              <span
-                                className="pointer-events-none absolute -inset-1 rounded-lg border-2 border-primary opacity-0 transition-all duration-500 ease-out-soft at-3:scale-125 at-3:opacity-0 pre-3:scale-90 pre-3:opacity-0 at-3:delay-100"
+                                className="scan-count font-display text-2xl leading-none font-semibold text-ink"
                                 aria-hidden="true"
                               ></span>
-                              {/* 2–3 the cursor: glides in from the bottom right, then presses */}
-                              <svg
-                                className="pointer-events-none absolute top-1/2 left-1/2 size-6 translate-x-24 translate-y-16 fill-ink stroke-surface-0 opacity-0 drop-shadow-sm transition-all duration-700 ease-in-out-cubic at-2:translate-0 at-2:opacity-100 at-3:translate-0 at-3:scale-90 at-3:opacity-100"
-                                aria-hidden="true"
-                              >
-                                <use href="#i-pointer" />
-                              </svg>
-                            </span>
-                          </div>
-                        </div>
-                        {/* 4–7 the export file icon: pops out, opens (5), closes (6), travels to Pulse (7), lands (8) */}
-                        <div
-                          className="absolute top-1/2 left-5/6 z-20 flex -translate-x-1/2 -translate-y-1/2 scale-50 flex-col items-center gap-2 opacity-0 transition-all duration-700 ease-in-out-cubic pre-7:left-1/2 max-md:top-5/6 max-md:left-1/2 max-md:pre-7:top-7/12 at-4:scale-100 at-4:opacity-100 at-5:scale-300 at-5:opacity-0 at-6:scale-100 at-6:opacity-100 at-7:scale-75 at-7:opacity-100"
-                          aria-hidden="true"
-                        >
-                          <span className="relative block size-24"
-                            ><svg
-                              className="size-24 fill-card stroke-primary"
-                              aria-hidden="true"
-                            >
-                              <use href="#i-file" /></svg
-                            ><span
-                              className="absolute inset-x-0 bottom-5 mx-auto w-fit rounded bg-primary px-1.5 text-xs font-bold text-on-primary"
-                              >{t('21')}</span
-                            ></span
-                          >
-                          <span className="text-xs font-semibold text-ink"
-                            >{t('22')}</span
-                          >
-                        </div>
-                        {/* 5 inside the file: the fields of the export */}
-                        <div
-                          className="pointer-events-none absolute inset-0 z-30 flex scale-25 items-center justify-center opacity-0 transition-all duration-700 ease-in-out-cubic at-5:scale-100 at-5:opacity-100 at-5:delay-150"
-                        >
-                          <div
-                            className="rounded-xl border border-line bg-card shadow-sm w-full p-5"
-                          >
-                            <div
-                              className="flex flex-wrap items-baseline justify-between gap-2"
-                            >
-                              <p className="font-semibold text-ink">{t('23')}</p>
-                              <p className="tabular-nums text-xs text-muted">
-                                {t('24')}
-                              </p>
+                              <p className="mt-0.5 text-sm text-muted">{t("48")}</p>
                             </div>
-                            <p className="mt-1 text-xs text-muted">
-                              {t('25')}
-                            </p>
-                            <table
-                              className="mt-3 w-full table-fixed text-left text-xs"
-                            >
-                              <thead className="text-muted">
-                                <tr>
-                                  <th
-                                    className="w-1/4 py-1.5 pr-3 font-medium max-md:w-2/5"
-                                  >
-                                    {t('26')}
-                                  </th>
-                                  <th
-                                    className="w-1/4 py-1.5 pr-3 font-medium max-md:hidden"
-                                  >
-                                    {t('27')}
-                                  </th>
-                                  <th className="py-1.5 pr-3 font-medium max-md:hidden">
-                                    {t('28')}
-                                  </th>
-                                  <th className="py-1.5 pr-3 font-medium max-md:hidden">
-                                    {t('29')}
-                                  </th>
-                                  <th className="py-1.5 pr-3 font-medium">
-                                    {t('30')}
-                                  </th>
-                                  <th className="py-1.5 font-medium max-sm:hidden">
-                                    {t('31')}
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody className="divide-y divide-line">
-                                <tr>
-                                  <td className="py-2 pr-3 font-medium text-ink">
-                                    {t('32')}
-                                  </td>
-                                  <td className="py-2 pr-3 text-muted max-md:hidden">
-                                    {t('33')}
-                                  </td>
-                                  <td className="py-2 pr-3 text-muted max-md:hidden">
-                                    {t('34')}
-                                  </td>
-                                  <td className="py-2 pr-3 max-md:hidden">
-                                    <span
-                                      className="block h-2 w-10 rounded-full bg-surface-1"
-                                    ></span>
-                                  </td>
-                                  <td className="py-2 pr-3">
-                                    <span className="missing-flag"
-                                      ><svg className="size-3" aria-hidden="true">
-                                        <use href="#i-triangle-alert" /></svg
-                                      >{t('35')}</span
-                                    >
-                                  </td>
-                                  <td className="py-2 max-sm:hidden">{t('36')}</td>
-                                </tr>
-                                <tr>
-                                  <td className="py-2 pr-3 font-medium text-ink">
-                                    {t('37')}
-                                  </td>
-                                  <td className="py-2 pr-3 text-muted max-md:hidden">
-                                    {t('38')}
-                                  </td>
-                                  <td className="py-2 pr-3 text-muted max-md:hidden">
-                                    {t('39')}
-                                  </td>
-                                  <td className="py-2 pr-3 max-md:hidden">
-                                    <span
-                                      className="block h-2 w-10 rounded-full bg-surface-1"
-                                    ></span>
-                                  </td>
-                                  <td className="py-2 pr-3">
-                                    <span className="missing-flag"
-                                      ><svg className="size-3" aria-hidden="true">
-                                        <use href="#i-triangle-alert" /></svg
-                                      >{t('40')}</span
-                                    >
-                                  </td>
-                                  <td className="py-2 max-sm:hidden">{t('41')}</td>
-                                </tr>
-                                <tr>
-                                  <td className="py-2 pr-3 font-medium text-ink">
-                                    {t('42')}
-                                  </td>
-                                  <td className="py-2 pr-3 text-muted max-md:hidden">
-                                    {t('43')}
-                                  </td>
-                                  <td className="py-2 pr-3 text-muted max-md:hidden">
-                                    {t('44')}
-                                  </td>
-                                  <td className="py-2 pr-3 max-md:hidden">
-                                    <span
-                                      className="block h-2 w-10 rounded-full bg-surface-1"
-                                    ></span>
-                                  </td>
-                                  <td className="py-2 pr-3">
-                                    <span className="missing-flag"
-                                      ><svg className="size-3" aria-hidden="true">
-                                        <use href="#i-triangle-alert" /></svg
-                                      >{t('45')}</span
-                                    >
-                                  </td>
-                                  <td className="py-2 max-sm:hidden">
-                                    <span className="missing-flag"
-                                      ><svg className="size-3" aria-hidden="true">
-                                        <use href="#i-triangle-alert" /></svg
-                                      >{t('46')}</span
-                                    >
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
+                            <div className="scan-done">
+                              <span className="badge-success">
+                                <svg className="size-3" aria-hidden="true">
+                                  <use href="#i-check" />
+                                </svg>
+                                {t("49")}
+                              </span>
+                              <p className="mt-0.5 text-sm text-ink tabular-nums">{t("50")}</p>
+                            </div>
                           </div>
-                        </div>
-                        {/* 7–8 Pulse: appears as the file is sent, then confirms */}
-                        <div
-                          className="rounded-xl border border-line bg-card shadow-sm absolute top-1/2 right-0 w-56 -translate-y-1/2 p-4 transition-all duration-700 ease-out-soft pre-7:translate-x-4 pre-7:opacity-0 max-md:top-auto max-md:right-auto max-md:bottom-0 max-md:left-1/2 max-md:-translate-x-1/2 max-md:translate-y-0 max-md:pre-7:-translate-x-1/2 max-md:pre-7:translate-y-4"
-                        >
-                          <p className="font-display text-lg font-semibold text-ink">
-                            {t('47')}
-                          </p>
-                          <div className="mt-2 grid">
-                            <p
-                              className="col-start-1 row-start-1 text-sm text-muted opacity-0 transition-opacity duration-300 pre-8:opacity-100"
-                            >
-                              {t('48')}
-                            </p>
-                            <span
-                              className="col-start-1 row-start-1 badge-success justify-self-start transition-all duration-500 pre-8:scale-90 pre-8:opacity-0"
-                              ><svg className="size-3" aria-hidden="true">
-                                <use href="#i-check" /></svg
-                              >{t('49')}</span
-                            >
-                          </div>
-                          <p
-                            className="mt-2 tabular-nums text-sm text-ink transition-opacity duration-500 delay-200 pre-8:opacity-0"
-                          >
-                            {t('50')}
-                          </p>
                         </div>
                       </div>
                     </div>

@@ -15,6 +15,7 @@ import { renderLocale } from "@/i18n/render-locale";
 import { ArrowRight } from "lucide-react";
 import { CalculatorBlock } from "../calculator";
 import { CtaBoxes } from "../cta-boxes";
+import { HeroSpark } from "./hero-spark";
 import { CatalogueTest } from "./catalogue-test";
 import { SplitScroll } from "./split-scroll";
 import { StatsCounter } from "./stats-counter";
@@ -25,11 +26,18 @@ export function CatalogueTestPage() {
     Object.keys(en.catalogueTest.page).map((k) => [k, t(k)]),
   );
   const [before, after] = t("title").split(t("titleMark"));
+  // The wand stays on the line with the first word, so a phone never leaves it alone at a line end.
+  const firstWord = before.split(" ", 1)[0];
   const header = (
     <div key="header" className="mx-auto w-full max-w-3xl text-center">
-      {/* No description under it (owner, 5 Nov 2026); the missing word in Signal Red, its one use here. */}
-      <h1 className="text-hero text-balance">
-        {before}
+      {/* No description under it (owner, 5 Nov 2026); the missing word in Signal Red, its one use here.
+          28px in both languages (owner, 12 Nov 2026): the hero face, weight and tracking at a fixed size. */}
+      <h1 className="text-hero text-balance [--text-hero:1.75rem]">
+        <span className="whitespace-nowrap">
+          <HeroSpark />
+          {firstWord}
+        </span>
+        {before.slice(firstWord.length)}
         <span className="text-signal-text">{t("titleMark")}</span>
         {after}
       </h1>
