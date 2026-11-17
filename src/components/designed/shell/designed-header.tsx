@@ -166,7 +166,7 @@ export function DesignedHeader() {
                           <li>
                             <Link
                               href={designedHref("/en/product/decision-audit")}
-                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -188,7 +188,7 @@ export function DesignedHeader() {
                               href={designedHref(
                                 "/en/product/decision-verification",
                               )}
-                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -210,7 +210,7 @@ export function DesignedHeader() {
                               href={designedHref(
                                 "/en/product/decision-monitor",
                               )}
-                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -242,7 +242,7 @@ export function DesignedHeader() {
                               href={designedHref(
                                 "/en/product/return-verification",
                               )}
-                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -262,7 +262,7 @@ export function DesignedHeader() {
                           <li>
                             <Link
                               href={designedHref("/en/product/visual-evidence")}
-                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -282,7 +282,7 @@ export function DesignedHeader() {
                           <li>
                             <Link
                               href={designedHref("/en/product/promotion-audit")}
-                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
@@ -312,7 +312,7 @@ export function DesignedHeader() {
                           <li key={p.href} className="px-3">
                             <Link
                               href={designedHref(p.href)}
-                              className="flex h-full items-start gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
+                              className="flex h-full items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ease-out-soft hover:bg-surface-1"
                             >
                               <span className="nav-icon-tile">
                                 <svg className="size-4" aria-hidden="true">
