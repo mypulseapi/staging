@@ -6581,3 +6581,28 @@ html[data-js] .figure-hold *::after {
     88.89%, 100% { opacity: 0; scale: 1.5; }
   }
 }
+
+/* Test My Catalogue's pipeline (17 Nov 2026): the connector out of the running stage carries the work. The fill
+   is the real share of pages read and eases to each new value; the dash travels while the share is not known.
+   Both stand still with reduced motion, and `data-paused` holds the dash in place (WCAG 2.2.2). */
+.pipe-fill {
+  transition: stroke-dashoffset 700ms var(--ease-out-soft);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pipe-fill {
+    transition: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pipe-flow {
+    animation: pipeFlow 900ms linear infinite;
+  }
+  .pipe-flow[data-paused="true"] {
+    animation-play-state: paused;
+  }
+  @keyframes pipeFlow {
+    to {
+      stroke-dashoffset: -16;
+    }
+  }
+}
