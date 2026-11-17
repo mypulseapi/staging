@@ -21,6 +21,7 @@ import {
   Play,
   ScanSearch,
   ScanText,
+  ShieldAlert,
   Square,
   X,
 } from "lucide-react";
@@ -371,28 +372,9 @@ export function RunPipeline({
     const quiet = (text: string) => (
       <p className="px-5 py-4.5 text-sm text-muted max-md:px-4">{text}</p>
     );
-    if (sel === 1)
-      return status === "blocked" ? (
-        <div
-          className={`flex items-start gap-3 bg-(--st-bg) px-5 py-3.5 text-sm text-ink max-md:px-4 ${TONE.stopped}`}
-        >
-          <Hand aria-hidden className="mt-0.5 size-4 text-(--st-fg)" />
-          <p>{t("stoppedNone")}</p>
-        </div>
-      ) : (
-        quiet(t("status_failed"))
-      );
+    if (sel === 1) return quiet(t("status_failed"));
     if (sel === 2) {
       if (m === "waiting") return quiet(t("notStarted"));
-      if (status === "blocked")
-        return (
-          <div
-            className={`flex items-start gap-3 bg-(--st-bg) px-5 py-3.5 text-sm text-ink max-md:px-4 ${TONE.stopped}`}
-          >
-            <Hand aria-hidden className="mt-0.5 size-4 text-(--st-fg)" />
-            <p>{t("stoppedNone")}</p>
-          </div>
-        );
       return (
         <>
           <ol>{latest.map(pageRow)}</ol>
@@ -636,6 +618,27 @@ export function RunPipeline({
           {reason}
         </p>
       )}
+      {status === "blocked" && (
+        <div
+          role="alert"
+          className={`mx-7 mt-4 flex items-start gap-3 rounded-xl border border-(--st-line) bg-(--st-bg) px-5 py-4 max-md:mx-4 ${TONE.stopped}`}
+        >
+          <ShieldAlert
+            aria-hidden
+            className="mt-0.5 size-5 shrink-0 text-(--st-fg)"
+          />
+          <div className="min-w-0">
+            <p className="text-[15px] font-semibold text-ink">
+              {t("blockedBanner", { domain })}
+            </p>
+            <p className="mt-1 text-sm text-pretty text-ink">
+              {read > 0
+                ? t("status_blocked", { n: num(read) })
+                : t("stoppedNone")}
+            </p>
+          </div>
+        </div>
+      )}
       {(paused && running) || byYou ? (
         <p
           role="status"
@@ -856,44 +859,46 @@ export function RunPipeline({
       {/* The stage's table while it runs; once done, the result below says it all (owner, 6 Nov 2026). */}
       {/* A table only while pages are read and requirements tested: the queue and the search for pages
           need none (owner, 6 Nov 2026). */}
-      {!finished && (sel >= 2 || (stuck && sel === 1)) && (
-        <section
-          aria-live="polite"
-          className="mx-7 mt-6 overflow-hidden rounded-xl border border-line bg-surface-1 max-md:mx-4 max-md:mt-5"
-        >
-          <div
-            className={`flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line bg-card px-5 py-3.5 max-md:px-4 ${TONE[mark(sel)]}`}
+      {!finished &&
+        !(status === "blocked" && read === 0) &&
+        (sel >= 2 || (stuck && sel === 1)) && (
+          <section
+            aria-live="polite"
+            className="mx-7 mt-6 overflow-hidden rounded-xl border border-line bg-surface-1 max-md:mx-4 max-md:mt-5"
           >
-            {/* While pages are read, the page being read leads and the status sits right; the stage's
+            <div
+              className={`flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line bg-card px-5 py-3.5 max-md:px-4 ${TONE[mark(sel)]}`}
+            >
+              {/* While pages are read, the page being read leads and the status sits right; the stage's
               name stays for screen readers only (owner, 6 Nov 2026). */}
-            <h3
-              className={
-                readNow ? "sr-only" : "text-[15px] font-semibold text-ink"
-              }
-            >
-              {t(STAGES[sel].name)}
-            </h3>
-            {readNow}
-            <span
-              className={`${readNow ? "ml-auto max-md:ml-0" : ""} inline-flex shrink-0 items-center gap-1.5 rounded-full border border-(--st-line) bg-(--st-bg) px-2.5 py-0.5 text-xs font-semibold text-(--st-fg)`}
-            >
-              <MarkIcon m={mark(sel)} className="size-3" still={paused} />
-              {mark(sel) === "passed"
-                ? t("status_done")
-                : mark(sel) === "running"
-                  ? t(`status_${STAGES[sel].id}`)
-                  : mark(sel) === "failed"
-                    ? t("markFailed")
-                    : mark(sel) === "stopped"
-                      ? stopWord
-                      : sel === 0 && status === "queued"
-                        ? t("status_queued")
-                        : t("notStarted")}
-            </span>
-          </div>
-          {panel}
-        </section>
-      )}
+              <h3
+                className={
+                  readNow ? "sr-only" : "text-[15px] font-semibold text-ink"
+                }
+              >
+                {t(STAGES[sel].name)}
+              </h3>
+              {readNow}
+              <span
+                className={`${readNow ? "ml-auto max-md:ml-0" : ""} inline-flex shrink-0 items-center gap-1.5 rounded-full border border-(--st-line) bg-(--st-bg) px-2.5 py-0.5 text-xs font-semibold text-(--st-fg)`}
+              >
+                <MarkIcon m={mark(sel)} className="size-3" still={paused} />
+                {mark(sel) === "passed"
+                  ? t("status_done")
+                  : mark(sel) === "running"
+                    ? t(`status_${STAGES[sel].id}`)
+                    : mark(sel) === "failed"
+                      ? t("markFailed")
+                      : mark(sel) === "stopped"
+                        ? stopWord
+                        : sel === 0 && status === "queued"
+                          ? t("status_queued")
+                          : t("notStarted")}
+              </span>
+            </div>
+            {panel}
+          </section>
+        )}
 
       <footer className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 px-7 pt-4.5 pb-5.5 text-[13px] text-muted max-md:px-4">
         <span>
