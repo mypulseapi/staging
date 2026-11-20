@@ -104,6 +104,8 @@ export function CatalogueTest({
   // Bumped on every submit, so polling restarts even when the API hands back the id already shown:
   // a reused test has the same id, and without this the page sat on "Waiting in line" (BUG-104).
   const [run, setRun] = useState(0);
+  // A failed start spent its token too: a new widget, without starting a run (20 Nov 2026).
+  const [retry, setRetry] = useState(0);
   const [state, setState] = useState<TestState | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
   const [reqs, setReqs] = useState<
@@ -310,6 +312,8 @@ export function CatalogueTest({
       window.history.replaceState(null, "", `?id=${r.id}`);
     } catch (e) {
       const err = e as TestError;
+      setToken("");
+      setRetry((n) => n + 1);
       setError(
         err.details
           ? Object.values(err.details)[0]!
@@ -509,7 +513,7 @@ export function CatalogueTest({
                   ))}
                 </ul>
                 {/* A token is good for one test: a new one after each start (owner, 6 Nov 2026). */}
-                {enabled && <Turnstile key={run} onToken={setToken} />}
+                {enabled && <Turnstile key={`${run}:${retry}`} onToken={setToken} />}
                 {error && !id && (
                   <p className="text-sm text-ink" role="alert">
                     {error}
