@@ -80,6 +80,7 @@ PULSE is a decision call: requirements and evidence in; for every option, fits, 
 - [The method](${en("/why/method")}): how decision information is measured and why bits rather than clicks.
 - [Compared with what exists](${en("/why/compare")}): where other tools in this space stop.
 - [The limits](${en("/why/limits")}): what the measurement does not tell you.
+- [SEO beyond Google](${en("/use-cases/seo-beyond-google")}): the five systems of modern search (SEO, AEO, GEO, AIO, SXO), their parts and what to track in each.
 
 ## Company
 - [About ${COMPANY_NAME}](${en("/about")}): who builds this, and what we cannot show yet.

@@ -265,6 +265,13 @@ export const PAGE_CATALOGUE: readonly PageItem[] = [
     decides: ["does-it-fit-me"],
   },
   {
+    route: "/use-cases/seo-beyond-google",
+    audience: "merchant",
+    area: "pages",
+    depth: "explainer",
+    decides: ["how-it-works"],
+  },
+  {
     route: "/use-cases/time-to-market",
     audience: "merchant",
     area: "none",

@@ -51,6 +51,7 @@ const staticPages = [
   "/product/pages",
   "/product/merchandising-studio",
   "/use-cases/seo-aeo",
+  "/use-cases/seo-beyond-google",
   "/use-cases/time-to-market",
   "/use-cases/promotions-that-pay",
   "/use-cases/fixable-returns",

@@ -237,6 +237,7 @@ const CRUMB_LABELS: Record<string, { en: string; vi: string }> = {
   "/why/audit": { en: "The audit", vi: "Bản kiểm tra" },
   "/use-cases": { en: "Use cases", vi: "Trường hợp sử dụng" },
   "/use-cases/seo-aeo": { en: "SEO and AEO", vi: "SEO và AEO" },
+  "/use-cases/seo-beyond-google": { en: "SEO beyond Google", vi: "SEO ngoài Google" },
   "/use-cases/time-to-market": { en: "Time to market", vi: "Thời gian ra mắt" },
   "/use-cases/promotions-that-pay": {
     en: "Promotions that pay",
