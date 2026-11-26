@@ -1300,6 +1300,12 @@
       "description": "Across a 2,176-product catalogue, 52.6% of recorded attribute values duplicate the product photograph. What that leaves is the part worth recording."
     }
   },
+  "seoClusterPage": {
+    "meta": {
+      "title": "SEO doesn't stop at Google: the five systems",
+      "description": "SEO, AEO, GEO, AIO and SXO explained: what each of the five systems of modern search gets you, the parts inside it, and the one number to track."
+    }
+  },
   "whyPage": {
     "meta": {
       "title": "Why Pulse: a reproducible measurement method",
